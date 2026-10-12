@@ -1,6 +1,5 @@
 import {
   ComponentType,
-  FormEvent,
   lazy,
   Suspense,
   useEffect,
@@ -105,46 +104,6 @@ function DesktopHotspots({ isFactory }: { isFactory: boolean }) {
   );
 }
 
-function ContactForm() {
-  const [sent, setSent] = useState(false);
-
-  function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setSent(true);
-  }
-
-  return (
-    <form className="contact-form-overlay" onSubmit={submit}>
-      <input aria-label="First name" name="firstName" placeholder="Jane" required />
-      <input aria-label="Last name" name="lastName" placeholder="Doe" required />
-      <input
-        aria-label="Business email"
-        name="email"
-        placeholder="jane@example.com"
-        type="email"
-        required
-      />
-      <input
-        aria-label="Phone number"
-        name="phone"
-        placeholder="(555) 555-1234"
-        type="tel"
-        required
-      />
-      <textarea
-        aria-label="Message"
-        name="message"
-        placeholder="Tell us about your project..."
-      />
-      <label>
-        <input type="checkbox" required />
-        <span className="sr-only">I accept the Privacy Policy</span>
-      </label>
-      <button type="submit">{sent ? "MESSAGE SENT" : "SEND MESSAGE"}</button>
-    </form>
-  );
-}
-
 function MobileHeader({ pathname }: { pathname: string }) {
   const [open, setOpen] = useState(false);
 
@@ -244,7 +203,6 @@ export default function App() {
             <PageComponent />
           </Suspense>
           <DesktopHotspots isFactory={isFactory} />
-          {pathname === "/contact" && <ContactForm />}
         </div>
       </main>
     </>

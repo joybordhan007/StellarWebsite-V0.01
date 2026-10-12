@@ -1,3 +1,5 @@
+import { FormEvent, useState } from "react";
+
 const assetPathPrefix = "/assets/1-4581";
 const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
 const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.png`;
@@ -182,6 +184,13 @@ function Footer({ className }: { className?: string }) {
 }
 
 export default function LetsTalk() {
+  const [sent, setSent] = useState(false);
+
+  function submitContactForm(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSent(true);
+  }
+
   return (
     <div className="bg-[#fafafa] relative h-[2963px] w-[1920px]" data-node-id="1:4581" data-name="LET’S TALK">
       <Footer className="-translate-x-1/2 absolute bg-white bottom-0 h-[593px] left-[calc(50%+1px)] overflow-clip shadow-[0px_0px_4px_0px_rgba(0,0,0,0.06)] w-[1920px]" />
@@ -318,94 +327,44 @@ export default function LetsTalk() {
           </div>
         </div>
         <div className="content-stretch flex flex-col items-start py-[80px] relative shrink-0 w-[901px]" data-node-id="1:4654" data-name="Frame">
-          <div className="bg-white content-stretch flex flex-col gap-[24px] items-center overflow-clip p-[32px] relative rounded-[8px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] shrink-0 w-full" data-node-id="1:4655" data-name="Frame">
+          <div className="contact-page-form-card bg-white content-stretch flex flex-col gap-[24px] items-center overflow-clip p-[32px] relative rounded-[8px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] shrink-0 w-full" data-node-id="1:4655" data-name="Frame">
+            <form className="contact-page-form" onSubmit={submitContactForm}>
             <div className="content-stretch flex flex-col gap-[20px] items-start relative shrink-0 w-full" data-node-id="1:4656" data-name="Frame">
               <div className="content-stretch flex gap-[24px] items-start relative shrink-0 w-full" data-node-id="1:4657" data-name="Frame">
                 <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-start min-w-px relative" data-node-id="1:4658" data-name="Frame">
-                  <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#2f2f2f] text-[0px] text-center uppercase whitespace-nowrap" data-node-id="1:4659">
-                    <p className="text-[14px]">
-                      <span className="leading-[1.2]">{`First Name `}</span>
-                      <span className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[1.2] not-italic text-[red] uppercase">*</span>
-                    </p>
-                  </div>
-                  <div className="border border-[rgba(0,0,0,0.2)] border-solid content-stretch flex h-[49px] items-center px-[16px] py-[20px] relative rounded-[4px] shrink-0 w-full" data-node-id="1:4660" data-name="Frame">
-                    <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[1.2] not-italic relative shrink-0 text-[12px] text-[rgba(0,0,0,0.2)] whitespace-nowrap" data-node-id="1:4661">
-                      Jane
-                    </p>
-                  </div>
+                  <label className="contact-field-label" htmlFor="contact-first-name">First Name <span>*</span></label>
+                  <input className="contact-page-input" id="contact-first-name" name="firstName" placeholder="Jane" required />
                 </div>
                 <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-start min-w-px relative" data-node-id="1:4662" data-name="Frame">
-                  <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#2f2f2f] text-[0px] text-center uppercase whitespace-nowrap" data-node-id="1:4663">
-                    <p className="text-[14px]">
-                      <span className="leading-[1.2]">{`Last Name `}</span>
-                      <span className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[1.2] not-italic text-[red] uppercase">*</span>
-                    </p>
-                  </div>
-                  <div className="border border-[rgba(0,0,0,0.2)] border-solid content-stretch flex h-[49px] items-center px-[16px] py-[20px] relative rounded-[4px] shrink-0 w-full" data-node-id="1:4664" data-name="Frame">
-                    <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[1.2] not-italic relative shrink-0 text-[12px] text-[rgba(0,0,0,0.2)] whitespace-nowrap" data-node-id="1:4665">
-                      Doe
-                    </p>
-                  </div>
+                  <label className="contact-field-label" htmlFor="contact-last-name">Last Name <span>*</span></label>
+                  <input className="contact-page-input" id="contact-last-name" name="lastName" placeholder="Doe" required />
                 </div>
               </div>
               <div className="content-stretch flex gap-[24px] items-center relative shrink-0 w-full" data-node-id="1:4666" data-name="Frame">
                 <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-start min-w-px relative" data-node-id="1:4667" data-name="Frame">
-                  <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#2f2f2f] text-[0px] uppercase w-full" data-node-id="1:4668">
-                    <p className="text-[14px]">
-                      <span className="leading-[1.2]">{`Business Email `}</span>
-                      <span className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[1.2] not-italic text-[red] uppercase">*</span>
-                    </p>
-                  </div>
-                  <div className="border border-[rgba(0,0,0,0.2)] border-solid content-stretch flex h-[49px] items-center px-[16px] py-[20px] relative rounded-[4px] shrink-0 w-full" data-node-id="1:4669" data-name="Frame">
-                    <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[1.2] not-italic relative shrink-0 text-[12px] text-[rgba(0,0,0,0.2)] whitespace-nowrap" data-node-id="1:4670">
-                      jane@example.com
-                    </p>
-                  </div>
+                  <label className="contact-field-label" htmlFor="contact-email">Business Email <span>*</span></label>
+                  <input className="contact-page-input" id="contact-email" name="email" placeholder="jane@example.com" type="email" required />
                 </div>
                 <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-start min-w-px relative" data-node-id="1:4671" data-name="Frame">
-                  <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#2f2f2f] text-[0px] uppercase w-full" data-node-id="1:4672">
-                    <p className="text-[14px]">
-                      <span className="leading-[1.2]">{`Phone Number `}</span>
-                      <span className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[1.2] not-italic text-[red] uppercase">*</span>
-                    </p>
-                  </div>
-                  <div className="border border-[rgba(0,0,0,0.2)] border-solid content-stretch flex h-[49px] items-center px-[16px] py-[20px] relative rounded-[4px] shrink-0 w-full" data-node-id="1:4673" data-name="Frame">
-                    <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[1.2] not-italic relative shrink-0 text-[12px] text-[rgba(0,0,0,0.2)] whitespace-nowrap" data-node-id="1:4674">
-                      (555) 555-1234
-                    </p>
-                  </div>
+                  <label className="contact-field-label" htmlFor="contact-phone">Phone Number <span>*</span></label>
+                  <input className="contact-page-input" id="contact-phone" name="phone" placeholder="(555) 555-1234" type="tel" required />
                 </div>
               </div>
               <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full" data-node-id="1:4675" data-name="Frame">
-                <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#2f2f2f] text-[14px] uppercase w-full" data-node-id="1:4676">
-                  <p className="leading-[1.2]">Message</p>
-                </div>
-                <div className="border border-[rgba(0,0,0,0.2)] border-solid content-stretch flex h-[112px] items-start px-[16px] py-[20px] relative rounded-[8px] shrink-0 w-full" data-node-id="1:4677" data-name="Frame">
-                  <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[1.2] not-italic relative shrink-0 text-[12px] text-[rgba(0,0,0,0.2)] whitespace-nowrap" data-node-id="1:4678">
-                    Tell us about your project...
-                  </p>
-                </div>
+                <label className="contact-field-label" htmlFor="contact-message">Message</label>
+                <textarea className="contact-page-input contact-page-textarea" id="contact-message" name="message" placeholder="Tell us about your project..." />
               </div>
               <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:4679" data-name="Frame">
                 <div className="content-stretch flex gap-[4px] items-center relative shrink-0 w-full" data-node-id="1:4680" data-name="Frame">
-                  <div className="content-stretch flex items-center px-[4px] py-[2px] relative shrink-0" data-node-id="1:4681" data-name="Frame">
-                    <div className="border-2 border-[#2f2f2f] border-solid relative rounded-[2px] shrink-0 size-[24px]" data-node-id="1:4682" />
-                  </div>
-                  <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#2f2f2f] text-[0px] whitespace-nowrap" data-node-id="1:4683">
-                    <p className="text-[16px]">
-                      <span className="font-['Inter:Regular'] font-normal leading-[1.2]">{`I have read and accept the `}</span>
-                      <span className="font-['Inter:Semi_Bold'] font-semibold leading-[1.2] text-[#2084ff]">Privacy Policy.</span>
-                      <span className="font-['Inter:Regular'] font-normal leading-[1.2] text-[red]">*</span>
-                    </p>
-                  </div>
+                  <input className="contact-page-checkbox" id="contact-privacy" type="checkbox" required />
+                  <label className="contact-privacy-label" htmlFor="contact-privacy">
+                    I have read and accept the <a href="#">Privacy Policy.</a><span>*</span>
+                  </label>
                 </div>
               </div>
             </div>
-            <div className="bg-[#dea36a] content-stretch flex items-center justify-center px-[32px] py-[16px] relative rounded-[8px] shrink-0 w-full" data-node-id="1:4684" data-name="CTA">
-              <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[1.2] not-italic relative shrink-0 text-[18px] text-white whitespace-nowrap" data-node-id="1:4685">
-                SEND MESSAGE
-              </p>
-            </div>
+            <button className="contact-page-submit" type="submit">{sent ? "MESSAGE SENT" : "SEND MESSAGE"}</button>
+            </form>
           </div>
         </div>
       </div>
