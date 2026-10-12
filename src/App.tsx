@@ -1,22 +1,49 @@
 import {
   ComponentType,
   lazy,
+  startTransition,
   Suspense,
   useEffect,
   useMemo,
   useState,
 } from "react";
 
-const About = lazy(() => import("./pages/About"));
-const Capabilities = lazy(() => import("./pages/Capabilities"));
-const Contact = lazy(() => import("./pages/Contact"));
-const DesignPath = lazy(() => import("./pages/DesignPath"));
-const GoodEarth = lazy(() => import("./pages/GoodEarth"));
-const Home = lazy(() => import("./pages/Home"));
-const KnitGallery = lazy(() => import("./pages/KnitGallery"));
-const Products = lazy(() => import("./pages/Products"));
-const Progress = lazy(() => import("./pages/Progress"));
-const Sustainability = lazy(() => import("./pages/Sustainability"));
+const pageLoaders = {
+  "/": () => import("./pages/Home"),
+  "/about": () => import("./pages/About"),
+  "/capabilities": () => import("./pages/Capabilities"),
+  "/contact": () => import("./pages/Contact"),
+  "/design-path": () => import("./pages/DesignPath"),
+  "/factories": () => import("./pages/GoodEarth"),
+  "/factories/goodearth": () => import("./pages/GoodEarth"),
+  "/factories/knit-gallery": () => import("./pages/KnitGallery"),
+  "/factories/progress": () => import("./pages/Progress"),
+  "/products": () => import("./pages/Products"),
+  "/sustainability": () => import("./pages/Sustainability"),
+};
+
+const About = lazy(pageLoaders["/about"]);
+const Capabilities = lazy(pageLoaders["/capabilities"]);
+const Contact = lazy(pageLoaders["/contact"]);
+const DesignPath = lazy(pageLoaders["/design-path"]);
+const GoodEarth = lazy(pageLoaders["/factories"]);
+const Home = lazy(pageLoaders["/"]);
+const KnitGallery = lazy(pageLoaders["/factories/knit-gallery"]);
+const Products = lazy(pageLoaders["/products"]);
+const Progress = lazy(pageLoaders["/factories/progress"]);
+const Sustainability = lazy(pageLoaders["/sustainability"]);
+
+function prefetchPage(pathname: string) {
+  const loader = pageLoaders[pathname as keyof typeof pageLoaders];
+  if (loader) void loader().catch(() => undefined);
+}
+
+function prefetchLinkProps(href: string) {
+  return {
+    onPointerEnter: () => prefetchPage(href),
+    onFocus: () => prefetchPage(href),
+  };
+}
 
 type Page = {
   component: ComponentType;
@@ -84,23 +111,60 @@ const navigation = [
   ["/products", "Products"],
 ] as const;
 
-function DesktopHotspots({ isFactory }: { isFactory: boolean }) {
+function DesktopHeader({
+  pathname,
+  scale,
+  viewportWidth,
+}: {
+  pathname: string;
+  scale: number;
+  viewportWidth: number;
+}) {
+  const isFactory = pathname.startsWith("/factories");
+  const left = (viewportWidth - 1920 * scale) / 2;
+
   return (
-    <>
-      <nav className="desktop-hotspots" aria-label="Primary navigation">
-        {navigation.map(([href, label]) => (
-          <a key={href} href={href} aria-label={label} />
-        ))}
-        <a href="/contact" aria-label="Let's talk" />
-      </nav>
-      {isFactory && (
-        <nav className="factory-hotspots" aria-label="Factory locations">
-          <a href="/factories/goodearth" aria-label="GoodEarth Apparels" />
-          <a href="/factories/progress" aria-label="Progress Apparels" />
-          <a href="/factories/knit-gallery" aria-label="Knit Gallery" />
+    <header className="desktop-header" style={{ height: `${90 * scale}px` }}>
+      <div
+        className="desktop-header-design"
+        style={{ left: `${left}px`, transform: `scale(${scale})` }}
+      >
+        <a className="desktop-header-logo" href="/" aria-label="Stellar home">
+          <img src="/assets/1-4402/aa512.svg" alt="Stellar Manufacturing" />
+        </a>
+        <nav aria-label="Primary navigation">
+          {navigation.map(([href, label]) => {
+            const active = pathname === href || (href === "/factories" && isFactory);
+            return (
+              <a
+                aria-current={active ? "page" : undefined}
+                className={active ? "active" : ""}
+                href={href}
+                key={href}
+                {...prefetchLinkProps(href)}
+              >
+                {label}
+              </a>
+            );
+          })}
         </nav>
-      )}
-    </>
+        <a className="desktop-header-contact" href="/contact" {...prefetchLinkProps("/contact")}>
+          Let's talk
+        </a>
+      </div>
+    </header>
+  );
+}
+
+function FactoryHotspots({ isFactory }: { isFactory: boolean }) {
+  if (!isFactory) return null;
+
+  return (
+    <nav className="factory-hotspots" aria-label="Factory locations">
+      <a href="/factories/goodearth" aria-label="GoodEarth Apparels" {...prefetchLinkProps("/factories/goodearth")} />
+      <a href="/factories/progress" aria-label="Progress Apparels" {...prefetchLinkProps("/factories/progress")} />
+      <a href="/factories/knit-gallery" aria-label="Knit Gallery" {...prefetchLinkProps("/factories/knit-gallery")} />
+    </nav>
   );
 }
 
@@ -129,11 +193,12 @@ function MobileHeader({ pathname }: { pathname: string }) {
               className={pathname === href ? "active" : ""}
               href={href}
               key={href}
+              {...prefetchLinkProps(href)}
             >
               {label}
             </a>
           ))}
-          <a href="/contact">Let's talk</a>
+          <a href="/contact" {...prefetchLinkProps("/contact")}>Let's talk</a>
         </nav>
       )}
     </header>
@@ -150,7 +215,7 @@ export default function App() {
 
   useEffect(() => {
     const navigate = () => {
-      setPathname(window.location.pathname);
+      startTransition(() => setPathname(window.location.pathname));
       window.scrollTo(0, 0);
     };
     const resize = () => setViewportWidth(window.innerWidth);
@@ -196,13 +261,14 @@ export default function App() {
 
   return (
     <>
+      <DesktopHeader pathname={pathname} scale={scale} viewportWidth={viewportWidth} />
       <MobileHeader pathname={pathname} />
       <main className="site-canvas" style={canvasStyle}>
         <div className="design-scale" style={{ transform: `scale(${scale})` }}>
-          <Suspense fallback={<div className="page-loading">Loading…</div>}>
+          <Suspense fallback={null}>
             <PageComponent />
           </Suspense>
-          <DesktopHotspots isFactory={isFactory} />
+          <FactoryHotspots isFactory={isFactory} />
         </div>
       </main>
     </>

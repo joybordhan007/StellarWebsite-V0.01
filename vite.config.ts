@@ -24,6 +24,7 @@ react(),
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
       figmaMakeKitPlugin({ storiesGlob: '/src/**/*.stories.{ts,tsx,js,jsx}' }),
+      lazyLoadPageImages(),
     ],
     resolve: {
       alias: {
@@ -46,6 +47,18 @@ react(),
     },
   }
 })
+
+function lazyLoadPageImages(): Plugin {
+  return {
+    name: 'lazy-load-page-images',
+    enforce: 'pre',
+    transform(code, id) {
+      if (!/[/\\]src[/\\]pages[/\\].*\.tsx(?:\?|$)/.test(id)) return null
+
+      return code.replace(/<img(?=\s)/g, '<img loading="lazy" decoding="async"')
+    },
+  }
+}
 
 type FigmaSiteConfiguration = {
   title?: string

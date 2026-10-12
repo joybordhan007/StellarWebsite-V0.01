@@ -152,36 +152,101 @@ textarea {
   transform-origin: left top;
 }
 
-.page-loading {
-  display: grid;
-  width: 1920px;
-  height: 100vh;
-  place-items: center;
-  color: #4a4a4a;
-  background: #fafafa;
-  font-family: "Inter:Medium", Arial, sans-serif;
-  font-size: 18px;
+.desktop-header {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  background: rgb(29 29 29 / 92%);
+  backdrop-filter: blur(7px);
 }
 
-.desktop-hotspots,
+.desktop-header-design {
+  position: absolute;
+  top: 0;
+  display: flex;
+  width: 1920px;
+  height: 90px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 180px;
+  transform-origin: top left;
+}
+
+.desktop-header-logo,
+.desktop-header-logo img {
+  display: block;
+  width: 131px;
+  height: 60px;
+}
+
+.desktop-header-logo img {
+  object-fit: contain;
+}
+
+.desktop-header nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.desktop-header nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 4px;
+  border-bottom: 1.5px solid transparent;
+  color: #f6f6f6;
+  font-family: "Inter:Medium", Arial, sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.desktop-header nav a.active {
+  border-color: #dea36a;
+  color: #dea36a;
+  font-family: "Inter:Semi Bold", Arial, sans-serif;
+}
+
+.desktop-header-contact {
+  display: flex;
+  align-items: center;
+  padding: 14px 26px;
+  border-radius: 4px;
+  background: #dea36a;
+  color: #fff;
+  font-family: "Inter:Medium", Arial, sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .factory-hotspots {
   position: absolute;
   z-index: 50;
-  left: 0;
-  top: 0;
-  width: 1920px;
+  top: 920px;
+  left: 180px;
+  width: 1560px;
+  height: 128px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   pointer-events: none;
 }
 
-.desktop-hotspots a,
 .factory-hotspots a {
-  position: absolute;
+  position: static;
   display: block;
   pointer-events: auto;
 }
 
-.desktop-hotspots {
-  height: 90px;
+.design-scale div[class*="h-[90px]"][class*="top-0"][class*="w-[1920px]"] {
+  display: none;
 }
 
 .desktop-hotspots a:nth-child(1) {
@@ -215,7 +280,7 @@ textarea {
 }
 
 .desktop-hotspots a:nth-child(7) {
-  left: 1340px;
+  left: 1290px;
   width: 120px;
 }
 
@@ -433,7 +498,7 @@ textarea {
     color: #dea36a;
   }
 
-  .desktop-hotspots,
+  .desktop-header,
   .factory-hotspots {
     display: none;
   }
