@@ -114,23 +114,28 @@ const navigation = [
 function DesktopHeader({
   pathname,
   scale,
+  scrolled,
   viewportWidth,
 }: {
   pathname: string;
   scale: number;
+  scrolled: boolean;
   viewportWidth: number;
 }) {
   const isFactory = pathname.startsWith("/factories");
   const left = (viewportWidth - 1920 * scale) / 2;
 
   return (
-    <header className="desktop-header" style={{ height: `${90 * scale}px` }}>
+    <header
+      className={`desktop-header${scrolled ? " scrolled" : ""}`}
+      style={{ height: `${90 * scale}px` }}
+    >
       <div
         className="desktop-header-design"
         style={{ left: `${left}px`, transform: `scale(${scale})` }}
       >
         <a className="desktop-header-logo" href="/" aria-label="Stellar home">
-          <img src="/assets/1-4402/aa512.svg" alt="Stellar Manufacturing" />
+          <img src="/assets/1-641/3b80a.svg" alt="Stellar Manufacturing" />
         </a>
         <nav aria-label="Primary navigation">
           {navigation.map(([href, label]) => {
@@ -149,7 +154,8 @@ function DesktopHeader({
           })}
         </nav>
         <a className="desktop-header-contact" href="/contact" {...prefetchLinkProps("/contact")}>
-          Let's talk
+          <span>LET’S TALK</span>
+          <img src="/assets/1-641/f356f.svg" alt="" />
         </a>
       </div>
     </header>
@@ -208,6 +214,7 @@ function MobileHeader({ pathname }: { pathname: string }) {
 export default function App() {
   const [pathname, setPathname] = useState(window.location.pathname);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const [scrolled, setScrolled] = useState(window.scrollY > 24);
   const page = routes[pathname] ?? routes["/"];
   const PageComponent = page.component;
   const scale = Math.min(1, viewportWidth / 1920);
@@ -219,6 +226,7 @@ export default function App() {
       window.scrollTo(0, 0);
     };
     const resize = () => setViewportWidth(window.innerWidth);
+    const handleScroll = () => setScrolled(window.scrollY > 24);
     const intercept = (event: MouseEvent) => {
       const link = (event.target as Element).closest<HTMLAnchorElement>("a[href]");
       if (
@@ -239,10 +247,12 @@ export default function App() {
 
     window.addEventListener("popstate", navigate);
     window.addEventListener("resize", resize);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     document.addEventListener("click", intercept);
     return () => {
       window.removeEventListener("popstate", navigate);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("click", intercept);
     };
   }, []);
@@ -261,7 +271,12 @@ export default function App() {
 
   return (
     <>
-      <DesktopHeader pathname={pathname} scale={scale} viewportWidth={viewportWidth} />
+      <DesktopHeader
+        pathname={pathname}
+        scale={scale}
+        scrolled={scrolled}
+        viewportWidth={viewportWidth}
+      />
       <MobileHeader pathname={pathname} />
       <main className="site-canvas" style={canvasStyle}>
         <div className="design-scale" style={{ transform: `scale(${scale})` }}>
