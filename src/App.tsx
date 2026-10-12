@@ -45,8 +45,12 @@ function prefetchLinkProps(href: string) {
   };
 }
 
+type PageProps = {
+  onHeightChange?: (height: number) => void;
+};
+
 type Page = {
-  component: ComponentType;
+  component: ComponentType<PageProps>;
   height: number;
   title: string;
 };
@@ -100,6 +104,28 @@ const routes: Record<string, Page> = {
     title: "Let's Talk | Stellar",
   },
 };
+
+function isContactCta(target: Element) {
+  let element: Element | null = target;
+
+  while (element && element !== document.body) {
+    const label = (element.textContent ?? "")
+      .toLowerCase()
+      .replace(/[\s'’]/g, "");
+
+    if (
+      label === "partnerwithus" ||
+      label === "letstalk" ||
+      label === "letstalkletstalk"
+    ) {
+      return true;
+    }
+
+    element = element.parentElement;
+  }
+
+  return false;
+}
 
 const navigation = [
   ["/", "Home"],
@@ -215,24 +241,25 @@ export default function App() {
   const [pathname, setPathname] = useState(window.location.pathname);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [scrolled, setScrolled] = useState(window.scrollY > 24);
+  const [dynamicPageHeight, setDynamicPageHeight] = useState<number | null>(null);
   const page = routes[pathname] ?? routes["/"];
   const PageComponent = page.component;
+  const pageHeight = pathname === "/products" ? (dynamicPageHeight ?? page.height) : page.height;
   const scale = Math.min(1, viewportWidth / 1920);
   const isFactory = pathname.startsWith("/factories");
 
   useEffect(() => {
     const navigate = () => {
+      setDynamicPageHeight(null);
       startTransition(() => setPathname(window.location.pathname));
       window.scrollTo(0, 0);
     };
     const resize = () => setViewportWidth(window.innerWidth);
     const handleScroll = () => setScrolled(window.scrollY > 24);
     const intercept = (event: MouseEvent) => {
-      const link = (event.target as Element).closest<HTMLAnchorElement>("a[href]");
+      const target = event.target as Element;
+      const link = target.closest<HTMLAnchorElement>("a[href]");
       if (
-        !link ||
-        link.target ||
-        link.origin !== window.location.origin ||
         event.metaKey ||
         event.ctrlKey ||
         event.shiftKey ||
@@ -240,6 +267,16 @@ export default function App() {
       ) {
         return;
       }
+
+      if (isContactCta(target)) {
+        event.preventDefault();
+        window.history.pushState({}, "", "/contact");
+        navigate();
+        return;
+      }
+
+      if (!link || link.target || link.origin !== window.location.origin) return;
+
       event.preventDefault();
       window.history.pushState({}, "", link.pathname);
       navigate();
@@ -263,10 +300,10 @@ export default function App() {
 
   const canvasStyle = useMemo(
     () => ({
-      height: `${page.height * scale}px`,
+      height: `${pageHeight * scale}px`,
       width: `${1920 * scale}px`,
     }),
-    [page.height, scale],
+    [pageHeight, scale],
   );
 
   return (
@@ -281,7 +318,9 @@ export default function App() {
       <main className="site-canvas" style={canvasStyle}>
         <div className="design-scale" style={{ transform: `scale(${scale})` }}>
           <Suspense fallback={null}>
-            <PageComponent />
+            <PageComponent
+              onHeightChange={pathname === "/products" ? setDynamicPageHeight : undefined}
+            />
           </Suspense>
           <FactoryHotspots isFactory={isFactory} />
         </div>
