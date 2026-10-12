@@ -1,0 +1,252 @@
+import {
+  ComponentType,
+  FormEvent,
+  lazy,
+  Suspense,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+
+const About = lazy(() => import("./pages/About"));
+const Capabilities = lazy(() => import("./pages/Capabilities"));
+const Contact = lazy(() => import("./pages/Contact"));
+const DesignPath = lazy(() => import("./pages/DesignPath"));
+const GoodEarth = lazy(() => import("./pages/GoodEarth"));
+const Home = lazy(() => import("./pages/Home"));
+const KnitGallery = lazy(() => import("./pages/KnitGallery"));
+const Products = lazy(() => import("./pages/Products"));
+const Progress = lazy(() => import("./pages/Progress"));
+const Sustainability = lazy(() => import("./pages/Sustainability"));
+
+type Page = {
+  component: ComponentType;
+  height: number;
+  title: string;
+};
+
+const routes: Record<string, Page> = {
+  "/": { component: Home, height: 5565, title: "Stellar Manufacturing" },
+  "/about": { component: About, height: 4794, title: "About Us | Stellar" },
+  "/capabilities": {
+    component: Capabilities,
+    height: 4600,
+    title: "Our Capabilities | Stellar",
+  },
+  "/design-path": {
+    component: DesignPath,
+    height: 4025,
+    title: "Design Path | Stellar",
+  },
+  "/factories": {
+    component: GoodEarth,
+    height: 3612,
+    title: "GoodEarth Apparels | Stellar",
+  },
+  "/factories/goodearth": {
+    component: GoodEarth,
+    height: 3612,
+    title: "GoodEarth Apparels | Stellar",
+  },
+  "/factories/progress": {
+    component: Progress,
+    height: 3612,
+    title: "Progress Apparels | Stellar",
+  },
+  "/factories/knit-gallery": {
+    component: KnitGallery,
+    height: 3612,
+    title: "Knit Gallery | Stellar",
+  },
+  "/sustainability": {
+    component: Sustainability,
+    height: 9963,
+    title: "Sustainability | Stellar",
+  },
+  "/products": {
+    component: Products,
+    height: 3895,
+    title: "Products | Stellar",
+  },
+  "/contact": {
+    component: Contact,
+    height: 2963,
+    title: "Let's Talk | Stellar",
+  },
+};
+
+const navigation = [
+  ["/", "Home"],
+  ["/about", "About us"],
+  ["/capabilities", "Our capabilities"],
+  ["/design-path", "Design path"],
+  ["/factories", "Our factories"],
+  ["/sustainability", "Sustainability"],
+  ["/products", "Products"],
+] as const;
+
+function DesktopHotspots({ isFactory }: { isFactory: boolean }) {
+  return (
+    <>
+      <nav className="desktop-hotspots" aria-label="Primary navigation">
+        {navigation.map(([href, label]) => (
+          <a key={href} href={href} aria-label={label} />
+        ))}
+        <a href="/contact" aria-label="Let's talk" />
+      </nav>
+      {isFactory && (
+        <nav className="factory-hotspots" aria-label="Factory locations">
+          <a href="/factories/goodearth" aria-label="GoodEarth Apparels" />
+          <a href="/factories/progress" aria-label="Progress Apparels" />
+          <a href="/factories/knit-gallery" aria-label="Knit Gallery" />
+        </nav>
+      )}
+    </>
+  );
+}
+
+function ContactForm() {
+  const [sent, setSent] = useState(false);
+
+  function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSent(true);
+  }
+
+  return (
+    <form className="contact-form-overlay" onSubmit={submit}>
+      <input aria-label="First name" name="firstName" placeholder="Jane" required />
+      <input aria-label="Last name" name="lastName" placeholder="Doe" required />
+      <input
+        aria-label="Business email"
+        name="email"
+        placeholder="jane@example.com"
+        type="email"
+        required
+      />
+      <input
+        aria-label="Phone number"
+        name="phone"
+        placeholder="(555) 555-1234"
+        type="tel"
+        required
+      />
+      <textarea
+        aria-label="Message"
+        name="message"
+        placeholder="Tell us about your project..."
+      />
+      <label>
+        <input type="checkbox" required />
+        <span className="sr-only">I accept the Privacy Policy</span>
+      </label>
+      <button type="submit">{sent ? "MESSAGE SENT" : "SEND MESSAGE"}</button>
+    </form>
+  );
+}
+
+function MobileHeader({ pathname }: { pathname: string }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <header className="mobile-header">
+      <a className="mobile-brand" href="/" aria-label="Stellar home">
+        STELLAR
+        <small>MANUFACTURING</small>
+      </a>
+      <button
+        aria-expanded={open}
+        aria-label="Toggle navigation"
+        onClick={() => setOpen((value) => !value)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+      {open && (
+        <nav aria-label="Mobile navigation">
+          {navigation.map(([href, label]) => (
+            <a
+              className={pathname === href ? "active" : ""}
+              href={href}
+              key={href}
+            >
+              {label}
+            </a>
+          ))}
+          <a href="/contact">Let's talk</a>
+        </nav>
+      )}
+    </header>
+  );
+}
+
+export default function App() {
+  const [pathname, setPathname] = useState(window.location.pathname);
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const page = routes[pathname] ?? routes["/"];
+  const PageComponent = page.component;
+  const scale = Math.min(1, viewportWidth / 1920);
+  const isFactory = pathname.startsWith("/factories");
+
+  useEffect(() => {
+    const navigate = () => {
+      setPathname(window.location.pathname);
+      window.scrollTo(0, 0);
+    };
+    const resize = () => setViewportWidth(window.innerWidth);
+    const intercept = (event: MouseEvent) => {
+      const link = (event.target as Element).closest<HTMLAnchorElement>("a[href]");
+      if (
+        !link ||
+        link.target ||
+        link.origin !== window.location.origin ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+      event.preventDefault();
+      window.history.pushState({}, "", link.pathname);
+      navigate();
+    };
+
+    window.addEventListener("popstate", navigate);
+    window.addEventListener("resize", resize);
+    document.addEventListener("click", intercept);
+    return () => {
+      window.removeEventListener("popstate", navigate);
+      window.removeEventListener("resize", resize);
+      document.removeEventListener("click", intercept);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.title = page.title;
+  }, [page.title]);
+
+  const canvasStyle = useMemo(
+    () => ({
+      height: `${page.height * scale}px`,
+      width: `${1920 * scale}px`,
+    }),
+    [page.height, scale],
+  );
+
+  return (
+    <>
+      <MobileHeader pathname={pathname} />
+      <main className="site-canvas" style={canvasStyle}>
+        <div className="design-scale" style={{ transform: `scale(${scale})` }}>
+          <Suspense fallback={<div className="page-loading">Loading…</div>}>
+            <PageComponent />
+          </Suspense>
+          <DesktopHotspots isFactory={isFactory} />
+          {pathname === "/contact" && <ContactForm />}
+        </div>
+      </main>
+    </>
+  );
+}
