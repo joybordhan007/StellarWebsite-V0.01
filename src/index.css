@@ -152,6 +152,144 @@ textarea {
   transform-origin: left top;
 }
 
+.brand-logo-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-snap-type: x proximity;
+}
+
+.brand-logo-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.brand-logo-track {
+  display: flex;
+  width: max-content;
+  animation: brand-logo-marquee 36s linear infinite;
+}
+
+.brand-logo-group {
+  display: flex;
+  flex: none;
+  gap: 24px;
+  padding-right: 24px;
+}
+
+.brand-logo-card {
+  position: relative;
+  flex: 0 0 240px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 1px 6px rgb(0 0 0 / 6%);
+  scroll-snap-align: start;
+}
+
+.fashion-card-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-snap-type: x proximity;
+}
+
+.fashion-card-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.fashion-card-viewport > div {
+  animation: fashion-card-marquee 36s linear infinite;
+  scroll-snap-align: start;
+}
+
+.fashion-card-viewport:focus-visible > div {
+  animation-play-state: paused;
+}
+
+.fashion-card-viewport:focus-visible {
+  outline: 2px solid #dea36a;
+  outline-offset: 4px;
+}
+
+.brand-logo-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.brand-logo-image--centric {
+  position: absolute;
+  top: 7.04%;
+  left: 26.21%;
+  width: 47.55%;
+  height: 85.72%;
+}
+
+.brand-logo-image--wide {
+  position: absolute;
+  top: 25.03%;
+  left: 4.37%;
+  width: 91.06%;
+  height: 49.65%;
+}
+
+.brand-logo-image--tall {
+  position: absolute;
+  top: 8.42%;
+  left: 1.6%;
+  width: 94.44%;
+  height: 106.25%;
+}
+
+.brand-logo-image--cover {
+  object-fit: cover;
+}
+
+.brand-logo-viewport:focus-visible .brand-logo-track {
+  animation-play-state: paused;
+}
+
+.brand-logo-viewport:focus-visible {
+  outline: 2px solid #dea36a;
+  outline-offset: 4px;
+}
+
+@keyframes brand-logo-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fashion-card-marquee {
+  to {
+    transform: translateX(-3564px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-logo-track {
+    animation: none;
+  }
+
+  .brand-logo-group[aria-hidden="true"] {
+    display: none;
+  }
+
+  .fashion-card-viewport > div {
+    animation: none;
+  }
+
+  .fashion-card-viewport > div:nth-child(n + 10) {
+    display: none;
+  }
+}
+
 .desktop-header {
   position: fixed;
   z-index: 200;

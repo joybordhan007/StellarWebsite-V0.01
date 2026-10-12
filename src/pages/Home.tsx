@@ -80,6 +80,33 @@ const imgLayer1 = `${assetPathPrefix}/0c357.svg`;
 const imgFrame3 = `${assetPathPrefix}/6576e.svg`;
 const imgGroup19 = `${assetPathPrefix}/0df6b.svg`;
 
+type BrandLogo = {
+  src: string;
+  alt: string;
+  imageClass?: string;
+};
+
+const brandLogos: BrandLogo[] = [
+  { src: imgRectangle9130, alt: "Centric Brands", imageClass: "centric" },
+  { src: imgRectangle9142, alt: "Dockers" },
+  { src: imgRectangle9115, alt: "IZOD" },
+  { src: imgRectangle9143, alt: "Next" },
+  { src: imgRectangle9122, alt: "Primark" },
+  { src: imgRectangle9144, alt: "Walmart" },
+  { src: imgRectangle9145, alt: "", imageClass: "wide" },
+  { src: imgRectangle9146, alt: "" },
+  { src: imgRectangle9147, alt: "", imageClass: "tall" },
+  { src: imgRectangle9148, alt: "", imageClass: "cover" },
+  { src: imgRectangle9149, alt: "" },
+  { src: imgRectangle9150, alt: "", imageClass: "wide" },
+  { src: imgRectangle9151, alt: "" },
+  { src: imgRectangle9152, alt: "", imageClass: "cover" },
+  { src: imgRectangle9153, alt: "" },
+  { src: imgRectangle9154, alt: "" },
+  { src: imgRectangle9155, alt: "" },
+  { src: imgRectangle9156, alt: "" },
+];
+
 type Component1Props = {
   className?: string;
   property1?: "View";
@@ -108,165 +135,37 @@ function Component1({ className, property1 = "View" }: Component1Props) {
 
 type FrameProps = {
   className?: string;
-  property1?: "Default";
+  scrollable?: boolean;
 };
 
-function Frame({ className, property1 = "Default" }: FrameProps) {
+function Frame({ className, scrollable = false }: FrameProps) {
   return (
-    <div className={className || "h-[120px] overflow-clip relative w-[1560px]"} data-node-id="1:287">
-      <div className="absolute h-[120px] left-0 rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:288">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <div className="absolute inset-0 overflow-hidden rounded-[6px]">
-            <img alt="" className="absolute h-[85.72%] left-[26.21%] max-w-none top-[7.04%] w-[47.55%]" src={imgRectangle9130} />
+    <div
+      aria-label={scrollable ? "Customer brand logos" : undefined}
+      className={className || "h-[120px] overflow-clip relative w-[1560px]"}
+      data-node-id="1:287"
+      role={scrollable ? "region" : undefined}
+      tabIndex={scrollable ? 0 : undefined}
+    >
+      <div className="brand-logo-track">
+        {[0, 1].map((copy) => (
+          <div
+            aria-hidden={copy === 1}
+            className="brand-logo-group"
+            key={copy}
+          >
+            {brandLogos.map((logo) => (
+              <div className="brand-logo-card" key={logo.src}>
+                <img
+                  alt={copy === 0 ? logo.alt : ""}
+                  className={`brand-logo-image${logo.imageClass ? ` brand-logo-image--${logo.imageClass}` : ""}`}
+                  loading="lazy"
+                  src={logo.src}
+                />
+              </div>
+            ))}
           </div>
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[264px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:289">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9142} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[528px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:290">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9115} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[792px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:291">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9143} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[1056px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:292">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9122} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[1320px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:293">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9144} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[1584px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:294">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <div className="absolute inset-0 overflow-hidden rounded-[6px]">
-            <img alt="" className="absolute h-[49.65%] left-[4.37%] max-w-none top-[25.03%] w-[91.06%]" src={imgRectangle9145} />
-          </div>
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[1848px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:295">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9146} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[2112px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:296">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <div className="absolute inset-0 overflow-hidden rounded-[6px]">
-            <img alt="" className="absolute h-[106.25%] left-[1.6%] max-w-none top-[8.42%] w-[94.44%]" src={imgRectangle9147} />
-          </div>
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[2376px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:297">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-cover rounded-[6px] size-full" src={imgRectangle9148} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[2640px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:298">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9149} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[2904px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:299">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <div className="absolute inset-0 overflow-hidden rounded-[6px]">
-            <img alt="" className="absolute h-[53.89%] left-[3.72%] max-w-none top-[23.16%] w-[92.41%]" src={imgRectangle9150} />
-          </div>
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[3168px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:300">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9151} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[3432px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:301">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-cover rounded-[6px] size-full" src={imgRectangle9152} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[3696px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:302">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9153} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[3960px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:303">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9154} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[4224px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:304">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9155} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[4488px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:305">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9156} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[4752px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:306">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <div className="absolute inset-0 overflow-hidden rounded-[6px]">
-            <img alt="" className="absolute h-[85.72%] left-[26.21%] max-w-none top-[7.04%] w-[47.55%]" src={imgRectangle9130} />
-          </div>
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[5016px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:307">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9142} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[5280px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:308">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9115} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[5544px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:309">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9143} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[5808px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:310">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9122} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[6072px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:311">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9144} />
-        </div>
+        ))}
       </div>
     </div>
   );
@@ -279,7 +178,13 @@ type Frame1Props = {
 
 function Frame1({ className, property1 = "Default" }: Frame1Props) {
   return (
-    <div className={className || "h-[497px] overflow-clip relative w-[1164px]"} data-node-id="1:132">
+    <div
+      aria-label="Fashion collection images"
+      className={className || "h-[497px] overflow-clip relative w-[1164px]"}
+      data-node-id="1:132"
+      role="region"
+      tabIndex={0}
+    >
       <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-0 rounded-[8px] top-0 w-[372px]" data-node-id="1:133" data-name="Frame">
         <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:134">
           <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9113} />
@@ -397,7 +302,7 @@ function Frame1({ className, property1 = "Default" }: Frame1Props) {
           </div>
         </div>
       </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[3564px] rounded-[8px] top-0 w-[372px]" data-node-id="1:178" data-name="Frame">
+      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[3564px] rounded-[8px] top-0 w-[372px]" data-node-id="1:178" data-name="Frame">
         <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:179">
           <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9113} />
         </div>
@@ -410,7 +315,7 @@ function Frame1({ className, property1 = "Default" }: Frame1Props) {
           </div>
         </div>
       </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[3960px] rounded-[8px] top-0 w-[372px]" data-node-id="1:183" data-name="Frame">
+      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[3960px] rounded-[8px] top-0 w-[372px]" data-node-id="1:183" data-name="Frame">
         <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:184">
           <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9114} />
         </div>
@@ -423,7 +328,7 @@ function Frame1({ className, property1 = "Default" }: Frame1Props) {
           </div>
         </div>
       </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[4356px] rounded-[8px] top-0 w-[372px]" data-node-id="1:188" data-name="Frame">
+      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[4356px] rounded-[8px] top-0 w-[372px]" data-node-id="1:188" data-name="Frame">
         <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:189">
           <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9116} />
         </div>
@@ -436,7 +341,7 @@ function Frame1({ className, property1 = "Default" }: Frame1Props) {
           </div>
         </div>
       </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[4752px] rounded-[8px] top-0 w-[372px]" data-node-id="1:193" data-name="Frame">
+      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[4752px] rounded-[8px] top-0 w-[372px]" data-node-id="1:193" data-name="Frame">
         <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:194">
           <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9117} />
         </div>
@@ -449,7 +354,7 @@ function Frame1({ className, property1 = "Default" }: Frame1Props) {
           </div>
         </div>
       </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[5148px] rounded-[8px] top-0 w-[372px]" data-node-id="1:198" data-name="Frame">
+      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[5148px] rounded-[8px] top-0 w-[372px]" data-node-id="1:198" data-name="Frame">
         <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:199">
           <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9118} />
         </div>
@@ -462,7 +367,7 @@ function Frame1({ className, property1 = "Default" }: Frame1Props) {
           </div>
         </div>
       </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[5544px] rounded-[8px] top-0 w-[372px]" data-node-id="1:203" data-name="Frame">
+      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[5544px] rounded-[8px] top-0 w-[372px]" data-node-id="1:203" data-name="Frame">
         <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:204">
           <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9119} />
         </div>
@@ -475,7 +380,7 @@ function Frame1({ className, property1 = "Default" }: Frame1Props) {
           </div>
         </div>
       </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[5940px] rounded-[8px] top-0 w-[372px]" data-node-id="1:208" data-name="Frame">
+      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[5940px] rounded-[8px] top-0 w-[372px]" data-node-id="1:208" data-name="Frame">
         <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:209">
           <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9120} />
         </div>
@@ -488,7 +393,7 @@ function Frame1({ className, property1 = "Default" }: Frame1Props) {
           </div>
         </div>
       </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[6336px] rounded-[8px] top-0 w-[372px]" data-node-id="1:213" data-name="Frame">
+      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[6336px] rounded-[8px] top-0 w-[372px]" data-node-id="1:213" data-name="Frame">
         <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:214">
           <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9121} />
         </div>
@@ -501,7 +406,7 @@ function Frame1({ className, property1 = "Default" }: Frame1Props) {
           </div>
         </div>
       </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[6732px] rounded-[8px] top-0 w-[372px]" data-node-id="1:218" data-name="Frame">
+      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[6732px] rounded-[8px] top-0 w-[372px]" data-node-id="1:218" data-name="Frame">
         <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:219">
           <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9123} />
         </div>
@@ -909,19 +814,17 @@ export default function Home() {
             </div>
           </div>
           <div className="content-stretch flex gap-[24px] items-start relative shrink-0" data-node-id="1:808" data-name="Frame">
-            <div className="bg-white content-stretch drop-shadow-[0px_2px_2px_rgba(0,0,0,0.1)] flex items-center justify-center p-[8px] relative rounded-[999px] shrink-0" data-node-id="1:809" data-name="Frame">
-              <div className="relative shrink-0 size-[24px]" data-node-id="1:810" data-name="arrow-back">
-                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowBack} />
-              </div>
-            </div>
-            <div className="bg-white content-stretch drop-shadow-[0px_2px_2px_rgba(0,0,0,0.1)] flex items-center justify-center p-[8px] relative rounded-[999px] shrink-0" data-node-id="1:811" data-name="Frame">
-              <div className="relative shrink-0 size-[24px]" data-node-id="1:812" data-name="arrow-forward-long">
-                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowForwardLong1} />
-              </div>
-            </div>
+            <a
+              aria-label="View all products"
+              className="content-stretch flex gap-[8px] items-center border-b border-[#dea36a] pb-[4px] relative shrink-0 font-['Inter:Medium'] font-medium text-[#1d1d1d] text-[14px] uppercase whitespace-nowrap"
+              href="/products"
+            >
+              <span>VIEW ALL</span>
+              <img alt="" className="h-[18px] w-[18px]" src={imgArrowForwardLong1} />
+            </a>
           </div>
         </div>
-        <Frame1 className="h-[497px] overflow-clip relative shrink-0 w-[1164px]" />
+        <Frame1 className="fashion-card-viewport h-[497px] relative shrink-0 w-[1164px]" />
       </div>
       <div className="-translate-x-1/2 absolute content-stretch flex flex-col gap-[56px] items-start left-1/2 px-[178px] py-[56px] top-[1941px] w-[1920px]" data-node-id="1:814" data-name="Frame">
         <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-node-id="1:815" data-name="Frame">
@@ -1227,7 +1130,7 @@ export default function Home() {
         <div className="[word-break:break-word] flex flex-col font-['Inter:Bold'] font-bold justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#1d1d1d] text-[40px] w-[min-content]" data-node-id="1:956">
           <p className="leading-[1.2]">TRUSTED BY GLOBAL BRANDS</p>
         </div>
-        <Frame className="h-[120px] overflow-clip relative shrink-0 w-[1560px]" />
+        <Frame className="brand-logo-viewport h-[120px] relative shrink-0 w-[1560px]" scrollable />
       </div>
       <div className="-translate-x-1/2 absolute drop-shadow-[0px_1px_2px_rgba(0,0,0,0.08)] h-[500px] left-1/2 overflow-clip rounded-[8px] top-[3938px] w-[1560px]" data-node-id="1:958" data-name="Frame">
         <div className="absolute bg-white h-[500px] left-0 top-0 w-[1562px]" data-node-id="1:959" />
