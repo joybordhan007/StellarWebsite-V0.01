@@ -1,0 +1,20 @@
+- main [ref=f7e3]:
+  - generic [ref=f7e4]:
+    - generic [ref=f7e5]: Loading…
+    - navigation "Primary navigation":
+      - link "Home" [ref=f7e6] [cursor=pointer]:
+        - /url: /
+      - link "About us" [ref=f7e7] [cursor=pointer]:
+        - /url: /about
+      - link "Our capabilities" [ref=f7e8] [cursor=pointer]:
+        - /url: /capabilities
+      - link "Design path" [ref=f7e9] [cursor=pointer]:
+        - /url: /design-path
+      - link "Our factories" [ref=f7e10] [cursor=pointer]:
+        - /url: /factories
+      - link "Sustainability" [ref=f7e11] [cursor=pointer]:
+        - /url: /sustainability
+      - link "Products" [ref=f7e12] [cursor=pointer]:
+        - /url: /products
+      - link "Let's talk" [ref=f7e13] [cursor=pointer]:
+        - /url: /contact
