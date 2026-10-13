@@ -274,6 +274,7 @@ function MobileHeader({ pathname }: { pathname: string }) {
 export default function App() {
   const [pathname, setPathname] = useState(window.location.pathname);
   const pathnameRef = useRef(window.location.pathname);
+  const [navigationVersion, setNavigationVersion] = useState(0);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [scrolled, setScrolled] = useState(window.scrollY > 24);
   const [dynamicPageHeight, setDynamicPageHeight] = useState<number | null>(null);
@@ -291,7 +292,10 @@ export default function App() {
         nextPathname.startsWith("/factories");
       pathnameRef.current = nextPathname;
       setDynamicPageHeight(null);
-      startTransition(() => setPathname(nextPathname));
+      startTransition(() => {
+        setPathname(nextPathname);
+        setNavigationVersion((version) => version + 1);
+      });
       if (!preserveFactoryScroll && !window.location.hash) window.scrollTo(0, 0);
     };
     const resize = () => setViewportWidth(window.innerWidth);
@@ -338,31 +342,36 @@ export default function App() {
     const targetId = window.location.hash.slice(1);
     if (!targetId) return;
 
-    let frame = 0;
-    let attempts = 0;
     let cancelled = false;
+    let frame = 0;
 
     const scrollToTarget = () => {
-      if (cancelled) return;
-
       const target = document.getElementById(targetId);
-      if (target) {
-        target.scrollIntoView({ block: "start" });
-        return;
-      }
+      if (!target || cancelled) return false;
 
-      if (attempts < 60) {
-        attempts += 1;
-        frame = requestAnimationFrame(scrollToTarget);
-      }
+      frame = requestAnimationFrame(() => {
+        if (!cancelled) target.scrollIntoView({ block: "start" });
+      });
+      return true;
     };
 
-    frame = requestAnimationFrame(scrollToTarget);
+    const observer = new MutationObserver(() => {
+      if (scrollToTarget()) observer.disconnect();
+    });
+
+    if (!scrollToTarget()) {
+      observer.observe(document.querySelector(".design-scale") ?? document.body, {
+        childList: true,
+        subtree: true,
+      });
+    }
+
     return () => {
       cancelled = true;
+      observer.disconnect();
       cancelAnimationFrame(frame);
     };
-  }, [pathname, page.component]);
+  }, [navigationVersion, pathname, page.component]);
 
   useEffect(() => {
     document.title = page.title;

@@ -143,7 +143,7 @@ textarea {
 .site-canvas {
   position: relative;
   margin-inline: auto;
-  overflow: hidden;
+  overflow: clip;
 }
 
 .design-scale {

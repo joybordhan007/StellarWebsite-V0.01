@@ -1,0 +1,8 @@
+- generic [ref=f89e2]:
+  - banner [ref=f89e3]:
+    - link "Stellar home" [ref=f89e4] [cursor=pointer]:
+      - /url: /
+      - text: STELLAR
+      - generic [ref=f89e5]: MANUFACTURING
+    - button "Toggle navigation" [ref=f89e6]
+  - main [ref=f89e10]
