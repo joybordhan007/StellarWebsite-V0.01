@@ -857,6 +857,10 @@ textarea {
   color: #287a43;
 }
 
+.contact-form-status-activation {
+  color: #8a5a13;
+}
+
 .contact-form-status-error {
   color: #b42318;
 }

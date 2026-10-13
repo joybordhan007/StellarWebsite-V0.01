@@ -214,7 +214,9 @@ function Footer({ className }: { className?: string }) {
 }
 
 export default function LetsTalk() {
-  const [submissionState, setSubmissionState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [submissionState, setSubmissionState] = useState<
+    "idle" | "sending" | "sent" | "error" | "activation"
+  >("idle");
   const [submissionMessage, setSubmissionMessage] = useState("");
   const [activeOffice, setActiveOffice] = useState<string>(offices[0].id);
   const [activeMapAddress, setActiveMapAddress] = useState<string>(offices[0].addresses[0]);
@@ -256,13 +258,18 @@ export default function LetsTalk() {
           resultIsObject && "message" in result && typeof result.message === "string"
             ? result.message
             : "";
+        if (/activat/i.test(serviceMessage)) {
+          setSubmissionState("activation");
+          setSubmissionMessage(
+            "Email delivery needs one-time activation. FormSubmit sent an “Activate Form” link to info@stellar-mfg.com. Open that inbox (check spam too) and click the link, then return here and send your message again. This submission was not delivered.",
+          );
+          return;
+        }
         throw new Error(serviceMessage || "We couldn't send your message. Please try again.");
       }
 
       setSubmissionState("sent");
-      setSubmissionMessage(
-        "Your message was accepted. If this is the first submission, check info@stellar-mfg.com for FormSubmit's activation email and confirm it to enable delivery.",
-      );
+      setSubmissionMessage("Your message was sent successfully.");
     } catch (error) {
       setSubmissionState("error");
       setSubmissionMessage(
@@ -449,7 +456,11 @@ export default function LetsTalk() {
               <p
                 aria-live="polite"
                 className={`contact-form-status contact-form-status-${submissionState}`}
-                role={submissionState === "error" ? "alert" : "status"}
+                role={
+                  submissionState === "error" || submissionState === "activation"
+                    ? "alert"
+                    : "status"
+                }
               >
                 {submissionMessage}
               </p>
@@ -463,7 +474,7 @@ export default function LetsTalk() {
                 ? "SENDING..."
                 : submissionState === "sent"
                   ? "MESSAGE SENT"
-                  : submissionState === "error"
+                  : submissionState === "error" || submissionState === "activation"
                     ? "TRY AGAIN"
                     : "SEND MESSAGE"}
             </button>
