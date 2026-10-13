@@ -95,7 +95,7 @@ type FrameProps = {
 
 function Frame({ className, property1 = "Default" }: FrameProps) {
   return (
-    <div className={className || "h-[120px] overflow-clip relative w-[1560px]"} data-node-id="1:448">
+    <div className={`${className || "h-[120px] overflow-clip relative w-[1560px]"} certification-logo-marquee certification-logo-marquee--progress`} data-node-id="1:448">
       <div className="absolute h-[120px] left-0 rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:449">
         <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
           <div className="absolute bg-white inset-0 rounded-[6px]" />

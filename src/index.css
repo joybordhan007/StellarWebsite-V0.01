@@ -171,6 +171,24 @@ textarea {
   animation: brand-logo-marquee 36s linear infinite;
 }
 
+.certification-logo-marquee {
+  overflow: hidden;
+}
+
+.certification-logo-marquee > div {
+  animation: certification-logo-marquee 36s linear infinite;
+  will-change: transform;
+}
+
+.certification-logo-marquee--progress,
+.certification-logo-marquee--knit-gallery {
+  --certification-logo-cycle-distance: -4224px;
+}
+
+.certification-logo-marquee--sustainability {
+  --certification-logo-cycle-distance: -7392px;
+}
+
 .brand-logo-group {
   display: flex;
   flex: none;
@@ -266,6 +284,12 @@ textarea {
   }
 }
 
+@keyframes certification-logo-marquee {
+  to {
+    transform: translateX(var(--certification-logo-cycle-distance, -3696px));
+  }
+}
+
 @keyframes fashion-card-marquee {
   to {
     transform: translateX(-3564px);
@@ -274,6 +298,10 @@ textarea {
 
 @media (prefers-reduced-motion: reduce) {
   .brand-logo-track {
+    animation: none;
+  }
+
+  .certification-logo-marquee > div {
     animation: none;
   }
 

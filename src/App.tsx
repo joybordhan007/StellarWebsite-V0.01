@@ -5,6 +5,7 @@ import {
   Suspense,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 
@@ -250,6 +251,7 @@ function MobileHeader({ pathname }: { pathname: string }) {
 
 export default function App() {
   const [pathname, setPathname] = useState(window.location.pathname);
+  const pathnameRef = useRef(window.location.pathname);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [scrolled, setScrolled] = useState(window.scrollY > 24);
   const [dynamicPageHeight, setDynamicPageHeight] = useState<number | null>(null);
@@ -261,9 +263,14 @@ export default function App() {
 
   useEffect(() => {
     const navigate = () => {
+      const nextPathname = window.location.pathname;
+      const preserveFactoryScroll =
+        pathnameRef.current.startsWith("/factories") &&
+        nextPathname.startsWith("/factories");
+      pathnameRef.current = nextPathname;
       setDynamicPageHeight(null);
-      startTransition(() => setPathname(window.location.pathname));
-      window.scrollTo(0, 0);
+      startTransition(() => setPathname(nextPathname));
+      if (!preserveFactoryScroll) window.scrollTo(0, 0);
     };
     const resize = () => setViewportWidth(window.innerWidth);
     const handleScroll = () => setScrolled(window.scrollY > 24);
