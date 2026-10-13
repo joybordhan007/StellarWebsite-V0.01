@@ -1,3 +1,5 @@
+import CountUpValue from "../components/CountUpValue";
+
 const assetPathPrefix = "/assets/1-1333";
 const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
 const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.png`;
@@ -242,12 +244,18 @@ export default function OurCapabilities() {
               <p className="leading-[1.2] whitespace-pre">create high-quality, sustainable apparel for global brands.</p>
             </div>
           </div>
-          <div className="bg-[#dea36a] content-stretch flex gap-[8px] h-[52px] items-center justify-center px-[22px] py-[14px] relative rounded-[4px] shrink-0" data-node-id="1:1342" data-name="Frame">
-            <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#f6f6f6] text-[16px] text-center uppercase whitespace-nowrap" data-node-id="1:1343">
-              <p className="leading-[1.2]">Partner With Us</p>
+          <div className="partner-with-us-cta bg-[#dea36a] content-stretch cursor-pointer flex gap-[8px] h-[52px] items-center justify-center px-[22px] py-[14px] relative rounded-[4px] shrink-0" data-node-id="1:1342" data-name="Frame">
+            <div className="partner-cta-label [word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#f6f6f6] text-[16px] text-center uppercase whitespace-nowrap" data-node-id="1:1343">
+              <span className="partner-cta-label-track">
+                <span>Partner With Us</span>
+                <span aria-hidden="true">Partner With Us</span>
+              </span>
             </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:1344" data-name="arrow-forward-long">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowForwardLong} />
+            <div className="partner-cta-icon relative shrink-0 size-[24px]" data-node-id="1:1344" data-name="arrow-forward-long">
+              <span className="partner-cta-icon-track" aria-hidden="true">
+                <img alt="" src={imgArrowForwardLong} />
+                <img alt="" src={imgArrowForwardLong} />
+              </span>
             </div>
           </div>
         </div>
@@ -332,7 +340,9 @@ export default function OurCapabilities() {
             </div>
             <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-center leading-[0] not-italic relative shrink-0 whitespace-nowrap" data-node-id="1:1408" data-name="Frame">
               <div className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px]" data-node-id="1:1409">
-                <p className="leading-[1.2]">3</p>
+                <p className="leading-[1.2]">
+                  <CountUpValue value={3} />
+                </p>
               </div>
               <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[18px] text-center uppercase" data-node-id="1:1410">
                 <p className="leading-[1.2] mb-0 whitespace-pre">{`Manufacturing `}</p>
@@ -366,7 +376,9 @@ export default function OurCapabilities() {
             </div>
             <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-center leading-[0] not-italic relative shrink-0 whitespace-nowrap" data-node-id="1:1437" data-name="Frame">
               <div className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px]" data-node-id="1:1438">
-                <p className="leading-[1.2]">10,200+</p>
+                <p className="leading-[1.2]">
+                  <CountUpValue value={10200} suffix="+" />
+                </p>
               </div>
               <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[18px] uppercase" data-node-id="1:1439">
                 <p className="leading-[1.2]">Employees</p>
@@ -388,7 +400,9 @@ export default function OurCapabilities() {
             </div>
             <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-center leading-[0] not-italic relative shrink-0 whitespace-nowrap" data-node-id="1:1449" data-name="Frame">
               <div className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px]" data-node-id="1:1450">
-                <p className="leading-[1.2]">75M+</p>
+                <p className="leading-[1.2]">
+                  <CountUpValue value={75} suffix="M+" />
+                </p>
               </div>
               <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[18px] text-center uppercase" data-node-id="1:1451">
                 <p className="leading-[1.2] mb-0 whitespace-pre">{`Pieces Annual `}</p>
@@ -407,7 +421,9 @@ export default function OurCapabilities() {
             </div>
             <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-center leading-[0] not-italic relative shrink-0 text-center whitespace-nowrap" data-node-id="1:1457" data-name="Frame">
               <div className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px]" data-node-id="1:1458">
-                <p className="leading-[1.2]">50+</p>
+                <p className="leading-[1.2]">
+                  <CountUpValue value={50} suffix="+" />
+                </p>
               </div>
               <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[18px] uppercase" data-node-id="1:1459">
                 <p className="leading-[1.2]">Global Brands</p>
@@ -459,7 +475,9 @@ export default function OurCapabilities() {
             </div>
             <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-center leading-[0] not-italic relative shrink-0 text-center whitespace-nowrap" data-node-id="1:1487" data-name="Frame">
               <div className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px]" data-node-id="1:1488">
-                <p className="leading-[1.2]">100%</p>
+                <p className="leading-[1.2]">
+                  <CountUpValue value={100} suffix="%" />
+                </p>
               </div>
               <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[18px] uppercase" data-node-id="1:1489">
                 <p className="leading-[1.2] mb-0 whitespace-pre">{`Commitment to `}</p>

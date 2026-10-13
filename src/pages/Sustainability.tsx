@@ -1,3 +1,5 @@
+import CountUpValue from "../components/CountUpValue";
+
 const assetPathPrefix = "/assets/1-3076";
 const imgRectangle9149 = `${assetPathPrefix}/5886f.png`;
 const imgRectangle9150 = `${assetPathPrefix}/2d220.png`;
@@ -638,14 +640,22 @@ export default function Sustainability() {
               <p className="leading-[1.2] whitespace-pre">and innovative manufacturing.</p>
             </div>
           </div>
-          <div className="bg-[#dea36a] content-stretch flex gap-[8px] h-[52px] items-center justify-center px-[22px] py-[14px] relative rounded-[4px] shrink-0" data-node-id="1:3085" data-name="Frame">
+          <a aria-label="Let's Talk" className="hero-talk-cta bg-[#dea36a] content-stretch flex gap-[8px] h-[52px] items-center justify-center px-[22px] py-[14px] relative rounded-[4px] shrink-0" data-node-id="1:3085" data-name="Frame" href="/contact">
             <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#f6f6f6] text-[16px] text-center uppercase whitespace-nowrap" data-node-id="1:3086">
-              <p className="leading-[1.2]">{`Let's Talk`}</p>
+              <span className="hero-talk-label-viewport">
+                <span className="hero-talk-label-track">
+                  <span>Let's Talk</span>
+                  <span aria-hidden="true">Let's Talk</span>
+                </span>
+              </span>
             </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:3087" data-name="arrow-forward-long">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowForwardLong} />
+            <div className="hero-talk-icon relative shrink-0 size-[24px]" data-node-id="1:3087" data-name="arrow-forward-long">
+              <span className="hero-talk-icon-track" aria-hidden="true">
+                <img alt="" src={imgArrowForwardLong} />
+                <img alt="" src={imgArrowForwardLong} />
+              </span>
             </div>
-          </div>
+          </a>
         </div>
         <div className="absolute backdrop-blur-[7px] bg-[rgba(29,29,29,0.8)] bottom-0 content-stretch flex flex-col items-start pl-[48px] pr-[64px] py-[48px] right-0 w-[439px]" data-node-id="1:3088" data-name="Frame">
           <div className="border-[#dea36a] border-l-2 border-solid content-stretch flex flex-col gap-[12px] items-start justify-center px-[16px] relative shrink-0 w-full" data-node-id="1:3089" data-name="Frame">
@@ -1290,7 +1300,9 @@ export default function Sustainability() {
             </div>
             <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-center leading-[0] not-italic relative shrink-0 w-[250px] whitespace-nowrap" data-node-id="1:3441" data-name="Frame">
               <div className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px]" data-node-id="1:3442">
-                <p className="leading-[1.2]">1 MW</p>
+                <p className="leading-[1.2]">
+                  <CountUpValue value={1} suffix=" MW" />
+                </p>
               </div>
               <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[18px] text-center uppercase" data-node-id="1:3443">
                 <p className="leading-[1.2]">Solar Power Installed</p>
@@ -1369,7 +1381,9 @@ export default function Sustainability() {
             </div>
             <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-center leading-[0] not-italic relative shrink-0 w-[250px]" data-node-id="1:3466" data-name="Frame">
               <div className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px] whitespace-nowrap" data-node-id="1:3467">
-                <p className="leading-[1.2]">25,000+</p>
+                <p className="leading-[1.2]">
+                  <CountUpValue value={25000} suffix="+" />
+                </p>
               </div>
               <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center min-w-full relative shrink-0 text-[#4a4a4a] text-[18px] text-center uppercase w-[min-content]" data-node-id="1:3468">
                 <p className="leading-[1.2]">{`Tonnes $\text{CO2}_2$ Avoided (annually) `}</p>
@@ -1391,7 +1405,9 @@ export default function Sustainability() {
             </div>
             <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-center leading-[0] not-italic relative shrink-0 w-[250px]" data-node-id="1:3484" data-name="Frame">
               <div className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px] whitespace-nowrap" data-node-id="1:3485">
-                <p className="leading-[1.2]">40%</p>
+                <p className="leading-[1.2]">
+                  <CountUpValue value={40} suffix="%" />
+                </p>
               </div>
               <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center min-w-full relative shrink-0 text-[#4a4a4a] text-[18px] text-center uppercase w-[min-content]" data-node-id="1:3486">
                 <p className="leading-[1.2]">Lower Fresh Water Consumption</p>
@@ -1409,7 +1425,9 @@ export default function Sustainability() {
             </div>
             <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-center leading-[0] not-italic relative shrink-0 text-center whitespace-nowrap" data-node-id="1:3492" data-name="Frame">
               <div className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px]" data-node-id="1:3493">
-                <p className="leading-[1.2]">70%</p>
+                <p className="leading-[1.2]">
+                  <CountUpValue value={70} suffix="%" />
+                </p>
               </div>
               <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[18px] uppercase" data-node-id="1:3494">
                 <p className="leading-[1.2]">Waste Recycled</p>
@@ -1442,7 +1460,9 @@ export default function Sustainability() {
             </div>
             <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-center leading-[0] not-italic relative shrink-0 whitespace-nowrap" data-node-id="1:3521" data-name="Frame">
               <div className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px]" data-node-id="1:3522">
-                <p className="leading-[1.2]">10,200+</p>
+                <p className="leading-[1.2]">
+                  <CountUpValue value={10200} suffix="+" />
+                </p>
               </div>
               <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[18px] uppercase" data-node-id="1:3523">
                 <p className="leading-[1.2]">Employees</p>

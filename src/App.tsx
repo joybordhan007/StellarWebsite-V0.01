@@ -115,6 +115,7 @@ function isContactCta(target: Element) {
 
     if (
       label === "partnerwithus" ||
+      label === "partnerwithuspartnerwithus" ||
       label === "letstalk" ||
       label === "letstalkletstalk"
     ) {
@@ -179,9 +180,19 @@ function DesktopHeader({
             );
           })}
         </nav>
-        <a className="desktop-header-contact" href="/contact" {...prefetchLinkProps("/contact")}>
-          <span>LET’S TALK</span>
-          <img src="/assets/1-641/f356f.svg" alt="" />
+        <a className="desktop-header-contact" href="/contact" aria-label="Let's talk" {...prefetchLinkProps("/contact")}>
+          <span className="contact-roll-viewport" aria-hidden="true">
+            <span className="contact-roll-track">
+              <span>LET’S TALK</span>
+              <span>LET’S TALK</span>
+            </span>
+          </span>
+          <span className="contact-roll-viewport contact-roll-icon" aria-hidden="true">
+            <span className="contact-roll-track">
+              <img src="/assets/1-641/f356f.svg" alt="" />
+              <img src="/assets/1-641/f356f.svg" alt="" />
+            </span>
+          </span>
         </a>
       </div>
     </header>

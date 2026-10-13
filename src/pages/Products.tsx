@@ -233,14 +233,22 @@ export default function Products({ onHeightChange }: ProductsProps) {
               <p className="leading-[1.2] whitespace-pre">designed and manufactured in our world-class facilities in Bangladesh and India.</p>
             </div>
           </div>
-          <div className="bg-[#dea36a] content-stretch flex gap-[8px] h-[52px] items-center justify-center px-[22px] py-[14px] relative rounded-[4px] shrink-0" data-node-id="1:4411" data-name="Frame">
+          <a aria-label="Let's Talk" className="hero-talk-cta bg-[#dea36a] content-stretch flex gap-[8px] h-[52px] items-center justify-center px-[22px] py-[14px] relative rounded-[4px] shrink-0" data-node-id="1:4411" data-name="Frame" href="/contact">
             <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#f6f6f6] text-[16px] text-center uppercase whitespace-nowrap" data-node-id="1:4412">
-              <p className="leading-[1.2]">{`Let's Talk`}</p>
+              <span className="hero-talk-label-viewport">
+                <span className="hero-talk-label-track">
+                  <span>Let's Talk</span>
+                  <span aria-hidden="true">Let's Talk</span>
+                </span>
+              </span>
             </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:4413" data-name="arrow-forward-long">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowForwardLong} />
+            <div className="hero-talk-icon relative shrink-0 size-[24px]" data-node-id="1:4413" data-name="arrow-forward-long">
+              <span className="hero-talk-icon-track" aria-hidden="true">
+                <img alt="" src={imgArrowForwardLong} />
+                <img alt="" src={imgArrowForwardLong} />
+              </span>
             </div>
-          </div>
+          </a>
         </div>
         <div className="absolute backdrop-blur-[7px] bg-[rgba(29,29,29,0.8)] bottom-0 content-stretch flex flex-col items-start pl-[48px] pr-[64px] py-[48px] right-0 w-[439px]" data-node-id="1:4414" data-name="Frame">
           <div className="border-[#dea36a] border-l-2 border-solid content-stretch flex flex-col gap-[12px] items-start justify-center px-[16px] relative shrink-0 w-full" data-node-id="1:4415" data-name="Frame">

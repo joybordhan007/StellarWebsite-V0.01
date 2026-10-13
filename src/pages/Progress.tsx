@@ -492,12 +492,18 @@ export default function OurFactories() {
               <p className="leading-[1.2] whitespace-pre">woven garments with a strong focus on sustainability, innovation and ethical manufacturing.</p>
             </div>
           </div>
-          <div className="bg-[#dea36a] content-stretch flex gap-[8px] h-[52px] items-center justify-center px-[22px] py-[14px] relative rounded-[4px] shrink-0" data-node-id="1:2286" data-name="Frame">
-            <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#f6f6f6] text-[16px] text-center uppercase whitespace-nowrap" data-node-id="1:2287">
-              <p className="leading-[1.2]">Partner With Us</p>
+          <div className="partner-with-us-cta bg-[#dea36a] content-stretch cursor-pointer flex gap-[8px] h-[52px] items-center justify-center px-[22px] py-[14px] relative rounded-[4px] shrink-0" data-node-id="1:2286" data-name="Frame">
+            <div className="partner-cta-label [word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#f6f6f6] text-[16px] text-center uppercase whitespace-nowrap" data-node-id="1:2287">
+              <span className="partner-cta-label-track">
+                <span>Partner With Us</span>
+                <span aria-hidden="true">Partner With Us</span>
+              </span>
             </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:2288" data-name="arrow-forward-long">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowForwardLong} />
+            <div className="partner-cta-icon relative shrink-0 size-[24px]" data-node-id="1:2288" data-name="arrow-forward-long">
+              <span className="partner-cta-icon-track" aria-hidden="true">
+                <img alt="" src={imgArrowForwardLong} />
+                <img alt="" src={imgArrowForwardLong} />
+              </span>
             </div>
           </div>
         </div>
