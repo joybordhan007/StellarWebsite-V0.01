@@ -5,7 +5,6 @@ const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = `${ass
 const imgStellarLogo2 = `${assetPathPrefix}/cf89e.svg`;
 const imgFacebookLogo = `${assetPathPrefix}/412e8.svg`;
 const imgYoutubeLogo = `${assetPathPrefix}/5df0a.svg`;
-const imgInstagramLogo = `${assetPathPrefix}/c6429.svg`;
 const imgLinkedinLogo = `${assetPathPrefix}/82b38.svg`;
 const imgFrame = `${assetPathPrefix}/adc25.svg`;
 const imgFrame1 = `${assetPathPrefix}/06754.svg`;
@@ -98,18 +97,15 @@ function Footer({ className }: { className?: string }) {
             </div>
           </div>
           <div className="content-stretch flex gap-[16px] items-center relative shrink-0" data-node-id="1:36" data-name="Frame">
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:37" data-name="FacebookLogo">
+            <a aria-label="Facebook" className="relative shrink-0 size-[24px]" href="https://www.facebook.com/goodearthapparels" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFacebookLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:42" data-name="YoutubeLogo">
+            </a>
+            <a aria-label="YouTube" className="relative shrink-0 size-[24px]" href="https://www.youtube.com/@GoodEarthApparelsLimited" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgYoutubeLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:46" data-name="InstagramLogo">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgInstagramLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:51" data-name="LinkedinLogo">
+            </a>
+            <a aria-label="LinkedIn" className="relative shrink-0 size-[24px]" href="https://www.linkedin.com/company/goodearthapparels/posts/?feedView=all" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLinkedinLogo} />
-            </div>
+            </a>
           </div>
         </div>
         <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[200px]" data-node-id="1:58" data-name="Frame">
@@ -405,26 +401,26 @@ export default function AboutUs() {
           <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#4a4a4a] text-[16px] w-[min-content]" data-node-id="1:1067">
             <p className="leading-[1.2]">Three manufacturing facilities across Bangladesh and India, strategically positioned to serve global markets with speed, flexibility and scale.</p>
           </div>
-          <div className="content-stretch flex flex-col items-center justify-center relative rounded-[4px] shrink-0" data-node-id="1:1068" data-name="Frame">
+          <a aria-label="Our factories" className="content-stretch flex flex-col items-center justify-center relative rounded-[4px] shrink-0 text-inherit no-underline" data-node-id="1:1068" data-name="Frame" href="/factories">
             <div className="content-stretch flex gap-[8px] items-center relative shrink-0" data-node-id="1:1069" data-name="Frame">
               <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[16px] text-center uppercase whitespace-nowrap" data-node-id="1:1070">
                 <p className="leading-[1.2]">OUR FACTORIES</p>
               </div>
               <div className="relative shrink-0 size-[24px]" data-node-id="1:1071" data-name="arrow-forward-long">
                 <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowForwardLong1} />
-              </div>
+                </div>
             </div>
             <div className="h-[2px] relative shrink-0 w-[76px]" data-node-id="1:1072" data-name="Vector">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
-            </div>
           </div>
+          </a>
         </div>
         <div className="content-stretch flex gap-[80px] items-center relative shrink-0" data-node-id="1:1073" data-name="Frame">
           <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0" data-node-id="1:1074" data-name="Group">
             <div className="col-1 h-[440px] ml-0 mt-0 relative row-1 w-[636px]" data-node-id="1:1075" data-name="world-map-pixel-style-isolated-white 1">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgWorldMapPixelStyleIsolatedWhite1} />
             </div>
-            <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-[342px] mt-[179px] place-items-start relative row-1" data-node-id="1:1076" data-name="Group">
+            <div className="hidden" data-node-id="1:1076" data-name="Group">
               <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-[42px] place-items-start relative row-1" data-node-id="1:1077" data-name="Group">
                 <div className="col-1 ml-[101px] mt-0 overflow-clip relative row-1 size-[24px]" data-node-id="1:1078" data-name="Capa_1">
                   <div className="absolute contents inset-[0_13.87%_0_13.85%]" data-node-id="1:1079" data-name="Group">
@@ -458,6 +454,9 @@ export default function AboutUs() {
                 </div>
               </div>
             </div>
+            <a aria-label="GoodEarth Apparels factory location" className="factory-world-map-marker factory-world-map-marker--bangladesh-one" href="/factories/goodearth#factory-profile" />
+            <a aria-label="Progress Apparels factory location" className="factory-world-map-marker factory-world-map-marker--bangladesh-two" href="/factories/progress#factory-profile" />
+            <a aria-label="Knit Gallery factory location" className="factory-world-map-marker factory-world-map-marker--india" href="/factories/knit-gallery#factory-profile" />
           </div>
           <div className="content-stretch flex gap-[24px] items-center relative shrink-0 w-[448px]" data-node-id="1:1095" data-name="Frame">
             <div className="flex flex-[1_0_0] flex-row items-center self-stretch" data-node-id="1:1096">

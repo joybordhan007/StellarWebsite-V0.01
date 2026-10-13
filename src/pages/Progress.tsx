@@ -21,7 +21,6 @@ const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = `${ass
 const imgStellarLogo2 = `${assetPathPrefix}/cf89e.svg`;
 const imgFacebookLogo = `${assetPathPrefix}/412e8.svg`;
 const imgYoutubeLogo = `${assetPathPrefix}/5df0a.svg`;
-const imgInstagramLogo = `${assetPathPrefix}/c6429.svg`;
 const imgLinkedinLogo = `${assetPathPrefix}/82b38.svg`;
 const imgFrame = `${assetPathPrefix}/adc25.svg`;
 const imgFrame1 = `${assetPathPrefix}/06754.svg`;
@@ -36,7 +35,6 @@ const imgRectangle9119 = `${assetPathPrefix}/9f1dc.png`;
 const imgRectangle9120 = `${assetPathPrefix}/181a5.png`;
 const imgRectangle9121 = `${assetPathPrefix}/68447.png`;
 const imgRectangle9123 = `${assetPathPrefix}/31d34.png`;
-const imgRectangle9172 = `${assetPathPrefix}/24893.png`;
 const imgArrowForwardLong = `${assetPathPrefix}/887e7.svg`;
 const imgStellarLogo3 = `${assetPathPrefix}/3b80a.svg`;
 const imgArrowForwardLong1 = `${assetPathPrefix}/77a61.svg`;
@@ -359,18 +357,15 @@ function Footer({ className }: { className?: string }) {
             </div>
           </div>
           <div className="content-stretch flex gap-[16px] items-center relative shrink-0" data-node-id="1:36" data-name="Frame">
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:37" data-name="FacebookLogo">
+            <a aria-label="Facebook" className="relative shrink-0 size-[24px]" href="https://www.facebook.com/goodearthapparels" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFacebookLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:42" data-name="YoutubeLogo">
+            </a>
+            <a aria-label="YouTube" className="relative shrink-0 size-[24px]" href="https://www.youtube.com/@GoodEarthApparelsLimited" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgYoutubeLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:46" data-name="InstagramLogo">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgInstagramLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:51" data-name="LinkedinLogo">
+            </a>
+            <a aria-label="LinkedIn" className="relative shrink-0 size-[24px]" href="https://www.linkedin.com/company/goodearthapparels/posts/?feedView=all" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLinkedinLogo} />
-            </div>
+            </a>
           </div>
         </div>
         <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[200px]" data-node-id="1:58" data-name="Frame">
@@ -833,7 +828,7 @@ export default function OurFactories() {
                   <p className="leading-[1.2]">Progress Apparels</p>
                 </div>
                 <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[14px] w-full" data-node-id="1:2460">
-                  <p className="leading-[1.2]">Dhaka, Bangladesh</p>
+                  <p className="leading-[1.2]">Narayanganj, Bangladesh</p>
                 </div>
               </div>
               <div className="content-stretch flex gap-[6px] items-start relative shrink-0 w-full" data-node-id="1:2461" data-name="Frame">
@@ -845,24 +840,24 @@ export default function OurFactories() {
                   </div>
                 </div>
                 <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-px not-italic relative text-[14px] text-black whitespace-pre-wrap" data-node-id="1:2466">
-                  <p className="leading-[1.2] mb-0">{`Tepirbari, Telihati, Sreepur, `}</p>
-                  <p className="leading-[1.2] mb-0">{`Gazipur, Bangladesh. `}</p>
-                  <p className="leading-[1.2]">PO: Gazipur-1740.</p>
+                  <p className="leading-[1.2] mb-0">{`MS-SFB # 1 & 2, Adamjee EPZ, `}</p>
+                  <p className="leading-[1.2] mb-0">{`Narayanganj, Dhaka, `}</p>
+                  <p className="leading-[1.2]">Bangladesh.</p>
                 </div>
               </div>
             </div>
             <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0" data-node-id="1:2467">
               <div className="col-1 h-[206px] ml-0 mt-0 relative row-1 w-[355px]" data-node-id="1:2468">
-                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgRectangle9172} />
+                <iframe title="Progress Apparels factory location" className="absolute inset-0 h-full w-full border-0" loading="lazy" src={`https://www.google.com/maps?q=${encodeURIComponent("MS-SFB # 1 & 2, Adamjee EPZ, Narayanganj, Dhaka, Bangladesh")}&output=embed`} />
               </div>
-              <div className="col-1 ml-[158px] mt-[81px] overflow-clip relative row-1 size-[20px]" data-node-id="1:2469" data-name="Capa_1">
+              <div className="hidden" data-node-id="1:2469" data-name="Capa_1">
                 <div className="absolute contents inset-[9.38%_18%_3.12%_18.75%]" data-node-id="1:2470" data-name="Group">
                   <div className="absolute inset-[9.38%_18%_3.12%_18.75%]" data-node-id="1:2471" data-name="Group">
                     <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup4} />
                   </div>
                 </div>
               </div>
-              <div className="border-[0.5px] border-[rgba(0,0,0,0.1)] border-solid col-1 content-stretch flex flex-col items-start ml-[322.67px] mt-[149px] relative rounded-[2px] row-1 shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] w-[24px]" data-node-id="1:2473" data-name="Frame">
+              <div className="hidden" data-node-id="1:2473" data-name="Frame">
                 <div className="bg-white content-stretch flex items-center p-[5px] relative rounded-tl-[2px] rounded-tr-[2px] shrink-0 w-full" data-node-id="1:2474" data-name="Frame">
                   <div className="relative shrink-0 size-[14px]" data-node-id="1:2475" data-name="plus">
                     <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgPlus} />
@@ -889,7 +884,7 @@ export default function OurFactories() {
                 </div>
               </div>
               <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-px not-italic relative text-[#4a4a4a] text-[14px]" data-node-id="1:2511">
-                <p className="leading-[1.2]">Hazrat Shahjalal International Airport: ~ 32 km (45 mins)</p>
+                <p className="leading-[1.2]">Hazrat Shahjalal International Airport: ~ 29 km</p>
               </div>
             </div>
             <div className="content-stretch flex gap-[12px] items-center relative shrink-0 w-full" data-node-id="1:2512" data-name="Frame">
@@ -897,7 +892,7 @@ export default function OurFactories() {
                 <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLayer2} />
               </div>
               <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-px not-italic relative text-[#4a4a4a] text-[14px]" data-node-id="1:2516">
-                <p className="leading-[1.2]">Dhaka City Centre: ~ 24 km (40 mins)</p>
+                <p className="leading-[1.2]">Dhaka City Centre: ~ 28 km</p>
               </div>
             </div>
             <div className="content-stretch flex gap-[12px] items-center relative shrink-0 w-full" data-node-id="1:2517" data-name="Frame">
@@ -951,7 +946,7 @@ export default function OurFactories() {
                 </div>
               </div>
               <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-px not-italic relative text-[#4a4a4a] text-[14px]" data-node-id="1:2550">
-                <p className="leading-[1.2]">Chittagong Port: ~ 260 km (5–6 hours)</p>
+                <p className="leading-[1.2]">Chittagong Port: ~ 234 km</p>
               </div>
             </div>
           </div>
@@ -963,7 +958,7 @@ export default function OurFactories() {
         </div>
         <Frame className="h-[120px] overflow-clip relative shrink-0 w-[1560px]" />
       </div>
-      <div className="absolute content-stretch flex flex-col gap-[32px] items-center left-0 top-[1162px] w-[1920px]" data-node-id="1:2554" data-name="Frame">
+      <div id="factory-profile" className="absolute content-stretch flex flex-col gap-[32px] items-center left-0 top-[1162px] w-[1920px]" data-node-id="1:2554" data-name="Frame" style={{ scrollMarginTop: "110px" }}>
         <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[48px] text-center uppercase w-full" data-node-id="1:2555">
           <p className="leading-[1.2]">Progress Apparels</p>
         </div>

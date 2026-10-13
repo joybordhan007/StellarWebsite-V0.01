@@ -8,7 +8,6 @@ const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = `${ass
 const imgStellarLogo2 = `${assetPathPrefix}/cf89e.svg`;
 const imgFacebookLogo = `${assetPathPrefix}/412e8.svg`;
 const imgYoutubeLogo = `${assetPathPrefix}/5df0a.svg`;
-const imgInstagramLogo = `${assetPathPrefix}/c6429.svg`;
 const imgLinkedinLogo = `${assetPathPrefix}/82b38.svg`;
 const imgFrame = `${assetPathPrefix}/adc25.svg`;
 const imgFrame1 = `${assetPathPrefix}/06754.svg`;
@@ -86,18 +85,15 @@ function Footer({ className }: { className?: string }) {
             </div>
           </div>
           <div className="content-stretch flex gap-[16px] items-center relative shrink-0" data-node-id="1:36" data-name="Frame">
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:37" data-name="FacebookLogo">
+            <a aria-label="Facebook" className="relative shrink-0 size-[24px]" href="https://www.facebook.com/goodearthapparels" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFacebookLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:42" data-name="YoutubeLogo">
+            </a>
+            <a aria-label="YouTube" className="relative shrink-0 size-[24px]" href="https://www.youtube.com/@GoodEarthApparelsLimited" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgYoutubeLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:46" data-name="InstagramLogo">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgInstagramLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:51" data-name="LinkedinLogo">
+            </a>
+            <a aria-label="LinkedIn" className="relative shrink-0 size-[24px]" href="https://www.linkedin.com/company/goodearthapparels/posts/?feedView=all" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLinkedinLogo} />
-            </div>
+            </a>
           </div>
         </div>
         <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[200px]" data-node-id="1:58" data-name="Frame">

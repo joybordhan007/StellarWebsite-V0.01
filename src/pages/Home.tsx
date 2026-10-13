@@ -34,7 +34,6 @@ const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = `${ass
 const imgStellarLogo2 = `${assetPathPrefix}/cf89e.svg`;
 const imgFacebookLogo = `${assetPathPrefix}/412e8.svg`;
 const imgYoutubeLogo = `${assetPathPrefix}/5df0a.svg`;
-const imgInstagramLogo = `${assetPathPrefix}/c6429.svg`;
 const imgLinkedinLogo = `${assetPathPrefix}/82b38.svg`;
 const imgFrame = `${assetPathPrefix}/adc25.svg`;
 const imgFrame1 = `${assetPathPrefix}/06754.svg`;
@@ -444,18 +443,15 @@ function Footer({ className }: { className?: string }) {
             </div>
           </div>
           <div className="content-stretch flex gap-[16px] items-center relative shrink-0" data-node-id="1:36" data-name="Frame">
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:37" data-name="FacebookLogo">
+            <a aria-label="Facebook" className="relative shrink-0 size-[24px]" href="https://www.facebook.com/goodearthapparels" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFacebookLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:42" data-name="YoutubeLogo">
+            </a>
+            <a aria-label="YouTube" className="relative shrink-0 size-[24px]" href="https://www.youtube.com/@GoodEarthApparelsLimited" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgYoutubeLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:46" data-name="InstagramLogo">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgInstagramLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:51" data-name="LinkedinLogo">
+            </a>
+            <a aria-label="LinkedIn" className="relative shrink-0 size-[24px]" href="https://www.linkedin.com/company/goodearthapparels/posts/?feedView=all" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLinkedinLogo} />
-            </div>
+            </a>
           </div>
         </div>
         <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[200px]" data-node-id="1:58" data-name="Frame">
@@ -946,7 +942,7 @@ export default function Home() {
           </a>
         </div>
         <div className="content-stretch flex gap-[24px] items-center overflow-clip p-[2px] relative shrink-0 w-full" data-node-id="1:869" data-name="Frame">
-          <a aria-label="GoodEarth Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:870" data-name="Frame" href="/factories/goodearth">
+          <a aria-label="GoodEarth Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:870" data-name="Frame" href="/factories/goodearth#factory-profile">
             <div className="h-[430px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:871">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9133} />
             </div>
@@ -964,7 +960,7 @@ export default function Home() {
               </div>
             </div>
           </a>
-          <a aria-label="Progress Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:877" data-name="Frame" href="/factories/progress">
+          <a aria-label="Progress Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:877" data-name="Frame" href="/factories/progress#factory-profile">
             <div className="h-[430px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:878">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9134} />
             </div>
@@ -982,7 +978,7 @@ export default function Home() {
               </div>
             </div>
           </a>
-          <a aria-label="Knit Gallery factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:884" data-name="Frame" href="/factories/knit-gallery">
+          <a aria-label="Knit Gallery factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:884" data-name="Frame" href="/factories/knit-gallery#factory-profile">
             <div className="h-[430px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:885">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9135} />
             </div>
@@ -1017,19 +1013,19 @@ export default function Home() {
                 <p className="leading-[1.2]">We are committed to people, the planet and a more sustainable fashion industry.</p>
               </div>
             </div>
-            <div className="content-stretch flex flex-col items-center justify-center relative rounded-[4px] shrink-0" data-node-id="1:897" data-name="Frame">
+            <a aria-label="Our sustainability approach" className="content-stretch flex flex-col items-center justify-center relative rounded-[4px] shrink-0 text-inherit no-underline" data-node-id="1:897" data-name="Frame" href="/sustainability">
               <div className="content-stretch flex gap-[8px] items-center relative shrink-0" data-node-id="1:898" data-name="Frame">
                 <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[16px] text-center uppercase whitespace-nowrap" data-node-id="1:899">
                   <p className="leading-[1.2]">OUR SUSTAINABILITY APPROACH</p>
                 </div>
                 <div className="relative shrink-0 size-[24px]" data-node-id="1:900" data-name="arrow-forward-long">
                   <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowForwardLong2} />
-                </div>
+                  </div>
               </div>
               <div className="h-[3px] relative shrink-0 w-[153px]" data-node-id="1:901" data-name="Vector">
                 <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
-              </div>
             </div>
+            </a>
           </div>
         </div>
         <div className="flex-[1_0_0] h-[434px] min-w-px relative" data-node-id="1:902">

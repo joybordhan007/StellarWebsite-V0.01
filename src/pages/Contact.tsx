@@ -7,7 +7,6 @@ const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = `${ass
 const imgStellarLogo2 = `${assetPathPrefix}/cf89e.svg`;
 const imgFacebookLogo = `${assetPathPrefix}/412e8.svg`;
 const imgYoutubeLogo = `${assetPathPrefix}/5df0a.svg`;
-const imgInstagramLogo = `${assetPathPrefix}/c6429.svg`;
 const imgLinkedinLogo = `${assetPathPrefix}/82b38.svg`;
 const imgFrame = `${assetPathPrefix}/adc25.svg`;
 const imgFrame1 = `${assetPathPrefix}/06754.svg`;
@@ -120,18 +119,15 @@ function Footer({ className }: { className?: string }) {
             </div>
           </div>
           <div className="content-stretch flex gap-[16px] items-center relative shrink-0" data-node-id="1:36" data-name="Frame">
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:37" data-name="FacebookLogo">
+            <a aria-label="Facebook" className="relative shrink-0 size-[24px]" href="https://www.facebook.com/goodearthapparels" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFacebookLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:42" data-name="YoutubeLogo">
+            </a>
+            <a aria-label="YouTube" className="relative shrink-0 size-[24px]" href="https://www.youtube.com/@GoodEarthApparelsLimited" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgYoutubeLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:46" data-name="InstagramLogo">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgInstagramLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:51" data-name="LinkedinLogo">
+            </a>
+            <a aria-label="LinkedIn" className="relative shrink-0 size-[24px]" href="https://www.linkedin.com/company/goodearthapparels/posts/?feedView=all" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLinkedinLogo} />
-            </div>
+            </a>
           </div>
         </div>
         <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[200px]" data-node-id="1:58" data-name="Frame">
@@ -218,13 +214,63 @@ function Footer({ className }: { className?: string }) {
 }
 
 export default function LetsTalk() {
-  const [sent, setSent] = useState(false);
+  const [submissionState, setSubmissionState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [submissionMessage, setSubmissionMessage] = useState("");
   const [activeOffice, setActiveOffice] = useState(offices[0].id);
   const [activeMapAddress, setActiveMapAddress] = useState(offices[0].addresses[0]);
 
-  function submitContactForm(event: FormEvent<HTMLFormElement>) {
+  async function submitContactForm(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSent(true);
+    if (submissionState === "sending") return;
+
+    setSubmissionState("sending");
+    setSubmissionMessage("");
+
+    const fields = Object.fromEntries(new FormData(event.currentTarget).entries());
+    const email = fields.email;
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/info@stellar-mfg.com", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...fields,
+          fullName: `${fields.firstName ?? ""} ${fields.lastName ?? ""}`.trim(),
+          _subject: "New website contact form message",
+          _replyto: typeof email === "string" ? email : "",
+        }),
+      });
+
+      const result: unknown = await response.json();
+      const resultIsObject = typeof result === "object" && result !== null;
+      const isSuccessful =
+        resultIsObject &&
+        "success" in result &&
+        (result.success === true || result.success === "true");
+
+      if (!response.ok || !isSuccessful) {
+        const serviceMessage =
+          resultIsObject && "message" in result && typeof result.message === "string"
+            ? result.message
+            : "";
+        throw new Error(serviceMessage || "We couldn't send your message. Please try again.");
+      }
+
+      setSubmissionState("sent");
+      setSubmissionMessage(
+        "Your message was accepted. If this is the first submission, check info@stellar-mfg.com for FormSubmit's activation email and confirm it to enable delivery.",
+      );
+    } catch (error) {
+      setSubmissionState("error");
+      setSubmissionMessage(
+        error instanceof Error
+          ? error.message
+          : "We couldn't send your message. Please try again.",
+      );
+    }
   }
 
   return (
@@ -394,12 +440,33 @@ export default function LetsTalk() {
                 <div className="content-stretch flex gap-[4px] items-center relative shrink-0 w-full" data-node-id="1:4680" data-name="Frame">
                   <input className="contact-page-checkbox" id="contact-privacy" type="checkbox" required />
                   <label className="contact-privacy-label" htmlFor="contact-privacy">
-                    I have read and accept the <a href="#">Privacy Policy.</a><span>*</span>
+                    I have read and accept the <a href="/privacy-policy">Privacy Policy.</a><span>*</span>
                   </label>
                 </div>
               </div>
             </div>
-            <button className="contact-page-submit" type="submit">{sent ? "MESSAGE SENT" : "SEND MESSAGE"}</button>
+            {submissionMessage && (
+              <p
+                aria-live="polite"
+                className={`contact-form-status contact-form-status-${submissionState}`}
+                role={submissionState === "error" ? "alert" : "status"}
+              >
+                {submissionMessage}
+              </p>
+            )}
+            <button
+              className="contact-page-submit"
+              disabled={submissionState === "sending"}
+              type="submit"
+            >
+              {submissionState === "sending"
+                ? "SENDING..."
+                : submissionState === "sent"
+                  ? "MESSAGE SENT"
+                  : submissionState === "error"
+                    ? "TRY AGAIN"
+                    : "SEND MESSAGE"}
+            </button>
             </form>
           </div>
         </div>

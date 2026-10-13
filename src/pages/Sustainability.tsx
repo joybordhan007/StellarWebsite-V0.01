@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import CountUpValue from "../components/CountUpValue";
 
 const assetPathPrefix = "/assets/1-3076";
@@ -32,7 +33,6 @@ const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = `${ass
 const imgStellarLogo2 = `${assetPathPrefix}/cf89e.svg`;
 const imgFacebookLogo = `${assetPathPrefix}/412e8.svg`;
 const imgYoutubeLogo = `${assetPathPrefix}/5df0a.svg`;
-const imgInstagramLogo = `${assetPathPrefix}/c6429.svg`;
 const imgLinkedinLogo = `${assetPathPrefix}/82b38.svg`;
 const imgFrame = `${assetPathPrefix}/adc25.svg`;
 const imgFrame1 = `${assetPathPrefix}/06754.svg`;
@@ -507,18 +507,15 @@ function Footer({ className }: { className?: string }) {
             </div>
           </div>
           <div className="content-stretch flex gap-[16px] items-center relative shrink-0" data-node-id="1:36" data-name="Frame">
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:37" data-name="FacebookLogo">
+            <a aria-label="Facebook" className="relative shrink-0 size-[24px]" href="https://www.facebook.com/goodearthapparels" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFacebookLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:42" data-name="YoutubeLogo">
+            </a>
+            <a aria-label="YouTube" className="relative shrink-0 size-[24px]" href="https://www.youtube.com/@GoodEarthApparelsLimited" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgYoutubeLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:46" data-name="InstagramLogo">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgInstagramLogo} />
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:51" data-name="LinkedinLogo">
+            </a>
+            <a aria-label="LinkedIn" className="relative shrink-0 size-[24px]" href="https://www.linkedin.com/company/goodearthapparels/posts/?feedView=all" rel="noreferrer" target="_blank">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLinkedinLogo} />
-            </div>
+            </a>
           </div>
         </div>
         <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[200px]" data-node-id="1:58" data-name="Frame">
@@ -605,6 +602,56 @@ function Footer({ className }: { className?: string }) {
 }
 
 export default function Sustainability() {
+  useEffect(() => {
+    const chartTitles = [
+      "Where our electricity comes from",
+      "Factory emissions, Scope 1 + 2",
+      "Water use by purpose, 2025",
+      "Where our waste went, 2025",
+    ];
+    const charts: HTMLElement[] = [];
+
+    const headings = Array.from(document.querySelectorAll("p")).filter((element) =>
+      chartTitles.includes(element.textContent?.trim() ?? ""),
+    );
+
+    for (const heading of headings) {
+      let container = heading.parentElement;
+
+      while (container && !container.querySelector('[data-name="MainChart"]')) {
+        container = container.parentElement;
+      }
+
+      const chart = container?.querySelector<HTMLElement>('[data-name="MainChart"]');
+      if (!chart || charts.includes(chart)) continue;
+
+      chart.classList.add("sustainability-data-chart");
+      chart.querySelectorAll<HTMLElement>('[data-name="BarStrip"]').forEach((bar) => {
+        bar.classList.add("sustainability-data-chart-bar");
+      });
+      charts.push(chart);
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      charts.forEach((chart) => chart.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.2 },
+    );
+
+    charts.forEach((chart) => observer.observe(chart));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="bg-[#fafafa] relative h-[9963px] w-[1920px]" data-node-id="1:3076" data-name="Sustainability">
       <Footer className="-translate-x-1/2 absolute bg-white bottom-0 h-[593px] left-1/2 overflow-clip shadow-[0px_0px_4px_0px_rgba(0,0,0,0.06)] w-[1920px]" />
@@ -825,7 +872,7 @@ export default function Sustainability() {
           </a>
         </div>
         <div className="content-stretch flex gap-[24px] items-start overflow-clip p-[2px] relative shrink-0 w-full" data-node-id="1:3187" data-name="Frame">
-          <a aria-label="GoodEarth Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:3188" data-name="Frame" href="/factories/goodearth">
+          <a aria-label="GoodEarth Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:3188" data-name="Frame" href="/factories/goodearth#factory-profile">
             <div className="h-[289px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:3189">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9113} />
             </div>
@@ -891,7 +938,7 @@ export default function Sustainability() {
               </div>
             </div>
           </a>
-          <a aria-label="Progress Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] self-stretch shrink-0 w-[504px]" data-node-id="1:3202" data-name="Frame" href="/factories/progress">
+          <a aria-label="Progress Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] self-stretch shrink-0 w-[504px]" data-node-id="1:3202" data-name="Frame" href="/factories/progress#factory-profile">
             <div className="h-[289px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:3203">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9114} />
             </div>
@@ -943,9 +990,9 @@ export default function Sustainability() {
               </div>
             </div>
           </a>
-          <a aria-label="Knit Gallery factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] self-stretch shrink-0 w-[504px]" data-node-id="1:3214" data-name="Frame" href="/factories/knit-gallery">
+          <a aria-label="Knit Gallery factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] self-stretch shrink-0 w-[504px]" data-node-id="1:3214" data-name="Frame" href="/factories/knit-gallery#factory-profile">
             <div className="h-[289px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:3215">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9115} />
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src="/assets/1-641/a9ee6.png" />
             </div>
             <div className="[word-break:break-word] content-stretch flex flex-col gap-[16px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:3216" data-name="Frame">
               <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 text-[#1d1d1d] w-full" data-node-id="1:3217" data-name="Frame">

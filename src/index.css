@@ -845,6 +845,22 @@ textarea {
   text-decoration: none;
 }
 
+.contact-form-status {
+  width: 100%;
+  margin: 0;
+  font-family: "Inter:Regular", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.contact-form-status-sent {
+  color: #287a43;
+}
+
+.contact-form-status-error {
+  color: #b42318;
+}
+
 .contact-page-submit {
   width: 100%;
   min-height: 56px;
@@ -861,6 +877,11 @@ textarea {
 
 .contact-page-submit:hover {
   background: #cf9258;
+}
+
+.contact-page-submit:disabled {
+  cursor: wait;
+  opacity: 0.7;
 }
 
 .contact-offices-section {
@@ -1076,5 +1097,61 @@ textarea {
   .desktop-header,
   .factory-hotspots {
     display: none;
+  }
+}
+
+.factory-world-map-marker {
+  position: absolute;
+  z-index: 2;
+  width: 16px;
+  height: 16px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #dea36a;
+  box-shadow: 0 0 0 5px rgb(222 163 106 / 25%);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.factory-world-map-marker:hover,
+.factory-world-map-marker:focus-visible {
+  transform: scale(1.25);
+  box-shadow: 0 0 0 8px rgb(222 163 106 / 30%);
+}
+
+.factory-world-map-marker--bangladesh-one {
+  top: 53%;
+  left: 75%;
+}
+
+.factory-world-map-marker--bangladesh-two {
+  top: 56%;
+  left: 77%;
+}
+
+.factory-world-map-marker--india {
+  top: 60%;
+  left: 73%;
+  background: #1d4222;
+  box-shadow: 0 0 0 5px rgb(29 66 34 / 22%);
+}
+
+.sustainability-data-chart-bar {
+  transform: scaleY(0);
+  transform-origin: center bottom;
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sustainability-data-chart.is-visible .sustainability-data-chart-bar {
+  transform: scaleY(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .factory-world-map-marker,
+  .sustainability-data-chart-bar {
+    transition: none;
+  }
+
+  .sustainability-data-chart-bar {
+    transform: none;
   }
 }
