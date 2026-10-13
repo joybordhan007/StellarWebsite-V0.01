@@ -1,7 +1,7 @@
 const assetPathPrefix = "/assets/1-2277";
-const imgRectangle9145 = `${assetPathPrefix}/347b7.png`;
+const imgRectangle9145 = `${assetPathPrefix}/347b7.jpg`;
 const imgRectangle9130 = `${assetPathPrefix}/cd5b4.png`;
-const imgRectangle9142 = `${assetPathPrefix}/2d220.png`;
+const imgRectangle9142 = `${assetPathPrefix}/2d220.jpg`;
 const imgRectangle9115 = `${assetPathPrefix}/642b2.png`;
 const imgRectangle9143 = `${assetPathPrefix}/87a64.png`;
 const imgRectangle9144 = `${assetPathPrefix}/7dacd.png`;
@@ -16,7 +16,7 @@ const imgRectangle9138 = `${assetPathPrefix}/bc7ff.png`;
 const imgRectangle9134 = `${assetPathPrefix}/35c52.png`;
 const imgRectangle9148 = `${assetPathPrefix}/f1d41.png`;
 const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
-const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.png`;
+const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.jpg`;
 const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = `${assetPathPrefix}/4d4a6.svg`;
 const imgStellarLogo2 = `${assetPathPrefix}/cf89e.svg`;
 const imgFacebookLogo = `${assetPathPrefix}/412e8.svg`;
@@ -25,16 +25,16 @@ const imgLinkedinLogo = `${assetPathPrefix}/82b38.svg`;
 const imgFrame = `${assetPathPrefix}/adc25.svg`;
 const imgFrame1 = `${assetPathPrefix}/06754.svg`;
 const imgFrame2 = `${assetPathPrefix}/a2092.svg`;
-const imgImage = `${assetPathPrefix}/c1f82.png`;
-const imgRectangle9113 = `${assetPathPrefix}/234ca.png`;
-const imgRectangle9114 = `${assetPathPrefix}/02160.png`;
-const imgRectangle9116 = `${assetPathPrefix}/a9ee6.png`;
-const imgRectangle9117 = `${assetPathPrefix}/ea0de.png`;
-const imgRectangle9118 = `${assetPathPrefix}/068bf.png`;
-const imgRectangle9119 = `${assetPathPrefix}/9f1dc.png`;
-const imgRectangle9120 = `${assetPathPrefix}/181a5.png`;
-const imgRectangle9121 = `${assetPathPrefix}/68447.png`;
-const imgRectangle9123 = `${assetPathPrefix}/31d34.png`;
+const imgImage = `${assetPathPrefix}/c1f82.jpg`;
+const imgRectangle9113 = `${assetPathPrefix}/234ca.jpg`;
+const imgRectangle9114 = `${assetPathPrefix}/02160.jpg`;
+const imgRectangle9116 = `${assetPathPrefix}/a9ee6.jpg`;
+const imgRectangle9117 = `${assetPathPrefix}/ea0de.jpg`;
+const imgRectangle9118 = `${assetPathPrefix}/068bf.jpg`;
+const imgRectangle9119 = `${assetPathPrefix}/9f1dc.jpg`;
+const imgRectangle9120 = `${assetPathPrefix}/181a5.jpg`;
+const imgRectangle9121 = `${assetPathPrefix}/68447.jpg`;
+const imgRectangle9123 = `${assetPathPrefix}/31d34.jpg`;
 const imgArrowForwardLong = `${assetPathPrefix}/887e7.svg`;
 const imgStellarLogo3 = `${assetPathPrefix}/3b80a.svg`;
 const imgArrowForwardLong1 = `${assetPathPrefix}/77a61.svg`;
@@ -457,7 +457,7 @@ export default function OurFactories() {
       <Footer className="-translate-x-1/2 absolute bg-white bottom-[-0.5px] h-[593px] left-1/2 overflow-clip shadow-[0px_0px_4px_0px_rgba(0,0,0,0.06)] w-[1920px]" />
       <div className="absolute bg-white h-[920px] left-0 overflow-clip top-0 w-[1920px]" data-node-id="1:2279" data-name="Frame">
         <div className="-translate-x-1/2 absolute h-[920px] left-1/2 top-0 w-[1920px]" data-node-id="1:2280" data-name="Image">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage} />
+          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" decoding="async" fetchPriority="high" loading="eager" src={imgImage} />
         </div>
         <div className="-translate-x-1/2 absolute h-[920px] left-1/2 top-0 w-[1920px]" data-node-id="1:2281" style={{ backgroundImage: "linear-gradient(180deg, rgba(29, 29, 29, 0.4) 0%, rgba(29, 29, 29, 0) 100%), linear-gradient(90.00000034559805deg, rgb(29, 29, 29) 7.6923%, rgba(29, 29, 29, 0) 49.038%, rgba(29, 29, 29, 0) 76.923%, rgba(29, 29, 29, 0.8) 100%)" }} data-name="Linear" />
         <div className="absolute content-stretch flex flex-col gap-[40px] items-start justify-center left-[179px] top-[305px] w-[999px]" data-node-id="1:2282" data-name="Frame">

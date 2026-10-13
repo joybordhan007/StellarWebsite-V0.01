@@ -5,7 +5,7 @@ const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
 const imgRectangle9130 = `${assetPathPrefix}/c43ef.png`;
 const imgRectangle9142 = `${assetPathPrefix}/154aa.png`;
 const imgRectangle9115 = `${assetPathPrefix}/c0f71.png`;
-const imgRectangle9143 = `${assetPathPrefix}/c0474.png`;
+const imgRectangle9143 = `${assetPathPrefix}/c0474.jpg`;
 const imgRectangle9122 = `${assetPathPrefix}/40533.png`;
 const imgRectangle9144 = `${assetPathPrefix}/42204.png`;
 const imgRectangle9145 = `${assetPathPrefix}/05a9d.png`;
@@ -21,15 +21,15 @@ const imgRectangle9154 = `${assetPathPrefix}/919a0.png`;
 const imgRectangle9155 = `${assetPathPrefix}/5730f.png`;
 const imgRectangle9156 = `${assetPathPrefix}/5913d.png`;
 const imgRectangle9113 = `${assetPathPrefix}/28bae.png`;
-const imgRectangle9114 = `${assetPathPrefix}/eda4d.png`;
-const imgRectangle9116 = `${assetPathPrefix}/80798.png`;
-const imgRectangle9117 = `${assetPathPrefix}/cf5d9.png`;
-const imgRectangle9118 = `${assetPathPrefix}/177d2.png`;
-const imgRectangle9119 = `${assetPathPrefix}/66387.png`;
-const imgRectangle9120 = `${assetPathPrefix}/2dc9c.png`;
-const imgRectangle9121 = `${assetPathPrefix}/9fc73.png`;
+const imgRectangle9114 = `${assetPathPrefix}/eda4d.jpg`;
+const imgRectangle9116 = `${assetPathPrefix}/80798.jpg`;
+const imgRectangle9117 = `${assetPathPrefix}/cf5d9.jpg`;
+const imgRectangle9118 = `${assetPathPrefix}/177d2.jpg`;
+const imgRectangle9119 = `${assetPathPrefix}/66387.jpg`;
+const imgRectangle9120 = `${assetPathPrefix}/2dc9c.jpg`;
+const imgRectangle9121 = `${assetPathPrefix}/9fc73.jpg`;
 const imgRectangle9123 = `${assetPathPrefix}/142d3.png`;
-const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.png`;
+const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.jpg`;
 const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = `${assetPathPrefix}/4d4a6.svg`;
 const imgStellarLogo2 = `${assetPathPrefix}/cf89e.svg`;
 const imgFacebookLogo = `${assetPathPrefix}/412e8.svg`;
@@ -38,19 +38,19 @@ const imgLinkedinLogo = `${assetPathPrefix}/82b38.svg`;
 const imgFrame = `${assetPathPrefix}/adc25.svg`;
 const imgFrame1 = `${assetPathPrefix}/06754.svg`;
 const imgFrame2 = `${assetPathPrefix}/a2092.svg`;
-const imgImage = `${assetPathPrefix}/afbbf.png`;
-const imgRectangle9124 = `${assetPathPrefix}/a80f0.png`;
-const imgRectangle9125 = `${assetPathPrefix}/f4788.png`;
-const imgRectangle9126 = `${assetPathPrefix}/f48ce.png`;
+const imgImage = `${assetPathPrefix}/afbbf.jpg`;
+const imgRectangle9124 = `${assetPathPrefix}/a80f0.jpg`;
+const imgRectangle9125 = `${assetPathPrefix}/f4788.jpg`;
+const imgRectangle9126 = `${assetPathPrefix}/f48ce.jpg`;
 const imgRectangle9127 = `${assetPathPrefix}/f3d14.png`;
 const imgRectangle9128 = `${assetPathPrefix}/f45ca.png`;
-const imgRectangle9129 = `${assetPathPrefix}/38bfc.png`;
-const imgRectangle9131 = `${assetPathPrefix}/e9918.png`;
-const imgRectangle9132 = `${assetPathPrefix}/2699e.png`;
-const imgRectangle9133 = `${assetPathPrefix}/234ca.png`;
-const imgRectangle9134 = `${assetPathPrefix}/02160.png`;
-const imgRectangle9135 = `${assetPathPrefix}/a9ee6.png`;
-const imgRectangle9136 = `${assetPathPrefix}/69cf3.png`;
+const imgRectangle9129 = `${assetPathPrefix}/38bfc.jpg`;
+const imgRectangle9131 = `${assetPathPrefix}/e9918.jpg`;
+const imgRectangle9132 = `${assetPathPrefix}/2699e.jpg`;
+const imgRectangle9133 = `${assetPathPrefix}/234ca.jpg`;
+const imgRectangle9134 = `${assetPathPrefix}/02160.jpg`;
+const imgRectangle9135 = `${assetPathPrefix}/a9ee6.jpg`;
+const imgRectangle9136 = `${assetPathPrefix}/69cf3.jpg`;
 const imgRectangle9137 = `${assetPathPrefix}/2504f.png`;
 const imgArrowForwardLong = `${assetPathPrefix}/887e7.svg`;
 const imgGroup = `${assetPathPrefix}/87544.svg`;
@@ -543,7 +543,7 @@ export default function Home() {
       <Footer className="-translate-x-1/2 absolute bg-white bottom-0 h-[593px] left-1/2 overflow-clip shadow-[0px_0px_4px_0px_rgba(0,0,0,0.06)] w-[1920px]" />
       <div className="absolute bg-white h-[920px] left-0 overflow-clip top-0 w-[1920px]" data-node-id="1:643" data-name="Frame">
         <div className="-translate-x-1/2 absolute h-[920px] left-1/2 top-0 w-[1920px]" data-node-id="1:644" data-name="Image">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage} />
+          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" decoding="async" fetchPriority="high" loading="eager" src={imgImage} />
         </div>
         <div className="-translate-x-1/2 absolute h-[920px] left-1/2 top-0 w-[1920px]" data-node-id="1:645" style={{ backgroundImage: "linear-gradient(180deg, rgba(29, 29, 29, 0.4) 0%, rgba(29, 29, 29, 0) 100%), linear-gradient(90.00000034559805deg, rgb(29, 29, 29) 0%, rgba(29, 29, 29, 0) 38.932%, rgba(29, 29, 29, 0) 72.244%, rgba(29, 29, 29, 0.8) 100%)" }} data-name="Linear" />
         <div className="absolute content-stretch flex flex-col gap-[40px] items-start justify-center left-[179px] top-[305px] w-[999px]" data-node-id="1:646" data-name="Frame">

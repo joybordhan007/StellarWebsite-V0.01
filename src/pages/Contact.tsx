@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 
 const assetPathPrefix = "/assets/1-4581";
 const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
-const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.png`;
+const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.jpg`;
 const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = `${assetPathPrefix}/4d4a6.svg`;
 const imgStellarLogo2 = `${assetPathPrefix}/cf89e.svg`;
 const imgFacebookLogo = `${assetPathPrefix}/412e8.svg`;
@@ -11,7 +11,7 @@ const imgLinkedinLogo = `${assetPathPrefix}/82b38.svg`;
 const imgFrame = `${assetPathPrefix}/adc25.svg`;
 const imgFrame1 = `${assetPathPrefix}/06754.svg`;
 const imgFrame2 = `${assetPathPrefix}/a2092.svg`;
-const imgImage = `${assetPathPrefix}/aa442.png`;
+const imgImage = `${assetPathPrefix}/aa442.jpg`;
 const imgStellarLogo3 = `${assetPathPrefix}/aa512.svg`;
 const imgLayer1 = `${assetPathPrefix}/52c2c.svg`;
 const imgLayer3 = `${assetPathPrefix}/872b1.svg`;
@@ -216,8 +216,8 @@ function Footer({ className }: { className?: string }) {
 export default function LetsTalk() {
   const [submissionState, setSubmissionState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [submissionMessage, setSubmissionMessage] = useState("");
-  const [activeOffice, setActiveOffice] = useState(offices[0].id);
-  const [activeMapAddress, setActiveMapAddress] = useState(offices[0].addresses[0]);
+  const [activeOffice, setActiveOffice] = useState<string>(offices[0].id);
+  const [activeMapAddress, setActiveMapAddress] = useState<string>(offices[0].addresses[0]);
 
   async function submitContactForm(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -278,7 +278,7 @@ export default function LetsTalk() {
       <Footer className="-translate-x-1/2 absolute bg-white bottom-0 h-[593px] left-[calc(50%+1px)] overflow-clip shadow-[0px_0px_4px_0px_rgba(0,0,0,0.06)] w-[1920px]" />
       <div className="absolute bg-white h-[920px] left-0 overflow-clip top-0 w-[1920px]" data-node-id="1:4583" data-name="Frame">
         <div className="-translate-x-1/2 absolute h-[920px] left-1/2 top-0 w-[1920px]" data-node-id="1:4584" data-name="Image">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage} />
+          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" decoding="async" fetchPriority="high" loading="eager" src={imgImage} />
         </div>
         <div className="-translate-x-1/2 absolute h-[920px] left-1/2 top-0 w-[1920px]" data-node-id="1:4585" style={{ backgroundImage: "linear-gradient(180deg, rgba(29, 29, 29, 0.4) 0%, rgba(29, 29, 29, 0) 100%), linear-gradient(90.00000034559805deg, rgb(29, 29, 29) 7.6923%, rgba(29, 29, 29, 0) 49.038%, rgba(29, 29, 29, 0) 76.923%, rgba(29, 29, 29, 0.8) 100%)" }} data-name="Linear" />
         <div className="-translate-y-1/2 [word-break:break-word] absolute content-stretch flex flex-col gap-[16px] items-start leading-[0] left-[179px] text-[#f6f6f6] top-1/2 w-[999px] whitespace-nowrap" data-node-id="1:4586" data-name="Frame">

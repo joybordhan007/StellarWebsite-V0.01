@@ -3,7 +3,7 @@ import CountUpValue from "../components/CountUpValue";
 
 const assetPathPrefix = "/assets/1-3076";
 const imgRectangle9149 = `${assetPathPrefix}/5886f.png`;
-const imgRectangle9150 = `${assetPathPrefix}/2d220.png`;
+const imgRectangle9150 = `${assetPathPrefix}/2d220.jpg`;
 const imgRectangle9151 = `${assetPathPrefix}/ffe1a.png`;
 const imgRectangle9152 = `${assetPathPrefix}/cd5b4.png`;
 const imgRectangle9186 = `${assetPathPrefix}/f1d41.png`;
@@ -12,7 +12,7 @@ const imgRectangle9164 = `${assetPathPrefix}/1d6dc.png`;
 const imgRectangle9167 = `${assetPathPrefix}/642b2.png`;
 const imgRectangle9168 = `${assetPathPrefix}/87a64.png`;
 const imgRectangle9169 = `${assetPathPrefix}/7dacd.png`;
-const imgRectangle9171 = `${assetPathPrefix}/347b7.png`;
+const imgRectangle9171 = `${assetPathPrefix}/347b7.jpg`;
 const imgRectangle9172 = `${assetPathPrefix}/92cc5.png`;
 const imgRectangle9173 = `${assetPathPrefix}/5494a.png`;
 const imgRectangle9174 = `${assetPathPrefix}/74b73.png`;
@@ -28,7 +28,7 @@ const imgRectangle9183 = `${assetPathPrefix}/b2871.png`;
 const imgRectangle9184 = `${assetPathPrefix}/ddfaf.png`;
 const imgRectangle9185 = `${assetPathPrefix}/a764b.png`;
 const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
-const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.png`;
+const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.jpg`;
 const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = `${assetPathPrefix}/4d4a6.svg`;
 const imgStellarLogo2 = `${assetPathPrefix}/cf89e.svg`;
 const imgFacebookLogo = `${assetPathPrefix}/412e8.svg`;
@@ -37,28 +37,28 @@ const imgLinkedinLogo = `${assetPathPrefix}/82b38.svg`;
 const imgFrame = `${assetPathPrefix}/adc25.svg`;
 const imgFrame1 = `${assetPathPrefix}/06754.svg`;
 const imgFrame2 = `${assetPathPrefix}/a2092.svg`;
-const imgImage = `${assetPathPrefix}/6e33d.png`;
-const imgRectangle9113 = `${assetPathPrefix}/234ca.png`;
-const imgRectangle9114 = `${assetPathPrefix}/02160.png`;
-const imgRectangle9115 = `${assetPathPrefix}/9b97c.png`;
+const imgImage = `${assetPathPrefix}/6e33d.jpg`;
+const imgRectangle9113 = `${assetPathPrefix}/234ca.jpg`;
+const imgRectangle9114 = `${assetPathPrefix}/02160.jpg`;
+const imgRectangle9115 = `${assetPathPrefix}/9b97c.jpg`;
 const imgRectangle9214 = `${assetPathPrefix}/0cd2a.png`;
 const imgRectangle9215 = `${assetPathPrefix}/daf30.png`;
-const imgRectangle9216 = `${assetPathPrefix}/581fc.png`;
-const imgRectangle9217 = `${assetPathPrefix}/aac34.png`;
+const imgRectangle9216 = `${assetPathPrefix}/581fc.jpg`;
+const imgRectangle9217 = `${assetPathPrefix}/aac34.jpg`;
 const imgRectangle9116 = `${assetPathPrefix}/33af4.png`;
-const imgRectangle9117 = `${assetPathPrefix}/d1997.png`;
-const imgRectangle9118 = `${assetPathPrefix}/42cba.png`;
-const imgRectangle9119 = `${assetPathPrefix}/b7e87.png`;
-const imgRectangle9120 = `${assetPathPrefix}/68447.png`;
-const imgRectangle9121 = `${assetPathPrefix}/da086.png`;
-const imgRectangle9122 = `${assetPathPrefix}/78e62.png`;
-const imgRectangle9123 = `${assetPathPrefix}/b465b.png`;
-const imgRectangle9124 = `${assetPathPrefix}/9675b.png`;
-const imgRectangle9125 = `${assetPathPrefix}/58673.png`;
-const imgRectangle9228 = `${assetPathPrefix}/bac63.png`;
-const imgRectangle9229 = `${assetPathPrefix}/1eacf.png`;
-const imgRectangle9230 = `${assetPathPrefix}/70d97.png`;
-const imgRectangle9231 = `${assetPathPrefix}/fb746.png`;
+const imgRectangle9117 = `${assetPathPrefix}/d1997.jpg`;
+const imgRectangle9118 = `${assetPathPrefix}/42cba.jpg`;
+const imgRectangle9119 = `${assetPathPrefix}/b7e87.jpg`;
+const imgRectangle9120 = `${assetPathPrefix}/68447.jpg`;
+const imgRectangle9121 = `${assetPathPrefix}/da086.jpg`;
+const imgRectangle9122 = `${assetPathPrefix}/78e62.jpg`;
+const imgRectangle9123 = `${assetPathPrefix}/b465b.jpg`;
+const imgRectangle9124 = `${assetPathPrefix}/9675b.jpg`;
+const imgRectangle9125 = `${assetPathPrefix}/58673.jpg`;
+const imgRectangle9228 = `${assetPathPrefix}/bac63.jpg`;
+const imgRectangle9229 = `${assetPathPrefix}/1eacf.jpg`;
+const imgRectangle9230 = `${assetPathPrefix}/70d97.jpg`;
+const imgRectangle9231 = `${assetPathPrefix}/fb746.jpg`;
 const imgArrowForwardLong = `${assetPathPrefix}/887e7.svg`;
 const imgStellarLogo3 = `${assetPathPrefix}/d3126.svg`;
 const imgGroup = `${assetPathPrefix}/185b3.svg`;
@@ -657,7 +657,7 @@ export default function Sustainability() {
       <Footer className="-translate-x-1/2 absolute bg-white bottom-0 h-[593px] left-1/2 overflow-clip shadow-[0px_0px_4px_0px_rgba(0,0,0,0.06)] w-[1920px]" />
       <div className="absolute bg-white h-[920px] left-0 overflow-clip top-0 w-[1920px]" data-node-id="1:3078" data-name="Frame">
         <div className="-translate-x-1/2 absolute h-[920px] left-1/2 top-0 w-[1920px]" data-node-id="1:3079" data-name="Image">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage} />
+          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" decoding="async" fetchPriority="high" loading="eager" src={imgImage} />
         </div>
         <div className="-translate-x-1/2 absolute h-[920px] left-1/2 top-0 w-[1920px]" data-node-id="1:3080" style={{ backgroundImage: "linear-gradient(180deg, rgba(29, 29, 29, 0.4) 0%, rgba(29, 29, 29, 0) 100%), linear-gradient(90.00000034559805deg, rgb(29, 29, 29) 7.6923%, rgba(29, 29, 29, 0) 49.038%, rgba(29, 29, 29, 0) 76.923%, rgba(29, 29, 29, 0.8) 100%)" }} data-name="Linear" />
         <div className="-translate-y-1/2 absolute content-stretch flex flex-col gap-[40px] items-start justify-center left-[179px] top-1/2 w-[999px]" data-node-id="1:3081" data-name="Frame">
@@ -992,7 +992,7 @@ export default function Sustainability() {
           </a>
           <a aria-label="Knit Gallery factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] self-stretch shrink-0 w-[504px]" data-node-id="1:3214" data-name="Frame" href="/factories/knit-gallery#factory-profile">
             <div className="h-[289px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:3215">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src="/assets/1-641/a9ee6.png" />
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src="/assets/1-641/a9ee6.jpg" />
             </div>
             <div className="[word-break:break-word] content-stretch flex flex-col gap-[16px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:3216" data-name="Frame">
               <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 text-[#1d1d1d] w-full" data-node-id="1:3217" data-name="Frame">

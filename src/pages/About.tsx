@@ -1,6 +1,6 @@
 const assetPathPrefix = "/assets/1-967";
 const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
-const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.png`;
+const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.jpg`;
 const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = `${assetPathPrefix}/4d4a6.svg`;
 const imgStellarLogo2 = `${assetPathPrefix}/cf89e.svg`;
 const imgFacebookLogo = `${assetPathPrefix}/412e8.svg`;
@@ -9,15 +9,15 @@ const imgLinkedinLogo = `${assetPathPrefix}/82b38.svg`;
 const imgFrame = `${assetPathPrefix}/adc25.svg`;
 const imgFrame1 = `${assetPathPrefix}/06754.svg`;
 const imgFrame2 = `${assetPathPrefix}/a2092.svg`;
-const imgImage = `${assetPathPrefix}/56147.png`;
-const imgRectangle9152 = `${assetPathPrefix}/02160.png`;
-const imgRectangle9154 = `${assetPathPrefix}/bc82a.png`;
-const imgRectangle9150 = `${assetPathPrefix}/234ca.png`;
-const imgRectangle9151 = `${assetPathPrefix}/82597.png`;
+const imgImage = `${assetPathPrefix}/56147.jpg`;
+const imgRectangle9152 = `${assetPathPrefix}/02160.jpg`;
+const imgRectangle9154 = `${assetPathPrefix}/bc82a.jpg`;
+const imgRectangle9150 = `${assetPathPrefix}/234ca.jpg`;
+const imgRectangle9151 = `${assetPathPrefix}/82597.jpg`;
 const imgWorldMapPixelStyleIsolatedWhite1 = `${assetPathPrefix}/bea37.png`;
-const imgRectangle9164 = `${assetPathPrefix}/4139f.png`;
+const imgRectangle9164 = `${assetPathPrefix}/4139f.jpg`;
 const imgFrame4 = `${assetPathPrefix}/cdb42.png`;
-const imgRectangle9140 = `${assetPathPrefix}/ee359.png`;
+const imgRectangle9140 = `${assetPathPrefix}/ee359.jpg`;
 const imgArrowForwardLong = `${assetPathPrefix}/887e7.svg`;
 const imgStellarLogo3 = `${assetPathPrefix}/3b80a.svg`;
 const imgArrowForwardLong1 = `${assetPathPrefix}/77a61.svg`;
@@ -197,7 +197,7 @@ export default function AboutUs() {
       <Footer className="-translate-x-1/2 absolute bg-white bottom-0 h-[593px] left-1/2 overflow-clip shadow-[0px_0px_4px_0px_rgba(0,0,0,0.06)] w-[1920px]" />
       <div className="absolute bg-white h-[920px] left-0 overflow-clip top-0 w-[1920px]" data-node-id="1:969" data-name="Frame">
         <div className="-translate-x-1/2 absolute h-[920px] left-1/2 top-0 w-[1920px]" data-node-id="1:970" data-name="Image">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage} />
+          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" decoding="async" fetchPriority="high" loading="eager" src={imgImage} />
         </div>
         <div className="-translate-x-1/2 absolute h-[920px] left-1/2 top-0 w-[1920px]" data-node-id="1:971" style={{ backgroundImage: "linear-gradient(180deg, rgba(29, 29, 29, 0.4) 0%, rgba(29, 29, 29, 0) 100%), linear-gradient(90.00000034559805deg, rgb(29, 29, 29) 7.6923%, rgba(29, 29, 29, 0) 49.038%, rgba(29, 29, 29, 0) 76.923%, rgba(29, 29, 29, 0.8) 100%)" }} data-name="Linear" />
         <div className="absolute content-stretch flex flex-col gap-[40px] items-start justify-center left-[179px] top-[305px] w-[999px]" data-node-id="1:972" data-name="Frame">

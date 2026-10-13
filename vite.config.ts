@@ -1,9 +1,8 @@
 import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import path from 'node:path'
 
-import siteConfiguration from './.figma/make/site.json'
+import siteConfiguration from './.figma/make/site.json' with { type: 'json' }
 
 
 // Vite config — https://vitejs.dev/config/
@@ -28,7 +27,7 @@ react(),
     ],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, './src'),
+        '@': import.meta.dirname + '/src',
       },
     },
     server: {
@@ -55,7 +54,11 @@ function lazyLoadPageImages(): Plugin {
     transform(code, id) {
       if (!/[/\\]src[/\\]pages[/\\].*\.tsx(?:\?|$)/.test(id)) return null
 
-      return code.replace(/<img(?=\s)/g, '<img loading="lazy" decoding="async"')
+      return code.replace(/<img(?=\s)([^>]*?)(\/?>)/g, (_match, attributes: string, closing: string) => {
+        const loading = /\bloading\s*=/.test(attributes) ? '' : ' loading="lazy"'
+        const decoding = /\bdecoding\s*=/.test(attributes) ? '' : ' decoding="async"'
+        return `<img${loading}${decoding}${attributes}${closing}`
+      })
     },
   }
 }
@@ -102,7 +105,7 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
   const title = config.title ?? "Figma Make App"
   const description = config.description ?? ''
   // Imported HTML keeps its own favicon; new Makes default to the Make product icon.
-  const favicon = config.icons?.icon ?? '/favicon.svg'
+  const favicon = config.icons?.icon ?? '/favicon.png'
   const socialImage = config.openGraph?.image ?? ''
   const language = sanitizeHtmlValue(config.language) || 'en'
   const googleAnalyticsId = sanitizeHtmlValue(config.analytics?.googleAnalyticsId)
@@ -149,7 +152,7 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
         if (config.robots?.index === false) {
           tags.push({ tag: 'meta', attrs: { name: 'robots', content: 'noindex, nofollow' }, injectTo: 'head' })
         }
-        if (favicon) {
+        if (favicon && !/<link\b[^>]*\brel=["'](?:icon|shortcut icon)["']/i.test(result)) {
           tags.push({ tag: 'link', attrs: { rel: 'icon', href: favicon }, injectTo: 'head' })
         }
         if (title) {

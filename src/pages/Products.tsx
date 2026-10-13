@@ -3,7 +3,7 @@ import productCategories from "../data/productCategories.json";
 
 const assetPathPrefix = "/assets/1-4402";
 const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
-const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.png`;
+const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.jpg`;
 const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = `${assetPathPrefix}/4d4a6.svg`;
 const imgStellarLogo2 = `${assetPathPrefix}/cf89e.svg`;
 const imgFacebookLogo = `${assetPathPrefix}/412e8.svg`;
@@ -12,23 +12,23 @@ const imgLinkedinLogo = `${assetPathPrefix}/82b38.svg`;
 const imgFrame = `${assetPathPrefix}/adc25.svg`;
 const imgFrame1 = `${assetPathPrefix}/06754.svg`;
 const imgFrame2 = `${assetPathPrefix}/a2092.svg`;
-const imgImage = `${assetPathPrefix}/730ef.png`;
+const imgImage = `${assetPathPrefix}/730ef.jpg`;
 const imgRectangle9113 = `${assetPathPrefix}/28bae.png`;
-const imgRectangle9114 = `${assetPathPrefix}/1eb78.png`;
-const imgRectangle9115 = `${assetPathPrefix}/dd2dc.png`;
-const imgRectangle9116 = `${assetPathPrefix}/e1cf4.png`;
-const imgRectangle9117 = `${assetPathPrefix}/95a02.png`;
-const imgRectangle9118 = `${assetPathPrefix}/eb463.png`;
-const imgRectangle9119 = `${assetPathPrefix}/9774d.png`;
-const imgRectangle9120 = `${assetPathPrefix}/302c6.png`;
+const imgRectangle9114 = `${assetPathPrefix}/1eb78.jpg`;
+const imgRectangle9115 = `${assetPathPrefix}/dd2dc.jpg`;
+const imgRectangle9116 = `${assetPathPrefix}/e1cf4.jpg`;
+const imgRectangle9117 = `${assetPathPrefix}/95a02.jpg`;
+const imgRectangle9118 = `${assetPathPrefix}/eb463.jpg`;
+const imgRectangle9119 = `${assetPathPrefix}/9774d.jpg`;
+const imgRectangle9120 = `${assetPathPrefix}/302c6.jpg`;
 const imgRectangle9121 = `${assetPathPrefix}/3a3fb.png`;
-const imgRectangle9122 = `${assetPathPrefix}/c3284.png`;
+const imgRectangle9122 = `${assetPathPrefix}/c3284.jpg`;
 const imgRectangle9123 = `${assetPathPrefix}/23c6d.png`;
-const imgRectangle9124 = `${assetPathPrefix}/f43b3.png`;
-const imgRectangle9125 = `${assetPathPrefix}/4b5e8.png`;
-const imgRectangle9126 = `${assetPathPrefix}/9fc73.png`;
-const imgRectangle9127 = `${assetPathPrefix}/5f2ec.png`;
-const imgRectangle9128 = `${assetPathPrefix}/55d31.png`;
+const imgRectangle9124 = `${assetPathPrefix}/f43b3.jpg`;
+const imgRectangle9125 = `${assetPathPrefix}/4b5e8.jpg`;
+const imgRectangle9126 = `${assetPathPrefix}/9fc73.jpg`;
+const imgRectangle9127 = `${assetPathPrefix}/5f2ec.jpg`;
+const imgRectangle9128 = `${assetPathPrefix}/55d31.jpg`;
 const imgArrowForwardLong = `${assetPathPrefix}/887e7.svg`;
 const imgStellarLogo3 = `${assetPathPrefix}/aa512.svg`;
 const imgOutline = `${assetPathPrefix}/27d6b.svg`;
@@ -200,7 +200,7 @@ export default function Products({ onHeightChange }: ProductsProps) {
       <Footer className="-translate-x-1/2 absolute bg-white bottom-0 h-[593px] left-1/2 overflow-clip shadow-[0px_0px_4px_0px_rgba(0,0,0,0.06)] w-[1920px]" />
       <div className="absolute bg-white h-[920px] left-0 overflow-clip top-0 w-[1920px]" data-node-id="1:4404" data-name="Frame">
         <div className="-translate-x-1/2 absolute h-[920px] left-1/2 top-0 w-[1920px]" data-node-id="1:4405" data-name="Image">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage} />
+          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" decoding="async" fetchPriority="high" loading="eager" src={imgImage} />
         </div>
         <div className="-translate-x-1/2 absolute h-[920px] left-1/2 top-0 w-[1920px]" data-node-id="1:4406" style={{ backgroundImage: "linear-gradient(180deg, rgba(29, 29, 29, 0.4) 0%, rgba(29, 29, 29, 0) 100%), linear-gradient(90.00000034559805deg, rgb(29, 29, 29) 7.6923%, rgba(29, 29, 29, 0) 49.038%, rgba(29, 29, 29, 0) 76.923%, rgba(29, 29, 29, 0.8) 100%)" }} data-name="Linear" />
         <div className="-translate-y-1/2 absolute content-stretch flex flex-col gap-[40px] items-start justify-center left-[179px] top-1/2 w-[999px]" data-node-id="1:4407" data-name="Frame">
