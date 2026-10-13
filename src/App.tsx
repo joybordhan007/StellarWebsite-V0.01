@@ -20,7 +20,9 @@ const pageLoaders = {
   "/factories/knit-gallery": () => import("./pages/KnitGallery"),
   "/factories/progress": () => import("./pages/Progress"),
   "/products": () => import("./pages/Products"),
+  "/privacy-policy": () => import("./pages/LegalPages"),
   "/sustainability": () => import("./pages/Sustainability"),
+  "/terms-of-service": () => import("./pages/LegalPages"),
 };
 
 const About = lazy(pageLoaders["/about"]);
@@ -29,10 +31,20 @@ const Contact = lazy(pageLoaders["/contact"]);
 const DesignPath = lazy(pageLoaders["/design-path"]);
 const GoodEarth = lazy(pageLoaders["/factories"]);
 const Home = lazy(pageLoaders["/"]);
+const PrivacyPolicy = lazy(() =>
+  pageLoaders["/privacy-policy"]().then((module) => ({
+    default: module.PrivacyPolicy,
+  })),
+);
 const KnitGallery = lazy(pageLoaders["/factories/knit-gallery"]);
 const Products = lazy(pageLoaders["/products"]);
 const Progress = lazy(pageLoaders["/factories/progress"]);
 const Sustainability = lazy(pageLoaders["/sustainability"]);
+const TermsOfService = lazy(() =>
+  pageLoaders["/terms-of-service"]().then((module) => ({
+    default: module.TermsOfService,
+  })),
+);
 
 function prefetchPage(pathname: string) {
   const loader = pageLoaders[pathname as keyof typeof pageLoaders];
@@ -98,6 +110,16 @@ const routes: Record<string, Page> = {
     component: Products,
     height: 3895,
     title: "Products | Stellar",
+  },
+  "/privacy-policy": {
+    component: PrivacyPolicy,
+    height: 2963,
+    title: "Privacy Policy | Stellar",
+  },
+  "/terms-of-service": {
+    component: TermsOfService,
+    height: 2963,
+    title: "Terms of Service | Stellar",
   },
   "/contact": {
     component: Contact,

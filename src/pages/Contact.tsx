@@ -13,17 +13,67 @@ const imgFrame = `${assetPathPrefix}/adc25.svg`;
 const imgFrame1 = `${assetPathPrefix}/06754.svg`;
 const imgFrame2 = `${assetPathPrefix}/a2092.svg`;
 const imgImage = `${assetPathPrefix}/aa442.png`;
-const imgRectangle9180 = `${assetPathPrefix}/22fa1.png`;
 const imgStellarLogo3 = `${assetPathPrefix}/aa512.svg`;
 const imgLayer1 = `${assetPathPrefix}/52c2c.svg`;
 const imgLayer3 = `${assetPathPrefix}/872b1.svg`;
 const imgLayer2 = `${assetPathPrefix}/1ab2f.svg`;
 const imgGroup = `${assetPathPrefix}/1f97e.svg`;
 const imgGroup1 = `${assetPathPrefix}/f8d87.svg`;
-const imgArrowForwardLong = `${assetPathPrefix}/6d395.svg`;
-const imgGroup2 = `${assetPathPrefix}/e1490.svg`;
 const imgPlus = `${assetPathPrefix}/5c49c.svg`;
 const imgMinus = `${assetPathPrefix}/f523a.svg`;
+
+const offices = [
+  {
+    id: "head-office-bangladesh",
+    name: "Head Office Bangladesh",
+    addresses: ["House-441, Road-07, Baridhara DOHS, Dhaka-1206"],
+    phone: "+880 2 1234 5678",
+    email: "info@stellar-mfg.com",
+    website: "www.stellar-mfg.com",
+    hours: "Fri, 9:00 AM – 6:00 PM (BST)",
+  },
+  {
+    id: "india-office",
+    name: "India Office",
+    addresses: [
+      "PDS Tower, 5th Floor, Plot No. 222, Udyog Vihar Phase -1, Industrial Complex Dundahera, Gurgaon – 122016, Haryana, India",
+      "Unit No. 1031 & 1032, Solitaire Corporate Park, Andheri Ghatkopar Link Road, Andheri (East), Mumbai – 400093, Maharashtra, India.",
+    ],
+    phone: "+880 2 1234 5678",
+    email: "info@stellar-mfg.com",
+    website: "www.stellar-mfg.com",
+    hours: "Fri, 9:00 AM – 6:00 PM (BST)",
+  },
+  {
+    id: "goodearth-apparels",
+    name: "GoodEarth Apparels Bangladesh",
+    addresses: ["Tepirbari, Telihati, Sreepur, Gazipur, Bangladesh. PO: Gazipur-1740."],
+    phone: "+88 09601 121 600",
+    email: "info@stellar-mfg.com",
+    website: "www.goodearthapparels.com",
+    hours: "Fri, 9:00 AM – 6:00 PM (BST)",
+  },
+  {
+    id: "progress-apparels",
+    name: "Progress Apparels Bangladesh",
+    addresses: ["MS-SFB # 1 & 2, Adamjee EPZ, Narayanganj, Dhaka."],
+    phone: "+880 2 1234 5678",
+    email: "info@stellar-mfg.com",
+    website: "www.progress-mfg.com",
+    hours: "Fri, 9:00 AM – 6:00 PM (BST)",
+  },
+  {
+    id: "knit-gallery",
+    name: "Knit Gallery India",
+    addresses: [
+      "SF No. 217/1, 217/2A, 217/2B, 217/2C & 218/1A, Door No. 3-353, Dharapuram Road, Gudimangalam Nal Road Tirupur, Tamil Nadu, 642201, India",
+    ],
+    phone: "+880 2 1234 5678",
+    email: "info@stellar-mfg.com",
+    website: "www.stellar-mfg.com",
+    hours: "Fri, 9:00 AM – 6:00 PM (BST)",
+  },
+] as const;
 
 type Component1Props = {
   className?: string;
@@ -91,24 +141,13 @@ function Footer({ className }: { className?: string }) {
             </div>
           </div>
           <div className="[word-break:break-word] content-stretch flex flex-col font-['Inter:Regular'] font-normal gap-[16px] items-start leading-[0] not-italic relative shrink-0 text-[#191919] text-[16px] w-full whitespace-nowrap" data-node-id="1:61" data-name="Frame">
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:62">
-              <p className="leading-[1.2]">Home</p>
-            </div>
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:63">
-              <p className="leading-[1.2]">About Us</p>
-            </div>
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:64">
-              <p className="leading-[1.2]">Our Capabilities</p>
-            </div>
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:65">
-              <p className="leading-[1.2]">Our Factories</p>
-            </div>
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:66">
-              <p className="leading-[1.2]">Sustainability</p>
-            </div>
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:67">
-              <p className="leading-[1.2]">Products</p>
-            </div>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/"><p className="leading-[1.2]">Home</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/about"><p className="leading-[1.2]">About Us</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/capabilities"><p className="leading-[1.2]">Our Capabilities</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/design-path"><p className="leading-[1.2]">Design path</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/factories"><p className="leading-[1.2]">Our Factories</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/sustainability"><p className="leading-[1.2]">Sustainability</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/products"><p className="leading-[1.2]">Products</p></a>
           </div>
         </div>
         <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[266px]" data-node-id="1:68" data-name="Frame">
@@ -118,15 +157,9 @@ function Footer({ className }: { className?: string }) {
             </div>
           </div>
           <div className="[word-break:break-word] content-stretch flex flex-col font-['Inter:Regular'] font-normal gap-[16px] items-start leading-[0] not-italic relative shrink-0 text-[#191919] text-[16px] w-full whitespace-nowrap" data-node-id="1:71" data-name="Frame">
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:72">
-              <p className="leading-[1.2]">Contact Us</p>
-            </div>
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:73">
-              <p className="leading-[1.2]">Privacy Policy</p>
-            </div>
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:74">
-              <p className="leading-[1.2]">Terms of Service</p>
-            </div>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/contact"><p className="leading-[1.2]">Contact Us</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/privacy-policy"><p className="leading-[1.2]">Privacy Policy</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/terms-of-service"><p className="leading-[1.2]">Terms of Service</p></a>
             <div className="flex flex-col justify-center opacity-0 relative shrink-0" data-node-id="1:75">
               <p className="leading-[1.2]">Our Factories</p>
             </div>
@@ -172,19 +205,22 @@ function Footer({ className }: { className?: string }) {
                 <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame2} />
               </div>
               <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-px not-italic relative text-[#191919] text-[16px]" data-node-id="1:99">
-                <p className="leading-[1.2]">India Office: 2/815A, Mullai Nagar, Valai Tottam, Periyandipalayam, Tiruppur, Andipalayam, Tamil Nadu 641687, India</p>
+                <p className="leading-[1.2]">India Office: PDS Tower, 5th Floor, Plot No. 222, Udyog Vihar Phase -1, Industrial Complex Dundahera, Gurgaon &ndash; 122016, Haryana, India</p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className="-translate-x-1/2 absolute bg-gradient-to-t from-[6.131%] from-white h-[174px] left-1/2 to-[79.237%] to-[rgba(255,255,255,0)] top-[419px] w-[1920px]" data-node-id="1:100" />
+      <div className="footer-copyright absolute bottom-[20px] left-1/2 -translate-x-1/2 text-center text-[#4a4a4a] text-[13px] whitespace-nowrap"><span>Copyright &copy; 2026 STELLAR MANUFACTURING LTD.</span><span className="footer-credit">Website designed and developed by <a href="http://designops.agency" rel="noreferrer" target="_blank">DesignOps</a></span></div>
     </div>
   );
 }
 
 export default function LetsTalk() {
   const [sent, setSent] = useState(false);
+  const [activeOffice, setActiveOffice] = useState(offices[0].id);
+  const [activeMapAddress, setActiveMapAddress] = useState(offices[0].addresses[0]);
 
   function submitContactForm(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -368,130 +404,90 @@ export default function LetsTalk() {
           </div>
         </div>
       </div>
-      <div className="absolute content-stretch flex gap-[24px] items-center left-[180px] top-[1595px]" data-node-id="1:4686" data-name="Frame">
-        <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-[768px]" data-node-id="1:4687" data-name="Frame">
-          <div className="bg-white content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col gap-[24px] items-start p-[24px] relative rounded-[8px] shrink-0 w-full" data-node-id="1:4688" data-name="Frame">
-            <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#4a4a4a] text-[24px] w-[min-content]" data-node-id="1:4689">
-              <p className="leading-[1.2]">Head Office Bangladesh</p>
-            </div>
-            <div className="content-stretch flex flex-col gap-[23px] items-start relative shrink-0" data-node-id="1:4690" data-name="Frame">
-              <div className="content-stretch flex gap-[12px] items-center relative shrink-0 w-full" data-node-id="1:4691" data-name="Frame">
-                <div className="overflow-clip relative shrink-0 size-[20px]" data-node-id="1:4692" data-name="Capa_1">
-                  <div className="absolute contents inset-[9.38%_18%_3.12%_18.75%]" data-node-id="1:4693" data-name="Group">
-                    <div className="absolute inset-[9.38%_18%_3.12%_18.75%]" data-node-id="1:4694" data-name="Group">
-                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup} />
+      <section
+        aria-label="Office information"
+        className="contact-offices-section absolute left-[180px] top-[1595px]"
+      >
+        <div className="contact-office-list">
+          {offices.map((office) => {
+            const isOpen = activeOffice === office.id;
+
+            return (
+              <article className="contact-office-card" key={office.id}>
+                <h2 className="contact-office-heading">
+                  <button
+                    aria-controls={`${office.id}-details`}
+                    aria-expanded={isOpen}
+                    className="contact-office-toggle"
+                    onClick={() => {
+                      setActiveOffice(office.id);
+                      setActiveMapAddress(office.addresses[0]);
+                    }}
+                    type="button"
+                  >
+                    <span>{office.name}</span>
+                    <img alt="" src={isOpen ? imgMinus : imgPlus} />
+                  </button>
+                </h2>
+                {isOpen && (
+                  <div className="contact-office-details" id={`${office.id}-details`}>
+                    {office.addresses.map((address) => (
+                      <div className="contact-office-detail" key={address}>
+                        <img alt="" src={imgGroup} />
+                        {office.addresses.length > 1 ? (
+                          <button
+                            aria-label={`Show map for ${address}`}
+                            aria-pressed={activeMapAddress === address}
+                            className="contact-office-address"
+                            onClick={() => setActiveMapAddress(address)}
+                            type="button"
+                          >
+                            {address}
+                          </button>
+                        ) : (
+                          <span>{address}</span>
+                        )}
+                      </div>
+                    ))}
+                    <div className="contact-office-detail">
+                      <img alt="" src={imgLayer3} />
+                      <a href={`tel:${office.phone.replace(/[^\d+]/g, "")}`}>{office.phone}</a>
+                    </div>
+                    <div className="contact-office-detail">
+                      <img alt="" src={imgLayer1} />
+                      <a href={`mailto:${office.email}`}>{office.email}</a>
+                    </div>
+                    <div className="contact-office-detail">
+                      <img alt="" src={imgLayer2} />
+                      <a href={`https://${office.website}`} rel="noreferrer" target="_blank">
+                        {office.website}
+                      </a>
+                    </div>
+                    <div className="contact-office-detail">
+                      <img alt="" src={imgGroup1} />
+                      <span>{office.hours}</span>
                     </div>
                   </div>
-                </div>
-                <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[18px] whitespace-nowrap" data-node-id="1:4696">
-                  <p className="leading-[1.2]">House-441, Road-07, Baridhara DOHS, Dhaka-1206</p>
-                </div>
-              </div>
-              <div className="content-stretch flex gap-[12px] items-center relative shrink-0" data-node-id="1:4697" data-name="Frame">
-                <div className="relative shrink-0 size-[20px]" data-node-id="1:4698" data-name="Layer_3">
-                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLayer3} />
-                </div>
-                <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[18px] whitespace-nowrap" data-node-id="1:4700">
-                  <p className="leading-[1.2]">+880 2 1234 5678</p>
-                </div>
-              </div>
-              <div className="content-stretch flex gap-[12px] items-center relative shrink-0 w-full" data-node-id="1:4701" data-name="Frame">
-                <div className="overflow-clip relative shrink-0 size-[20px]" data-node-id="1:4702" data-name="Frame">
-                  <div className="absolute contents inset-[10%_5%]" data-node-id="1:4703" data-name="Layer 2">
-                    <div className="absolute inset-[10%_5%]" data-node-id="1:4704" data-name="Layer 1">
-                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLayer1} />
-                    </div>
-                  </div>
-                </div>
-                <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[18px] whitespace-nowrap" data-node-id="1:4706">
-                  <p className="leading-[1.2]">info@stellar-mfg.com</p>
-                </div>
-              </div>
-              <div className="content-stretch flex gap-[12px] items-center relative shrink-0" data-node-id="1:4707" data-name="Frame">
-                <div className="relative shrink-0 size-[20px]" data-node-id="1:4708" data-name="Layer_1">
-                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLayer2} />
-                </div>
-                <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[18px] whitespace-nowrap" data-node-id="1:4710">
-                  <p className="leading-[1.2]">www.stellar-mfg.com</p>
-                </div>
-              </div>
-              <div className="content-stretch flex gap-[12px] items-center relative shrink-0 w-full" data-node-id="1:4711" data-name="Frame">
-                <div className="overflow-clip relative shrink-0 size-[20px]" data-node-id="1:4712" data-name="Capa_1">
-                  <div className="absolute contents inset-[10%]" data-node-id="1:4713" data-name="Group">
-                    <div className="absolute inset-[10%]" data-node-id="1:4714" data-name="Group">
-                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1} />
-                    </div>
-                  </div>
-                </div>
-                <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[18px] whitespace-nowrap" data-node-id="1:4716">
-                  <p className="leading-[1.2]">Fri, 9:00 AM – 6:00 PM (BST)</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="bg-white content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex items-start justify-between p-[24px] relative rounded-[8px] shrink-0 w-full" data-node-id="1:4717" data-name="Frame">
-            <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[24px] whitespace-nowrap" data-node-id="1:4718">
-              <p className="leading-[1.2]">{`India Office `}</p>
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:4719" data-name="arrow-forward-long">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowForwardLong} />
-            </div>
-          </div>
-          <div className="bg-white content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex items-start justify-between p-[24px] relative rounded-[8px] shrink-0 w-full" data-node-id="1:4720" data-name="Frame">
-            <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[24px] whitespace-nowrap" data-node-id="1:4721">
-              <p className="leading-[1.2]">GoodEarth Apparels Bangladesh</p>
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:4722" data-name="arrow-forward-long">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowForwardLong} />
-            </div>
-          </div>
-          <div className="bg-white content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex items-start justify-between p-[24px] relative rounded-[8px] shrink-0 w-full" data-node-id="1:4723" data-name="Frame">
-            <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[24px] whitespace-nowrap" data-node-id="1:4724">
-              <p className="leading-[1.2]">Progress Apparels Bangladesh</p>
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:4725" data-name="arrow-forward-long">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowForwardLong} />
-            </div>
-          </div>
-          <div className="bg-white content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex items-start justify-between p-[24px] relative rounded-[8px] shrink-0 w-full" data-node-id="1:4726" data-name="Frame">
-            <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[24px] whitespace-nowrap" data-node-id="1:4727">
-              <p className="leading-[1.2]">Knit Gallery India</p>
-            </div>
-            <div className="relative shrink-0 size-[24px]" data-node-id="1:4728" data-name="arrow-forward-long">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowForwardLong} />
-            </div>
-          </div>
+                )}
+              </article>
+            );
+          })}
         </div>
-        <div className="bg-white content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col h-[675px] items-start p-[24px] relative rounded-[8px] shrink-0 w-[768px]" data-node-id="1:4729" data-name="Frame">
-          <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0" data-node-id="1:4730">
-            <div className="col-1 h-[627px] ml-0 mt-0 relative rounded-[8px] row-1 w-[720px]" data-node-id="1:4731">
-              <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[8px]">
-                <img alt="" className="absolute max-w-none object-cover rounded-[8px] size-full" src={imgRectangle9180} />
-                <div className="absolute bg-[rgba(0,0,0,0.1)] inset-0 rounded-[8px]" />
-              </div>
-            </div>
-            <div className="col-1 ml-[229px] mt-[173px] overflow-clip relative row-1 size-[32px]" data-node-id="1:4732" data-name="Capa_1">
-              <div className="absolute contents inset-[9.38%_18%_3.12%_18.75%]" data-node-id="1:4733" data-name="Group">
-                <div className="absolute inset-[9.38%_18%_3.12%_18.75%]" data-node-id="1:4734" data-name="Group">
-                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup2} />
-                </div>
-              </div>
-            </div>
-            <div className="border-[0.5px] border-[rgba(0,0,0,0.1)] border-solid col-1 content-stretch flex flex-col items-start ml-[677px] mt-[554px] relative rounded-[2px] row-1 shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)]" data-node-id="1:4736" data-name="Frame">
-              <div className="bg-white content-stretch flex items-center p-[5px] relative rounded-tl-[2px] rounded-tr-[2px] shrink-0" data-node-id="1:4737" data-name="Frame">
-                <div className="relative shrink-0 size-[20px]" data-node-id="1:4738" data-name="plus">
-                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgPlus} />
-                </div>
-              </div>
-              <div className="bg-white content-stretch flex items-center p-[5px] relative rounded-bl-[2px] rounded-br-[2px] shrink-0" data-node-id="1:4739" data-name="Frame">
-                <div className="relative shrink-0 size-[20px]" data-node-id="1:4740" data-name="minus">
-                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgMinus} />
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="contact-office-map">
+          {offices.map((office) =>
+            activeOffice === office.id ? (
+              <iframe
+                key={activeMapAddress}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                src={`https://maps.google.com/maps?q=${encodeURIComponent(activeMapAddress)}&z=14&output=embed`}
+                title={`Map showing ${office.name}`}
+              />
+            ) : null,
+          )}
         </div>
-      </div>
+      </section>
     </div>
   );
 }

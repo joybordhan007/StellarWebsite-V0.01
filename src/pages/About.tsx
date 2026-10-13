@@ -119,24 +119,13 @@ function Footer({ className }: { className?: string }) {
             </div>
           </div>
           <div className="[word-break:break-word] content-stretch flex flex-col font-['Inter:Regular'] font-normal gap-[16px] items-start leading-[0] not-italic relative shrink-0 text-[#191919] text-[16px] w-full whitespace-nowrap" data-node-id="1:61" data-name="Frame">
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:62">
-              <p className="leading-[1.2]">Home</p>
-            </div>
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:63">
-              <p className="leading-[1.2]">About Us</p>
-            </div>
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:64">
-              <p className="leading-[1.2]">Our Capabilities</p>
-            </div>
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:65">
-              <p className="leading-[1.2]">Our Factories</p>
-            </div>
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:66">
-              <p className="leading-[1.2]">Sustainability</p>
-            </div>
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:67">
-              <p className="leading-[1.2]">Products</p>
-            </div>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/"><p className="leading-[1.2]">Home</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/about"><p className="leading-[1.2]">About Us</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/capabilities"><p className="leading-[1.2]">Our Capabilities</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/design-path"><p className="leading-[1.2]">Design path</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/factories"><p className="leading-[1.2]">Our Factories</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/sustainability"><p className="leading-[1.2]">Sustainability</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/products"><p className="leading-[1.2]">Products</p></a>
           </div>
         </div>
         <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[266px]" data-node-id="1:68" data-name="Frame">
@@ -146,15 +135,9 @@ function Footer({ className }: { className?: string }) {
             </div>
           </div>
           <div className="[word-break:break-word] content-stretch flex flex-col font-['Inter:Regular'] font-normal gap-[16px] items-start leading-[0] not-italic relative shrink-0 text-[#191919] text-[16px] w-full whitespace-nowrap" data-node-id="1:71" data-name="Frame">
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:72">
-              <p className="leading-[1.2]">Contact Us</p>
-            </div>
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:73">
-              <p className="leading-[1.2]">Privacy Policy</p>
-            </div>
-            <div className="flex flex-col justify-center relative shrink-0" data-node-id="1:74">
-              <p className="leading-[1.2]">Terms of Service</p>
-            </div>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/contact"><p className="leading-[1.2]">Contact Us</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/privacy-policy"><p className="leading-[1.2]">Privacy Policy</p></a>
+            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/terms-of-service"><p className="leading-[1.2]">Terms of Service</p></a>
             <div className="flex flex-col justify-center opacity-0 relative shrink-0" data-node-id="1:75">
               <p className="leading-[1.2]">Our Factories</p>
             </div>
@@ -200,13 +183,14 @@ function Footer({ className }: { className?: string }) {
                 <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame2} />
               </div>
               <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-px not-italic relative text-[#191919] text-[16px]" data-node-id="1:99">
-                <p className="leading-[1.2]">India Office: 2/815A, Mullai Nagar, Valai Tottam, Periyandipalayam, Tiruppur, Andipalayam, Tamil Nadu 641687, India</p>
+                <p className="leading-[1.2]">India Office: PDS Tower, 5th Floor, Plot No. 222, Udyog Vihar Phase -1, Industrial Complex Dundahera, Gurgaon &ndash; 122016, Haryana, India</p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className="-translate-x-1/2 absolute bg-gradient-to-t from-[6.131%] from-white h-[174px] left-1/2 to-[79.237%] to-[rgba(255,255,255,0)] top-[419px] w-[1920px]" data-node-id="1:100" />
+      <div className="footer-copyright absolute bottom-[20px] left-1/2 -translate-x-1/2 text-center text-[#4a4a4a] text-[13px] whitespace-nowrap"><span>Copyright &copy; 2026 STELLAR MANUFACTURING LTD.</span><span className="footer-credit">Website designed and developed by <a href="http://designops.agency" rel="noreferrer" target="_blank">DesignOps</a></span></div>
     </div>
   );
 }
