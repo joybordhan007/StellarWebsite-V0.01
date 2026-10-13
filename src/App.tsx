@@ -270,7 +270,7 @@ export default function App() {
       pathnameRef.current = nextPathname;
       setDynamicPageHeight(null);
       startTransition(() => setPathname(nextPathname));
-      if (!preserveFactoryScroll) window.scrollTo(0, 0);
+      if (!preserveFactoryScroll && !window.location.hash) window.scrollTo(0, 0);
     };
     const resize = () => setViewportWidth(window.innerWidth);
     const handleScroll = () => setScrolled(window.scrollY > 24);
@@ -296,7 +296,7 @@ export default function App() {
       if (!link || link.target || link.origin !== window.location.origin) return;
 
       event.preventDefault();
-      window.history.pushState({}, "", link.pathname);
+      window.history.pushState({}, "", `${link.pathname}${link.search}${link.hash}`);
       navigate();
     };
 
@@ -311,6 +311,36 @@ export default function App() {
       document.removeEventListener("click", intercept);
     };
   }, []);
+
+  useEffect(() => {
+    const targetId = window.location.hash.slice(1);
+    if (!targetId) return;
+
+    let frame = 0;
+    let attempts = 0;
+    let cancelled = false;
+
+    const scrollToTarget = () => {
+      if (cancelled) return;
+
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ block: "start" });
+        return;
+      }
+
+      if (attempts < 60) {
+        attempts += 1;
+        frame = requestAnimationFrame(scrollToTarget);
+      }
+    };
+
+    frame = requestAnimationFrame(scrollToTarget);
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(frame);
+    };
+  }, [pathname, page.component]);
 
   useEffect(() => {
     document.title = page.title;

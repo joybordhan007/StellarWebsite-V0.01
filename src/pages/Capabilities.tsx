@@ -487,7 +487,7 @@ export default function OurCapabilities() {
           </div>
         </div>
       </div>
-      <div className="-translate-x-1/2 absolute content-stretch flex flex-col gap-[56px] items-start left-1/2 px-[180px] py-[40px] top-[1284px] w-[1920px]" data-node-id="1:1490" data-name="Frame">
+      <div id="integrated-capabilities" className="capabilities-integrated-section -translate-x-1/2 absolute content-stretch flex flex-col gap-[56px] items-start left-1/2 px-[180px] py-[40px] top-[1284px] w-[1920px]" data-node-id="1:1490" data-name="Frame">
         <div className="[word-break:break-word] content-stretch flex items-center justify-between leading-[0] not-italic relative shrink-0 w-full" data-node-id="1:1491" data-name="Frame">
           <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0" data-node-id="1:1492" data-name="Frame">
             <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center min-w-full relative shrink-0 text-[#4a4a4a] text-[14px] w-[min-content]" data-node-id="1:1493">

@@ -826,7 +826,7 @@ export default function Sustainability() {
           <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[16px] w-[546px]" data-node-id="1:3181">
             <p className="leading-[1.2]">Our three manufacturing facilities in Bangladesh and India operate with a shared purpose — responsible growth through people, community and environmental performance.</p>
           </div>
-          <div className="content-stretch flex flex-col items-center justify-center relative rounded-[4px] shrink-0" data-node-id="1:3182" data-name="Frame">
+          <a aria-label="View our factories" className="content-stretch flex flex-col items-center justify-center relative rounded-[4px] shrink-0 text-inherit no-underline" data-node-id="1:3182" data-name="Frame" href="/factories">
             <div className="content-stretch flex gap-[8px] items-center relative shrink-0" data-node-id="1:3183" data-name="Frame">
               <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[16px] text-center uppercase whitespace-nowrap" data-node-id="1:3184">
                 <p className="leading-[1.2]">VIEW OUR FACTORIES</p>
@@ -838,10 +838,10 @@ export default function Sustainability() {
             <div className="h-[3px] relative shrink-0 w-[153px]" data-node-id="1:3186" data-name="Vector">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
             </div>
-          </div>
+          </a>
         </div>
         <div className="content-stretch flex gap-[24px] items-start overflow-clip p-[2px] relative shrink-0 w-full" data-node-id="1:3187" data-name="Frame">
-          <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:3188" data-name="Frame">
+          <a aria-label="GoodEarth Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:3188" data-name="Frame" href="/factories/goodearth">
             <div className="h-[289px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:3189">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9113} />
             </div>
@@ -906,8 +906,8 @@ export default function Sustainability() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] self-stretch shrink-0 w-[504px]" data-node-id="1:3202" data-name="Frame">
+          </a>
+          <a aria-label="Progress Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] self-stretch shrink-0 w-[504px]" data-node-id="1:3202" data-name="Frame" href="/factories/progress">
             <div className="h-[289px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:3203">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9114} />
             </div>
@@ -958,8 +958,8 @@ export default function Sustainability() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] self-stretch shrink-0 w-[504px]" data-node-id="1:3214" data-name="Frame">
+          </a>
+          <a aria-label="Knit Gallery factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] self-stretch shrink-0 w-[504px]" data-node-id="1:3214" data-name="Frame" href="/factories/knit-gallery">
             <div className="h-[289px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:3215">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9115} />
             </div>
@@ -1003,7 +1003,7 @@ export default function Sustainability() {
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
       <div className="-translate-x-1/2 absolute content-stretch flex flex-col gap-[40px] items-start left-1/2 px-[178px] py-[40px] top-[3803px] w-[1920px]" data-node-id="1:3225" data-name="Frame">

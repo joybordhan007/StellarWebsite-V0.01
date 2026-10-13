@@ -856,7 +856,7 @@ export default function Home() {
           <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[16px] w-[546px]" data-node-id="1:819">
             <p className="leading-[1.2]">An integrated approach from design and sourcing to manufacturing and delivery, with a focus on quality, innovation and sustainability</p>
           </div>
-          <div className="content-stretch flex flex-col items-center justify-center relative rounded-[4px] shrink-0" data-node-id="1:820" data-name="Frame">
+          <a aria-label="View all capabilities" className="content-stretch flex flex-col items-center justify-center relative rounded-[4px] shrink-0 text-inherit no-underline" data-node-id="1:820" data-name="Frame" href="/capabilities#integrated-capabilities">
             <div className="content-stretch flex gap-[8px] items-center relative shrink-0" data-node-id="1:821" data-name="Frame">
               <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[16px] text-center uppercase whitespace-nowrap" data-node-id="1:822">
                 <p className="leading-[1.2]">VIEW ALL CAPABILITIES</p>
@@ -868,9 +868,9 @@ export default function Home() {
             <div className="h-[3px] relative shrink-0 w-[153px]" data-node-id="1:824" data-name="Vector">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
             </div>
-          </div>
+          </a>
         </div>
-        <div className="content-stretch flex gap-[24px] items-center overflow-x-auto overflow-y-clip p-[2px] relative shrink-0 w-full" data-node-id="1:825" data-name="Frame">
+        <div className="home-capabilities-grid content-stretch gap-[24px] items-center p-[2px] relative shrink-0 w-full" data-node-id="1:825" data-name="Frame">
           <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[240px]" data-node-id="1:826" data-name="Frame">
             <div className="h-[240px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:827">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9124} />
@@ -931,26 +931,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[240px]" data-node-id="1:850" data-name="Frame">
-            <div className="h-[240px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:851">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9131} />
-            </div>
-            <div className="content-stretch flex flex-col items-start p-[12px] relative shrink-0 w-full" data-node-id="1:852" data-name="Frame">
-              <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full" data-node-id="1:853">
-                <p className="leading-[1.2]">{`Packing & Logistics`}</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[240px]" data-node-id="1:854" data-name="Frame">
-            <div className="h-[240px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:855">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9132} />
-            </div>
-            <div className="content-stretch flex flex-col items-start p-[12px] relative shrink-0 w-full" data-node-id="1:856" data-name="Frame">
-              <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full" data-node-id="1:857">
-                <p className="leading-[1.2]">Sustainability</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       <div className="-translate-x-1/2 absolute bg-white content-stretch flex flex-col gap-[56px] items-start left-1/2 px-[178px] py-[80px] top-[2623px] w-[1920px]" data-node-id="1:858" data-name="Frame">
@@ -967,7 +947,7 @@ export default function Home() {
           <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[16px] w-[546px]" data-node-id="1:863">
             <p className="leading-[1.2]">Three strategic manufacturing facilities across Bangladesh and India, combining scale, expertise and responsible practices.</p>
           </div>
-          <div className="content-stretch flex flex-col items-center justify-center relative rounded-[4px] shrink-0" data-node-id="1:864" data-name="Frame">
+          <a aria-label="View our factories" className="content-stretch flex flex-col items-center justify-center relative rounded-[4px] shrink-0 text-inherit no-underline" data-node-id="1:864" data-name="Frame" href="/factories">
             <div className="content-stretch flex gap-[8px] items-center relative shrink-0" data-node-id="1:865" data-name="Frame">
               <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[16px] text-center uppercase whitespace-nowrap" data-node-id="1:866">
                 <p className="leading-[1.2]">VIEW OUR FACTORIES</p>
@@ -979,10 +959,10 @@ export default function Home() {
             <div className="h-[3px] relative shrink-0 w-[153px]" data-node-id="1:868" data-name="Vector">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
             </div>
-          </div>
+          </a>
         </div>
         <div className="content-stretch flex gap-[24px] items-center overflow-clip p-[2px] relative shrink-0 w-full" data-node-id="1:869" data-name="Frame">
-          <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:870" data-name="Frame">
+          <a aria-label="GoodEarth Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:870" data-name="Frame" href="/factories/goodearth">
             <div className="h-[430px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:871">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9133} />
             </div>
@@ -999,8 +979,8 @@ export default function Home() {
                 <p className="leading-[1.2]">LEED Zero | Woven</p>
               </div>
             </div>
-          </div>
-          <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:877" data-name="Frame">
+          </a>
+          <a aria-label="Progress Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:877" data-name="Frame" href="/factories/progress">
             <div className="h-[430px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:878">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9134} />
             </div>
@@ -1017,8 +997,8 @@ export default function Home() {
                 <p className="leading-[1.2]">{`LEED Gold | Woven `}</p>
               </div>
             </div>
-          </div>
-          <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:884" data-name="Frame">
+          </a>
+          <a aria-label="Knit Gallery factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:884" data-name="Frame" href="/factories/knit-gallery">
             <div className="h-[430px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:885">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9135} />
             </div>
@@ -1035,7 +1015,7 @@ export default function Home() {
                 <p className="leading-[1.2]">LEED Platinum | Knits</p>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
       <div className="-translate-x-1/2 absolute content-stretch flex items-center left-1/2 top-[4538px] w-[1920px]" data-node-id="1:891" data-name="Frame">
