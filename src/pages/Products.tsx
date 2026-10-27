@@ -1,44 +1,12 @@
 import { useEffect, useState } from "react";
-import productCategories from "../data/productCategories.json";
+import { useContent } from "../content/ContentProvider";
+import Footer from "../components/Footer";
 
 const assetPathPrefix = "/assets/1-4402";
 const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
-const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.jpg`;
-const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = `${assetPathPrefix}/4d4a6.svg`;
-const imgStellarLogo2 = `${assetPathPrefix}/cf89e.svg`;
-const imgFacebookLogo = `${assetPathPrefix}/412e8.svg`;
-const imgYoutubeLogo = `${assetPathPrefix}/5df0a.svg`;
-const imgLinkedinLogo = `${assetPathPrefix}/82b38.svg`;
-const imgFrame = `${assetPathPrefix}/adc25.svg`;
-const imgFrame1 = `${assetPathPrefix}/06754.svg`;
-const imgFrame2 = `${assetPathPrefix}/a2092.svg`;
 const imgImage = `${assetPathPrefix}/730ef.jpg`;
-const imgRectangle9113 = `${assetPathPrefix}/28bae.png`;
-const imgRectangle9114 = `${assetPathPrefix}/1eb78.jpg`;
-const imgRectangle9115 = `${assetPathPrefix}/dd2dc.jpg`;
-const imgRectangle9116 = `${assetPathPrefix}/e1cf4.jpg`;
-const imgRectangle9117 = `${assetPathPrefix}/95a02.jpg`;
-const imgRectangle9118 = `${assetPathPrefix}/eb463.jpg`;
-const imgRectangle9119 = `${assetPathPrefix}/9774d.jpg`;
-const imgRectangle9120 = `${assetPathPrefix}/302c6.jpg`;
-const imgRectangle9121 = `${assetPathPrefix}/3a3fb.png`;
-const imgRectangle9122 = `${assetPathPrefix}/c3284.jpg`;
-const imgRectangle9123 = `${assetPathPrefix}/23c6d.png`;
-const imgRectangle9124 = `${assetPathPrefix}/f43b3.jpg`;
-const imgRectangle9125 = `${assetPathPrefix}/4b5e8.jpg`;
-const imgRectangle9126 = `${assetPathPrefix}/9fc73.jpg`;
-const imgRectangle9127 = `${assetPathPrefix}/5f2ec.jpg`;
-const imgRectangle9128 = `${assetPathPrefix}/55d31.jpg`;
 const imgArrowForwardLong = `${assetPathPrefix}/887e7.svg`;
 const imgStellarLogo3 = `${assetPathPrefix}/aa512.svg`;
-const imgOutline = `${assetPathPrefix}/27d6b.svg`;
-const img1 = `${assetPathPrefix}/6fc7c.svg`;
-const img26Dress = `${assetPathPrefix}/55c7b.svg`;
-const imgLayer25 = `${assetPathPrefix}/e9f3a.svg`;
-const imgLayer1 = `${assetPathPrefix}/8ac31.svg`;
-const imgGroup = `${assetPathPrefix}/378b6.svg`;
-const imgLine = `${assetPathPrefix}/ae299.svg`;
-const imgLayerX00201 = `${assetPathPrefix}/3f876.svg`;
 
 type Component1Props = {
   className?: string;
@@ -66,126 +34,16 @@ function Component1({ className, property1 = "View" }: Component1Props) {
   );
 }
 
-function Footer({ className }: { className?: string }) {
-  return (
-    <div className={className || "bg-white h-[593px] overflow-clip relative shadow-[0px_0px_4px_0px_rgba(0,0,0,0.06)] w-[1920px]"} data-node-id="1:7" data-name="Footer">
-      <div className="absolute contents left-[180px] top-[427px]" data-node-id="1:8" data-name="Mask group">
-        <div className="absolute h-[397.046px] left-[-153px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[333px_117.511px] mask-size-[1560px_162.213px] top-[309.49px] w-[2226px]" data-node-id="1:17" style={{ maskImage: `url("${imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1}")` }} data-name="black-fabric-draped-elegant-folds-abstract-texture-design-backgrounds 1">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2} />
-        </div>
-      </div>
-      <div className="-translate-x-1/2 absolute content-stretch flex items-start justify-between left-1/2 top-[71px] w-[1560px]" data-node-id="1:18" data-name="Frame">
-        <div className="content-stretch flex flex-col gap-[32px] items-start relative shrink-0 w-[454px]" data-node-id="1:19" data-name="Frame">
-          <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-full" data-node-id="1:20" data-name="Frame">
-            <div className="h-[80px] relative shrink-0 w-[175px]" data-node-id="1:21" data-name="Stellar_Logo 2">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgStellarLogo2} />
-            </div>
-            <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#191919] text-[18px] w-[min-content]" data-node-id="1:35">
-              <p className="leading-[1.5]">We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people and a healthier planet.</p>
-            </div>
-          </div>
-          <div className="content-stretch flex gap-[16px] items-center relative shrink-0" data-node-id="1:36" data-name="Frame">
-            <a aria-label="Facebook" className="relative shrink-0 size-[24px]" href="https://www.facebook.com/goodearthapparels" rel="noreferrer" target="_blank">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFacebookLogo} />
-            </a>
-            <a aria-label="YouTube" className="relative shrink-0 size-[24px]" href="https://www.youtube.com/@GoodEarthApparelsLimited" rel="noreferrer" target="_blank">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgYoutubeLogo} />
-            </a>
-            <a aria-label="LinkedIn" className="relative shrink-0 size-[24px]" href="https://www.linkedin.com/company/goodearthapparels/posts/?feedView=all" rel="noreferrer" target="_blank">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLinkedinLogo} />
-            </a>
-          </div>
-        </div>
-        <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[200px]" data-node-id="1:58" data-name="Frame">
-          <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="1:59" data-name="Frame">
-            <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[#191919] text-[20px] whitespace-nowrap" data-node-id="1:60">
-              <p className="leading-[1.2]">Quick Links</p>
-            </div>
-          </div>
-          <div className="[word-break:break-word] content-stretch flex flex-col font-['Inter:Regular'] font-normal gap-[16px] items-start leading-[0] not-italic relative shrink-0 text-[#191919] text-[16px] w-full whitespace-nowrap" data-node-id="1:61" data-name="Frame">
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/"><p className="leading-[1.2]">Home</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/about"><p className="leading-[1.2]">About Us</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/capabilities"><p className="leading-[1.2]">Our Capabilities</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/design-path"><p className="leading-[1.2]">Design path</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/factories"><p className="leading-[1.2]">Our Factories</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/sustainability"><p className="leading-[1.2]">Sustainability</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/products"><p className="leading-[1.2]">Products</p></a>
-          </div>
-        </div>
-        <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[266px]" data-node-id="1:68" data-name="Frame">
-          <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="1:69" data-name="Frame">
-            <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[#191919] text-[20px] whitespace-nowrap" data-node-id="1:70">
-              <p className="leading-[1.2]">Support</p>
-            </div>
-          </div>
-          <div className="[word-break:break-word] content-stretch flex flex-col font-['Inter:Regular'] font-normal gap-[16px] items-start leading-[0] not-italic relative shrink-0 text-[#191919] text-[16px] w-full whitespace-nowrap" data-node-id="1:71" data-name="Frame">
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/contact"><p className="leading-[1.2]">Contact Us</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/privacy-policy"><p className="leading-[1.2]">Privacy Policy</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/terms-of-service"><p className="leading-[1.2]">Terms of Service</p></a>
-            <div className="flex flex-col justify-center opacity-0 relative shrink-0" data-node-id="1:75">
-              <p className="leading-[1.2]">Our Factories</p>
-            </div>
-            <div className="flex flex-col justify-center opacity-0 relative shrink-0" data-node-id="1:76">
-              <p className="leading-[1.2]">Sustainability</p>
-            </div>
-            <div className="flex flex-col justify-center opacity-0 relative shrink-0" data-node-id="1:77">
-              <p className="leading-[1.2]">Products</p>
-            </div>
-          </div>
-        </div>
-        <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[350px]" data-node-id="1:78" data-name="Frame">
-          <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[#191919] text-[20px] whitespace-nowrap" data-node-id="1:79">
-            <p className="leading-[1.2]">Contact Info</p>
-          </div>
-          <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-node-id="1:80" data-name="Frame">
-            <div className="content-stretch flex gap-[8px] items-start relative shrink-0 w-[273px]" data-node-id="1:81" data-name="Frame">
-              <div className="relative shrink-0 size-[20px]" data-node-id="1:82" data-name="Frame">
-                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame} />
-              </div>
-              <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#191919] text-[16px] w-[245px]" data-node-id="1:84">
-                <p className="leading-[1.2]">+880 1704-166654</p>
-              </div>
-            </div>
-            <div className="content-stretch flex gap-[8px] items-start relative shrink-0 w-[273px]" data-node-id="1:85" data-name="Frame">
-              <div className="relative shrink-0 size-[20px]" data-node-id="1:86" data-name="Frame">
-                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame1} />
-              </div>
-              <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#191919] text-[16px] w-[245px]" data-node-id="1:89">
-                <p className="leading-[1.2]">info@stellar-mfg.com</p>
-              </div>
-            </div>
-            <div className="content-stretch flex gap-[8px] items-start relative shrink-0 w-full" data-node-id="1:90" data-name="Frame">
-              <div className="relative shrink-0 size-[20px]" data-node-id="1:91" data-name="Frame">
-                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame2} />
-              </div>
-              <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-px not-italic relative text-[#191919] text-[16px]" data-node-id="1:94">
-                <p className="leading-[1.2]">Bangladesh Office: House-441, Road-07, Baridhara DOHS Dhaka-1206</p>
-              </div>
-            </div>
-            <div className="content-stretch flex gap-[8px] items-start relative shrink-0 w-full" data-node-id="1:95" data-name="Frame">
-              <div className="relative shrink-0 size-[20px]" data-node-id="1:96" data-name="Frame">
-                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame2} />
-              </div>
-              <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-px not-italic relative text-[#191919] text-[16px]" data-node-id="1:99">
-                <p className="leading-[1.2]">India Office: PDS Tower, 5th Floor, Plot No. 222, Udyog Vihar Phase -1, Industrial Complex Dundahera, Gurgaon &ndash; 122016, Haryana, India</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="-translate-x-1/2 absolute bg-gradient-to-t from-[6.131%] from-white h-[174px] left-1/2 to-[79.237%] to-[rgba(255,255,255,0)] top-[419px] w-[1920px]" data-node-id="1:100" />
-      <div className="footer-copyright absolute bottom-[20px] left-1/2 -translate-x-1/2 text-center text-[#4a4a4a] text-[13px] whitespace-nowrap"><span>Copyright &copy; 2026 STELLAR MANUFACTURING LTD.</span><span className="footer-credit">Website designed and developed by <a href="http://designops.agency" rel="noreferrer" target="_blank">DesignOps</a></span></div>
-    </div>
-  );
-}
-
 type ProductsProps = {
   onHeightChange?: (height: number) => void;
 };
 
 export default function Products({ onHeightChange }: ProductsProps) {
-  const [selectedCategory, setSelectedCategory] = useState(productCategories[0]);
-  const rows = Math.ceil(selectedCategory.files.length / 4);
+  const { categories } = useContent("products");
+  const [selectedId, setSelectedId] = useState(categories[0]?.id);
+  const selectedCategory = categories.find((category) => category.id === selectedId) ?? categories[0];
+  const items = selectedCategory?.items ?? [];
+  const rows = Math.max(1, Math.ceil(items.length / 4));
   const pageHeight = Math.max(
     3895,
     1070 + 38 + 32 + 46 + 40 + rows * 476 + (rows - 1) * 24 + 100 + 593,
@@ -305,8 +163,8 @@ export default function Products({ onHeightChange }: ProductsProps) {
             <p className="leading-[1.2]">Product Mix</p>
           </div>
           <div className="content-stretch flex gap-[16px] items-center relative shrink-0 w-full" role="tablist" aria-label="Product categories" data-node-id="1:4459">
-            {productCategories.map((category) => {
-              const isSelected = selectedCategory.id === category.id;
+            {categories.map((category) => {
+              const isSelected = selectedCategory?.id === category.id;
 
               return (
                 <button
@@ -315,14 +173,14 @@ export default function Products({ onHeightChange }: ProductsProps) {
                   className={`border border-solid content-stretch cursor-pointer flex flex-[1_0_0] gap-[12px] h-[46px] items-center justify-center min-w-px relative rounded-[4px] ${isSelected ? "border-[#1d1d1d] bg-[#1d1d1d] text-[#f6f6f6]" : "border-[rgba(0,0,0,0.2)] bg-[rgba(29,29,29,0.05)] text-[#1d1d1d]"}`}
                   id={`product-tab-${category.id}`}
                   key={category.id}
-                  onClick={() => setSelectedCategory(category)}
+                  onClick={() => setSelectedId(category.id)}
                   role="tab"
                   type="button"
                 >
                   <img
                     alt=""
                     className="relative shrink-0 size-[32px]"
-                    src={`${assetPathPrefix}/${category.icon}`}
+                    src={category.icon}
                     style={isSelected ? { filter: "brightness(0) invert(1)" } : undefined}
                   />
                   <span className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[1.2] not-italic relative shrink-0 text-[18px] text-center uppercase whitespace-nowrap">
@@ -334,27 +192,27 @@ export default function Products({ onHeightChange }: ProductsProps) {
           </div>
         </div>
         <div
-          aria-labelledby={`product-tab-${selectedCategory.id}`}
+          aria-labelledby={selectedCategory ? `product-tab-${selectedCategory.id}` : undefined}
           className="content-start flex flex-wrap gap-[24px] items-start relative shrink-0 w-[1560px]"
           id="product-grid"
           role="tabpanel"
         >
-          {selectedCategory.files.map((file, index) => (
+          {items.map((item, index) => (
             <article
               className="bg-white content-stretch drop-shadow-[0px_2px_1px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[6px] shrink-0 w-[372px]"
-              key={`${selectedCategory.id}-${index}`}
+              key={`${selectedCategory?.id}-${index}`}
             >
               <div className="h-[420px] relative rounded-tl-[6px] rounded-tr-[6px] shrink-0 w-full">
                 <img
-                  alt={selectedCategory.names[index]}
+                  alt={item.name}
                   className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[6px] rounded-tr-[6px] size-full"
                   loading="lazy"
-                  src={`/assets/${selectedCategory.assetFolder}/${file}`}
+                  src={item.image}
                 />
               </div>
               <div className="content-stretch flex flex-col items-start p-[16px] relative shrink-0 w-full">
                 <h3 className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[1.2] not-italic relative shrink-0 text-[#1d1d1d] text-[20px] uppercase w-full">
-                  {selectedCategory.names[index]}
+                  {item.name}
                 </h3>
               </div>
             </article>

@@ -1,16 +1,9 @@
 import { FormEvent, useState } from "react";
+import Footer from "../components/Footer";
+import { useContent } from "../content/ContentProvider";
 
 const assetPathPrefix = "/assets/1-4581";
 const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
-const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.jpg`;
-const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = `${assetPathPrefix}/4d4a6.svg`;
-const imgStellarLogo2 = `${assetPathPrefix}/cf89e.svg`;
-const imgFacebookLogo = `${assetPathPrefix}/412e8.svg`;
-const imgYoutubeLogo = `${assetPathPrefix}/5df0a.svg`;
-const imgLinkedinLogo = `${assetPathPrefix}/82b38.svg`;
-const imgFrame = `${assetPathPrefix}/adc25.svg`;
-const imgFrame1 = `${assetPathPrefix}/06754.svg`;
-const imgFrame2 = `${assetPathPrefix}/a2092.svg`;
 const imgImage = `${assetPathPrefix}/aa442.jpg`;
 const imgStellarLogo3 = `${assetPathPrefix}/aa512.svg`;
 const imgLayer1 = `${assetPathPrefix}/52c2c.svg`;
@@ -20,59 +13,6 @@ const imgGroup = `${assetPathPrefix}/1f97e.svg`;
 const imgGroup1 = `${assetPathPrefix}/f8d87.svg`;
 const imgPlus = `${assetPathPrefix}/5c49c.svg`;
 const imgMinus = `${assetPathPrefix}/f523a.svg`;
-
-const offices = [
-  {
-    id: "head-office-bangladesh",
-    name: "Head Office Bangladesh",
-    addresses: ["House-441, Road-07, Baridhara DOHS, Dhaka-1206"],
-    phone: "+880 2 1234 5678",
-    email: "info@stellar-mfg.com",
-    website: "www.stellar-mfg.com",
-    hours: "Fri, 9:00 AM – 6:00 PM (BST)",
-  },
-  {
-    id: "india-office",
-    name: "India Office",
-    addresses: [
-      "PDS Tower, 5th Floor, Plot No. 222, Udyog Vihar Phase -1, Industrial Complex Dundahera, Gurgaon – 122016, Haryana, India",
-      "Unit No. 1031 & 1032, Solitaire Corporate Park, Andheri Ghatkopar Link Road, Andheri (East), Mumbai – 400093, Maharashtra, India.",
-    ],
-    phone: "+880 2 1234 5678",
-    email: "info@stellar-mfg.com",
-    website: "www.stellar-mfg.com",
-    hours: "Fri, 9:00 AM – 6:00 PM (BST)",
-  },
-  {
-    id: "goodearth-apparels",
-    name: "GoodEarth Apparels Bangladesh",
-    addresses: ["Tepirbari, Telihati, Sreepur, Gazipur, Bangladesh. PO: Gazipur-1740."],
-    phone: "+88 09601 121 600",
-    email: "info@stellar-mfg.com",
-    website: "www.goodearthapparels.com",
-    hours: "Fri, 9:00 AM – 6:00 PM (BST)",
-  },
-  {
-    id: "progress-apparels",
-    name: "Progress Apparels Bangladesh",
-    addresses: ["MS-SFB # 1 & 2, Adamjee EPZ, Narayanganj, Dhaka."],
-    phone: "+880 2 1234 5678",
-    email: "info@stellar-mfg.com",
-    website: "www.progress-mfg.com",
-    hours: "Fri, 9:00 AM – 6:00 PM (BST)",
-  },
-  {
-    id: "knit-gallery",
-    name: "Knit Gallery India",
-    addresses: [
-      "SF No. 217/1, 217/2A, 217/2B, 217/2C & 218/1A, Door No. 3-353, Dharapuram Road, Gudimangalam Nal Road Tirupur, Tamil Nadu, 642201, India",
-    ],
-    phone: "+880 2 1234 5678",
-    email: "info@stellar-mfg.com",
-    website: "www.stellar-mfg.com",
-    hours: "Fri, 9:00 AM – 6:00 PM (BST)",
-  },
-] as const;
 
 type Component1Props = {
   className?: string;
@@ -100,126 +40,66 @@ function Component1({ className, property1 = "View" }: Component1Props) {
   );
 }
 
-function Footer({ className }: { className?: string }) {
-  return (
-    <div className={className || "bg-white h-[593px] overflow-clip relative shadow-[0px_0px_4px_0px_rgba(0,0,0,0.06)] w-[1920px]"} data-node-id="1:7" data-name="Footer">
-      <div className="absolute contents left-[180px] top-[427px]" data-node-id="1:8" data-name="Mask group">
-        <div className="absolute h-[397.046px] left-[-153px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[333px_117.511px] mask-size-[1560px_162.213px] top-[309.49px] w-[2226px]" data-node-id="1:17" style={{ maskImage: `url("${imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1}")` }} data-name="black-fabric-draped-elegant-folds-abstract-texture-design-backgrounds 1">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2} />
-        </div>
-      </div>
-      <div className="-translate-x-1/2 absolute content-stretch flex items-start justify-between left-1/2 top-[71px] w-[1560px]" data-node-id="1:18" data-name="Frame">
-        <div className="content-stretch flex flex-col gap-[32px] items-start relative shrink-0 w-[454px]" data-node-id="1:19" data-name="Frame">
-          <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-full" data-node-id="1:20" data-name="Frame">
-            <div className="h-[80px] relative shrink-0 w-[175px]" data-node-id="1:21" data-name="Stellar_Logo 2">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgStellarLogo2} />
-            </div>
-            <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#191919] text-[18px] w-[min-content]" data-node-id="1:35">
-              <p className="leading-[1.5]">We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people and a healthier planet.</p>
-            </div>
-          </div>
-          <div className="content-stretch flex gap-[16px] items-center relative shrink-0" data-node-id="1:36" data-name="Frame">
-            <a aria-label="Facebook" className="relative shrink-0 size-[24px]" href="https://www.facebook.com/goodearthapparels" rel="noreferrer" target="_blank">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFacebookLogo} />
-            </a>
-            <a aria-label="YouTube" className="relative shrink-0 size-[24px]" href="https://www.youtube.com/@GoodEarthApparelsLimited" rel="noreferrer" target="_blank">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgYoutubeLogo} />
-            </a>
-            <a aria-label="LinkedIn" className="relative shrink-0 size-[24px]" href="https://www.linkedin.com/company/goodearthapparels/posts/?feedView=all" rel="noreferrer" target="_blank">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLinkedinLogo} />
-            </a>
-          </div>
-        </div>
-        <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[200px]" data-node-id="1:58" data-name="Frame">
-          <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="1:59" data-name="Frame">
-            <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[#191919] text-[20px] whitespace-nowrap" data-node-id="1:60">
-              <p className="leading-[1.2]">Quick Links</p>
-            </div>
-          </div>
-          <div className="[word-break:break-word] content-stretch flex flex-col font-['Inter:Regular'] font-normal gap-[16px] items-start leading-[0] not-italic relative shrink-0 text-[#191919] text-[16px] w-full whitespace-nowrap" data-node-id="1:61" data-name="Frame">
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/"><p className="leading-[1.2]">Home</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/about"><p className="leading-[1.2]">About Us</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/capabilities"><p className="leading-[1.2]">Our Capabilities</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/design-path"><p className="leading-[1.2]">Design path</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/factories"><p className="leading-[1.2]">Our Factories</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/sustainability"><p className="leading-[1.2]">Sustainability</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/products"><p className="leading-[1.2]">Products</p></a>
-          </div>
-        </div>
-        <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[266px]" data-node-id="1:68" data-name="Frame">
-          <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="1:69" data-name="Frame">
-            <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[#191919] text-[20px] whitespace-nowrap" data-node-id="1:70">
-              <p className="leading-[1.2]">Support</p>
-            </div>
-          </div>
-          <div className="[word-break:break-word] content-stretch flex flex-col font-['Inter:Regular'] font-normal gap-[16px] items-start leading-[0] not-italic relative shrink-0 text-[#191919] text-[16px] w-full whitespace-nowrap" data-node-id="1:71" data-name="Frame">
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/contact"><p className="leading-[1.2]">Contact Us</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/privacy-policy"><p className="leading-[1.2]">Privacy Policy</p></a>
-            <a className="footer-link flex flex-col justify-center relative shrink-0" href="/terms-of-service"><p className="leading-[1.2]">Terms of Service</p></a>
-            <div className="flex flex-col justify-center opacity-0 relative shrink-0" data-node-id="1:75">
-              <p className="leading-[1.2]">Our Factories</p>
-            </div>
-            <div className="flex flex-col justify-center opacity-0 relative shrink-0" data-node-id="1:76">
-              <p className="leading-[1.2]">Sustainability</p>
-            </div>
-            <div className="flex flex-col justify-center opacity-0 relative shrink-0" data-node-id="1:77">
-              <p className="leading-[1.2]">Products</p>
-            </div>
-          </div>
-        </div>
-        <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[350px]" data-node-id="1:78" data-name="Frame">
-          <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[#191919] text-[20px] whitespace-nowrap" data-node-id="1:79">
-            <p className="leading-[1.2]">Contact Info</p>
-          </div>
-          <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-node-id="1:80" data-name="Frame">
-            <div className="content-stretch flex gap-[8px] items-start relative shrink-0 w-[273px]" data-node-id="1:81" data-name="Frame">
-              <div className="relative shrink-0 size-[20px]" data-node-id="1:82" data-name="Frame">
-                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame} />
-              </div>
-              <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#191919] text-[16px] w-[245px]" data-node-id="1:84">
-                <p className="leading-[1.2]">+880 1704-166654</p>
-              </div>
-            </div>
-            <div className="content-stretch flex gap-[8px] items-start relative shrink-0 w-[273px]" data-node-id="1:85" data-name="Frame">
-              <div className="relative shrink-0 size-[20px]" data-node-id="1:86" data-name="Frame">
-                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame1} />
-              </div>
-              <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#191919] text-[16px] w-[245px]" data-node-id="1:89">
-                <p className="leading-[1.2]">info@stellar-mfg.com</p>
-              </div>
-            </div>
-            <div className="content-stretch flex gap-[8px] items-start relative shrink-0 w-full" data-node-id="1:90" data-name="Frame">
-              <div className="relative shrink-0 size-[20px]" data-node-id="1:91" data-name="Frame">
-                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame2} />
-              </div>
-              <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-px not-italic relative text-[#191919] text-[16px]" data-node-id="1:94">
-                <p className="leading-[1.2]">Bangladesh Office: House-441, Road-07, Baridhara DOHS Dhaka-1206</p>
-              </div>
-            </div>
-            <div className="content-stretch flex gap-[8px] items-start relative shrink-0 w-full" data-node-id="1:95" data-name="Frame">
-              <div className="relative shrink-0 size-[20px]" data-node-id="1:96" data-name="Frame">
-                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame2} />
-              </div>
-              <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-px not-italic relative text-[#191919] text-[16px]" data-node-id="1:99">
-                <p className="leading-[1.2]">India Office: PDS Tower, 5th Floor, Plot No. 222, Udyog Vihar Phase -1, Industrial Complex Dundahera, Gurgaon &ndash; 122016, Haryana, India</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="-translate-x-1/2 absolute bg-gradient-to-t from-[6.131%] from-white h-[174px] left-1/2 to-[79.237%] to-[rgba(255,255,255,0)] top-[419px] w-[1920px]" data-node-id="1:100" />
-      <div className="footer-copyright absolute bottom-[20px] left-1/2 -translate-x-1/2 text-center text-[#4a4a4a] text-[13px] whitespace-nowrap"><span>Copyright &copy; 2026 STELLAR MANUFACTURING LTD.</span><span className="footer-credit">Website designed and developed by <a href="http://designops.agency" rel="noreferrer" target="_blank">DesignOps</a></span></div>
-    </div>
-  );
+type ContactFields = Record<string, FormDataEntryValue>;
+
+/** Stores the message in the admin dashboard inbox. Resolves false when no backend is reachable. */
+async function saveToInbox(fields: ContactFields) {
+  try {
+    const response = await fetch("/api/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(fields),
+    });
+    return response.ok && Boolean(response.headers.get("content-type")?.includes("application/json"));
+  } catch {
+    return false;
+  }
+}
+
+/** Emails the message through FormSubmit. Throws when delivery fails. */
+async function sendEmailNotification(fields: ContactFields, recipient: string) {
+  const email = fields.email;
+  const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(recipient)}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ...fields,
+      fullName: `${fields.firstName ?? ""} ${fields.lastName ?? ""}`.trim(),
+      _subject: "New website contact form message",
+      _replyto: typeof email === "string" ? email : "",
+    }),
+  });
+
+  const result: unknown = await response.json();
+  const resultIsObject = typeof result === "object" && result !== null;
+  const isSuccessful =
+    resultIsObject &&
+    "success" in result &&
+    (result.success === true || result.success === "true");
+
+  if (!response.ok || !isSuccessful) {
+    const serviceMessage =
+      resultIsObject && "message" in result && typeof result.message === "string"
+        ? result.message
+        : "";
+    if (/activat/i.test(serviceMessage)) return "activation" as const;
+    throw new Error(serviceMessage || "We couldn't send your message. Please try again.");
+  }
+  return "sent" as const;
 }
 
 export default function LetsTalk() {
+  const { offices } = useContent("offices");
+  const { contactFormEmail } = useContent("site");
   const [submissionState, setSubmissionState] = useState<
     "idle" | "sending" | "sent" | "error" | "activation"
   >("idle");
   const [submissionMessage, setSubmissionMessage] = useState("");
-  const [activeOffice, setActiveOffice] = useState<string>(offices[0].id);
-  const [activeMapAddress, setActiveMapAddress] = useState<string>(offices[0].addresses[0]);
+  const [activeOffice, setActiveOffice] = useState(offices[0]?.id ?? "");
+  const [activeMapAddress, setActiveMapAddress] = useState(offices[0]?.addresses[0] ?? "");
 
   async function submitContactForm(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -228,53 +108,34 @@ export default function LetsTalk() {
     setSubmissionState("sending");
     setSubmissionMessage("");
 
-    const fields = Object.fromEntries(new FormData(event.currentTarget).entries());
-    const email = fields.email;
-
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/info@stellar-mfg.com", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...fields,
-          fullName: `${fields.firstName ?? ""} ${fields.lastName ?? ""}`.trim(),
-          _subject: "New website contact form message",
-          _replyto: typeof email === "string" ? email : "",
-        }),
-      });
-
-      const result: unknown = await response.json();
-      const resultIsObject = typeof result === "object" && result !== null;
-      const isSuccessful =
-        resultIsObject &&
-        "success" in result &&
-        (result.success === true || result.success === "true");
-
-      if (!response.ok || !isSuccessful) {
-        const serviceMessage =
-          resultIsObject && "message" in result && typeof result.message === "string"
-            ? result.message
-            : "";
-        if (/activat/i.test(serviceMessage)) {
-          setSubmissionState("activation");
-          setSubmissionMessage(
-            "Email delivery needs one-time activation. FormSubmit sent an “Activate Form” link to info@stellar-mfg.com. Open that inbox (check spam too) and click the link, then return here and send your message again. This submission was not delivered.",
-          );
-          return;
-        }
-        throw new Error(serviceMessage || "We couldn't send your message. Please try again.");
-      }
-
+    const { _gotcha: honeypot, ...fields } = Object.fromEntries(
+      new FormData(event.currentTarget).entries(),
+    );
+    if (honeypot) {
       setSubmissionState("sent");
       setSubmissionMessage("Your message was sent successfully.");
-    } catch (error) {
+      return;
+    }
+
+    const [inbox, email] = await Promise.allSettled([
+      saveToInbox(fields),
+      sendEmailNotification(fields, contactFormEmail),
+    ]);
+    const savedToInbox = inbox.status === "fulfilled" && inbox.value;
+
+    if (savedToInbox || (email.status === "fulfilled" && email.value === "sent")) {
+      setSubmissionState("sent");
+      setSubmissionMessage("Your message was sent successfully.");
+    } else if (email.status === "fulfilled") {
+      setSubmissionState("activation");
+      setSubmissionMessage(
+        `Email delivery needs one-time activation. FormSubmit sent an “Activate Form” link to ${contactFormEmail}. Open that inbox (check spam too) and click the link, then return here and send your message again. This submission was not delivered.`,
+      );
+    } else {
       setSubmissionState("error");
       setSubmissionMessage(
-        error instanceof Error
-          ? error.message
+        email.reason instanceof Error
+          ? email.reason.message
           : "We couldn't send your message. Please try again.",
       );
     }
@@ -418,6 +279,7 @@ export default function LetsTalk() {
         <div className="content-stretch flex flex-col items-start py-[80px] relative shrink-0 w-[901px]" data-node-id="1:4654" data-name="Frame">
           <div className="contact-page-form-card bg-white content-stretch flex flex-col gap-[24px] items-center overflow-clip p-[32px] relative rounded-[8px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] shrink-0 w-full" data-node-id="1:4655" data-name="Frame">
             <form className="contact-page-form" onSubmit={submitContactForm}>
+              <input aria-hidden="true" autoComplete="off" className="contact-honeypot" name="_gotcha" tabIndex={-1} />
             <div className="content-stretch flex flex-col gap-[20px] items-start relative shrink-0 w-full" data-node-id="1:4656" data-name="Frame">
               <div className="content-stretch flex gap-[24px] items-start relative shrink-0 w-full" data-node-id="1:4657" data-name="Frame">
                 <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-start min-w-px relative" data-node-id="1:4658" data-name="Frame">

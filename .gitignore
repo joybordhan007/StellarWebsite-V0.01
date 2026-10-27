@@ -19,3 +19,12 @@ logs/
 # beside it.
 /.plugins/
 /.opencode-skills/
+
+# Playwright MCP debug snapshots
+.playwright-mcp/
+
+# Server runtime data
+server/data/
+server/uploads/
+server/dist/
+!.env.example

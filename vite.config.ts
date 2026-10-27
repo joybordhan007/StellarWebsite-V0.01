@@ -1,4 +1,4 @@
-import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
+import { defineConfig, loadEnv, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
@@ -9,6 +9,8 @@ import siteConfiguration from './.figma/make/site.json' with { type: 'json' }
 export default defineConfig(({ mode }) => {
   // .figma/make/deploy-preview passes `--mode development` for cached-preview builds.
   const emitSourcemaps = mode === 'development'
+  // Local backend for the admin dashboard: set API_PROXY=http://localhost:3001 in .env.local.
+  const apiProxy = loadEnv(mode, process.cwd(), '').API_PROXY
 
   return {
     base: process.env.FIGMA_PUBLIC_URL ? `${process.env.FIGMA_PUBLIC_URL}/` : '/',
@@ -34,6 +36,9 @@ react(),
       host: process.env.FIGMA_DEV_SERVER_HOST || '0.0.0.0',
       port: parseInt(process.env.PORT || '8443'),
       strictPort: true,
+      proxy: apiProxy
+        ? { '/api': apiProxy, '/uploads': apiProxy }
+        : undefined,
       watch: {
         ignored: [
           '**/.figma/**',

@@ -8,6 +8,9 @@ import {
   useRef,
   useState,
 } from "react";
+import PageReveal from "./components/PageReveal";
+import { useContent } from "./content/ContentProvider";
+import type { NavigationItem } from "./content/types";
 
 const pageLoaders = {
   "/": () => import("./pages/Home"),
@@ -25,6 +28,7 @@ const pageLoaders = {
   "/terms-of-service": () => import("./pages/LegalPages"),
 };
 
+const AdminApp = lazy(() => import("./admin/AdminApp"));
 const About = lazy(pageLoaders["/about"]);
 const Capabilities = lazy(pageLoaders["/capabilities"]);
 const Contact = lazy(pageLoaders["/contact"]);
@@ -65,66 +69,54 @@ type PageProps = {
 type Page = {
   component: ComponentType<PageProps>;
   height: number;
-  title: string;
 };
 
 const routes: Record<string, Page> = {
-  "/": { component: Home, height: 5565, title: "Stellar Manufacturing" },
-  "/about": { component: About, height: 4794, title: "About Us | Stellar" },
+  "/": { component: Home, height: 5565 },
+  "/about": { component: About, height: 4794 },
   "/capabilities": {
     component: Capabilities,
     height: 4600,
-    title: "Our Capabilities | Stellar",
   },
   "/design-path": {
     component: DesignPath,
     height: 4025,
-    title: "Design Path | Stellar",
   },
   "/factories": {
     component: GoodEarth,
     height: 3612,
-    title: "GoodEarth Apparels | Stellar",
   },
   "/factories/goodearth": {
     component: GoodEarth,
     height: 3612,
-    title: "GoodEarth Apparels | Stellar",
   },
   "/factories/progress": {
     component: Progress,
     height: 3612,
-    title: "Progress Apparels | Stellar",
   },
   "/factories/knit-gallery": {
     component: KnitGallery,
     height: 3612,
-    title: "Knit Gallery | Stellar",
   },
   "/sustainability": {
     component: Sustainability,
     height: 9963,
-    title: "Sustainability | Stellar",
   },
   "/products": {
     component: Products,
     height: 3895,
-    title: "Products | Stellar",
   },
   "/privacy-policy": {
     component: PrivacyPolicy,
     height: 2963,
-    title: "Privacy Policy | Stellar",
   },
   "/terms-of-service": {
     component: TermsOfService,
     height: 2963,
-    title: "Terms of Service | Stellar",
   },
   "/contact": {
     component: Contact,
     height: 2963,
-    title: "Let's Talk | Stellar",
   },
 };
 
@@ -151,22 +143,14 @@ function isContactCta(target: Element) {
   return false;
 }
 
-const navigation = [
-  ["/", "Home"],
-  ["/about", "About us"],
-  ["/capabilities", "Our capabilities"],
-  ["/design-path", "Design path"],
-  ["/factories", "Our factories"],
-  ["/sustainability", "Sustainability"],
-  ["/products", "Products"],
-] as const;
-
 function DesktopHeader({
+  navigation,
   pathname,
   scale,
   scrolled,
   viewportWidth,
 }: {
+  navigation: NavigationItem[];
   pathname: string;
   scale: number;
   scrolled: boolean;
@@ -188,7 +172,7 @@ function DesktopHeader({
           <img src="/assets/1-641/3b80a.svg" alt="Stellar Manufacturing" />
         </a>
         <nav aria-label="Primary navigation">
-          {navigation.map(([href, label]) => {
+          {navigation.map(({ href, label }) => {
             const active = pathname === href || (href === "/factories" && isFactory);
             return (
               <a
@@ -234,7 +218,13 @@ function FactoryHotspots({ isFactory }: { isFactory: boolean }) {
   );
 }
 
-function MobileHeader({ pathname }: { pathname: string }) {
+function MobileHeader({
+  navigation,
+  pathname,
+}: {
+  navigation: NavigationItem[];
+  pathname: string;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -254,7 +244,7 @@ function MobileHeader({ pathname }: { pathname: string }) {
       </button>
       {open && (
         <nav aria-label="Mobile navigation">
-          {navigation.map(([href, label]) => (
+          {navigation.map(({ href, label }) => (
             <a
               className={pathname === href ? "active" : ""}
               href={href}
@@ -278,7 +268,11 @@ export default function App() {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [scrolled, setScrolled] = useState(window.scrollY > 24);
   const [dynamicPageHeight, setDynamicPageHeight] = useState<number | null>(null);
-  const page = routes[pathname] ?? routes["/"];
+  const site = useContent("site");
+  const seo = useContent("seo");
+  const routeKey = routes[pathname] ? pathname : "/";
+  const page = routes[routeKey];
+  const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
   const PageComponent = page.component;
   const pageHeight = pathname === "/products" ? (dynamicPageHeight ?? page.height) : page.height;
   const scale = Math.min(1, viewportWidth / 1920);
@@ -312,7 +306,7 @@ export default function App() {
         return;
       }
 
-      if (isContactCta(target)) {
+      if (!window.location.pathname.startsWith("/admin") && isContactCta(target)) {
         event.preventDefault();
         window.history.pushState({}, "", "/contact");
         navigate();
@@ -373,9 +367,10 @@ export default function App() {
     };
   }, [navigationVersion, pathname, page.component]);
 
+  const title = seo.pages[routeKey]?.title ?? seo.pages["/"]?.title ?? "";
   useEffect(() => {
-    document.title = page.title;
-  }, [page.title]);
+    if (!isAdmin && title) document.title = title;
+  }, [isAdmin, title]);
 
   const canvasStyle = useMemo(
     () => ({
@@ -385,21 +380,32 @@ export default function App() {
     [pageHeight, scale],
   );
 
+  if (isAdmin) {
+    return (
+      <Suspense fallback={null}>
+        <AdminApp pathname={pathname} />
+      </Suspense>
+    );
+  }
+
   return (
     <>
       <DesktopHeader
+        navigation={site.navigation}
         pathname={pathname}
         scale={scale}
         scrolled={scrolled}
         viewportWidth={viewportWidth}
       />
-      <MobileHeader pathname={pathname} />
+      <MobileHeader navigation={site.navigation} pathname={pathname} />
       <main className="site-canvas" style={canvasStyle}>
         <div className="design-scale" style={{ transform: `scale(${scale})` }}>
           <Suspense fallback={null}>
-            <PageComponent
-              onHeightChange={pathname === "/products" ? setDynamicPageHeight : undefined}
-            />
+            <PageReveal key={pathname}>
+              <PageComponent
+                onHeightChange={pathname === "/products" ? setDynamicPageHeight : undefined}
+              />
+            </PageReveal>
           </Suspense>
           <FactoryHotspots isFactory={isFactory} />
         </div>
