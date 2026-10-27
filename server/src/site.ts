@@ -4,7 +4,9 @@ import express, { Router } from "express";
 import { config } from "./config.js";
 import { getAllContent } from "./routes/content.js";
 
-type SeoDocument = { pages?: Record<string, { title?: string; description?: string }> };
+const DEV_SITE_URL = process.env.DEV_SITE_URL ?? "http://localhost:8443";
+
+type SeoDocument ={ pages?: Record<string, { title?: string; description?: string }> };
 
 function escapeHtml(value: string) {
   return value
@@ -33,9 +35,11 @@ export function siteRouter() {
     console.warn(
       config.isProduction
         ? `Website build not found at ${indexFile}. Run "pnpm build" in the project root.`
-        : "API only: no website build found, which is fine in development (open the Vite dev server).",
+        : `API only: no website build found, which is fine in development. Open the site at ${DEV_SITE_URL}.`,
     );
-    router.use((_req, res) => {
+    router.use((req, res) => {
+      // In development the website is served by Vite; send visitors there instead of a dead end.
+      if (!config.isProduction) return res.redirect(`${DEV_SITE_URL}${req.originalUrl}`);
       res.status(503).send("Website build not found. Run pnpm build in the project root.");
     });
     return router;

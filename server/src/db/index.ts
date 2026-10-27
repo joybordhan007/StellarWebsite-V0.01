@@ -37,9 +37,17 @@ async function connectMysql(): Promise<Database> {
   };
 }
 
-// Local development only: Node's built-in SQLite needs no database server.
+// Default: Node's built-in SQLite — one file in server/data, created automatically,
+// so the hosting needs no database setup at all.
 async function connectSqlite(): Promise<Database> {
-  const { DatabaseSync } = await import("node:sqlite");
+  let DatabaseSync: typeof import("node:sqlite").DatabaseSync;
+  try {
+    ({ DatabaseSync } = await import("node:sqlite"));
+  } catch {
+    throw new Error(
+      `SQLite needs Node.js 22.13 or newer (this is ${process.version}). Choose a newer Node.js version for the app, or set DB_CLIENT=mysql.`,
+    );
+  }
   fs.mkdirSync(path.dirname(config.db.sqliteFile), { recursive: true });
   const sqlite = new DatabaseSync(config.db.sqliteFile);
 

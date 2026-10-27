@@ -274,7 +274,7 @@ export default function App() {
   const page = routes[routeKey];
   const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
   const PageComponent = page.component;
-  const pageHeight = pathname === "/products" ? (dynamicPageHeight ?? page.height) : page.height;
+  const pageHeight = dynamicPageHeight ?? page.height;
   const scale = Math.min(1, viewportWidth / 1920);
   const isFactory = pathname.startsWith("/factories");
 
@@ -403,7 +403,7 @@ export default function App() {
           <Suspense fallback={null}>
             <PageReveal key={pathname}>
               <PageComponent
-                onHeightChange={pathname === "/products" ? setDynamicPageHeight : undefined}
+                onHeightChange={setDynamicPageHeight}
               />
             </PageReveal>
           </Suspense>

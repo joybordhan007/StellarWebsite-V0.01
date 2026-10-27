@@ -48,8 +48,20 @@ contentRouter.get("/:key/meta", requireAdmin, async (req, res) => {
 
 contentRouter.put("/:key", requireAdmin, async (req, res) => {
   const key = readKey(req.params.key);
-  const data = (req.body as { data?: unknown } | undefined)?.data;
+  const body = (req.body ?? {}) as { data?: unknown; baseUpdatedAt?: unknown };
+  const data = body.data;
   if (data === undefined) throw new HttpError(400, "data is required.");
+
+  // Optimistic locking: the dashboard sends the version it edited (null = never saved).
+  if ("baseUpdatedAt" in body) {
+    const [current] = await db().all<{ updated_at: string }>(
+      "SELECT updated_at FROM content WHERE content_key = ?",
+      [key],
+    );
+    if ((current?.updated_at ?? null) !== body.baseUpdatedAt) {
+      throw new HttpError(409, "Someone else changed this in the meantime. The latest version has been loaded — please make your change again.");
+    }
+  }
 
   const json = JSON.stringify(data);
   if (Buffer.byteLength(json) > MAX_DOCUMENT_BYTES) throw new HttpError(413, "Content is too large.");

@@ -220,9 +220,14 @@ textarea {
   display: none;
 }
 
+/* Cycle distance and duration come from the card count (FashionCarousel in Home.tsx). */
 .fashion-card-viewport > div {
-  animation: fashion-card-marquee 36s linear infinite;
+  animation: fashion-card-marquee var(--fashion-duration, 36s) linear infinite;
   scroll-snap-align: start;
+}
+
+.fashion-card-viewport[data-static] > div {
+  animation: none;
 }
 
 .fashion-card-viewport:focus-visible > div {
@@ -448,7 +453,7 @@ textarea {
 
 @keyframes fashion-card-marquee {
   to {
-    transform: translateX(-3564px);
+    transform: translateX(var(--fashion-cycle, -3564px));
   }
 }
 
@@ -469,7 +474,7 @@ textarea {
     animation: none;
   }
 
-  .fashion-card-viewport > div:nth-child(n + 10) {
+  .fashion-card-viewport > div[aria-hidden="true"] {
     display: none;
   }
 }

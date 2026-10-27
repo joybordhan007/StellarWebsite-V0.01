@@ -19,9 +19,61 @@ export type SiteContent = {
 export type SeoPage = { title: string; description: string };
 export type SeoContent = { pages: Record<string, SeoPage> };
 
-export type ProductItem = { image: string; name: string };
-export type ProductCategory = { id: string; label: string; icon: string; items: ProductItem[] };
-export type ProductsContent = { categories: ProductCategory[] };
+export type ProductCategory = {
+  id: number;
+  name: string;
+  /** One single-colour icon; the site turns it black or white as needed. */
+  icon: string;
+  createdAt: string;
+};
+export type Product = {
+  id: number;
+  name: string;
+  image: string;
+  categoryId: number;
+  createdAt: string;
+  /** Hidden from the website when false. */
+  active: boolean;
+};
+export type CatalogContent = {
+  categories: ProductCategory[];
+  products: Product[];
+  /** Products shown in the Home "Fashion for every generation" carousel, in order. */
+  homeProductIds: number[];
+};
+
+export type Capability = {
+  id: number;
+  name: string;
+  subtitle: string;
+  image: string;
+  createdAt: string;
+  active: boolean;
+};
+export type CapabilitiesContent = {
+  items: Capability[];
+  /** Capabilities shown in the Home "Ideas to impact" row (max 6), in order. */
+  homeIds: number[];
+};
+
+export const ACHIEVEMENT_PAGES = ["home", "capabilities", "sustainability"] as const;
+export type AchievementPage = (typeof ACHIEVEMENT_PAGES)[number];
+export type Achievement = {
+  id: number;
+  icon: string;
+  /** Counted-up number; null shows the label as a headline instead. */
+  value: number | null;
+  prefix: string;
+  suffix: string;
+  /** Line breaks are kept. */
+  label: string;
+  createdAt: string;
+};
+export type AchievementsContent = {
+  items: Achievement[];
+  /** Which achievements each page's stats bar shows, in order. */
+  pages: Record<AchievementPage, number[]>;
+};
 
 export type Office = {
   id: string;
@@ -46,7 +98,9 @@ export type LegalContent = {
 export type ContentMap = {
   site: SiteContent;
   seo: SeoContent;
-  products: ProductsContent;
+  catalog: CatalogContent;
+  capabilities: CapabilitiesContent;
+  achievements: AchievementsContent;
   offices: OfficesContent;
   "privacy-policy": LegalContent;
   "terms-of-service": LegalContent;

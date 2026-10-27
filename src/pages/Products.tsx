@@ -39,10 +39,15 @@ type ProductsProps = {
 };
 
 export default function Products({ onHeightChange }: ProductsProps) {
-  const { categories } = useContent("products");
+  const catalog = useContent("catalog");
+  const activeProducts = catalog.products.filter((product) => product.active);
+  // Categories without any visible product would be empty tabs, so they are left out.
+  const categories = catalog.categories.filter((category) =>
+    activeProducts.some((product) => product.categoryId === category.id),
+  );
   const [selectedId, setSelectedId] = useState(categories[0]?.id);
   const selectedCategory = categories.find((category) => category.id === selectedId) ?? categories[0];
-  const items = selectedCategory?.items ?? [];
+  const items = activeProducts.filter((product) => product.categoryId === selectedCategory?.id);
   const rows = Math.max(1, Math.ceil(items.length / 4));
   const pageHeight = Math.max(
     3895,
@@ -181,10 +186,10 @@ export default function Products({ onHeightChange }: ProductsProps) {
                     alt=""
                     className="relative shrink-0 size-[32px]"
                     src={category.icon}
-                    style={isSelected ? { filter: "brightness(0) invert(1)" } : undefined}
+                    style={{ filter: isSelected ? "brightness(0) invert(1)" : "brightness(0)" }}
                   />
                   <span className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[1.2] not-italic relative shrink-0 text-[18px] text-center uppercase whitespace-nowrap">
-                    {category.label}
+                    {category.name}
                   </span>
                 </button>
               );
@@ -197,10 +202,10 @@ export default function Products({ onHeightChange }: ProductsProps) {
           id="product-grid"
           role="tabpanel"
         >
-          {items.map((item, index) => (
+          {items.map((item) => (
             <article
               className="bg-white content-stretch drop-shadow-[0px_2px_1px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[6px] shrink-0 w-[372px]"
-              key={`${selectedCategory?.id}-${index}`}
+              key={item.id}
             >
               <div className="h-[420px] relative rounded-tl-[6px] rounded-tr-[6px] shrink-0 w-full">
                 <img

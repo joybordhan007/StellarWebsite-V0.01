@@ -5,7 +5,9 @@ import { Button, Spinner, TextField } from "./ui";
 
 const Overview = lazy(() => import("./pages/Overview"));
 const Messages = lazy(() => import("./pages/Messages"));
-const ProductsEditor = lazy(() => import("./pages/ProductsEditor"));
+const ProductsAdmin = lazy(() => import("./pages/ProductsAdmin"));
+const CapabilitiesAdmin = lazy(() => import("./pages/CapabilitiesAdmin"));
+const AchievementsAdmin = lazy(() => import("./pages/AchievementsAdmin"));
 const OfficesEditor = lazy(() => import("./pages/OfficesEditor"));
 const SiteSettings = lazy(() => import("./pages/SiteSettings"));
 const SeoEditor = lazy(() => import("./pages/SeoEditor"));
@@ -13,13 +15,15 @@ const LegalEditor = lazy(() => import("./pages/LegalEditor"));
 const MediaLibrary = lazy(() => import("./pages/MediaLibrary"));
 const Users = lazy(() => import("./pages/Users"));
 
-type Section = { href: string; label: string; icon: string; component: ComponentType };
+type Section = { href: string; label: string; icon: string; component: ComponentType<{ pathname: string }> };
 
 // Icon paths: 24x24 outline glyphs.
 const sections: Section[] = [
   { href: "/admin", label: "Overview", icon: "M3 12l9-9 9 9M5 10v10h5v-6h4v6h5V10", component: Overview },
   { href: "/admin/messages", label: "Messages", icon: "M4 6h16v12H4zM4 6l8 7 8-7", component: Messages },
-  { href: "/admin/products", label: "Products", icon: "M4 7l8-4 8 4v10l-8 4-8-4zM4 7l8 4 8-4M12 11v10", component: ProductsEditor },
+  { href: "/admin/products", label: "Products", icon: "M4 7l8-4 8 4v10l-8 4-8-4zM4 7l8 4 8-4M12 11v10", component: ProductsAdmin },
+  { href: "/admin/capabilities", label: "Capabilities", icon: "M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z", component: CapabilitiesAdmin },
+  { href: "/admin/achievements", label: "Achievements", icon: "M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0zM17 5h3v2a3 3 0 01-3 3M7 5H4v2a3 3 0 003 3", component: AchievementsAdmin },
   { href: "/admin/offices", label: "Offices", icon: "M12 21s-7-6.5-7-12a7 7 0 0114 0c0 5.5-7 12-7 12zM12 11a2 2 0 100-4 2 2 0 000 4z", component: OfficesEditor },
   { href: "/admin/site", label: "Site settings", icon: "M12 15a3 3 0 100-6 3 3 0 000 6zM19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z", component: SiteSettings },
   { href: "/admin/seo", label: "SEO", icon: "M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.3-4.3", component: SeoEditor },
@@ -58,7 +62,7 @@ function LoginScreen({ onLogin }: { onLogin: (admin: Admin) => void }) {
 
   return (
     <div className="admin-root flex min-h-screen items-center justify-center bg-neutral-100 px-4">
-      <form className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-sm" onSubmit={submit}>
+      <form className="w-full max-w-sm rounded-[6px] bg-white p-8 shadow-sm" onSubmit={submit}>
         <p className="text-xs font-semibold tracking-[0.3em] text-[#b07c47]">STELLAR</p>
         <h1 className="mt-2 text-xl font-semibold text-neutral-900">Admin dashboard</h1>
         <p className="mt-1 text-sm text-neutral-500">Sign in to manage the website.</p>
@@ -151,9 +155,9 @@ function Layout({ pathname }: { pathname: string }) {
         <div aria-hidden="true" className="fixed inset-0 z-30 bg-black/40 lg:hidden" onClick={() => setMenuOpen(false)} />
       )}
       <main className="lg:pl-64">
-        <div className="mx-auto max-w-5xl px-4 py-8 sm:px-8">
+        <div className="px-6 py-6">
           <Suspense fallback={<Spinner />}>
-            <Page />
+            <Page pathname={pathname} />
           </Suspense>
         </div>
       </main>
@@ -177,7 +181,7 @@ export default function AdminApp({ pathname }: { pathname: string }) {
   if (startupError) {
     return (
       <div className="admin-root flex min-h-screen items-center justify-center bg-neutral-100 px-4">
-        <div className="max-w-md rounded-2xl bg-white p-8 text-sm text-neutral-600 shadow-sm">
+        <div className="max-w-md rounded-[6px] bg-white p-8 text-sm text-neutral-600 shadow-sm">
           <h1 className="mb-2 text-lg font-semibold text-neutral-900">Admin dashboard unavailable</h1>
           {startupError}
         </div>

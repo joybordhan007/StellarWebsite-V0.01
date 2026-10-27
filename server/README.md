@@ -6,7 +6,7 @@ Node.js (Express + TypeScript) app. একটাই app তিনটা কা�
 - `/api/...` — ডাটাবেস, লগইন, ছবি আপলোড, কন্টাক্ট মেসেজ
 - `/admin` — অ্যাডমিন ড্যাশবোর্ড
 
-ডাটাবেস: hosting-এ **MySQL**। নিজের কম্পিউটারে টেস্টের জন্য **SQLite** (Node 22.13+ এ built-in, কিছু install করতে হয় না)।
+ডাটাবেস: **SQLite** — `server/data/` ফোল্ডারে একটা ফাইল, app প্রথমবার চালু হলে নিজেই তৈরি হয়। hosting-এ কোনো ডাটাবেস বানাতে হয় না (Node.js 22.13+ লাগে)। চাইলে `DB_CLIENT=mysql` দিয়ে MySQL-ও চালানো যায়।
 
 ---
 
@@ -17,7 +17,7 @@ Node.js (Express + TypeScript) app. একটাই app তিনটা কা�
 cd server
 pnpm install
 cp .env.example .env
-#    .env এ বদলান: NODE_ENV=development, DB_CLIENT=sqlite,
+#    .env এ বদলান: NODE_ENV=development,
 #    ADMIN_EMAIL / ADMIN_PASSWORD (প্রথম লগইনের জন্য)
 pnpm dev                     # http://localhost:3001  (or from the project root: pnpm server)
 
@@ -32,67 +32,49 @@ pnpm dev                     # http://localhost:8443/admin
 
 ## cPanel hosting এ deploy (Setup Node.js App)
 
-### ১. ডাটাবেস বানান
-cPanel → **MySQL® Databases**:
-1. একটা database বানান (যেমন `youruser_stellar`)
-2. একটা user বানান, শক্ত password দিন
-3. user কে database এ add করুন → **ALL PRIVILEGES**
+ডাটাবেস বা কোনো গোপন key বানাতে হবে না — app নিজেই সব তৈরি করে।
 
-Table গুলো app প্রথমবার চালু হলে নিজেই বানাবে।
-
-### ২. নিজের কম্পিউটারে build করুন
+### ১. Upload ফাইল বানান (নিজের কম্পিউটারে, project root থেকে)
 ```bash
-pnpm build                   # project root → dist/
-cd server && pnpm build      # → server/dist/
+pnpm deploy:package          # → deploy/stellar.zip
 ```
-> লাইভে যাওয়ার আগে `.figma/make/site.json` এ `"robots": { "index": true }` করে তারপর build করুন, না হলে Google সাইট index করবে না।
+> লাইভে যাওয়ার আগে `.figma/make/site.json` এ `"robots": { "index": true }` করে নিন, না হলে Google সাইট index করবে না।
 
-### ৩. ফাইল আপলোড করুন
-File Manager দিয়ে home folder এ একটা ফোল্ডার (যেমন `stellar/`) বানিয়ে এই structure এ আপলোড করুন:
+### ২. আপলোড করুন
+cPanel → **File Manager** → home folder এ `stellar.zip` আপলোড করুন → ফাইলে right-click → **Extract**।
+এতে `stellar/dist` (ওয়েবসাইট) আর `stellar/server` (app) তৈরি হবে।
 
-```
-stellar/
-  dist/            ← root এর dist ফোল্ডার
-  server/
-    dist/          ← server/dist
-    app.cjs
-    package.json
-```
-`node_modules`, `.env`, `data/`, `uploads/` আপলোড করবেন না।
-
-### ৪. Node.js App বানান
+### ৩. Node.js App বানান
 cPanel → **Setup Node.js App** → **Create Application**:
 
 | Setting | Value |
 | --- | --- |
-| Node.js version | 20 বা তার বেশি (22 হলে ভালো) |
+| Node.js version | **22** বা তার বেশি (তালিকায় সবচেয়ে নতুনটা) |
 | Application mode | Production |
 | Application root | `stellar/server` |
 | Application URL | আপনার domain |
 | Application startup file | `app.cjs` |
 
-**Environment variables** এ এগুলো যোগ করুন (`.env.example` দেখুন):
+**Environment variables** এ শুধু এই দুটো যোগ করুন:
 
 | Name | Value |
 | --- | --- |
-| `NODE_ENV` | `production` |
-| `DB_CLIENT` | `mysql` |
-| `DB_HOST` | `localhost` |
-| `DB_NAME` / `DB_USER` / `DB_PASSWORD` | ধাপ ১ এর তথ্য |
-| `JWT_SECRET` | কমপক্ষে ৩২ অক্ষরের random লেখা |
-| `ADMIN_EMAIL` / `ADMIN_PASSWORD` | প্রথম অ্যাডমিন অ্যাকাউন্ট |
-| `CLIENT_DIST` | `../dist` |
+| `ADMIN_EMAIL` | আপনার email (প্রথম লগইন) |
+| `ADMIN_PASSWORD` | একটা শক্ত password |
 
-তারপর **Run NPM Install** → **Restart**।
+(`NODE_ENV=production` cPanel নিজেই দেয়। বাকি সব setting এর default ঠিক আছে — `.env.example` দেখুন।)
 
-### ৫. লগইন
+তারপর **Create** → **Run NPM Install** → **Restart**।
+
+### ৪. লগইন
 `https://আপনার-domain/admin` এ যান, লগইন করুন, এবং **Admin users → My account** থেকে password বদলে ফেলুন।
 
 ---
 
 ## Update করা
-নতুন কোড build করে `dist/` ও `server/dist/` আবার আপলোড করুন, তারপর cPanel এ **Restart** চাপুন।
+`pnpm deploy:package` চালিয়ে নতুন `stellar.zip` আপলোড করে Extract করুন (পুরোনো ফাইল replace হবে;
+`server/data` আর `server/uploads` এ হাত পড়ে না), তারপর cPanel এ **Restart** চাপুন।
 Restart জরুরি: server চালু হওয়ার সময় website এর `index.html` মনে রাখে।
 
 ## Backup
-দুটো জিনিস backup রাখুন: **MySQL database** (cPanel → Backup / phpMyAdmin export) এবং **`server/uploads/`** ফোল্ডার (আপলোড করা ছবি)।
+দুটো ফোল্ডার backup রাখলেই সব থাকে: **`stellar/server/data/`** (ডাটাবেস) আর **`stellar/server/uploads/`** (আপলোড করা ছবি)।

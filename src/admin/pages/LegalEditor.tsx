@@ -90,7 +90,7 @@ export default function LegalEditor() {
 
   return (
     <>
-      <div className="mb-6 flex gap-2" role="tablist">
+      <div className="mb-4 flex gap-2" role="tablist">
         {PAGES.map((page) => (
           <Button
             aria-selected={page.key === active.key}

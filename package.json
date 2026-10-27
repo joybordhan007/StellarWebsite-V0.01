@@ -8,7 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "format": "oxfmt",
-    "server": "pnpm --dir server dev"
+    "server": "pnpm --dir server dev",
+    "deploy:package": "node scripts/package-deploy.mjs",
+    "dev:all": "node scripts/dev-all.mjs"
   },
   "dependencies": {
     "react": "^19.0.0",

@@ -1,5 +1,8 @@
-import CountUpValue from "../components/CountUpValue";
+import type { CSSProperties } from "react";
+import AchievementsBar from "../components/AchievementsBar";
 import Footer from "../components/Footer";
+import { useContent } from "../content/ContentProvider";
+import type { Capability, Product } from "../content/types";
 
 const assetPathPrefix = "/assets/1-641";
 const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
@@ -21,46 +24,13 @@ const imgRectangle9153 = `${assetPathPrefix}/9ceb5.png`;
 const imgRectangle9154 = `${assetPathPrefix}/919a0.png`;
 const imgRectangle9155 = `${assetPathPrefix}/5730f.png`;
 const imgRectangle9156 = `${assetPathPrefix}/5913d.png`;
-const imgRectangle9113 = `${assetPathPrefix}/28bae.png`;
-const imgRectangle9114 = `${assetPathPrefix}/eda4d.jpg`;
-const imgRectangle9116 = `${assetPathPrefix}/80798.jpg`;
-const imgRectangle9117 = `${assetPathPrefix}/cf5d9.jpg`;
-const imgRectangle9118 = `${assetPathPrefix}/177d2.jpg`;
-const imgRectangle9119 = `${assetPathPrefix}/66387.jpg`;
-const imgRectangle9120 = `${assetPathPrefix}/2dc9c.jpg`;
-const imgRectangle9121 = `${assetPathPrefix}/9fc73.jpg`;
-const imgRectangle9123 = `${assetPathPrefix}/142d3.png`;
 const imgImage = `${assetPathPrefix}/afbbf.jpg`;
-const imgRectangle9124 = `${assetPathPrefix}/a80f0.jpg`;
-const imgRectangle9125 = `${assetPathPrefix}/f4788.jpg`;
-const imgRectangle9126 = `${assetPathPrefix}/f48ce.jpg`;
-const imgRectangle9127 = `${assetPathPrefix}/f3d14.png`;
-const imgRectangle9128 = `${assetPathPrefix}/f45ca.png`;
-const imgRectangle9129 = `${assetPathPrefix}/38bfc.jpg`;
 const imgRectangle9133 = `${assetPathPrefix}/234ca.jpg`;
 const imgRectangle9134 = `${assetPathPrefix}/02160.jpg`;
 const imgRectangle9135 = `${assetPathPrefix}/a9ee6.jpg`;
 const imgRectangle9136 = `${assetPathPrefix}/69cf3.jpg`;
 const imgRectangle9137 = `${assetPathPrefix}/2504f.png`;
 const imgArrowForwardLong = `${assetPathPrefix}/887e7.svg`;
-const imgGroup = `${assetPathPrefix}/87544.svg`;
-const imgGroup1 = `${assetPathPrefix}/aa088.svg`;
-const imgGroup2 = `${assetPathPrefix}/88ab7.svg`;
-const imgGroup3 = `${assetPathPrefix}/1b8aa.svg`;
-const imgGroup4 = `${assetPathPrefix}/c2b38.svg`;
-const imgGroup5 = `${assetPathPrefix}/2274e.svg`;
-const imgGroup6 = `${assetPathPrefix}/2f2ac.svg`;
-const imgGroup7 = `${assetPathPrefix}/9c6d9.svg`;
-const imgGroup8 = `${assetPathPrefix}/49961.svg`;
-const imgGroup9 = `${assetPathPrefix}/729e7.svg`;
-const imgGroup10 = `${assetPathPrefix}/a6418.svg`;
-const imgGroup11 = `${assetPathPrefix}/d2a46.svg`;
-const imgGroup12 = `${assetPathPrefix}/78414.svg`;
-const imgGroup13 = `${assetPathPrefix}/747d5.svg`;
-const imgGroup14 = `${assetPathPrefix}/8d66e.svg`;
-const imgGroup15 = `${assetPathPrefix}/d5df3.svg`;
-const imgGroup16 = `${assetPathPrefix}/19ffe.svg`;
-const imgGroup17 = `${assetPathPrefix}/20c2a.svg`;
 const imgStellarLogo3 = `${assetPathPrefix}/3b80a.svg`;
 const imgArrowForwardLong1 = `${assetPathPrefix}/bdbfe.svg`;
 const imgArrowForwardLong2 = `${assetPathPrefix}/77a61.svg`;
@@ -161,259 +131,61 @@ function Frame({ className, scrollable = false }: FrameProps) {
   );
 }
 
-type Frame1Props = {
-  className?: string;
-  property1?: "Default";
-};
+// Each card is 372px wide with a 24px gap.
+const FASHION_CARD_STRIDE = 396;
+// Seamless looping needs the cards to be wider than the 1164px viewport.
+const FASHION_MIN_LOOP_CARDS = 3;
 
-function Frame1({ className, property1 = "Default" }: Frame1Props) {
+function FashionCarousel({ className }: { className: string }) {
+  const { products, homeProductIds } = useContent("catalog");
+  const cards = homeProductIds
+    .map((id) => products.find((product) => product.id === id && product.active))
+    .filter((product): product is Product => Boolean(product));
+  const loops = cards.length >= FASHION_MIN_LOOP_CARDS;
+  const rendered = loops ? [...cards, ...cards] : cards;
+  const style = {
+    "--fashion-cycle": `-${cards.length * FASHION_CARD_STRIDE}px`,
+    "--fashion-duration": `${cards.length * 4}s`,
+  } as CSSProperties;
+
   return (
     <div
       aria-label="Fashion collection images"
-      className={className || "h-[497px] overflow-clip relative w-[1164px]"}
+      className={className}
       data-node-id="1:132"
+      data-static={loops ? undefined : ""}
       role="region"
+      style={style}
       tabIndex={0}
     >
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-0 rounded-[8px] top-0 w-[372px]" data-node-id="1:133" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:134">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9113} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:135" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:136">
-            <p className="leading-[1.2]">MENSWEAR</p>
+      {rendered.map((product, index) => (
+        <div
+          aria-hidden={index >= cards.length || undefined}
+          className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center rounded-[8px] top-0 w-[372px]"
+          key={index}
+          style={{ left: index * FASHION_CARD_STRIDE }}
+        >
+          <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full">
+            <img alt={product.name} className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={product.image} />
           </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:137">
-            <p className="leading-[1.2]">Timeless style. Everyday versatility.</p>
-          </div>
-        </div>
-      </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[396px] rounded-[8px] top-0 w-[372px]" data-node-id="1:138" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:139">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9114} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:140" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:141">
-            <p className="leading-[1.2]">MENSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:142">
-            <p className="leading-[1.2]">Timeless style. Everyday versatility.</p>
+          <div className="[word-break:break-word] content-stretch flex flex-col items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full">
+            <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] uppercase w-full">
+              <p className="leading-[1.2]">{product.name}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[792px] rounded-[8px] top-0 w-[372px]" data-node-id="1:143" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:144">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9116} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:145" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:146">
-            <p className="leading-[1.2]">MENSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:147">
-            <p className="leading-[1.2]">Timeless style. Everyday versatility.</p>
-          </div>
-        </div>
-      </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[1188px] rounded-[8px] top-0 w-[372px]" data-node-id="1:148" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:149">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9117} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:150" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:151">
-            <p className="leading-[1.2]">WOMENSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:152">
-            <p className="leading-[1.2]">Modern fashion. Endless possibilities.</p>
-          </div>
-        </div>
-      </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[1584px] rounded-[8px] top-0 w-[372px]" data-node-id="1:153" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:154">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9118} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:155" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:156">
-            <p className="leading-[1.2]">WOMENSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:157">
-            <p className="leading-[1.2]">Modern fashion. Endless possibilities.</p>
-          </div>
-        </div>
-      </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[1980px] rounded-[8px] top-0 w-[372px]" data-node-id="1:158" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:159">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9119} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:160" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:161">
-            <p className="leading-[1.2]">WOMENSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:162">
-            <p className="leading-[1.2]">Modern fashion. Endless possibilities.</p>
-          </div>
-        </div>
-      </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[2376px] rounded-[8px] top-0 w-[372px]" data-node-id="1:163" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:164">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9120} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:165" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:166">
-            <p className="leading-[1.2]">KIDSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:167">
-            <p className="leading-[1.2]">Comfort today. A brighter tomorrow.</p>
-          </div>
-        </div>
-      </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[2772px] rounded-[8px] top-0 w-[372px]" data-node-id="1:168" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:169">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9121} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:170" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:171">
-            <p className="leading-[1.2]">KIDSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:172">
-            <p className="leading-[1.2]">Comfort today. A brighter tomorrow.</p>
-          </div>
-        </div>
-      </div>
-      <div className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[3168px] rounded-[8px] top-0 w-[372px]" data-node-id="1:173" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:174">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9123} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:175" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:176">
-            <p className="leading-[1.2]">KIDSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:177">
-            <p className="leading-[1.2]">Comfort today. A brighter tomorrow.</p>
-          </div>
-        </div>
-      </div>
-      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[3564px] rounded-[8px] top-0 w-[372px]" data-node-id="1:178" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:179">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9113} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:180" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:181">
-            <p className="leading-[1.2]">MENSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:182">
-            <p className="leading-[1.2]">Timeless style. Everyday versatility.</p>
-          </div>
-        </div>
-      </div>
-      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[3960px] rounded-[8px] top-0 w-[372px]" data-node-id="1:183" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:184">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9114} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:185" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:186">
-            <p className="leading-[1.2]">MENSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:187">
-            <p className="leading-[1.2]">Timeless style. Everyday versatility.</p>
-          </div>
-        </div>
-      </div>
-      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[4356px] rounded-[8px] top-0 w-[372px]" data-node-id="1:188" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:189">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9116} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:190" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:191">
-            <p className="leading-[1.2]">MENSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:192">
-            <p className="leading-[1.2]">Timeless style. Everyday versatility.</p>
-          </div>
-        </div>
-      </div>
-      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[4752px] rounded-[8px] top-0 w-[372px]" data-node-id="1:193" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:194">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9117} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:195" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:196">
-            <p className="leading-[1.2]">WOMENSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:197">
-            <p className="leading-[1.2]">Modern fashion. Endless possibilities.</p>
-          </div>
-        </div>
-      </div>
-      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[5148px] rounded-[8px] top-0 w-[372px]" data-node-id="1:198" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:199">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9118} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:200" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:201">
-            <p className="leading-[1.2]">WOMENSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:202">
-            <p className="leading-[1.2]">Modern fashion. Endless possibilities.</p>
-          </div>
-        </div>
-      </div>
-      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[5544px] rounded-[8px] top-0 w-[372px]" data-node-id="1:203" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:204">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9119} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:205" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:206">
-            <p className="leading-[1.2]">WOMENSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:207">
-            <p className="leading-[1.2]">Modern fashion. Endless possibilities.</p>
-          </div>
-        </div>
-      </div>
-      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[5940px] rounded-[8px] top-0 w-[372px]" data-node-id="1:208" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:209">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9120} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:210" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:211">
-            <p className="leading-[1.2]">KIDSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:212">
-            <p className="leading-[1.2]">Comfort today. A brighter tomorrow.</p>
-          </div>
-        </div>
-      </div>
-      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[6336px] rounded-[8px] top-0 w-[372px]" data-node-id="1:213" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:214">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9121} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:215" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:216">
-            <p className="leading-[1.2]">KIDSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:217">
-            <p className="leading-[1.2]">Comfort today. A brighter tomorrow.</p>
-          </div>
-        </div>
-      </div>
-      <div aria-hidden="true" className="absolute bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center left-[6732px] rounded-[8px] top-0 w-[372px]" data-node-id="1:218" data-name="Frame">
-        <div className="h-[420px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:219">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9123} />
-        </div>
-        <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:220" data-name="Frame">
-          <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:221">
-            <p className="leading-[1.2]">KIDSWEAR</p>
-          </div>
-          <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:222">
-            <p className="leading-[1.2]">Comfort today. A brighter tomorrow.</p>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
 
 export default function Home() {
+  const capabilities = useContent("capabilities");
+  const homeCapabilities = capabilities.homeIds
+    .map((id) => capabilities.items.find((item) => item.id === id && item.active))
+    .filter((item): item is Capability => Boolean(item))
+    .slice(0, 6);
+
   return (
     <div className="bg-[#fafafa] relative h-[5565px] w-[1920px]" data-node-id="1:641" data-name="Home">
       <Footer className="-translate-x-1/2 absolute bg-white bottom-0 h-[593px] left-1/2 overflow-clip shadow-[0px_0px_4px_0px_rgba(0,0,0,0.06)] w-[1920px]" />
@@ -474,161 +246,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="-translate-x-1/2 absolute bg-[#f9f7f5] content-stretch flex items-center justify-between left-1/2 px-[180px] py-[40px] top-[920px] w-[1920px]" data-node-id="1:664" data-name="Frame">
-        <div className="flex flex-[1_0_0] flex-row items-center self-stretch" data-node-id="1:665">
-          <div className="content-stretch flex flex-[1_0_0] flex-col gap-[16px] h-full items-center min-w-px relative" data-name="Frame">
-            <div className="content-stretch flex items-center justify-center p-[16px] relative rounded-[999px] shrink-0" data-node-id="1:666" data-name="Frame">
-              <div className="overflow-clip relative shrink-0 size-[48px]" data-node-id="1:667" data-name="Шар_1">
-                <div className="absolute inset-[2.63%_0]" data-node-id="1:668" data-name="Group">
-                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup} />
-                </div>
-              </div>
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-center leading-[0] not-italic relative shrink-0 whitespace-nowrap" data-node-id="1:675" data-name="Frame">
-              <div className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px]" data-node-id="1:676">
-                <p className="leading-[1.2]">
-                  <CountUpValue value={150} prefix="$" suffix="M" />
-                </p>
-              </div>
-              <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[18px] uppercase" data-node-id="1:677">
-                <p className="leading-[1.2]">Annual Sales</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bg-[rgba(0,0,0,0.1)] h-[150px] relative shrink-0 w-px" data-node-id="1:678" />
-        <div className="flex flex-[1_0_0] flex-row items-center self-stretch" data-node-id="1:679">
-          <div className="content-stretch flex flex-[1_0_0] flex-col gap-[16px] h-full items-center min-w-px relative" data-name="Frame">
-            <div className="content-stretch flex items-center justify-center p-[16px] relative rounded-[999px] shrink-0" data-node-id="1:680" data-name="Frame">
-              <div className="overflow-clip relative shrink-0 size-[48px]" data-node-id="1:681" data-name="Frame">
-                <div className="absolute contents inset-[0.04%_5.47%_0_5.47%]" data-node-id="1:682" data-name="Layer_x0020_1">
-                  <div className="absolute contents inset-[0.04%_5.47%_0_5.47%]" data-node-id="1:683" data-name="_614439456">
-                    <div className="absolute inset-[26.21%_5.47%_27.15%_62.11%]" data-node-id="1:684" data-name="Group">
-                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1} />
-                    </div>
-                    <div className="absolute inset-[53.26%_33.79%_0_33.79%]" data-node-id="1:689" data-name="Group">
-                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup2} />
-                    </div>
-                    <div className="absolute inset-[26.6%_62.11%_26.56%_5.47%]" data-node-id="1:694" data-name="Group">
-                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup3} />
-                    </div>
-                    <div className="absolute inset-[0.04%_33.79%_53.32%_33.79%]" data-node-id="1:699" data-name="Group">
-                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup4} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-center leading-[0] not-italic relative shrink-0 whitespace-nowrap" data-node-id="1:704" data-name="Frame">
-              <div className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px]" data-node-id="1:705">
-                <p className="leading-[1.2]">
-                  <CountUpValue value={10200} suffix="+" />
-                </p>
-              </div>
-              <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[18px] uppercase" data-node-id="1:706">
-                <p className="leading-[1.2]">Employees</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bg-[rgba(0,0,0,0.1)] h-[150px] relative shrink-0 w-px" data-node-id="1:707" />
-        <div className="flex flex-[1_0_0] flex-row items-center self-stretch" data-node-id="1:708">
-          <div className="content-stretch flex flex-[1_0_0] flex-col gap-[16px] h-full items-center min-w-px relative" data-name="Frame">
-            <div className="content-stretch flex items-center justify-center p-[16px] relative rounded-[999px] shrink-0" data-node-id="1:709" data-name="Frame">
-              <div className="overflow-clip relative shrink-0 size-[48px]" data-node-id="1:710" data-name="Frame">
-                <div className="absolute contents inset-[5.41%_5.39%_5.41%_5.4%]" data-node-id="1:711" data-name="_x30_4_Pie_Chart">
-                  <div className="absolute inset-[5.41%_5.39%_5.41%_5.4%]" data-node-id="1:712" data-name="Group">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup5} />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-center leading-[0] not-italic relative shrink-0 whitespace-nowrap" data-node-id="1:716" data-name="Frame">
-              <div className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px]" data-node-id="1:717">
-                <p className="leading-[1.2]">
-                  <CountUpValue value={26} suffix="M+" />
-                </p>
-              </div>
-              <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[18px] text-center uppercase" data-node-id="1:718">
-                <p className="leading-[1.2] mb-0 whitespace-pre">{`Pieces Capacity `}</p>
-                <p className="leading-[1.2] whitespace-pre">/ Year</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bg-[rgba(0,0,0,0.1)] h-[150px] relative shrink-0 w-px" data-node-id="1:719" />
-        <div className="flex flex-[1_0_0] flex-row items-center self-stretch" data-node-id="1:720">
-          <div className="content-stretch flex flex-[1_0_0] flex-col gap-[16px] h-full items-center min-w-px relative" data-name="Frame">
-            <div className="content-stretch flex items-center justify-center p-[16px] relative rounded-[999px] shrink-0" data-node-id="1:721" data-name="Frame">
-              <div className="overflow-clip relative shrink-0 size-[48px]" data-node-id="1:722" data-name="Layer_5">
-                <div className="absolute inset-[4.69%_4.69%_4.69%_1.56%]" data-node-id="1:723" data-name="Group">
-                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup6} />
-                </div>
-              </div>
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-center leading-[0] not-italic relative shrink-0 text-center whitespace-nowrap" data-node-id="1:740" data-name="Frame">
-              <div className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px]" data-node-id="1:741">
-                <p className="leading-[1.2]">
-                  <CountUpValue value={3} />
-                </p>
-              </div>
-              <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[18px] uppercase" data-node-id="1:742">
-                <p className="leading-[1.2] mb-0 whitespace-pre">{`Manufacturing `}</p>
-                <p className="leading-[1.2] whitespace-pre">Locations</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bg-[rgba(0,0,0,0.1)] h-[150px] relative shrink-0 w-px" data-node-id="1:743" />
-        <div className="flex flex-[1_0_0] flex-row items-center self-stretch" data-node-id="1:744">
-          <div className="content-stretch flex flex-[1_0_0] flex-col gap-[16px] h-full items-center min-w-px relative" data-name="Frame">
-            <div className="content-stretch flex items-center justify-center p-[16px] relative rounded-[999px] shrink-0" data-node-id="1:745" data-name="Frame">
-              <div className="overflow-clip relative shrink-0 size-[48px]" data-node-id="1:746" data-name="Слой_1">
-                <div className="absolute contents inset-[4.17%_10.02%_4.17%_9.58%]" data-node-id="1:747" data-name="Group">
-                  <div className="absolute inset-[37.72%_38.64%_38.54%_49.15%]" data-node-id="1:748" data-name="Group">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup7} />
-                  </div>
-                  <div className="absolute inset-[34.92%_47.49%_43.79%_42.54%]" data-node-id="1:750" data-name="Group">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup8} />
-                  </div>
-                  <div className="absolute inset-[4.17%_36.46%_67.18%_35.82%]" data-node-id="1:752" data-name="Group">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup9} />
-                  </div>
-                  <div className="absolute inset-[18.9%_10.02%_53.52%_62.83%]" data-node-id="1:754" data-name="Group">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup10} />
-                  </div>
-                  <div className="absolute inset-[24.56%_65.16%_52.64%_9.58%]" data-node-id="1:756" data-name="Group">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup11} />
-                  </div>
-                  <div className="absolute inset-[38.77%_54.4%_57.46%_36.43%]" data-node-id="1:758" data-name="Group">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup12} />
-                  </div>
-                  <div className="absolute inset-[58.59%_32%_19.33%_31.97%]" data-node-id="1:760" data-name="Group">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup13} />
-                  </div>
-                  <div className="absolute inset-[74.41%_30.79%_4.17%_33.38%]" data-node-id="1:762" data-name="Group">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup14} />
-                  </div>
-                  <div className="absolute inset-[74.35%_61.58%_19.21%_28.39%]" data-node-id="1:764" data-name="Group">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup15} />
-                  </div>
-                  <div className="absolute inset-[74.35%_27.21%_19.21%_62.76%]" data-node-id="1:766" data-name="Group">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup16} />
-                  </div>
-                  <div className="absolute inset-[64.32%_36.45%_9.9%_37.85%]" data-node-id="1:768" data-name="Group">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup17} />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[20px] whitespace-nowrap" data-node-id="1:770">
-              <p className="leading-[1.2] mb-0 whitespace-pre">{`A MORE `}</p>
-              <p className="leading-[1.2] mb-0 whitespace-pre">{`SUSTAINABLE `}</p>
-              <p className="leading-[1.2] whitespace-pre">TOMORROW</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <AchievementsBar page="home" />
       <div className="-translate-x-1/2 absolute backdrop-blur-[7px] bg-[rgba(246,246,246,0.1)] content-stretch flex h-[90px] items-center justify-between left-1/2 px-[180px] py-[10px] top-0 w-[1920px]" data-node-id="1:771" data-name="Frame">
         <div className="h-[60px] relative shrink-0 w-[131px]" data-node-id="1:772" data-name="Stellar_Logo 2">
           <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgStellarLogo3} />
@@ -696,7 +314,7 @@ export default function Home() {
             </a>
           </div>
         </div>
-        <Frame1 className="fashion-card-viewport h-[497px] relative shrink-0 w-[1164px]" />
+        <FashionCarousel className="fashion-card-viewport h-[497px] relative shrink-0 w-[1164px]" />
       </div>
       <div className="-translate-x-1/2 absolute content-stretch flex flex-col gap-[56px] items-start left-1/2 px-[178px] py-[56px] top-[1941px] w-[1920px]" data-node-id="1:814" data-name="Frame">
         <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-node-id="1:815" data-name="Frame">
@@ -727,66 +345,18 @@ export default function Home() {
           </a>
         </div>
         <div className="home-capabilities-grid content-stretch gap-[24px] items-center p-[2px] relative shrink-0 w-full" data-node-id="1:825" data-name="Frame">
-          <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[240px]" data-node-id="1:826" data-name="Frame">
-            <div className="h-[240px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:827">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9124} />
-            </div>
-            <div className="content-stretch flex flex-col items-start p-[12px] relative shrink-0 w-full" data-node-id="1:828" data-name="Frame">
-              <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full" data-node-id="1:829">
-                <p className="leading-[1.2]">{`Design & Product Development`}</p>
+          {homeCapabilities.map((capability) => (
+            <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[240px]" key={capability.id}>
+              <div className="h-[240px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full">
+                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={capability.image} />
+              </div>
+              <div className="content-stretch flex flex-col items-start p-[12px] relative shrink-0 w-full">
+                <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full">
+                  <p className="leading-[1.2]">{capability.name}</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[240px]" data-node-id="1:830" data-name="Frame">
-            <div className="h-[240px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:831">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9125} />
-            </div>
-            <div className="content-stretch flex flex-col items-start p-[12px] relative shrink-0 w-full" data-node-id="1:832" data-name="Frame">
-              <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full" data-node-id="1:833">
-                <p className="leading-[1.2]">{`Sourcing & Materials`}</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[240px]" data-node-id="1:834" data-name="Frame">
-            <div className="h-[240px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:835">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9126} />
-            </div>
-            <div className="content-stretch flex flex-col items-start p-[12px] relative shrink-0 w-full" data-node-id="1:836" data-name="Frame">
-              <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full" data-node-id="1:837">
-                <p className="leading-[1.2]">Cutting</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[240px]" data-node-id="1:838" data-name="Frame">
-            <div className="h-[240px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:839">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9127} />
-            </div>
-            <div className="content-stretch flex flex-col items-start p-[12px] relative shrink-0 w-full" data-node-id="1:840" data-name="Frame">
-              <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full" data-node-id="1:841">
-                <p className="leading-[1.2]">Manufacturing</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[240px]" data-node-id="1:842" data-name="Frame">
-            <div className="h-[240px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:843">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9128} />
-            </div>
-            <div className="content-stretch flex flex-col items-start p-[12px] relative shrink-0 w-full" data-node-id="1:844" data-name="Frame">
-              <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full" data-node-id="1:845">
-                <p className="leading-[1.2]">{`Washing & Finishing`}</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[240px]" data-node-id="1:846" data-name="Frame">
-            <div className="h-[240px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:847">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9129} />
-            </div>
-            <div className="content-stretch flex flex-col items-start p-[12px] relative shrink-0 w-full" data-node-id="1:848" data-name="Frame">
-              <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full" data-node-id="1:849">
-                <p className="leading-[1.2]">Quality Assurance</p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       <div className="-translate-x-1/2 absolute bg-white content-stretch flex flex-col gap-[56px] items-start left-1/2 px-[178px] py-[80px] top-[2623px] w-[1920px]" data-node-id="1:858" data-name="Frame">

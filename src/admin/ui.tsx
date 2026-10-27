@@ -11,7 +11,7 @@ import {
 import { mergeContent } from "../content/ContentProvider";
 import type { ContentKey, ContentMap } from "../content/types";
 import { useAdmin } from "./AdminContext";
-import { api, type ContentMeta, formatDate, type Media, uploadImage } from "./api";
+import { api, ApiError, type ContentMeta, formatDate, type Media, uploadImage } from "./api";
 
 type ButtonVariant = "primary" | "secondary" | "danger" | "ghost";
 
@@ -55,7 +55,7 @@ export function PageHeader({
   actions?: ReactNode;
 }) {
   return (
-    <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
+    <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
       <div className="min-w-0">
         <h1 className="text-2xl font-semibold text-neutral-900">{title}</h1>
         {description && <p className="mt-1 max-w-2xl text-sm text-neutral-500">{description}</p>}
@@ -77,7 +77,7 @@ export function Card({
   children: ReactNode;
 }) {
   return (
-    <section className="rounded-xl border border-neutral-200 bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+    <section className="rounded-[6px] border border-neutral-200 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
       {(title || actions) && (
         <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
           <div>
@@ -152,7 +152,7 @@ export function TextField({
       ) : (
         <input
           autoComplete={autoComplete}
-          className={inputClass}
+          className={`${inputClass} h-10`}
           disabled={disabled}
           id={id}
           onChange={handleChange}
@@ -255,7 +255,7 @@ export function MediaPicker({ onSelect, onClose }: { onSelect: (url: string) => 
       role="dialog"
     >
       <div
-        className="flex max-h-[80vh] w-full max-w-3xl flex-col rounded-xl bg-white shadow-xl"
+        className="flex max-h-[80vh] w-full max-w-3xl flex-col rounded-[6px] bg-white shadow-xl"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-center justify-between border-b border-neutral-200 px-5 py-3">
@@ -272,7 +272,7 @@ export function MediaPicker({ onSelect, onClose }: { onSelect: (url: string) => 
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             {media?.map((item) => (
               <button
-                className="group overflow-hidden rounded-lg border border-neutral-200 text-left hover:border-[#dea36a]"
+                className="group overflow-hidden rounded-[6px] border border-neutral-200 text-left hover:border-[#dea36a]"
                 key={item.id}
                 onClick={() => onSelect(item.url)}
                 type="button"
@@ -326,7 +326,7 @@ export function ImageField({
       <span className="text-sm font-medium text-neutral-700">{label}</span>
       <div className={`flex gap-3 ${compact ? "flex-col" : "items-start"}`}>
         <div
-          className={`shrink-0 overflow-hidden rounded-lg border border-neutral-200 bg-neutral-200 ${compact ? "aspect-[372/420] w-full" : "size-24 p-3"}`}
+          className={`shrink-0 overflow-hidden rounded-[6px] border border-neutral-200 bg-neutral-200 ${compact ? "aspect-[372/420] w-full" : "size-24 p-3"}`}
         >
           {value && <img alt="" className={`size-full ${compact ? "object-cover" : "object-contain"}`} src={value} />}
         </div>
@@ -405,13 +405,14 @@ export function useContentDoc<K extends ContentKey>(key: K) {
     try {
       const result = await api<{ meta: ContentMeta }>(`/content/${key}`, {
         method: "PUT",
-        body: { data: draft },
+        body: { data: draft, baseUpdatedAt: meta?.updated_at ?? null },
       });
       setSavedJson(JSON.stringify(draft));
       setMeta(result.meta);
       notify("Saved. The website now shows your changes.");
     } catch (error) {
       handleError(error);
+      if (error instanceof ApiError && error.status === 409) await load();
     } finally {
       setSaving(false);
     }
@@ -470,11 +471,11 @@ export function ContentEditorFrame({
         }
         title={title}
       />
-      {doc.draft ? <div className="flex flex-col gap-5">{children}</div> : <Spinner />}
+      {doc.draft ? <div className="flex flex-col gap-4">{children}</div> : <Spinner />}
       <div
         className={`fixed inset-x-0 bottom-0 z-30 border-t border-neutral-200 bg-white/95 backdrop-blur transition-transform duration-200 lg:left-64 ${doc.dirty ? "translate-y-0" : "translate-y-full"}`}
       >
-        <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3 sm:px-8">
+        <div className="flex items-center justify-between gap-3 px-6 py-3">
           <span className="text-sm text-neutral-600">You have unsaved changes</span>
           <div className="flex gap-2">
             <Button disabled={doc.saving} onClick={doc.discard}>

@@ -1,4 +1,4 @@
-import productCategories from "../data/productCategories.json";
+import { defaultAchievements, defaultCapabilities, defaultCatalog } from "./collectionDefaults";
 import type { ContentMap, LegalContent } from "./types";
 
 // Built-in content: what the website shows until an admin edits it.
@@ -116,17 +116,9 @@ export const defaultContent: ContentMap = {
       "/terms-of-service": page("Terms of Service | Stellar"),
     },
   },
-  products: {
-    categories: productCategories.map((category) => ({
-      id: category.id,
-      label: category.label,
-      icon: `/assets/1-4402/${category.icon}`,
-      items: category.files.map((file, index) => ({
-        image: `/assets/${category.assetFolder}/${file}`,
-        name: category.names[index] ?? "",
-      })),
-    })),
-  },
+  catalog: defaultCatalog,
+  capabilities: defaultCapabilities,
+  achievements: defaultAchievements,
   offices: {
     offices: [
       {

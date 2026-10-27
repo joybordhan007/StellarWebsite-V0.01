@@ -53,7 +53,7 @@ export function AdminProvider({
       <div aria-live="polite" className="fixed bottom-4 right-4 z-50 flex w-[min(360px,calc(100vw-32px))] flex-col gap-2">
         {toasts.map((toast) => (
           <div
-            className={`rounded-lg px-4 py-3 text-sm text-white shadow-lg ${toast.tone === "error" ? "bg-red-600" : "bg-neutral-900"}`}
+            className={`rounded-[6px] px-4 py-3 text-sm text-white shadow-lg ${toast.tone === "error" ? "bg-red-600" : "bg-neutral-900"}`}
             key={toast.id}
             role={toast.tone === "error" ? "alert" : "status"}
           >

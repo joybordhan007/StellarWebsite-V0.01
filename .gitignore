@@ -28,3 +28,6 @@ server/data/
 server/uploads/
 server/dist/
 !.env.example
+
+# Deployment package (pnpm deploy:package)
+deploy/

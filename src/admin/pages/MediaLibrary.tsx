@@ -65,13 +65,13 @@ export default function MediaLibrary() {
       {!media ? (
         <Spinner />
       ) : media.length === 0 ? (
-        <p className="rounded-xl border border-dashed border-neutral-300 bg-white p-10 text-center text-sm text-neutral-500">
+        <p className="rounded-[6px] border border-dashed border-neutral-300 bg-white p-10 text-center text-sm text-neutral-500">
           No images uploaded yet.
         </p>
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {media.map((item) => (
-            <figure className="overflow-hidden rounded-xl border border-neutral-200 bg-white" key={item.id}>
+            <figure className="overflow-hidden rounded-[6px] border border-neutral-200 bg-white" key={item.id}>
               <img alt={item.original_name} className="aspect-square w-full bg-neutral-100 object-cover" loading="lazy" src={item.url} />
               <figcaption className="flex flex-col gap-2 p-3">
                 <span className="truncate text-sm font-medium" title={item.original_name}>

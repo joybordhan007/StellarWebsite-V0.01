@@ -65,8 +65,8 @@ export default function Messages() {
       {!messages ? (
         <Spinner />
       ) : (
-        <div className="grid gap-5 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
-          <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+          <div className="overflow-hidden rounded-[6px] border border-neutral-200 bg-white">
             <div className="flex gap-1 border-b border-neutral-200 p-2" role="group" aria-label="Filter">
               {(["all", "unread"] as const).map((value) => (
                 <Button
@@ -108,7 +108,7 @@ export default function Messages() {
             )}
           </div>
 
-          <div className="rounded-xl border border-neutral-200 bg-white p-6">
+          <div className="rounded-[6px] border border-neutral-200 bg-white p-6">
             {!selected ? (
               <p className="text-sm text-neutral-500">Select a message to read it.</p>
             ) : (
@@ -143,7 +143,7 @@ export default function Messages() {
                     </div>
                   ))}
                 </dl>
-                <div className="mt-5 whitespace-pre-wrap rounded-lg bg-neutral-50 p-4 text-sm leading-relaxed text-neutral-800">
+                <div className="mt-5 whitespace-pre-wrap rounded-[6px] bg-neutral-50 p-4 text-sm leading-relaxed text-neutral-800">
                   {selected.data.message || <span className="text-neutral-400">(No message text)</span>}
                 </div>
               </article>

@@ -4,7 +4,9 @@ import { api, formatDate, type Message, type Stats } from "../api";
 import { Card, PageHeader, Spinner } from "../ui";
 
 const shortcuts = [
-  { href: "/admin/products", label: "Products", text: "Categories and product photos" },
+  { href: "/admin/products", label: "Products", text: "Products, categories and the home page carousel" },
+  { href: "/admin/capabilities", label: "Capabilities", text: "Capability cards and “Ideas to impact”" },
+  { href: "/admin/achievements", label: "Achievements", text: "Stats bars on Home, Capabilities and Sustainability" },
   { href: "/admin/offices", label: "Offices", text: "Addresses, phones and opening hours" },
   { href: "/admin/site", label: "Site settings", text: "Footer, contact details, social links, menu" },
   { href: "/admin/seo", label: "SEO", text: "Page titles and search descriptions" },
@@ -39,11 +41,11 @@ export default function Overview() {
       {!tiles ? (
         <Spinner />
       ) : (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4">
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {tiles.map((tile) => (
               <a
-                className="rounded-xl border border-neutral-200 bg-white p-4 transition-colors hover:border-[#dea36a]"
+                className="rounded-[6px] border border-neutral-200 bg-white p-4 transition-colors hover:border-[#dea36a]"
                 href={tile.href}
                 key={tile.label}
               >
@@ -76,7 +78,7 @@ export default function Overview() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {shortcuts.map((shortcut) => (
               <a
-                className="rounded-xl border border-neutral-200 bg-white p-4 transition-colors hover:border-[#dea36a]"
+                className="rounded-[6px] border border-neutral-200 bg-white p-4 transition-colors hover:border-[#dea36a]"
                 href={shortcut.href}
                 key={shortcut.href}
               >

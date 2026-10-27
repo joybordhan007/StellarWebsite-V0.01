@@ -108,7 +108,7 @@ export default function Users() {
   return (
     <>
       <PageHeader description="People who can log in to this dashboard." title="Admin users" />
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-4">
         <MyAccount />
         <Card title="All admins">
           {!admins ? (
