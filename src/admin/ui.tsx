@@ -58,7 +58,7 @@ export function PageHeader({
     <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
       <div className="min-w-0">
         <h1 className="text-2xl font-semibold text-neutral-900">{title}</h1>
-        {description && <p className="mt-1 max-w-2xl text-sm text-neutral-500">{description}</p>}
+        {description && <div className="mt-1 max-w-2xl text-sm text-neutral-500">{description}</div>}
       </div>
       {actions && <div className="flex flex-wrap gap-2">{actions}</div>}
     </div>
@@ -442,6 +442,8 @@ export function ContentEditorFrame({
   description,
   doc,
   children,
+  actions,
+  allowReset = true,
 }: {
   title: string;
   description?: ReactNode;
@@ -449,14 +451,22 @@ export function ContentEditorFrame({
     draft: unknown;
   };
   children: ReactNode;
+  actions?: ReactNode;
+  /** Off for editors that show only part of a document (resetting would wipe the rest). */
+  allowReset?: boolean;
 }) {
   return (
     <div className="pb-24">
       <PageHeader
         actions={
-          <Button onClick={doc.resetToDefault} variant="ghost">
-            Restore original
-          </Button>
+          <>
+            {actions}
+            {allowReset && (
+              <Button onClick={doc.resetToDefault} variant="ghost">
+                Restore original
+              </Button>
+            )}
+          </>
         }
         description={
           <>

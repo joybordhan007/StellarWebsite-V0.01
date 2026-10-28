@@ -1,33 +1,13 @@
 import type { CSSProperties } from "react";
 import AchievementsBar from "../components/AchievementsBar";
 import Footer from "../components/Footer";
+import LogoMarquee from "../components/LogoMarquee";
 import { useContent } from "../content/ContentProvider";
 import type { Capability, Product } from "../content/types";
 
 const assetPathPrefix = "/assets/1-641";
 const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
-const imgRectangle9130 = `${assetPathPrefix}/c43ef.png`;
-const imgRectangle9142 = `${assetPathPrefix}/154aa.png`;
-const imgRectangle9115 = `${assetPathPrefix}/c0f71.png`;
-const imgRectangle9143 = `${assetPathPrefix}/c0474.jpg`;
-const imgRectangle9122 = `${assetPathPrefix}/40533.png`;
-const imgRectangle9144 = `${assetPathPrefix}/42204.png`;
-const imgRectangle9145 = `${assetPathPrefix}/05a9d.png`;
-const imgRectangle9146 = `${assetPathPrefix}/5ab68.png`;
-const imgRectangle9147 = `${assetPathPrefix}/50e65.png`;
-const imgRectangle9148 = `${assetPathPrefix}/6b4c6.png`;
-const imgRectangle9149 = `${assetPathPrefix}/754b8.png`;
-const imgRectangle9150 = `${assetPathPrefix}/4dc8c.png`;
-const imgRectangle9151 = `${assetPathPrefix}/3b10e.png`;
-const imgRectangle9152 = `${assetPathPrefix}/a5a3d.png`;
-const imgRectangle9153 = `${assetPathPrefix}/9ceb5.png`;
-const imgRectangle9154 = `${assetPathPrefix}/919a0.png`;
-const imgRectangle9155 = `${assetPathPrefix}/5730f.png`;
-const imgRectangle9156 = `${assetPathPrefix}/5913d.png`;
 const imgImage = `${assetPathPrefix}/afbbf.jpg`;
-const imgRectangle9133 = `${assetPathPrefix}/234ca.jpg`;
-const imgRectangle9134 = `${assetPathPrefix}/02160.jpg`;
-const imgRectangle9135 = `${assetPathPrefix}/a9ee6.jpg`;
 const imgRectangle9136 = `${assetPathPrefix}/69cf3.jpg`;
 const imgRectangle9137 = `${assetPathPrefix}/2504f.png`;
 const imgArrowForwardLong = `${assetPathPrefix}/887e7.svg`;
@@ -39,33 +19,6 @@ const imgGroup18 = `${assetPathPrefix}/86960.svg`;
 const imgLayer1 = `${assetPathPrefix}/0c357.svg`;
 const imgFrame3 = `${assetPathPrefix}/6576e.svg`;
 const imgGroup19 = `${assetPathPrefix}/0df6b.svg`;
-
-type BrandLogo = {
-  src: string;
-  alt: string;
-  imageClass?: string;
-};
-
-const brandLogos: BrandLogo[] = [
-  { src: imgRectangle9130, alt: "Centric Brands", imageClass: "centric" },
-  { src: imgRectangle9142, alt: "Dockers" },
-  { src: imgRectangle9115, alt: "IZOD" },
-  { src: imgRectangle9143, alt: "Next" },
-  { src: imgRectangle9122, alt: "Primark" },
-  { src: imgRectangle9144, alt: "Walmart" },
-  { src: imgRectangle9145, alt: "", imageClass: "wide" },
-  { src: imgRectangle9146, alt: "" },
-  { src: imgRectangle9147, alt: "", imageClass: "tall" },
-  { src: imgRectangle9148, alt: "", imageClass: "cover" },
-  { src: imgRectangle9149, alt: "" },
-  { src: imgRectangle9150, alt: "", imageClass: "wide" },
-  { src: imgRectangle9151, alt: "" },
-  { src: imgRectangle9152, alt: "", imageClass: "cover" },
-  { src: imgRectangle9153, alt: "" },
-  { src: imgRectangle9154, alt: "" },
-  { src: imgRectangle9155, alt: "" },
-  { src: imgRectangle9156, alt: "" },
-];
 
 type Component1Props = {
   className?: string;
@@ -88,44 +41,6 @@ function Component1({ className, property1 = "View" }: Component1Props) {
         <div className="absolute left-0 size-[18px] top-[20px]" data-node-id="1:117" data-name="arrow-subdirectory-forward">
           <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowSubdirectoryForward} />
         </div>
-      </div>
-    </div>
-  );
-}
-
-type FrameProps = {
-  className?: string;
-  scrollable?: boolean;
-};
-
-function Frame({ className, scrollable = false }: FrameProps) {
-  return (
-    <div
-      aria-label={scrollable ? "Customer brand logos" : undefined}
-      className={className || "h-[120px] overflow-clip relative w-[1560px]"}
-      data-node-id="1:287"
-      role={scrollable ? "region" : undefined}
-      tabIndex={scrollable ? 0 : undefined}
-    >
-      <div className="brand-logo-track">
-        {[0, 1].map((copy) => (
-          <div
-            aria-hidden={copy === 1}
-            className="brand-logo-group"
-            key={copy}
-          >
-            {brandLogos.map((logo) => (
-              <div className="brand-logo-card" key={logo.src}>
-                <img
-                  alt={copy === 0 ? logo.alt : ""}
-                  className={`brand-logo-image${logo.imageClass ? ` brand-logo-image--${logo.imageClass}` : ""}`}
-                  loading="lazy"
-                  src={logo.src}
-                />
-              </div>
-            ))}
-          </div>
-        ))}
       </div>
     </div>
   );
@@ -180,6 +95,8 @@ function FashionCarousel({ className }: { className: string }) {
 }
 
 export default function Home() {
+  const brands = useContent("brands");
+  const factories = useContent("factories").items.filter((factory) => factory.active);
   const capabilities = useContent("capabilities");
   const homeCapabilities = capabilities.homeIds
     .map((id) => capabilities.items.find((item) => item.id === id && item.active))
@@ -388,60 +305,26 @@ export default function Home() {
           </a>
         </div>
         <div className="content-stretch flex gap-[24px] items-center overflow-clip p-[2px] relative shrink-0 w-full" data-node-id="1:869" data-name="Frame">
-          <a aria-label="GoodEarth Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:870" data-name="Frame" href="/factories/goodearth#factory-profile">
-            <div className="h-[430px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:871">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9133} />
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[16px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:872" data-name="Frame">
-              <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full" data-node-id="1:873" data-name="Frame">
-                <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:874">
-                  <p className="leading-[1.2]">GoodEarth Apparels</p>
-                </div>
-                <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:875">
-                  <p className="leading-[1.2]">Dhaka, Bangladesh</p>
-                </div>
+          {factories.map((factory) => (
+            <a aria-label={`${factory.name} factory profile`} className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" href={`/factories/${factory.slug}#factory-profile`} key={factory.id}>
+              <div className="h-[430px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full">
+                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={factory.image} />
               </div>
-              <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#1d1d1d] text-[16px] w-full" data-node-id="1:876">
-                <p className="leading-[1.2]">LEED Zero | Woven</p>
-              </div>
-            </div>
-          </a>
-          <a aria-label="Progress Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:877" data-name="Frame" href="/factories/progress#factory-profile">
-            <div className="h-[430px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:878">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9134} />
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[16px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:879" data-name="Frame">
-              <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full" data-node-id="1:880" data-name="Frame">
-                <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:881">
-                  <p className="leading-[1.2]">Progress Apparels</p>
+              <div className="[word-break:break-word] content-stretch flex flex-col gap-[16px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full">
+                <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
+                  <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full">
+                    <p className="leading-[1.2]">{factory.name}</p>
+                  </div>
+                  <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full">
+                    <p className="leading-[1.2]">{factory.location}</p>
+                  </div>
                 </div>
-                <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:882">
-                  <p className="leading-[1.2]">Dhaka, Bangladesh</p>
+                <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#1d1d1d] text-[16px] w-full">
+                  <p className="leading-[1.2]">{[factory.certification, factory.specialty].filter(Boolean).join(" | ")}</p>
                 </div>
               </div>
-              <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#1d1d1d] text-[16px] w-full" data-node-id="1:883">
-                <p className="leading-[1.2]">{`LEED Gold | Woven `}</p>
-              </div>
-            </div>
-          </a>
-          <a aria-label="Knit Gallery factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:884" data-name="Frame" href="/factories/knit-gallery#factory-profile">
-            <div className="h-[430px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:885">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9135} />
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[16px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:886" data-name="Frame">
-              <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full" data-node-id="1:887" data-name="Frame">
-                <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:888">
-                  <p className="leading-[1.2]">Knit Gallery</p>
-                </div>
-                <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:889">
-                  <p className="leading-[1.2]">Tirupur, India</p>
-                </div>
-              </div>
-              <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#1d1d1d] text-[16px] w-full" data-node-id="1:890">
-                <p className="leading-[1.2]">LEED Platinum | Knits</p>
-              </div>
-            </div>
-          </a>
+            </a>
+          ))}
         </div>
       </div>
       <div className="-translate-x-1/2 absolute content-stretch flex items-center left-1/2 top-[4538px] w-[1920px]" data-node-id="1:891" data-name="Frame">
@@ -552,7 +435,7 @@ export default function Home() {
         <div className="[word-break:break-word] flex flex-col font-['Inter:Bold'] font-bold justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#1d1d1d] text-[40px] w-[min-content]" data-node-id="1:956">
           <p className="leading-[1.2]">TRUSTED BY GLOBAL BRANDS</p>
         </div>
-        <Frame className="brand-logo-viewport h-[120px] relative shrink-0 w-[1560px]" scrollable />
+        <LogoMarquee className="h-[120px] relative shrink-0 w-[1560px]" label="Customer brand logos" logos={brands.logos} />
       </div>
       <div className="-translate-x-1/2 absolute drop-shadow-[0px_1px_2px_rgba(0,0,0,0.08)] h-[500px] left-1/2 overflow-clip rounded-[8px] top-[3938px] w-[1560px]" data-node-id="1:958" data-name="Frame">
         <div className="absolute bg-white h-[500px] left-0 top-0 w-[1562px]" data-node-id="1:959" />

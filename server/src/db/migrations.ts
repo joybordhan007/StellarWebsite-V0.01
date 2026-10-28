@@ -71,6 +71,35 @@ const migrations: Migration[] = [
       )`,
     ],
   },
+  {
+    id: "002_profiles_and_analytics",
+    mysql: [
+      "ALTER TABLE admins ADD COLUMN avatar VARCHAR(255) NULL",
+      `CREATE TABLE page_views (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        path VARCHAR(255) NOT NULL,
+        referrer VARCHAR(191) NOT NULL,
+        device VARCHAR(16) NOT NULL,
+        visitor CHAR(16) NOT NULL,
+        day CHAR(10) NOT NULL,
+        created_at VARCHAR(32) NOT NULL,
+        INDEX page_views_day (day)
+      ) CHARACTER SET utf8mb4`,
+    ],
+    sqlite: [
+      "ALTER TABLE admins ADD COLUMN avatar TEXT",
+      `CREATE TABLE page_views (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        path TEXT NOT NULL,
+        referrer TEXT NOT NULL,
+        device TEXT NOT NULL,
+        visitor TEXT NOT NULL,
+        day TEXT NOT NULL,
+        created_at TEXT NOT NULL
+      )`,
+      "CREATE INDEX page_views_day ON page_views (day)",
+    ],
+  },
 ];
 
 export async function migrate(db: Database) {

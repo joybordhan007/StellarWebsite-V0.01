@@ -8,7 +8,7 @@ import { HttpError } from "./http.js";
 export const SESSION_COOKIE = "stellar_admin";
 const SESSION_DAYS = 7;
 
-export type Admin = { id: number; email: string; name: string; created_at: string };
+export type Admin = { id: number; email: string; name: string; avatar: string | null; created_at: string };
 type AdminRow = Admin & { password_hash: string };
 
 export function hashPassword(password: string) {
@@ -33,8 +33,8 @@ export async function findAdminById(id: number) {
   return rows[0];
 }
 
-export function publicAdmin({ id, email, name, created_at }: Admin): Admin {
-  return { id, email, name, created_at };
+export function publicAdmin({ id, email, name, avatar, created_at }: Admin): Admin {
+  return { id, email, name, avatar: avatar ?? null, created_at };
 }
 
 export function startSession(res: Response, admin: Admin) {

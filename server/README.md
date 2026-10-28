@@ -67,7 +67,7 @@ cPanel → **Setup Node.js App** → **Create Application**:
 তারপর **Create** → **Run NPM Install** → **Restart**।
 
 ### ৪. লগইন
-`https://আপনার-domain/admin` এ যান, লগইন করুন, এবং **Admin users → My account** থেকে password বদলে ফেলুন।
+`https://আপনার-domain/admin` এ যান, লগইন করুন, এবং **My profile** থেকে password বদলে ফেলুন।
 
 ---
 

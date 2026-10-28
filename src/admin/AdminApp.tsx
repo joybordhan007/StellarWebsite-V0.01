@@ -1,6 +1,7 @@
 import { ComponentType, FormEvent, lazy, Suspense, useEffect, useState } from "react";
 import { AdminProvider, useAdmin } from "./AdminContext";
 import { type Admin, api, ApiError } from "./api";
+import { Avatar } from "./components";
 import { Button, Spinner, TextField } from "./ui";
 
 const Overview = lazy(() => import("./pages/Overview"));
@@ -12,8 +13,12 @@ const OfficesEditor = lazy(() => import("./pages/OfficesEditor"));
 const SiteSettings = lazy(() => import("./pages/SiteSettings"));
 const SeoEditor = lazy(() => import("./pages/SeoEditor"));
 const LegalEditor = lazy(() => import("./pages/LegalEditor"));
-const MediaLibrary = lazy(() => import("./pages/MediaLibrary"));
-const Users = lazy(() => import("./pages/Users"));
+const FactoriesAdmin = lazy(() => import("./pages/FactoriesAdmin"));
+const BrandsAdmin = lazy(() => import("./pages/BrandsAdmin"));
+const AboutAdmin = lazy(() => import("./pages/AboutAdmin"));
+const SustainabilityAdmin = lazy(() => import("./pages/SustainabilityAdmin"));
+const FooterAdmin = lazy(() => import("./pages/FooterAdmin"));
+const Profile = lazy(() => import("./pages/Profile"));
 
 type Section = { href: string; label: string; icon: string; component: ComponentType<{ pathname: string }> };
 
@@ -24,12 +29,16 @@ const sections: Section[] = [
   { href: "/admin/products", label: "Products", icon: "M4 7l8-4 8 4v10l-8 4-8-4zM4 7l8 4 8-4M12 11v10", component: ProductsAdmin },
   { href: "/admin/capabilities", label: "Capabilities", icon: "M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z", component: CapabilitiesAdmin },
   { href: "/admin/achievements", label: "Achievements", icon: "M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0zM17 5h3v2a3 3 0 01-3 3M7 5H4v2a3 3 0 003 3", component: AchievementsAdmin },
+  { href: "/admin/factories", label: "Factories", icon: "M3 21h18M5 21V9l5 3V9l5 3V5h4v16", component: FactoriesAdmin },
+  { href: "/admin/brands", label: "Brand logos", icon: "M12 3l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.4l6-.9z", component: BrandsAdmin },
+  { href: "/admin/about", label: "About us", icon: "M12 21a9 9 0 100-18 9 9 0 000 18zM12 8h.01M11 12h1v5h1", component: AboutAdmin },
+  { href: "/admin/sustainability", label: "Sustainability", icon: "M5 21c0-9 5-14 14-16-1 9-6 14-14 16zM5 21l7-7", component: SustainabilityAdmin },
   { href: "/admin/offices", label: "Offices", icon: "M12 21s-7-6.5-7-12a7 7 0 0114 0c0 5.5-7 12-7 12zM12 11a2 2 0 100-4 2 2 0 000 4z", component: OfficesEditor },
+  { href: "/admin/footer", label: "Footer", icon: "M4 4h16v16H4zM4 15h16M8 18h3", component: FooterAdmin },
   { href: "/admin/site", label: "Site settings", icon: "M12 15a3 3 0 100-6 3 3 0 000 6zM19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z", component: SiteSettings },
   { href: "/admin/seo", label: "SEO", icon: "M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.3-4.3", component: SeoEditor },
   { href: "/admin/legal", label: "Legal pages", icon: "M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6", component: LegalEditor },
-  { href: "/admin/media", label: "Media library", icon: "M4 5h16v14H4zM4 15l5-5 4 4 3-3 4 4M15 9h.01", component: MediaLibrary },
-  { href: "/admin/users", label: "Admin users", icon: "M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM22 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8", component: Users },
+  { href: "/admin/profile", label: "My profile", icon: "M20 21a8 8 0 00-16 0M12 13a5 5 0 100-10 5 5 0 000 10z", component: Profile },
 ];
 
 function Icon({ path }: { path: string }) {
@@ -127,7 +136,7 @@ function Layout({ pathname }: { pathname: string }) {
           <p className="text-sm font-semibold tracking-[0.35em] text-white">STELLAR</p>
           <p className="mt-0.5 text-[10px] tracking-[0.3em] text-[#dea36a]">ADMIN DASHBOARD</p>
         </div>
-        <nav aria-label="Dashboard" className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3">
+        <nav aria-label="Dashboard" className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 [scrollbar-color:rgba(255,255,255,0.18)_transparent] [scrollbar-width:thin]">
           {sections.map((section) => (
             <a
               aria-current={section === active ? "page" : undefined}
@@ -144,8 +153,13 @@ function Layout({ pathname }: { pathname: string }) {
           <a className="mb-3 block text-sm text-[#dea36a] hover:underline" href="/" rel="noreferrer" target="_blank">
             View website ↗
           </a>
-          <p className="truncate text-sm text-white">{admin.name}</p>
-          <p className="truncate text-xs text-neutral-400">{admin.email}</p>
+          <a className="flex items-center gap-3 rounded-md p-1 hover:bg-white/5" href="/admin/profile">
+            <Avatar admin={admin} size={36} />
+            <span className="min-w-0">
+              <span className="block truncate text-sm text-white">{admin.name}</span>
+              <span className="block truncate text-xs text-neutral-400">{admin.email}</span>
+            </span>
+          </a>
           <button className="mt-3 text-sm text-neutral-300 hover:text-white" onClick={logout} type="button">
             Log out
           </button>

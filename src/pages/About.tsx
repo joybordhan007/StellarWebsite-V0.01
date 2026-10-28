@@ -1,11 +1,8 @@
 import Footer from "../components/Footer";
+import { useContent } from "../content/ContentProvider";
 const assetPathPrefix = "/assets/1-967";
 const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
 const imgImage = `${assetPathPrefix}/56147.jpg`;
-const imgRectangle9152 = `${assetPathPrefix}/02160.jpg`;
-const imgRectangle9154 = `${assetPathPrefix}/bc82a.jpg`;
-const imgRectangle9150 = `${assetPathPrefix}/234ca.jpg`;
-const imgRectangle9151 = `${assetPathPrefix}/82597.jpg`;
 const imgWorldMapPixelStyleIsolatedWhite1 = `${assetPathPrefix}/bea37.png`;
 const imgRectangle9164 = `${assetPathPrefix}/4139f.jpg`;
 const imgFrame4 = `${assetPathPrefix}/cdb42.png`;
@@ -70,7 +67,14 @@ function Component1({ className, property1 = "View" }: Component1Props) {
   );
 }
 
+// Legend colours per country, in order of first appearance (as in the design).
+const COUNTRY_COLORS = ["#dea36a", "#1d1d1d", "#8a8a8a"];
+const FACTORY_DOT_COLORS = ["#dea36a", "#4a4a4a", "#8a8a8a"];
+
 export default function AboutUs() {
+  const { journey } = useContent("about");
+  const factories = useContent("factories").items.filter((factory) => factory.active);
+  const countries = [...new Set(factories.map((factory) => factory.country))];
   return (
     <div className="bg-[#fafafa] relative h-[4794px] w-[1920px]" data-node-id="1:967" data-name="about us">
       <Footer className="-translate-x-1/2 absolute bg-white bottom-0 h-[593px] left-1/2 overflow-clip shadow-[0px_0px_4px_0px_rgba(0,0,0,0.06)] w-[1920px]" />
@@ -181,30 +185,33 @@ export default function AboutUs() {
         <div className="[word-break:break-word] content-stretch flex items-center justify-between leading-[0] not-italic relative shrink-0 w-full" data-node-id="1:1022" data-name="Frame">
           <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0" data-node-id="1:1023" data-name="Frame">
             <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center min-w-full relative shrink-0 text-[#4a4a4a] text-[14px] w-[min-content]" data-node-id="1:1024">
-              <p className="leading-[1.2]">OUR JOURNEY</p>
+              <p className="leading-[1.2]">{journey.eyebrow}</p>
             </div>
             <div className="flex flex-col font-['Inter:Bold'] font-bold justify-center relative shrink-0 text-[#1d1d1d] text-[40px] whitespace-nowrap" data-node-id="1:1025">
-              <p className="leading-[1.2] mb-0 whitespace-pre">{`BUILT ON VALUES. `}</p>
-              <p className="leading-[1.2] whitespace-pre">DRIVEN BY PEOPLE.</p>
+              {journey.heading.split("\n").map((line, index, lines) => (
+                <p className={`leading-[1.2] whitespace-pre${index < lines.length - 1 ? " mb-0" : ""}`} key={index}>
+                  {line}
+                </p>
+              ))}
             </div>
           </div>
           <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[16px] w-[853px]" data-node-id="1:1026">
-            <p className="leading-[1.2]">From humble beginnings to a trusted global partner, our journey reflects our commitment to people, product, partnerships and a more sustainable future.</p>
+            <p className="leading-[1.2]">{journey.intro}</p>
           </div>
         </div>
         <div className="content-stretch flex flex-col gap-[32px] items-start relative shrink-0 w-[1560px]" data-node-id="1:1027" data-name="Frame">
           <div className="content-stretch flex gap-[24px] items-center relative shrink-0 w-full" data-node-id="1:1028" data-name="Frame">
             <div className="flex-[1_0_0] h-[256px] min-w-px relative rounded-[4px]" data-node-id="1:1029">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[4px] size-full" src={imgRectangle9152} />
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[4px] size-full" src={journey.milestones[0]?.image} />
             </div>
             <div className="flex-[1_0_0] h-[256px] min-w-px relative rounded-[4px]" data-node-id="1:1030">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[4px] size-full" src={imgRectangle9154} />
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[4px] size-full" src={journey.milestones[1]?.image} />
             </div>
             <div className="flex-[1_0_0] h-[256px] min-w-px relative rounded-[4px]" data-node-id="1:1031">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[4px] size-full" src={imgRectangle9150} />
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[4px] size-full" src={journey.milestones[2]?.image} />
             </div>
             <div className="flex-[1_0_0] h-[256px] min-w-px relative rounded-[4px]" data-node-id="1:1032">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[4px] size-full" src={imgRectangle9151} />
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[4px] size-full" src={journey.milestones[3]?.image} />
             </div>
           </div>
           <div className="content-stretch flex gap-[24px] items-start relative shrink-0 w-full" data-node-id="1:1033" data-name="Frame">
@@ -220,10 +227,10 @@ export default function AboutUs() {
               </div>
               <div className="[word-break:break-word] content-stretch flex flex-col gap-[8px] items-start leading-[0] not-italic px-[20px] relative shrink-0 w-full" data-node-id="1:1042" data-name="Frame">
                 <div className="flex flex-col font-['Inria_Serif:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:1043">
-                  <p className="leading-[1.2]">2015</p>
+                  <p className="leading-[1.2]">{journey.milestones[0]?.year}</p>
                 </div>
                 <div className="flex flex-col font-['Inter:Regular'] font-normal justify-center relative shrink-0 text-[#4a4a4a] text-[16px] w-full" data-node-id="1:1044">
-                  <p className="leading-[1.2]">Progress Apparels commenced operations in Bangladesh.</p>
+                  <p className="leading-[1.2]">{journey.milestones[0]?.text}</p>
                 </div>
               </div>
             </div>
@@ -233,10 +240,10 @@ export default function AboutUs() {
               </div>
               <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-start leading-[0] min-h-px not-italic px-[20px] relative w-full" data-node-id="1:1048" data-name="Frame">
                 <div className="flex flex-col font-['Inria_Serif:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:1049">
-                  <p className="leading-[1.2]">2016</p>
+                  <p className="leading-[1.2]">{journey.milestones[1]?.year}</p>
                 </div>
                 <div className="flex flex-col font-['Inter:Regular'] font-normal justify-center relative shrink-0 text-[#4a4a4a] text-[16px] w-full" data-node-id="1:1050">
-                  <p className="leading-[1.2]">GoodEarth Apparels began production with a focus on sustainable manufacturing.</p>
+                  <p className="leading-[1.2]">{journey.milestones[1]?.text}</p>
                 </div>
               </div>
             </div>
@@ -246,10 +253,10 @@ export default function AboutUs() {
               </div>
               <div className="[word-break:break-word] content-stretch flex flex-col gap-[8px] items-start leading-[0] not-italic px-[20px] relative shrink-0 w-full" data-node-id="1:1054" data-name="Frame">
                 <div className="flex flex-col font-['Inria_Serif:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:1055">
-                  <p className="leading-[1.2]">2020</p>
+                  <p className="leading-[1.2]">{journey.milestones[2]?.year}</p>
                 </div>
                 <div className="flex flex-col font-['Inter:Regular'] font-normal justify-center relative shrink-0 text-[#4a4a4a] text-[16px] w-full" data-node-id="1:1056">
-                  <p className="leading-[1.2]">Strengthened our sustainability initiatives and renewable energy investments.</p>
+                  <p className="leading-[1.2]">{journey.milestones[2]?.text}</p>
                 </div>
               </div>
             </div>
@@ -259,10 +266,10 @@ export default function AboutUs() {
               </div>
               <div className="[word-break:break-word] content-stretch flex flex-col gap-[8px] items-start leading-[0] not-italic px-[20px] relative shrink-0 w-full" data-node-id="1:1060" data-name="Frame">
                 <div className="flex flex-col font-['Inria_Serif:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full" data-node-id="1:1061">
-                  <p className="leading-[1.2]">Today:</p>
+                  <p className="leading-[1.2]">{journey.milestones[3]?.year}</p>
                 </div>
                 <div className="flex flex-col font-['Inter:Regular'] font-normal justify-center relative shrink-0 text-[#4a4a4a] text-[16px] w-full" data-node-id="1:1062">
-                  <p className="leading-[1.2]">Three manufacturing facilities across Bangladesh and India, 10,200+ employees and 26M+ pieces annual capacity.</p>
+                  <p className="leading-[1.2]">{journey.milestones[3]?.text}</p>
                 </div>
               </div>
             </div>
@@ -333,51 +340,41 @@ export default function AboutUs() {
                 </div>
               </div>
             </div>
-            <a aria-label="GoodEarth Apparels factory location" className="factory-world-map-marker factory-world-map-marker--bangladesh-one" href="/factories/goodearth#factory-profile" />
-            <a aria-label="Progress Apparels factory location" className="factory-world-map-marker factory-world-map-marker--bangladesh-two" href="/factories/progress#factory-profile" />
-            <a aria-label="Knit Gallery factory location" className="factory-world-map-marker factory-world-map-marker--india" href="/factories/knit-gallery#factory-profile" />
+            {factories.map((factory) => (
+              <a
+                aria-label={`${factory.name} factory location`}
+                className={`factory-world-map-marker${countries.indexOf(factory.country) % 2 === 1 ? " factory-world-map-marker--alt" : ""}`}
+                href={`/factories/${factory.slug}#factory-profile`}
+                key={factory.id}
+                style={{ left: `${factory.mapPosition.x}%`, top: `${factory.mapPosition.y}%` }}
+              />
+            ))}
           </div>
           <div className="content-stretch flex gap-[24px] items-center relative shrink-0 w-[448px]" data-node-id="1:1095" data-name="Frame">
             <div className="flex flex-[1_0_0] flex-row items-center self-stretch" data-node-id="1:1096">
               <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] h-full items-start justify-center min-w-px relative" data-name="Frame">
-                <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full" data-node-id="1:1097" data-name="Frame">
-                  <div className="content-stretch flex gap-[12px] items-center relative shrink-0" data-node-id="1:1098" data-name="Frame">
-                    <div className="bg-[#dea36a] relative rounded-[999px] shrink-0 size-[12px]" data-node-id="1:1099" />
-                    <div className="[word-break:break-word] flex flex-col font-['Saira_SemiCondensed:SemiBold'] justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[20px] whitespace-nowrap" data-node-id="1:1100">
-                      <p className="leading-[1.2]">Bangladesh</p>
-                    </div>
-                  </div>
-                  <div className="content-stretch flex flex-col gap-[6px] items-start relative shrink-0" data-node-id="1:1101" data-name="Frame">
-                    <div className="content-stretch flex gap-[17px] items-center relative shrink-0" data-node-id="1:1102" data-name="Frame">
-                      <div className="bg-[#dea36a] relative rounded-[999px] shrink-0 size-[8px]" data-node-id="1:1103" />
-                      <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[14px] whitespace-nowrap" data-node-id="1:1104">
-                        <p className="leading-[1.2]">GoodEarth Apparels</p>
+                {countries.map((country, index) => (
+                  <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full" key={country}>
+                    <div className="content-stretch flex gap-[12px] items-center relative shrink-0">
+                      <div className="relative rounded-[999px] shrink-0 size-[12px]" style={{ background: COUNTRY_COLORS[index % COUNTRY_COLORS.length] }} />
+                      <div className="[word-break:break-word] flex flex-col font-['Saira_SemiCondensed:SemiBold'] justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[20px] whitespace-nowrap">
+                        <p className="leading-[1.2]">{country}</p>
                       </div>
                     </div>
-                    <div className="content-stretch flex gap-[17px] items-center relative shrink-0" data-node-id="1:1105" data-name="Frame">
-                      <div className="bg-[#dea36a] relative rounded-[999px] shrink-0 size-[8px]" data-node-id="1:1106" />
-                      <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[14px] whitespace-nowrap" data-node-id="1:1107">
-                        <p className="leading-[1.2]">Progress Apparels</p>
-                      </div>
+                    <div className="content-stretch flex flex-col gap-[6px] items-start relative shrink-0">
+                      {factories
+                        .filter((factory) => factory.country === country)
+                        .map((factory) => (
+                          <div className="content-stretch flex gap-[17px] items-center relative shrink-0" key={factory.id}>
+                            <div className="relative rounded-[999px] shrink-0 size-[8px]" style={{ background: FACTORY_DOT_COLORS[index % FACTORY_DOT_COLORS.length] }} />
+                            <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[14px] whitespace-nowrap">
+                              <p className="leading-[1.2]">{factory.name}</p>
+                            </div>
+                          </div>
+                        ))}
                     </div>
                   </div>
-                </div>
-                <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full" data-node-id="1:1108" data-name="Frame">
-                  <div className="content-stretch flex gap-[12px] items-center relative shrink-0" data-node-id="1:1109" data-name="Frame">
-                    <div className="bg-[#1d1d1d] relative rounded-[999px] shrink-0 size-[12px]" data-node-id="1:1110" />
-                    <div className="[word-break:break-word] flex flex-col font-['Saira_SemiCondensed:SemiBold'] justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[20px] whitespace-nowrap" data-node-id="1:1111">
-                      <p className="leading-[1.2]">India</p>
-                    </div>
-                  </div>
-                  <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="1:1112" data-name="Frame">
-                    <div className="content-stretch flex gap-[17px] items-center relative shrink-0" data-node-id="1:1113" data-name="Frame">
-                      <div className="bg-[#4a4a4a] relative rounded-[999px] shrink-0 size-[8px]" data-node-id="1:1114" />
-                      <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[14px] whitespace-nowrap" data-node-id="1:1115">
-                        <p className="leading-[1.2]">Knit Gallery</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
             <div className="flex flex-row items-center self-stretch" data-node-id="1:1116">
@@ -387,7 +384,7 @@ export default function AboutUs() {
               <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col gap-[24px] h-full items-start justify-center leading-[0] min-w-px not-italic relative whitespace-nowrap" data-name="Frame">
                 <div className="content-stretch flex flex-col gap-[6px] items-start relative shrink-0 w-full" data-node-id="1:1118" data-name="Frame">
                   <div className="flex flex-col font-['Saira_SemiCondensed:SemiBold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px]" data-node-id="1:1119">
-                    <p className="leading-[1.2]">3</p>
+                    <p className="leading-[1.2]">{factories.length}</p>
                   </div>
                   <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px]" data-node-id="1:1120">
                     <p className="leading-[1.2]">Facilities</p>
@@ -395,7 +392,7 @@ export default function AboutUs() {
                 </div>
                 <div className="content-stretch flex flex-col gap-[6px] items-start relative shrink-0 w-full" data-node-id="1:1121" data-name="Frame">
                   <div className="flex flex-col font-['Saira_SemiCondensed:SemiBold'] justify-center relative shrink-0 text-[#1d1d1d] text-[32px]" data-node-id="1:1122">
-                    <p className="leading-[1.2]">2</p>
+                    <p className="leading-[1.2]">{countries.length}</p>
                   </div>
                   <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px]" data-node-id="1:1123">
                     <p className="leading-[1.2]">Countries</p>

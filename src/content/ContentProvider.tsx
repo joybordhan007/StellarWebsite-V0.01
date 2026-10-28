@@ -12,6 +12,8 @@ declare global {
 }
 
 const ContentContext = createContext<StoredContent>({});
+/** Whether the backend answered (production server or dev proxy); false in the Figma Make preview. */
+const BackendContext = createContext(false);
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -37,6 +39,7 @@ export function mergeContent<K extends ContentKey>(key: K, stored: unknown): Con
 
 export function ContentProvider({ children }: { children: ReactNode }) {
   const [stored, setStored] = useState<StoredContent>(() => window.__STELLAR_CONTENT__ ?? {});
+  const [backend, setBackend] = useState(() => Boolean(window.__STELLAR_CONTENT__));
 
   useEffect(() => {
     // The production server embeds content in the page; elsewhere (local dev,
@@ -51,7 +54,10 @@ export function ContentProvider({ children }: { children: ReactNode }) {
           : null,
       )
       .then((result) => {
-        if (!cancelled && result?.content) setStored(result.content);
+        if (!cancelled && result?.content) {
+          setStored(result.content);
+          setBackend(true);
+        }
       })
       .catch(() => undefined);
 
@@ -60,10 +66,18 @@ export function ContentProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  return <ContentContext.Provider value={stored}>{children}</ContentContext.Provider>;
+  return (
+    <BackendContext.Provider value={backend}>
+      <ContentContext.Provider value={stored}>{children}</ContentContext.Provider>
+    </BackendContext.Provider>
+  );
 }
 
 export function useContent<K extends ContentKey>(key: K): ContentMap[K] {
   const stored = useContext(ContentContext)[key];
   return useMemo(() => mergeContent(key, stored), [key, stored]);
+}
+
+export function useBackendAvailable() {
+  return useContext(BackendContext);
 }

@@ -165,29 +165,31 @@ textarea {
   display: none;
 }
 
+/* Shared by brand and certification logos (LogoMarquee); duration scales with the logo count. */
 .brand-logo-track {
   display: flex;
   width: max-content;
-  animation: brand-logo-marquee 36s linear infinite;
+  animation: brand-logo-marquee var(--logo-marquee-duration, 36s) linear infinite;
 }
 
-.certification-logo-marquee {
-  overflow: hidden;
+/* Factory gallery: a row that scrolls with the arrow buttons. */
+.factory-gallery-track {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
 }
 
-.certification-logo-marquee > div {
-  animation: certification-logo-marquee 36s linear infinite;
-  will-change: transform;
+.factory-gallery-track::-webkit-scrollbar {
+  display: none;
 }
 
-.certification-logo-marquee--progress,
-.certification-logo-marquee--knit-gallery {
-  --certification-logo-cycle-distance: -4224px;
+.factory-gallery-track > div {
+  scroll-snap-align: start;
 }
 
-.certification-logo-marquee--sustainability {
-  --certification-logo-cycle-distance: -7392px;
-}
+
+
+
 
 .brand-logo-group {
   display: flex;
@@ -445,12 +447,6 @@ textarea {
   }
 }
 
-@keyframes certification-logo-marquee {
-  to {
-    transform: translateX(var(--certification-logo-cycle-distance, -3696px));
-  }
-}
-
 @keyframes fashion-card-marquee {
   to {
     transform: translateX(var(--fashion-cycle, -3564px));
@@ -459,10 +455,6 @@ textarea {
 
 @media (prefers-reduced-motion: reduce) {
   .brand-logo-track {
-    animation: none;
-  }
-
-  .certification-logo-marquee > div {
     animation: none;
   }
 
@@ -727,25 +719,6 @@ textarea {
   .hero-talk-icon-track {
     transition: none;
   }
-}
-
-.factory-hotspots {
-  position: absolute;
-  z-index: 50;
-  top: 920px;
-  left: 180px;
-  width: 1560px;
-  height: 128px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  pointer-events: none;
-}
-
-.factory-hotspots a {
-  position: static;
-  display: block;
-  pointer-events: auto;
 }
 
 .design-scale div[class*="h-[90px]"][class*="top-0"][class*="w-[1920px]"] {
@@ -1103,8 +1076,7 @@ textarea {
     color: #dea36a;
   }
 
-  .desktop-header,
-  .factory-hotspots {
+  .desktop-header {
     display: none;
   }
 }
@@ -1127,19 +1099,8 @@ textarea {
   box-shadow: 0 0 0 8px rgb(222 163 106 / 30%);
 }
 
-.factory-world-map-marker--bangladesh-one {
-  top: 53%;
-  left: 75%;
-}
-
-.factory-world-map-marker--bangladesh-two {
-  top: 56%;
-  left: 77%;
-}
-
-.factory-world-map-marker--india {
-  top: 60%;
-  left: 73%;
+/* Pins are placed from each factory's map position; every second country gets the green pin. */
+.factory-world-map-marker--alt {
   background: #1d4222;
   box-shadow: 0 0 0 5px rgb(29 66 34 / 22%);
 }

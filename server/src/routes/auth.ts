@@ -39,8 +39,11 @@ authRouter.get("/me", requireAdmin, (_req, res) => {
 
 authRouter.put("/profile", requireAdmin, async (req, res) => {
   const name = readString(req.body, "name", { max: 191 });
-  await db().run("UPDATE admins SET name = ? WHERE id = ?", [name, currentAdmin(res).id]);
-  res.json({ admin: { ...currentAdmin(res), name } });
+  // Profile photo: an uploaded image (/uploads/...) or empty to remove it.
+  const avatar = readString(req.body, "avatar", { max: 255, required: false }) || null;
+  if (avatar && !avatar.startsWith("/uploads/")) throw new HttpError(400, "Upload the profile photo first.");
+  await db().run("UPDATE admins SET name = ?, avatar = ? WHERE id = ?", [name, avatar, currentAdmin(res).id]);
+  res.json({ admin: { ...currentAdmin(res), name, avatar } });
 });
 
 authRouter.put("/password", requireAdmin, async (req, res) => {

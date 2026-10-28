@@ -2,7 +2,7 @@ import { ReactNode, SelectHTMLAttributes, useCallback, useEffect, useId, useRef,
 import { mergeContent } from "../content/ContentProvider";
 import type { ContentKey, ContentMap } from "../content/types";
 import { useAdmin } from "./AdminContext";
-import { api, ApiError, type ContentMeta } from "./api";
+import { type Admin, api, ApiError, type ContentMeta } from "./api";
 import { Button, ControlIcon } from "./ui";
 
 /** Popup dialog. Closes on Escape and on a click outside the panel. */
@@ -378,4 +378,25 @@ export function useLiveContent<K extends ContentKey>(key: K) {
   );
 
   return { data, commit };
+}
+
+/** Profile photo, or the initials when there is none. */
+export function Avatar({ admin, size = 40 }: { admin: Admin; size?: number }) {
+  const initials = admin.name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("");
+  return admin.avatar ? (
+    <img alt="" className="shrink-0 rounded-full object-cover" src={admin.avatar} style={{ width: size, height: size }} />
+  ) : (
+    <span
+      aria-hidden="true"
+      className="flex shrink-0 items-center justify-center rounded-full bg-[#dea36a] font-semibold text-white"
+      style={{ width: size, height: size, fontSize: size * 0.38 }}
+    >
+      {initials || "A"}
+    </span>
+  );
 }

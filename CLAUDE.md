@@ -47,18 +47,26 @@ No router library, no state library.
 - `src/components/Footer.tsx` — the one shared footer (was copied into every page before)
 - `src/components/CountUpValue.tsx` — animated number counter for stats
 - `src/components/AchievementsBar.tsx` — the shared stats bar (Home, Capabilities, Sustainability)
+- `src/components/LogoMarquee.tsx` — scrolling 240×120 logo row (brands, certifications) + `LogoImage`
+- `src/pages/FactoryPage.tsx` — one data-driven page for every factory (`/factories/<slug>`); replaced
+  GoodEarth/Progress/KnitGallery.tsx
 - `src/components/PageReveal.tsx` — page fade-in + scroll reveal wrapper (styles at end of `index.css`)
 - `src/content/` — editable content: `types.ts` (document shapes), `defaults.ts` (built-in
-  content), `collectionDefaults.ts` (catalog, capabilities, achievements), `ContentProvider.tsx`
-  (`useContent(key)`, `mergeContent`)
+  content), `collectionDefaults.ts` (catalog, capabilities, achievements), `pageDefaults.ts`
+  (factories, brands, about, versatility, sustainability — generated once from the Figma pages),
+  `ContentProvider.tsx` (`useContent(key)`, `mergeContent`, `useBackendAvailable()`)
 - `src/data/productCategories.json` — source of the default product catalogue
 - `public/assets/achievements/*.svg` — achievement icons, each composed into one file from the
   Figma layer pieces (so the dashboard can swap them with a single upload)
+- `public/assets/factories/icons/*.png` — factory stat / product-mix / distance icons, rasterised
+  (4x, transparent) from the Figma layer stacks
+- `public/assets/social/*.svg` — footer social icons, one per platform (Phosphor-style 1.5px stroke)
 - `src/admin/` — dashboard: `AdminApp.tsx` (login, layout, sections), `api.ts`, `AdminContext.tsx`
   (session, toasts), `ui.tsx` (form controls, image picker, `useContentDoc`, save bar),
-  `components.tsx` (Modal, `useConfirm`, DataTable, Toggle, ActionMenu, LinkTabs, `useLiveContent`), `pages/*`
+  `components.tsx` (Modal, `useConfirm`, DataTable, Toggle, ActionMenu, LinkTabs, `useLiveContent`,
+  Avatar), `LogoListEditor.tsx`, `charts.tsx` (LineChart, ColumnChart, BarList for Overview), `pages/*`
 - `server/src/` — `index.ts` (app), `config.ts` (env), `db/` (driver + migrations), `auth.ts`,
-  `routes/` (auth, admins, content, messages, media), `site.ts` (serves `dist/` + injects content/SEO)
+  `routes/` (auth, content, messages, media, analytics), `site.ts` (serves `dist/` + injects content/SEO)
 - `server/app.cjs` — cPanel/Passenger startup file; `server/README.md` — dev + deployment guide (Bangla)
 - `scripts/package-deploy.mjs` — `pnpm deploy:package`: builds site + server into `deploy/stellar.zip`
 - `public/assets/<figma-node-id>/` — exported images/SVGs, grouped by Figma frame (e.g. `1-641` = Home)
@@ -72,23 +80,22 @@ No router library, no state library.
 | `/about` | About | |
 | `/capabilities` | Capabilities | |
 | `/design-path` | DesignPath | |
-| `/factories`, `/factories/goodearth` | GoodEarth | `/factories` defaults to GoodEarth |
-| `/factories/progress` | Progress | |
-| `/factories/knit-gallery` | KnitGallery | |
+| `/factories`, `/factories/<slug>` | FactoryPage | slugs `goodearth`, `progress`, `knit-gallery`; unknown or hidden → first visible factory |
 | `/sustainability` | Sustainability | longest page (~9963px) |
 | `/products` | Products | dynamic height via `onHeightChange` |
 | `/contact` | Contact | form + office tabs + map |
 | `/privacy-policy`, `/terms-of-service` | LegalPages | |
-| `/admin`, `/admin/*` | AdminApp | overview, messages, products (+ `/products/categories`), capabilities, achievements, offices, site, seo, legal, media, users |
+| `/admin`, `/admin/*` | AdminApp | overview, messages, products (+ `/categories`), capabilities (+ `/versatility`), achievements, factories (+ `/<id>` editor), brands, about, sustainability, offices, footer, site, seo, legal, profile |
 
 Unknown paths fall back to Home.
 
 ### API (`server/`)
 
 Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST /api/auth/login`,
-`GET /api/health`. Admin (cookie): `PUT|DELETE /api/content/:key`, `GET /api/content/:key/meta`,
-`GET|PATCH|DELETE /api/messages`, `GET|POST|DELETE /api/media`, `GET|POST|DELETE /api/admins`,
-`GET /api/auth/me`, `PUT /api/auth/profile`, `PUT /api/auth/password`, `GET /api/stats`.
+`POST /api/track`, `GET /api/health`. Admin (cookie): `PUT|DELETE /api/content/:key`,
+`GET /api/content/:key/meta`, `GET|PATCH|DELETE /api/messages`, `GET|POST|DELETE /api/media`,
+`GET /api/auth/me`, `PUT /api/auth/profile` (name + avatar), `PUT /api/auth/password`,
+`GET /api/stats`, `GET /api/reports?days=7|30|90`.
 
 ## Decisions
 
@@ -105,8 +112,24 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
   separate chunks, so visitors never download admin code.
 - **"Partner with us" / "Let's talk" CTAs go to `/contact` globally**, detected by button text
   (`isContactCta`), so Figma-exported buttons don't each need wiring. Disabled on `/admin`.
-- **Factory sub-navigation via hotspots.** `FactoryHotspots` overlays invisible links on the
-  factory page tabs; scroll position is preserved when switching between `/factories/*` pages.
+- **One factory page, many factories.** The three near-identical Figma factory pages became
+  `FactoryPage`, rendered from the `factories` document (hero and header stay shared). Its tabs are
+  real links (the old invisible `FactoryHotspots` overlay is gone); scroll position is preserved
+  when switching between `/factories/*`. Fixed-count blocks stay fixed: 6 stats, 6 product-mix
+  items; the key-strengths panel tightens (gap 22px) above 4 strengths, as GoodEarth's design did.
+  The donut is drawn from the percentages (the Figma image did not match its own numbers). The
+  gallery shows 7 at a time and its arrows scroll when there are more.
+- **Factories feed the rest of the site.** Home “A global footprint”, Sustainability “Three
+  factories” cards, the About world map (pins from `mapPosition` in %, top-left of the pin; legend
+  grouped by `country`; Facilities/Countries counted) all come from visible factories.
+- **Logos are data, not screenshots.** Brand and certification logos keep their original files
+  plus the design's crop box (`box`, % of the tile); uploads use `fit` contain/padded/cover. All
+  logo rows use `LogoMarquee` (two copies, -50% loop, duration = 2s × count).
+- **Page views are counted without cookies.** `POST /api/track` stores path, referrer host,
+  device and a daily visitor hash (IP + UA + day + secret); bots and `/admin` are skipped. The site
+  only reports when the backend answered (`useBackendAvailable`), so the Figma preview stays quiet.
+- **Admin users and Media library pages were removed** at the owner's request. One admin (seeded
+  from env) manages the site; uploads still go through `/api/media` (Upload / Library buttons).
 - **Separate mobile header.** Below 767px a simple hamburger header (`MobileHeader`) replaces the
   scaled desktop header.
 - **Assets referenced by path constants** at the top of each page (`assetPathPrefix`), served
@@ -142,7 +165,8 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
 - **Page text is wired into content per page, step by step.** Pages are Figma markup with literal
   text; making them editable means replacing literals with `useContent(...)` fields. Done so far:
   footer, navigation labels, SEO, products + categories, Home carousel, capabilities (+ Home
-  "Ideas to impact"), achievements bars, offices, legal pages. DOM-patching tricks were
+  "Ideas to impact", Versatility), achievements bars, factories (+ Home/Sustainability cards and
+  About map), brand logos, About journey, sustainability certifications, offices, legal pages. DOM-patching tricks were
   rejected as fragile.
 - **Records live inside content documents.** Products, categories, capabilities and achievements
   are arrays with numeric `id`, `createdAt` and (where relevant) `active`, inside one document per
@@ -171,6 +195,10 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
   uploaded SVG can't run script on the site's origin. Images only, 10 MB max.
 - **Dashboard layout tokens:** content has 24px side margins (full width), cards 6px radius,
   16px between cards and between sections.
+- **Partial-document editors hide “Restore original”** (`allowReset={false}`): a factory, the
+  footer, site settings and Versatility edit part of a bigger document, so resetting would wipe more.
+- **Overview charts follow the dataviz rules:** validated categorical slots (views #2a78d6,
+  visitors #eb6834, enquiries #6250d6), one axis, hover tooltips, a table view.
 - **Admin UI uses system fonts** (`.admin-root`): the site's Figma fonts are one weight per
   family with `font-synthesis: none`, so Tailwind weights wouldn't render.
 - **Dev proxy is opt-in.** Vite proxies `/api` and `/uploads` only when `API_PROXY` is set
@@ -188,13 +216,20 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
 - Client-side navigation with prefetch, back/forward support, hash-scroll, per-route document title
 - Animated stat counters (`CountUpValue`) on Home, Capabilities, Sustainability — start when visible
 - Logo / certification / fashion-card marquees
-- Factory pages with tab hotspots (GoodEarth, Progress, Knit Gallery)
+- Factory pages (GoodEarth, Progress, Knit Gallery) from one data-driven component, with a
+  scrollable photo gallery and computed product-mix donut
 - Products page with category tabs (empty categories hidden), auto black/white tab icons, page
   height adapts to the number of products
 - Home: "Fashion for every generation" carousel from chosen products (name only, no subtitle);
   "Ideas to impact" from chosen capabilities (name only); VIEW ALL links go to the full lists
 - Capabilities page cards from the dashboard (4 per row, sections below move with the row count)
 - Shared achievements bar on Home, Capabilities and Sustainability (fixed the broken CO₂ label)
+- Home “A global footprint”, Sustainability “Three factories”, About world map and legend driven
+  by the factories; Home brand logos, About journey, Capabilities Versatility and Sustainability
+  certifications driven by content
+- Footer fully editable: description, social links (any of 9 platforms), link columns, contact
+  info, copyright and credit
+- Cookie-less page-view tracking for the dashboard reports
 - Contact page: form (inbox + email, honeypot), office list with selectable office and map address
 - Privacy Policy and Terms of Service pages
 - Smooth motion site-wide: page fade-in on route change, staggered scroll reveal of section
@@ -207,15 +242,18 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
   category filter, search, status + home toggles, ⋮ view/edit/delete, add/edit popups, arrange home
   carousel) and Product categories (table, ⋮ edit/move/delete, add/edit popup with icon preview);
   capabilities (table, status + home toggles (max 6), ⋮ view/edit/move/delete, popups, arrange
-  home); achievements (table, popup with live preview, per-page bars with order/add/remove); offices; site settings (company,
-  footer text, phone/email/addresses, social links, contact-form recipient, menu labels); SEO per
-  page; legal pages (sections, closing note); media library; admin users + change password.
-  Unsaved-changes bar, "Restore original" per section, last-saved info.
+  home) + Versatility tab; achievements (table, popup with live preview, per-page bars); factories
+  (table with status toggle and ⋮ view/edit; editor for every section incl. click-to-place map pin
+  and certification logos); brand logos and sustainability certifications (upload, layout, order);
+  About journey; offices; footer; site settings (company, contact-form recipient, menu labels);
+  SEO per page; legal pages; my profile (photo, name, admin ID, password). Overview: traffic and
+  enquiry reports (7/30/90 days, deltas, daily charts, top pages, sources, devices) plus content
+  counts and latest messages. Unsaved-changes bar, last-saved info.
 
 ### Not yet editable (next steps)
 
-Remaining hero/section text and images inside the Figma pages (About, Design Path, factory pages,
-most of Home/Capabilities/Sustainability, page heroes of Products/Contact). Each needs its literals moved
+Remaining hero/section text and images inside the Figma pages (Design Path, page heroes, the
+factory hero, and the other Home/About/Capabilities/Sustainability sections). Each needs its literals moved
 into a content document + an editor section. Email notifications are still via FormSubmit (SMTP
 via nodemailer would remove the activation step).
 
@@ -246,3 +284,9 @@ via nodemailer would remove the activation step).
   achievements editable; Home carousel + "Ideas to impact" driven by them; shared achievements bar
   (11 composed icons). Optimistic locking on content saves. SQLite is now the production default,
   JWT secret auto-generated, `pnpm deploy:package` builds the upload zip. Removed 55 unused assets.
+- 2026-10-28 — Factories: one FactoryPage + Factories admin (list, status, full editor, map pin,
+  certifications); Home/Sustainability factory cards and About map from factories. Brand logos,
+  About journey, Versatility, Sustainability certifications and the whole footer editable. Admin
+  profile (avatar, name, ID, password); Admin users and Media library pages removed. Overview
+  reporting with cookie-less page-view tracking (migration 002). Count-ups show final values under
+  reduced motion. Removed 159 unused assets.

@@ -9,28 +9,32 @@ type CountUpValueProps = {
 
 const numberFormatter = new Intl.NumberFormat("en-US");
 
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export default function CountUpValue({
   value: targetValue,
   prefix = "",
   suffix = "",
   duration = 1800,
 }: CountUpValueProps) {
-  const [value, setValue] = useState(0);
+  // Without motion there is nothing to count up: show the final number straight away.
+  const [value, setValue] = useState(() => (prefersReducedMotion() ? targetValue : 0));
   const valueRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const element = valueRef.current;
     if (!element) return;
+    if (prefersReducedMotion()) {
+      setValue(targetValue);
+      return;
+    }
 
     let animationFrame = 0;
     let observer: IntersectionObserver | undefined;
 
     const animate = () => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        setValue(targetValue);
-        return;
-      }
-
       const startTime = performance.now();
       const update = (currentTime: number) => {
         const progress = Math.min((currentTime - startTime) / duration, 1);

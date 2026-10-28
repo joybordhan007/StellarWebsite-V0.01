@@ -1,37 +1,12 @@
 import { useEffect } from "react";
 import AchievementsBar from "../components/AchievementsBar";
 import Footer from "../components/Footer";
+import LogoMarquee from "../components/LogoMarquee";
+import { useContent } from "../content/ContentProvider";
 
 const assetPathPrefix = "/assets/1-3076";
-const imgRectangle9149 = `${assetPathPrefix}/5886f.png`;
-const imgRectangle9150 = `${assetPathPrefix}/2d220.jpg`;
-const imgRectangle9151 = `${assetPathPrefix}/ffe1a.png`;
-const imgRectangle9152 = `${assetPathPrefix}/cd5b4.png`;
-const imgRectangle9186 = `${assetPathPrefix}/f1d41.png`;
-const imgRectangle9163 = `${assetPathPrefix}/aed48.png`;
-const imgRectangle9164 = `${assetPathPrefix}/1d6dc.png`;
-const imgRectangle9167 = `${assetPathPrefix}/642b2.png`;
-const imgRectangle9168 = `${assetPathPrefix}/87a64.png`;
-const imgRectangle9169 = `${assetPathPrefix}/7dacd.png`;
-const imgRectangle9171 = `${assetPathPrefix}/347b7.jpg`;
-const imgRectangle9172 = `${assetPathPrefix}/92cc5.png`;
-const imgRectangle9173 = `${assetPathPrefix}/5494a.png`;
-const imgRectangle9174 = `${assetPathPrefix}/74b73.png`;
-const imgRectangle9175 = `${assetPathPrefix}/7524c.png`;
-const imgRectangle9176 = `${assetPathPrefix}/facd3.png`;
-const imgRectangle9177 = `${assetPathPrefix}/b1d3b.png`;
-const imgRectangle9178 = `${assetPathPrefix}/dba50.png`;
-const imgRectangle9179 = `${assetPathPrefix}/bc7ff.png`;
-const imgRectangle9180 = `${assetPathPrefix}/35c52.png`;
-const imgRectangle9181 = `${assetPathPrefix}/f6658.png`;
-const imgRectangle9182 = `${assetPathPrefix}/14f3d.png`;
-const imgRectangle9183 = `${assetPathPrefix}/b2871.png`;
-const imgRectangle9184 = `${assetPathPrefix}/ddfaf.png`;
-const imgRectangle9185 = `${assetPathPrefix}/a764b.png`;
 const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
 const imgImage = `${assetPathPrefix}/6e33d.jpg`;
-const imgRectangle9113 = `${assetPathPrefix}/234ca.jpg`;
-const imgRectangle9114 = `${assetPathPrefix}/02160.jpg`;
 const imgRectangle9214 = `${assetPathPrefix}/0cd2a.png`;
 const imgRectangle9215 = `${assetPathPrefix}/daf30.png`;
 const imgRectangle9216 = `${assetPathPrefix}/581fc.jpg`;
@@ -95,350 +70,6 @@ const imgLine8 = `${assetPathPrefix}/30b4c.svg`;
 const imgLine9 = `${assetPathPrefix}/c64ae.svg`;
 const imgLine10 = `${assetPathPrefix}/a352a.svg`;
 
-type CertificationsStandardsProps = {
-  className?: string;
-  property1?: "View";
-};
-
-function CertificationsStandards({ className, property1 = "View" }: CertificationsStandardsProps) {
-  return (
-    <div className={`${className || "h-[120px] overflow-clip relative w-[1560px]"} certification-logo-marquee certification-logo-marquee--sustainability`} data-node-id="1:506">
-      <div className="absolute h-[120px] left-0 rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:507">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9149} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[264px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:508">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9150} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[528px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:509">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9151} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[792px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:510">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9152} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[1056px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:511">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9186} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[1320px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:512">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9163} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[1584px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:513">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9164} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[1848px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:514">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9152} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[2112px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:515">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9150} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[2376px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:516">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9167} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[2640px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:517">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9168} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[2904px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:518">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <div className="absolute inset-0 overflow-hidden rounded-[6px]">
-            <img alt="" className="absolute h-[144.86%] left-[18.04%] max-w-none top-[-22.7%] w-[63.74%]" src={imgRectangle9169} />
-          </div>
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[3168px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:519">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9186} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[3432px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:520">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9171} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[3696px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:521">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <div className="absolute inset-0 overflow-hidden rounded-[6px]">
-            <img alt="" className="absolute h-[159.08%] left-[10.13%] max-w-none top-[-29.34%] w-[79.54%]" src={imgRectangle9172} />
-          </div>
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[3960px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:522">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9173} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[4224px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:523">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9174} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[4488px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:524">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-cover rounded-[6px] size-full" src={imgRectangle9175} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[4752px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:525">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9176} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[5016px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:526">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9177} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[5280px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:527">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-cover rounded-[6px] size-full" src={imgRectangle9178} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[5544px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:528">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9179} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[5808px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:529">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9180} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[6072px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:530">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9181} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[6336px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:531">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9182} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[6600px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:532">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9183} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[6864px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:533">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9184} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[7128px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:534">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9185} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[7392px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:535">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9149} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[7656px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:536">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9150} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[7920px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:537">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9151} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[8184px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:538">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9163} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[8448px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:539">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9164} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[8712px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:540">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9152} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[8976px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:541">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9150} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[9240px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:542">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9167} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[9504px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:543">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9168} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[9768px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:544">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <div className="absolute inset-0 overflow-hidden rounded-[6px]">
-            <img alt="" className="absolute h-[144.86%] left-[18.04%] max-w-none top-[-22.7%] w-[63.74%]" src={imgRectangle9169} />
-          </div>
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[10032px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:545">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9186} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[10296px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:546">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9171} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[10560px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:547">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <div className="absolute inset-0 overflow-hidden rounded-[6px]">
-            <img alt="" className="absolute h-[159.08%] left-[10.13%] max-w-none top-[-29.34%] w-[79.54%]" src={imgRectangle9172} />
-          </div>
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[10824px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:548">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9173} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[11088px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:549">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9174} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[11352px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:550">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-cover rounded-[6px] size-full" src={imgRectangle9175} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[11616px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:551">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9176} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[11880px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:552">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9177} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[12144px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:553">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-cover rounded-[6px] size-full" src={imgRectangle9178} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[12408px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:554">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9179} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[12672px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:555">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9180} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[12936px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:556">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9181} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[13200px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:557">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9182} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[13464px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:558">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9183} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[13728px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:559">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9184} />
-        </div>
-      </div>
-      <div className="absolute h-[120px] left-[13992px] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] top-0 w-[240px]" data-node-id="1:560">
-        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[6px]">
-          <div className="absolute bg-white inset-0 rounded-[6px]" />
-          <img alt="" className="absolute max-w-none object-contain rounded-[6px] size-full" src={imgRectangle9185} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 type Component1Props = {
   className?: string;
   property1?: "View";
@@ -466,6 +97,8 @@ function Component1({ className, property1 = "View" }: Component1Props) {
 }
 
 export default function Sustainability() {
+  const sustainability = useContent("sustainability");
+  const factories = useContent("factories").items.filter((factory) => factory.active);
   useEffect(() => {
     const chartTitles = [
       "Where our electricity comes from",
@@ -736,169 +369,34 @@ export default function Sustainability() {
           </a>
         </div>
         <div className="content-stretch flex gap-[24px] items-start overflow-clip p-[2px] relative shrink-0 w-full" data-node-id="1:3187" data-name="Frame">
-          <a aria-label="GoodEarth Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" data-node-id="1:3188" data-name="Frame" href="/factories/goodearth#factory-profile">
-            <div className="h-[289px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:3189">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9113} />
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[16px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:3190" data-name="Frame">
-              <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 text-[#1d1d1d] w-full" data-node-id="1:3191" data-name="Frame">
-                <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[20px] w-full" data-node-id="1:3192">
-                  <p className="leading-[1.2]">GoodEarth Apparels</p>
+          {factories.map((factory) => (
+            <a aria-label={`${factory.name} factory profile`} className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] shrink-0 w-[504px]" href={`/factories/${factory.slug}#factory-profile`} key={factory.id}>
+              <div className="h-[289px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full">
+                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={factory.image} />
+              </div>
+              <div className="[word-break:break-word] content-stretch flex flex-col gap-[16px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full">
+                <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 text-[#1d1d1d] w-full">
+                  <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[20px] w-full">
+                    <p className="leading-[1.2]">{factory.name}</p>
+                  </div>
+                  <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[16px] w-full">
+                    <p className="leading-[1.2]">{[factory.location, factory.certification].filter(Boolean).join(" | ")}</p>
+                  </div>
                 </div>
-                <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[16px] w-full" data-node-id="1:3193">
-                  <p className="leading-[1.2]">Dhaka, Bangladesh | LEED Zero</p>
+                <div className="content-stretch flex flex-col font-['Inter:Medium'] font-medium gap-[8px] items-start relative shrink-0 text-[#4a4a4a] text-[14px] w-full">
+                  {factory.sustainabilityHighlights.map((highlight, index) => (
+                    <div className="flex flex-col justify-center relative shrink-0 w-full" key={index}>
+                      <ul>
+                        <li className="list-disc ms-[21px]">
+                          <span className="leading-[1.2]">{highlight}</span>
+                        </li>
+                      </ul>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div className="content-stretch flex flex-col font-['Inter:Medium'] font-medium gap-[8px] items-start relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:3194" data-name="Frame">
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3195">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">650 kW installed solar capacity</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3196">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">75% renewable-energy usage</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3197">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">40% water-efficiency improvement</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3198">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">Re-NUWASTE textile waste recycling</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3199">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">GreenScan system for traceability</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3200">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">Strong employee, health, sanitation and childcare initiatives</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3201">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">In-house doctor</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a aria-label="Progress Apparels factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] self-stretch shrink-0 w-[504px]" data-node-id="1:3202" data-name="Frame" href="/factories/progress#factory-profile">
-            <div className="h-[289px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:3203">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle9114} />
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[16px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:3204" data-name="Frame">
-              <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 text-[#1d1d1d] w-full" data-node-id="1:3205" data-name="Frame">
-                <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[20px] w-full" data-node-id="1:3206">
-                  <p className="leading-[1.2]">Progress Apparels</p>
-                </div>
-                <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[16px] w-full" data-node-id="1:3207">
-                  <p className="leading-[1.2]">Dhaka, Bangladesh | LEED Gold</p>
-                </div>
-              </div>
-              <div className="content-stretch flex flex-col font-['Inter:Medium'] font-medium gap-[8px] items-start relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:3208" data-name="Frame">
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3209">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">Sustainable, scalable manufacturing</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3210">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">Strong in-house washing and finishing</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3211">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">Resource-efficiency programmers</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3212">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">Environmentally responsible operations</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3213">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">Community engagement</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a aria-label="Knit Gallery factory profile" className="factory-profile-card bg-[#f9f7f5] content-stretch drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] flex flex-col items-center relative rounded-[8px] self-stretch shrink-0 w-[504px]" data-node-id="1:3214" data-name="Frame" href="/factories/knit-gallery#factory-profile">
-            <div className="h-[289px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="1:3215">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src="/assets/1-641/a9ee6.jpg" />
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[16px] items-start leading-[0] not-italic p-[16px] relative shrink-0 w-full" data-node-id="1:3216" data-name="Frame">
-              <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 text-[#1d1d1d] w-full" data-node-id="1:3217" data-name="Frame">
-                <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[20px] w-full" data-node-id="1:3218">
-                  <p className="leading-[1.2]">Knit Gallery</p>
-                </div>
-                <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[16px] w-full" data-node-id="1:3219">
-                  <p className="leading-[1.2]">Tirupur, India | LEED Platinum</p>
-                </div>
-              </div>
-              <div className="content-stretch flex flex-col font-['Inter:Medium'] font-medium gap-[8px] items-start relative shrink-0 text-[#4a4a4a] text-[14px] w-full" data-node-id="1:3220" data-name="Frame">
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3221">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">Responsible knit manufacturing</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3222">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">Energy and resource efficiency</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3223">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">People and community initiatives</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex flex-col justify-center relative shrink-0 w-full" data-node-id="1:3224">
-                  <ul>
-                    <li className="list-disc ms-[21px]">
-                      <span className="leading-[1.2]">Data pending for key environmental metrics</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </a>
+            </a>
+          ))}
         </div>
       </div>
       <div className="-translate-x-1/2 absolute content-stretch flex flex-col gap-[40px] items-start left-1/2 px-[178px] py-[40px] top-[3803px] w-[1920px]" data-node-id="1:3225" data-name="Frame">
@@ -1343,7 +841,7 @@ export default function Sustainability() {
         <div className="[word-break:break-word] flex flex-col font-['Inter:Bold'] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[40px] whitespace-nowrap" data-node-id="1:3580">
           <p className="leading-[1.2]">{`CERTIFICATIONS & STANDARDS`}</p>
         </div>
-        <CertificationsStandards className="h-[120px] overflow-clip relative shrink-0 w-[1560px]" />
+        <LogoMarquee className="h-[120px] relative shrink-0 w-[1560px]" label="Certifications and standards" logos={sustainability.certifications} />
       </div>
       <div className="absolute h-[864px] left-0 top-[4607px] w-[1920px]" data-node-id="1:3582" data-name="Frame">
         <div className="absolute h-[864px] left-0 top-0 w-[1920px]" data-node-id="1:3583">

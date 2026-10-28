@@ -1,6 +1,7 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, ReactNode, useState } from "react";
 import type { CapabilitiesContent, Capability } from "../../content/types";
-import { ActionMenu, DataTable, formatDay, Modal, nextId, Thumb, Toggle, useConfirm, useLiveContent } from "../components";
+import { ActionMenu, DataTable, formatDay, LinkTabs, Modal, nextId, Thumb, Toggle, useConfirm, useLiveContent } from "../components";
+import VersatilityEditor from "./VersatilityEditor";
 import { Button, ControlIcon, ImageField, moveItem, PageHeader, Spinner, TextField } from "../ui";
 
 // The Home "Ideas to impact" row has room for six cards.
@@ -159,7 +160,7 @@ function HomeOrder({ content, onClose, commit }: { content: CapabilitiesContent;
   );
 }
 
-export default function CapabilitiesAdmin() {
+function CapabilitiesList({ tabs }: { tabs: ReactNode }) {
   const { data: content, commit } = useLiveContent("capabilities");
   const [editing, setEditing] = useState<Capability | "new" | null>(null);
   const [viewing, setViewing] = useState<Capability | null>(null);
@@ -196,6 +197,7 @@ export default function CapabilitiesAdmin() {
     if (!ok) return;
     await commit(
       {
+        ...current,
         items: current.items.filter((item) => item.id !== capability.id),
         homeIds: current.homeIds.filter((id) => id !== capability.id),
       },
@@ -216,7 +218,14 @@ export default function CapabilitiesAdmin() {
             </Button>
           </>
         }
-        description="Cards in “Integrated for a stronger tomorrow” on the Our Capabilities page (4 per row, in this order) and in “Ideas to impact” on the Home page. Changes are saved as soon as you make them."
+        description={
+          <>
+            {tabs}
+            <span className="mt-3 block">
+              Cards in “Integrated for a stronger tomorrow” on the Our Capabilities page (4 per row, in this order) and in “Ideas to impact” on the Home page. Changes are saved as soon as you make them.
+            </span>
+          </>
+        }
         title="Our capabilities"
       />
       <DataTable
@@ -291,4 +300,15 @@ export default function CapabilitiesAdmin() {
       {dialog}
     </>
   );
+}
+
+const TABS = [
+  { href: "/admin/capabilities", label: "Capabilities" },
+  { href: "/admin/capabilities/versatility", label: "Versatility across categories" },
+];
+
+export default function CapabilitiesAdmin({ pathname }: { pathname: string }) {
+  const onVersatility = pathname.startsWith("/admin/capabilities/versatility");
+  const tabs = <LinkTabs active={onVersatility ? TABS[1].href : TABS[0].href} tabs={TABS} />;
+  return onVersatility ? <VersatilityEditor tabs={tabs} /> : <CapabilitiesList tabs={tabs} />;
 }

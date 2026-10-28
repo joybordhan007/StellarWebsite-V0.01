@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 import PageReveal from "./components/PageReveal";
-import { useContent } from "./content/ContentProvider";
+import { useBackendAvailable, useContent } from "./content/ContentProvider";
 import type { NavigationItem } from "./content/types";
 
 const pageLoaders = {
@@ -18,10 +18,10 @@ const pageLoaders = {
   "/capabilities": () => import("./pages/Capabilities"),
   "/contact": () => import("./pages/Contact"),
   "/design-path": () => import("./pages/DesignPath"),
-  "/factories": () => import("./pages/GoodEarth"),
-  "/factories/goodearth": () => import("./pages/GoodEarth"),
-  "/factories/knit-gallery": () => import("./pages/KnitGallery"),
-  "/factories/progress": () => import("./pages/Progress"),
+  "/factories": () => import("./pages/FactoryPage"),
+  "/factories/goodearth": () => import("./pages/FactoryPage"),
+  "/factories/knit-gallery": () => import("./pages/FactoryPage"),
+  "/factories/progress": () => import("./pages/FactoryPage"),
   "/products": () => import("./pages/Products"),
   "/privacy-policy": () => import("./pages/LegalPages"),
   "/sustainability": () => import("./pages/Sustainability"),
@@ -33,22 +33,22 @@ const About = lazy(pageLoaders["/about"]);
 const Capabilities = lazy(pageLoaders["/capabilities"]);
 const Contact = lazy(pageLoaders["/contact"]);
 const DesignPath = lazy(pageLoaders["/design-path"]);
-const GoodEarth = lazy(pageLoaders["/factories"]);
+const FactoryPage = lazy(pageLoaders["/factories"]);
 const Home = lazy(pageLoaders["/"]);
 const PrivacyPolicy = lazy(() =>
   pageLoaders["/privacy-policy"]().then((module) => ({
     default: module.PrivacyPolicy,
   })),
 );
-const KnitGallery = lazy(pageLoaders["/factories/knit-gallery"]);
 const Products = lazy(pageLoaders["/products"]);
-const Progress = lazy(pageLoaders["/factories/progress"]);
 const Sustainability = lazy(pageLoaders["/sustainability"]);
 const TermsOfService = lazy(() =>
   pageLoaders["/terms-of-service"]().then((module) => ({
     default: module.TermsOfService,
   })),
 );
+
+const FACTORY_PATH = /^\/factories\/[\w-]+$/;
 
 function prefetchPage(pathname: string) {
   const loader = pageLoaders[pathname as keyof typeof pageLoaders];
@@ -63,6 +63,7 @@ function prefetchLinkProps(href: string) {
 }
 
 type PageProps = {
+  pathname?: string;
   onHeightChange?: (height: number) => void;
 };
 
@@ -83,19 +84,19 @@ const routes: Record<string, Page> = {
     height: 4025,
   },
   "/factories": {
-    component: GoodEarth,
+    component: FactoryPage,
     height: 3612,
   },
   "/factories/goodearth": {
-    component: GoodEarth,
+    component: FactoryPage,
     height: 3612,
   },
   "/factories/progress": {
-    component: Progress,
+    component: FactoryPage,
     height: 3612,
   },
   "/factories/knit-gallery": {
-    component: KnitGallery,
+    component: FactoryPage,
     height: 3612,
   },
   "/sustainability": {
@@ -206,18 +207,6 @@ function DesktopHeader({
   );
 }
 
-function FactoryHotspots({ isFactory }: { isFactory: boolean }) {
-  if (!isFactory) return null;
-
-  return (
-    <nav className="factory-hotspots" aria-label="Factory locations">
-      <a href="/factories/goodearth" aria-label="GoodEarth Apparels" {...prefetchLinkProps("/factories/goodearth")} />
-      <a href="/factories/progress" aria-label="Progress Apparels" {...prefetchLinkProps("/factories/progress")} />
-      <a href="/factories/knit-gallery" aria-label="Knit Gallery" {...prefetchLinkProps("/factories/knit-gallery")} />
-    </nav>
-  );
-}
-
 function MobileHeader({
   navigation,
   pathname,
@@ -270,13 +259,13 @@ export default function App() {
   const [dynamicPageHeight, setDynamicPageHeight] = useState<number | null>(null);
   const site = useContent("site");
   const seo = useContent("seo");
-  const routeKey = routes[pathname] ? pathname : "/";
+  // Any /factories/<slug> renders the factory page (FactoryPage picks the factory).
+  const routeKey = routes[pathname] ? pathname : FACTORY_PATH.test(pathname) ? "/factories" : "/";
   const page = routes[routeKey];
   const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
   const PageComponent = page.component;
   const pageHeight = dynamicPageHeight ?? page.height;
   const scale = Math.min(1, viewportWidth / 1920);
-  const isFactory = pathname.startsWith("/factories");
 
   useEffect(() => {
     const navigate = () => {
@@ -372,6 +361,22 @@ export default function App() {
     if (!isAdmin && title) document.title = title;
   }, [isAdmin, title]);
 
+  // Page-view reporting for the dashboard Overview. Only the first view carries the
+  // external referrer; later views are in-site navigation.
+  const backendAvailable = useBackendAvailable();
+  const firstViewRef = useRef(true);
+  useEffect(() => {
+    if (isAdmin || !backendAvailable) return;
+    const referrer = firstViewRef.current ? document.referrer : "";
+    firstViewRef.current = false;
+    void fetch("/api/track", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ path: pathname, referrer }),
+      keepalive: true,
+    }).catch(() => undefined);
+  }, [backendAvailable, isAdmin, pathname]);
+
   const canvasStyle = useMemo(
     () => ({
       height: `${pageHeight * scale}px`,
@@ -404,10 +409,10 @@ export default function App() {
             <PageReveal key={pathname}>
               <PageComponent
                 onHeightChange={setDynamicPageHeight}
+                pathname={pathname}
               />
             </PageReveal>
           </Suspense>
-          <FactoryHotspots isFactory={isFactory} />
         </div>
       </main>
     </>

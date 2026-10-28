@@ -1,4 +1,5 @@
 import productCategories from "../data/productCategories.json";
+import { defaultVersatility } from "./pageDefaults";
 import type { AchievementsContent, CapabilitiesContent, CatalogContent, Product } from "./types";
 
 // Built-in catalogue, capabilities and achievements, taken from the original Figma pages.
@@ -72,6 +73,7 @@ export const defaultCapabilities: CapabilitiesContent = {
     capability(8, "Sustainability", "Integrated sustainable practices across our operations to protect people and the planet.", "7cfa7.jpg"),
   ],
   homeIds: [1, 2, 3, 4, 5, 6],
+  versatility: defaultVersatility,
 };
 
 const achievement = (

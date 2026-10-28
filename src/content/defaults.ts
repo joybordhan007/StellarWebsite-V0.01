@@ -1,4 +1,5 @@
 import { defaultAchievements, defaultCapabilities, defaultCatalog } from "./collectionDefaults";
+import { defaultAbout, defaultBrands, defaultFactories, defaultSustainability } from "./pageDefaults";
 import type { ContentMap, LegalContent } from "./types";
 
 // Built-in content: what the website shows until an admin edits it.
@@ -82,10 +83,32 @@ export const defaultContent: ContentMap = {
       "Bangladesh Office: House-441, Road-07, Baridhara DOHS Dhaka-1206",
       "India Office: PDS Tower, 5th Floor, Plot No. 222, Udyog Vihar Phase -1, Industrial Complex Dundahera, Gurgaon – 122016, Haryana, India",
     ],
-    social: {
-      facebook: "https://www.facebook.com/goodearthapparels",
-      youtube: "https://www.youtube.com/@GoodEarthApparelsLimited",
-      linkedin: "https://www.linkedin.com/company/goodearthapparels/posts/?feedView=all",
+    socialLinks: [
+      { id: 1, platform: "facebook", url: "https://www.facebook.com/goodearthapparels" },
+      { id: 2, platform: "youtube", url: "https://www.youtube.com/@GoodEarthApparelsLimited" },
+      { id: 3, platform: "linkedin", url: "https://www.linkedin.com/company/goodearthapparels/posts/?feedView=all" },
+    ],
+    footer: {
+      quickLinksTitle: "Quick Links",
+      quickLinks: [
+        { label: "Home", href: "/" },
+        { label: "About Us", href: "/about" },
+        { label: "Our Capabilities", href: "/capabilities" },
+        { label: "Design path", href: "/design-path" },
+        { label: "Our Factories", href: "/factories" },
+        { label: "Sustainability", href: "/sustainability" },
+        { label: "Products", href: "/products" },
+      ],
+      supportTitle: "Support",
+      supportLinks: [
+        { label: "Contact Us", href: "/contact" },
+        { label: "Privacy Policy", href: "/privacy-policy" },
+        { label: "Terms of Service", href: "/terms-of-service" },
+      ],
+      contactTitle: "Contact Info",
+      creditText: "Website designed and developed by",
+      creditLinkLabel: "DesignOps",
+      creditUrl: "http://designops.agency",
     },
     copyright: "Copyright © 2026 STELLAR MANUFACTURING LTD.",
     contactFormEmail: "info@stellar-mfg.com",
@@ -119,6 +142,10 @@ export const defaultContent: ContentMap = {
   catalog: defaultCatalog,
   capabilities: defaultCapabilities,
   achievements: defaultAchievements,
+  factories: defaultFactories,
+  brands: defaultBrands,
+  about: defaultAbout,
+  sustainability: defaultSustainability,
   offices: {
     offices: [
       {

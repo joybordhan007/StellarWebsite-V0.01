@@ -1,4 +1,4 @@
-export type Admin = { id: number; email: string; name: string; created_at: string };
+export type Admin = { id: number; email: string; name: string; avatar: string | null; created_at: string };
 
 export type Message = {
   id: number;
