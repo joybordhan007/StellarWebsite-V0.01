@@ -12,7 +12,7 @@ export const defaultFactories: FactoriesContent = {
       "country": "Bangladesh",
       "certification": "LEED Zero",
       "specialty": "Woven",
-      "image": "/assets/1-641/234ca.jpg",
+      "image": "/assets/factories/goodearth/cover.jpg",
       "active": true,
       "createdAt": "2026-10-13T00:00:00.000Z",
       "mapPosition": {
@@ -89,31 +89,31 @@ export const defaultFactories: FactoriesContent = {
       ],
       "gallery": [
         {
-          "image": "/assets/1-1870/bc82a.jpg",
+          "image": "/assets/factories/goodearth/front-entrance.jpg",
           "caption": "Front Entrance"
         },
         {
-          "image": "/assets/1-1870/234ca.jpg",
+          "image": "/assets/factories/goodearth/aerial-view.jpg",
           "caption": "Aerial View"
         },
         {
-          "image": "/assets/1-1870/a160b.jpg",
+          "image": "/assets/factories/goodearth/raw-material-store.jpg",
           "caption": "Raw Material Store"
         },
         {
-          "image": "/assets/1-1870/f48ce.jpg",
+          "image": "/assets/factories/goodearth/cutting-area.jpg",
           "caption": "Cutting Area"
         },
         {
-          "image": "/assets/1-1870/82597.jpg",
+          "image": "/assets/factories/goodearth/sewing-area.jpg",
           "caption": "Sewing Area"
         },
         {
-          "image": "/assets/1-1870/68447.jpg",
+          "image": "/assets/common/finishing-area.jpg",
           "caption": "Finishing Area"
         },
         {
-          "image": "/assets/1-1870/d90b2.jpg",
+          "image": "/assets/common/packing-and-logistics.jpg",
           "caption": "Finished Goods Store"
         }
       ],
@@ -164,42 +164,42 @@ export const defaultFactories: FactoriesContent = {
       "certifications": [
         {
           "id": 1,
-          "image": "/assets/1-1870/5886f.png",
+          "image": "/assets/certifications/leed.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 2,
-          "image": "/assets/1-1870/2d220.jpg",
+          "image": "/assets/certifications/organic-content-standard.jpg",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 3,
-          "image": "/assets/1-1870/ffe1a.png",
+          "image": "/assets/certifications/scan.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 4,
-          "image": "/assets/1-1870/cd5b4.png",
+          "image": "/assets/certifications/gots.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 5,
-          "image": "/assets/1-1870/f1d41.png",
+          "image": "/assets/certifications/global-recycled-standard.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 6,
-          "image": "/assets/1-1870/74b73.png",
+          "image": "/assets/certifications/sedex.png",
           "name": "",
           "fit": "contain",
           "box": {
@@ -211,56 +211,56 @@ export const defaultFactories: FactoriesContent = {
         },
         {
           "id": 7,
-          "image": "/assets/1-1870/aed48.png",
+          "image": "/assets/certifications/worldly.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 8,
-          "image": "/assets/1-1870/1d6dc.png",
+          "image": "/assets/certifications/rsc-rmg-sustainability-council.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 9,
-          "image": "/assets/1-1870/35c52.png",
+          "image": "/assets/certifications/social-labor-convergence-program.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 10,
-          "image": "/assets/1-1870/f6658.png",
+          "image": "/assets/certifications/gscs.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 11,
-          "image": "/assets/1-1870/14f3d.png",
+          "image": "/assets/certifications/better-work-bangladesh.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 12,
-          "image": "/assets/1-1870/b2871.png",
+          "image": "/assets/certifications/supplier-qualification-program.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 13,
-          "image": "/assets/1-1870/ddfaf.png",
+          "image": "/assets/certifications/ascb.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 14,
-          "image": "/assets/1-1870/a764b.png",
+          "image": "/assets/certifications/oeko-tex.png",
           "name": "",
           "fit": "contain",
           "box": null
@@ -275,7 +275,7 @@ export const defaultFactories: FactoriesContent = {
       "country": "Bangladesh",
       "certification": "LEED Gold",
       "specialty": "Woven",
-      "image": "/assets/1-641/02160.jpg",
+      "image": "/assets/factories/progress/cover.jpg",
       "active": true,
       "createdAt": "2026-10-13T00:00:00.000Z",
       "mapPosition": {
@@ -348,31 +348,31 @@ export const defaultFactories: FactoriesContent = {
       ],
       "gallery": [
         {
-          "image": "/assets/1-2277/02160.jpg",
+          "image": "/assets/factories/progress/front-entrance.jpg",
           "caption": "Front Entrance"
         },
         {
-          "image": "/assets/1-2277/ea0de.jpg",
+          "image": "/assets/factories/progress/aerial-view.jpg",
           "caption": "Aerial View"
         },
         {
-          "image": "/assets/1-2277/068bf.jpg",
+          "image": "/assets/common/raw-material-store.jpg",
           "caption": "Raw Material Store"
         },
         {
-          "image": "/assets/1-2277/9f1dc.jpg",
+          "image": "/assets/factories/progress/cutting-area.jpg",
           "caption": "Cutting Area"
         },
         {
-          "image": "/assets/1-2277/181a5.jpg",
+          "image": "/assets/factories/progress/sewing-area.jpg",
           "caption": "Sewing Area"
         },
         {
-          "image": "/assets/1-2277/68447.jpg",
+          "image": "/assets/common/finishing-area.jpg",
           "caption": "Finishing Area"
         },
         {
-          "image": "/assets/1-2277/31d34.jpg",
+          "image": "/assets/common/finished-goods-store.jpg",
           "caption": "Finished Goods Store"
         }
       ],
@@ -423,28 +423,28 @@ export const defaultFactories: FactoriesContent = {
       "certifications": [
         {
           "id": 1,
-          "image": "/assets/1-2277/347b7.jpg",
+          "image": "/assets/certifications/european-flax.jpg",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 2,
-          "image": "/assets/1-2277/cd5b4.png",
+          "image": "/assets/certifications/gots.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 3,
-          "image": "/assets/1-2277/2d220.jpg",
+          "image": "/assets/certifications/organic-content-standard.jpg",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 4,
-          "image": "/assets/1-2277/642b2.png",
+          "image": "/assets/certifications/recycled-claim-standard.png",
           "name": "",
           "fit": "contain",
           "box": {
@@ -456,14 +456,14 @@ export const defaultFactories: FactoriesContent = {
         },
         {
           "id": 5,
-          "image": "/assets/1-2277/87a64.png",
+          "image": "/assets/certifications/usgbc-leed-gold.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 6,
-          "image": "/assets/1-2277/7dacd.png",
+          "image": "/assets/certifications/sustainable.png",
           "name": "",
           "fit": "contain",
           "box": {
@@ -475,7 +475,7 @@ export const defaultFactories: FactoriesContent = {
         },
         {
           "id": 7,
-          "image": "/assets/1-2277/92cc5.png",
+          "image": "/assets/certifications/higg-index.png",
           "name": "",
           "fit": "contain",
           "box": {
@@ -487,7 +487,7 @@ export const defaultFactories: FactoriesContent = {
         },
         {
           "id": 8,
-          "image": "/assets/1-2277/5494a.png",
+          "image": "/assets/certifications/wrap.png",
           "name": "",
           "fit": "contain",
           "box": {
@@ -499,7 +499,7 @@ export const defaultFactories: FactoriesContent = {
         },
         {
           "id": 9,
-          "image": "/assets/1-2277/74b73.png",
+          "image": "/assets/certifications/sedex.png",
           "name": "",
           "fit": "contain",
           "box": {
@@ -511,7 +511,7 @@ export const defaultFactories: FactoriesContent = {
         },
         {
           "id": 10,
-          "image": "/assets/1-2277/f2282.png",
+          "image": "/assets/certifications/oeko-tex-standard-100.png",
           "name": "",
           "fit": "contain",
           "box": {
@@ -523,21 +523,21 @@ export const defaultFactories: FactoriesContent = {
         },
         {
           "id": 11,
-          "image": "/assets/1-2277/6df6b.png",
+          "image": "/assets/certifications/bci.png",
           "name": "",
           "fit": "cover",
           "box": null
         },
         {
           "id": 12,
-          "image": "/assets/1-2277/b1d3b.png",
+          "image": "/assets/certifications/amfori.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 13,
-          "image": "/assets/1-2277/dba50.png",
+          "image": "/assets/certifications/amfori-bsci.png",
           "name": "",
           "fit": "contain",
           "box": {
@@ -549,21 +549,21 @@ export const defaultFactories: FactoriesContent = {
         },
         {
           "id": 14,
-          "image": "/assets/1-2277/bc7ff.png",
+          "image": "/assets/certifications/accord.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 15,
-          "image": "/assets/1-2277/35c52.png",
+          "image": "/assets/certifications/social-labor-convergence-program.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 16,
-          "image": "/assets/1-2277/f1d41.png",
+          "image": "/assets/certifications/global-recycled-standard.png",
           "name": "",
           "fit": "contain",
           "box": null
@@ -578,7 +578,7 @@ export const defaultFactories: FactoriesContent = {
       "country": "India",
       "certification": "LEED Platinum",
       "specialty": "Knits",
-      "image": "/assets/1-641/a9ee6.jpg",
+      "image": "/assets/factories/knit-gallery/cover.jpg",
       "active": true,
       "createdAt": "2026-10-13T00:00:00.000Z",
       "mapPosition": {
@@ -649,31 +649,31 @@ export const defaultFactories: FactoriesContent = {
       ],
       "gallery": [
         {
-          "image": "/assets/1-2678/e7667.jpg",
+          "image": "/assets/factories/knit-gallery/front-entrance.jpg",
           "caption": "Front Entrance"
         },
         {
-          "image": "/assets/1-2678/a9ee6.jpg",
+          "image": "/assets/factories/knit-gallery/aerial-view.jpg",
           "caption": "Aerial View"
         },
         {
-          "image": "/assets/1-2678/068bf.jpg",
+          "image": "/assets/common/raw-material-store.jpg",
           "caption": "Raw Material Store"
         },
         {
-          "image": "/assets/1-2678/32b4c.jpg",
+          "image": "/assets/factories/knit-gallery/cutting-area.jpg",
           "caption": "Cutting Area"
         },
         {
-          "image": "/assets/1-2678/6565c.jpg",
+          "image": "/assets/factories/knit-gallery/sewing-area.jpg",
           "caption": "Sewing Area"
         },
         {
-          "image": "/assets/1-2678/68447.jpg",
+          "image": "/assets/common/finishing-area.jpg",
           "caption": "Finishing Area"
         },
         {
-          "image": "/assets/1-2678/31d34.jpg",
+          "image": "/assets/common/finished-goods-store.jpg",
           "caption": "Finished Goods Store"
         }
       ],
@@ -724,28 +724,28 @@ export const defaultFactories: FactoriesContent = {
       "certifications": [
         {
           "id": 1,
-          "image": "/assets/1-2678/347b7.jpg",
+          "image": "/assets/certifications/european-flax.jpg",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 2,
-          "image": "/assets/1-2678/cd5b4.png",
+          "image": "/assets/certifications/gots.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 3,
-          "image": "/assets/1-2678/2d220.jpg",
+          "image": "/assets/certifications/organic-content-standard.jpg",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 4,
-          "image": "/assets/1-2678/642b2.png",
+          "image": "/assets/certifications/recycled-claim-standard.png",
           "name": "",
           "fit": "contain",
           "box": {
@@ -757,14 +757,14 @@ export const defaultFactories: FactoriesContent = {
         },
         {
           "id": 5,
-          "image": "/assets/1-2678/87a64.png",
+          "image": "/assets/certifications/usgbc-leed-gold.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 6,
-          "image": "/assets/1-2678/7dacd.png",
+          "image": "/assets/certifications/sustainable.png",
           "name": "",
           "fit": "contain",
           "box": {
@@ -776,7 +776,7 @@ export const defaultFactories: FactoriesContent = {
         },
         {
           "id": 7,
-          "image": "/assets/1-2678/92cc5.png",
+          "image": "/assets/certifications/higg-index.png",
           "name": "",
           "fit": "contain",
           "box": {
@@ -788,7 +788,7 @@ export const defaultFactories: FactoriesContent = {
         },
         {
           "id": 8,
-          "image": "/assets/1-2678/5494a.png",
+          "image": "/assets/certifications/wrap.png",
           "name": "",
           "fit": "contain",
           "box": {
@@ -800,7 +800,7 @@ export const defaultFactories: FactoriesContent = {
         },
         {
           "id": 9,
-          "image": "/assets/1-2678/74b73.png",
+          "image": "/assets/certifications/sedex.png",
           "name": "",
           "fit": "contain",
           "box": {
@@ -812,7 +812,7 @@ export const defaultFactories: FactoriesContent = {
         },
         {
           "id": 10,
-          "image": "/assets/1-2678/f2282.png",
+          "image": "/assets/certifications/oeko-tex-standard-100.png",
           "name": "",
           "fit": "contain",
           "box": {
@@ -824,21 +824,21 @@ export const defaultFactories: FactoriesContent = {
         },
         {
           "id": 11,
-          "image": "/assets/1-2678/6df6b.png",
+          "image": "/assets/certifications/bci.png",
           "name": "",
           "fit": "cover",
           "box": null
         },
         {
           "id": 12,
-          "image": "/assets/1-2678/b1d3b.png",
+          "image": "/assets/certifications/amfori.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 13,
-          "image": "/assets/1-2678/dba50.png",
+          "image": "/assets/certifications/amfori-bsci.png",
           "name": "",
           "fit": "contain",
           "box": {
@@ -850,21 +850,21 @@ export const defaultFactories: FactoriesContent = {
         },
         {
           "id": 14,
-          "image": "/assets/1-2678/bc7ff.png",
+          "image": "/assets/certifications/accord.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 15,
-          "image": "/assets/1-2678/35c52.png",
+          "image": "/assets/certifications/social-labor-convergence-program.png",
           "name": "",
           "fit": "contain",
           "box": null
         },
         {
           "id": 16,
-          "image": "/assets/1-2678/f1d41.png",
+          "image": "/assets/certifications/global-recycled-standard.png",
           "name": "",
           "fit": "contain",
           "box": null
@@ -878,7 +878,7 @@ export const defaultBrands: BrandsContent = {
   "logos": [
     {
       "id": 1,
-      "image": "/assets/1-641/c43ef.png",
+      "image": "/assets/brands/centric-brands.png",
       "name": "Centric Brands",
       "fit": "contain",
       "box": {
@@ -890,42 +890,42 @@ export const defaultBrands: BrandsContent = {
     },
     {
       "id": 2,
-      "image": "/assets/1-641/154aa.png",
+      "image": "/assets/brands/dockers.png",
       "name": "Dockers",
       "fit": "contain",
       "box": null
     },
     {
       "id": 3,
-      "image": "/assets/1-641/c0f71.png",
+      "image": "/assets/brands/izod.png",
       "name": "IZOD",
       "fit": "contain",
       "box": null
     },
     {
       "id": 4,
-      "image": "/assets/1-641/c0474.jpg",
+      "image": "/assets/brands/next.jpg",
       "name": "Next",
       "fit": "contain",
       "box": null
     },
     {
       "id": 5,
-      "image": "/assets/1-641/40533.png",
+      "image": "/assets/brands/primark.png",
       "name": "Primark",
       "fit": "contain",
       "box": null
     },
     {
       "id": 6,
-      "image": "/assets/1-641/42204.png",
+      "image": "/assets/brands/walmart.png",
       "name": "Walmart",
       "fit": "contain",
       "box": null
     },
     {
       "id": 7,
-      "image": "/assets/1-641/05a9d.png",
+      "image": "/assets/brands/bestseller.png",
       "name": "",
       "fit": "contain",
       "box": {
@@ -937,14 +937,14 @@ export const defaultBrands: BrandsContent = {
     },
     {
       "id": 8,
-      "image": "/assets/1-641/5ab68.png",
+      "image": "/assets/brands/costco.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 9,
-      "image": "/assets/1-641/50e65.png",
+      "image": "/assets/brands/sainsburys.png",
       "name": "",
       "fit": "contain",
       "box": {
@@ -956,21 +956,21 @@ export const defaultBrands: BrandsContent = {
     },
     {
       "id": 10,
-      "image": "/assets/1-641/6b4c6.png",
+      "image": "/assets/brands/aldi.png",
       "name": "",
       "fit": "cover",
       "box": null
     },
     {
       "id": 11,
-      "image": "/assets/1-641/754b8.png",
+      "image": "/assets/brands/tesco.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 12,
-      "image": "/assets/1-641/4dc8c.png",
+      "image": "/assets/brands/george.png",
       "name": "",
       "fit": "contain",
       "box": {
@@ -982,42 +982,42 @@ export const defaultBrands: BrandsContent = {
     },
     {
       "id": 13,
-      "image": "/assets/1-641/3b10e.png",
+      "image": "/assets/brands/levis.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 14,
-      "image": "/assets/1-641/a5a3d.png",
+      "image": "/assets/brands/haddad-brands.png",
       "name": "",
       "fit": "cover",
       "box": null
     },
     {
       "id": 15,
-      "image": "/assets/1-641/9ceb5.png",
+      "image": "/assets/brands/american-eagle.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 16,
-      "image": "/assets/1-641/919a0.png",
+      "image": "/assets/brands/abercrombie-and-fitch.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 17,
-      "image": "/assets/1-641/5730f.png",
+      "image": "/assets/brands/kohls.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 18,
-      "image": "/assets/1-641/5913d.png",
+      "image": "/assets/brands/red-tape.png",
       "name": "",
       "fit": "contain",
       "box": null
@@ -1032,22 +1032,22 @@ export const defaultAbout: AboutContent = {
     "intro": "From humble beginnings to a trusted global partner, our journey reflects our commitment to people, product, partnerships and a more sustainable future.",
     "milestones": [
       {
-        "image": "/assets/1-967/02160.jpg",
+        "image": "/assets/factories/progress/cover.jpg",
         "year": "2015",
         "text": "Progress Apparels commenced operations in Bangladesh."
       },
       {
-        "image": "/assets/1-967/bc82a.jpg",
+        "image": "/assets/about/journey-goodearth-apparels.jpg",
         "year": "2016",
         "text": "GoodEarth Apparels began production with a focus on sustainable manufacturing."
       },
       {
-        "image": "/assets/1-967/234ca.jpg",
+        "image": "/assets/factories/goodearth/cover.jpg",
         "year": "2020",
         "text": "Strengthened our sustainability initiatives and renewable energy investments."
       },
       {
-        "image": "/assets/1-967/82597.jpg",
+        "image": "/assets/common/manufacturing.jpg",
         "year": "Today:",
         "text": "Three manufacturing facilities across Bangladesh and India, 10,200+ employees and 26M+ pieces annual capacity."
       }
@@ -1061,31 +1061,31 @@ export const defaultVersatility: Versatility = {
   "intro": "From everyday essentials to special moments, explore our wide range of apparel\nfor men, women, kids and babies.",
   "columns": [
     {
-      "image": "/assets/1-1333/d5f63.png",
+      "image": "/assets/capabilities/versatility/mens.png",
       "imageBackground": "#abbbca",
       "title": "Men’s",
       "tagline": "Classic styles. Modern looks.",
       "items": [
         {
-          "thumb": "/assets/1-1333/0c9fc.png",
+          "thumb": "/assets/capabilities/versatility/shirts.png",
           "thumbBackground": "#92a8c0",
           "name": "Shirts",
           "note": "Formal & Casual"
         },
         {
-          "thumb": "/assets/1-1333/56903.png",
+          "thumb": "/assets/capabilities/versatility/trousers.png",
           "thumbBackground": "#bfbfba",
           "name": "Trousers",
           "note": "Formal & Casual"
         },
         {
-          "thumb": "/assets/1-1333/40aac.png",
+          "thumb": "/assets/capabilities/versatility/chinos.png",
           "thumbBackground": "#bcba9c",
           "name": "Chinos",
           "note": "5-Pocket/Cargos"
         },
         {
-          "thumb": "/assets/1-1333/076e7.jpg",
+          "thumb": "/assets/capabilities/versatility/shorts.jpg",
           "thumbBackground": "",
           "name": "Shorts",
           "note": "Swim/Casual"
@@ -1093,37 +1093,37 @@ export const defaultVersatility: Versatility = {
       ]
     },
     {
-      "image": "/assets/1-1333/ceb70.png",
+      "image": "/assets/capabilities/versatility/ladies.png",
       "imageBackground": "#a2907c",
       "title": "Ladies",
       "tagline": "Elegant. Comfortable. You.",
       "items": [
         {
-          "thumb": "/assets/1-1333/53708.png",
+          "thumb": "/assets/capabilities/versatility/tops-and-blouses.png",
           "thumbBackground": "#96a8b7",
           "name": "Tops & Blouses",
           "note": ""
         },
         {
-          "thumb": "/assets/1-1333/defba.png",
+          "thumb": "/assets/capabilities/versatility/dresses.png",
           "thumbBackground": "#f2b0a2",
           "name": "Dresses",
           "note": ""
         },
         {
-          "thumb": "/assets/1-1333/86439.png",
+          "thumb": "/assets/capabilities/versatility/nightwear.png",
           "thumbBackground": "#727272",
           "name": "Nightwear",
           "note": ""
         },
         {
-          "thumb": "/assets/1-1333/0af06.png",
+          "thumb": "/assets/capabilities/versatility/skirts.png",
           "thumbBackground": "#e3e3e3",
           "name": "Skirts",
           "note": ""
         },
         {
-          "thumb": "/assets/1-1333/e6d3e.png",
+          "thumb": "/assets/capabilities/versatility/shorts-and-pants.png",
           "thumbBackground": "#d0dadf",
           "name": "Shorts & Pants",
           "note": ""
@@ -1131,25 +1131,25 @@ export const defaultVersatility: Versatility = {
       ]
     },
     {
-      "image": "/assets/1-1333/b04d5.png",
+      "image": "/assets/capabilities/versatility/girls.png",
       "imageBackground": "#b0987e",
       "title": "Girl’s",
       "tagline": "Play. Learn. Grow.",
       "items": [
         {
-          "thumb": "/assets/1-1333/b6ecb.png",
+          "thumb": "/assets/capabilities/versatility/tops-and-bottoms.png",
           "thumbBackground": "#f4d5dc",
           "name": "Tops & Bottoms",
           "note": ""
         },
         {
-          "thumb": "/assets/1-1333/d92aa.png",
+          "thumb": "/assets/capabilities/versatility/dresses-and-nightwear.png",
           "thumbBackground": "#e6acbc",
           "name": "Dresses & Nightwear",
           "note": ""
         },
         {
-          "thumb": "/assets/1-1333/4f699.png",
+          "thumb": "/assets/capabilities/versatility/school-wear.png",
           "thumbBackground": "#495357",
           "name": "School Wear",
           "note": ""
@@ -1157,31 +1157,31 @@ export const defaultVersatility: Versatility = {
       ]
     },
     {
-      "image": "/assets/1-1333/497a3.png",
+      "image": "/assets/capabilities/versatility/boys.png",
       "imageBackground": "#334142",
       "title": "Boys",
       "tagline": "Active. Confident. Stylish.",
       "items": [
         {
-          "thumb": "/assets/1-1333/aa278.png",
+          "thumb": "/assets/capabilities/versatility/shirts-and-pants.png",
           "thumbBackground": "#cbb5a4",
           "name": "Shirts & Pants",
           "note": ""
         },
         {
-          "thumb": "/assets/1-1333/e01b4.png",
+          "thumb": "/assets/capabilities/versatility/shorts-2.png",
           "thumbBackground": "#8eb3cf",
           "name": "Shorts",
           "note": "Denim/Non-Denim"
         },
         {
-          "thumb": "/assets/1-1333/40aac.png",
+          "thumb": "/assets/capabilities/versatility/chinos.png",
           "thumbBackground": "#bcba9c",
           "name": "Cargos",
           "note": "5-Pocket"
         },
         {
-          "thumb": "/assets/1-1333/9308e.png",
+          "thumb": "/assets/capabilities/versatility/school-wear-2.png",
           "thumbBackground": "#22282f",
           "name": "School Wear",
           "note": ""
@@ -1189,25 +1189,25 @@ export const defaultVersatility: Versatility = {
       ]
     },
     {
-      "image": "/assets/1-1333/3391e.png",
+      "image": "/assets/capabilities/versatility/baby.png",
       "imageBackground": "#0e3b58",
       "title": "Baby",
       "tagline": "Little outfits. Big smiles.",
       "items": [
         {
-          "thumb": "/assets/1-1333/504de.png",
+          "thumb": "/assets/capabilities/versatility/rompers-bodysuits.png",
           "thumbBackground": "#51657d",
           "name": "Rompers/Bodysuits",
           "note": ""
         },
         {
-          "thumb": "/assets/1-1333/378c4.png",
+          "thumb": "/assets/capabilities/versatility/t-shirt.png",
           "thumbBackground": "#aac6b7",
           "name": "T-Shirt",
           "note": ""
         },
         {
-          "thumb": "/assets/1-1333/19d48.png",
+          "thumb": "/assets/capabilities/versatility/polos-sets.png",
           "thumbBackground": "#fad3a8",
           "name": "Polos Sets",
           "note": ""
@@ -1221,32 +1221,32 @@ export const defaultSustainability: SustainabilityContent = {
   "stories": [
     {
       "id": 1,
-      "background": "/assets/1-3076/bac63.jpg",
-      "icon": "/assets/1-3076/82273.svg",
+      "background": "/assets/sustainability/powered-by-the-sun-background.jpg",
+      "icon": "/assets/sustainability/solar-roof-icon.svg",
       "title": "Powered by the sun",
       "text": "Since July 2023, the roof of our Gazipur factory has worked as a power plant. In 2025 our solar panels generated 1.07 GWh of clean electricity. That covered 40% of everything the factory used, and we sent the surplus back to the national grid. Since 2022 we have cut the power we buy from the grid by 31% and our generator diesel use by 64%.",
       "stats": [
         {
           "id": 1,
-          "icon": "/assets/1-3076/b4e7f.svg",
+          "icon": "/assets/sustainability/clean-electricity-icon.svg",
           "value": "2.76 GWh",
           "label": "Clean electricity generated from Jul 2023 to Mar 2026"
         },
         {
           "id": 2,
-          "icon": "/assets/1-3076/6f036.svg",
+          "icon": "/assets/sustainability/grid-electricity-icon.svg",
           "value": "−31%",
           "label": "Grid electricity bought: 1,649 MWh (2022) → 1,132 MWh (2025)"
         },
         {
           "id": 3,
-          "icon": "/assets/sustainability/427e2.svg",
+          "icon": "/assets/sustainability/generator-diesel-icon.svg",
           "value": "−64%",
           "label": "Generator diesel: 71,247 L → 25,461 L"
         },
         {
           "id": 4,
-          "icon": "/assets/1-3076/5cde5.svg",
+          "icon": "/assets/sustainability/surplus-solar-icon.svg",
           "value": "257 MWh",
           "label": "Surplus solar sold to the grid (REB) in 2025"
         }
@@ -1255,7 +1255,7 @@ export const defaultSustainability: SustainabilityContent = {
         {
           "id": 1,
           "type": "columns",
-          "icon": "/assets/1-3076/82273.svg",
+          "icon": "/assets/sustainability/solar-roof-icon.svg",
           "title": "Where our electricity comes from",
           "subtitle": "MWh per year · GEAL",
           "series": [
@@ -1320,26 +1320,26 @@ export const defaultSustainability: SustainabilityContent = {
     },
     {
       "id": 2,
-      "background": "/assets/1-3076/1eacf.jpg",
-      "icon": "/assets/sustainability/f0c26.svg",
+      "background": "/assets/sustainability/less-carbon-in-every-garment-background.jpg",
+      "icon": "/assets/sustainability/less-carbon-icon.svg",
       "title": "Less carbon in every garment",
       "text": "We measure our carbon footprint every year with an independent inspection body, following the GHG Protocol. Between 2022 and 2025 our factory's emissions fell by 31%. The carbon behind each garment we ship fell by a quarter. Our solar roof now avoids around 714 tonnes of CO₂ a year, about what 155 cars emit.",
       "stats": [
         {
           "id": 1,
-          "icon": "/assets/1-3076/b4e7f.svg",
+          "icon": "/assets/sustainability/clean-electricity-icon.svg",
           "value": "1,333 t",
           "label": "CO₂e in 2025 (Scope 1: 574 t from diesel; Scope 2: 758 t from grid power)"
         },
         {
           "id": 2,
-          "icon": "/assets/sustainability/4d23c.svg",
+          "icon": "/assets/sustainability/co2-per-garment-icon.svg",
           "value": "173 g",
           "label": "CO₂e per garment shipped in 2025, down from 230 g in 2022 (−25%)"
         },
         {
           "id": 3,
-          "icon": "/assets/sustainability/a8877.svg",
+          "icon": "/assets/sustainability/co2-avoided-icon.svg",
           "value": "714 t",
           "label": "CO₂ avoided by solar in 2025, using the same 0.67 t/MWh grid factor as the GHG report"
         }
@@ -1348,7 +1348,7 @@ export const defaultSustainability: SustainabilityContent = {
         {
           "id": 1,
           "type": "columns",
-          "icon": "/assets/sustainability/f0c26.svg",
+          "icon": "/assets/sustainability/less-carbon-icon.svg",
           "title": "Factory emissions, Scope 1 + 2",
           "subtitle": "Tonnes CO₂e per year",
           "series": [
@@ -1404,26 +1404,26 @@ export const defaultSustainability: SustainabilityContent = {
     },
     {
       "id": 3,
-      "background": "/assets/1-3076/70d97.jpg",
-      "icon": "/assets/1-3076/97acf.svg",
+      "background": "/assets/sustainability/every-litre-accounted-for-background.jpg",
+      "icon": "/assets/sustainability/water-icon.svg",
       "title": "Every litre accounted for",
       "text": "We are a dry-process garment factory, so most of our water goes to the people who work here: drinking, washing and canteen use. We meter every use, from the boiler to the garden. Total use is 8% lower than in 2022. All domestic wastewater passes through our own sewage treatment plant before discharge, and it is tested by an independent lab.",
       "stats": [
         {
           "id": 1,
-          "icon": "/assets/sustainability/8d286.svg",
+          "icon": "/assets/sustainability/total-water-icon.svg",
           "value": "−8%",
           "label": "Total water: 38,158 m³ (2022) → 35,038 m³ (2025)"
         },
         {
           "id": 2,
-          "icon": "/assets/sustainability/d19a7.svg",
+          "icon": "/assets/sustainability/domestic-water-icon.svg",
           "value": "79%",
           "label": "Of water is for workers' domestic use, about 25 L per worker per day"
         },
         {
           "id": 3,
-          "icon": "/assets/sustainability/0fb0c.svg",
+          "icon": "/assets/sustainability/water-per-garment-icon.svg",
           "value": "4.6 L",
           "label": "Of water per garment shipped (2025)"
         }
@@ -1432,7 +1432,7 @@ export const defaultSustainability: SustainabilityContent = {
         {
           "id": 1,
           "type": "bars",
-          "icon": "/assets/1-3076/97acf.svg",
+          "icon": "/assets/sustainability/water-icon.svg",
           "title": "Water use by purpose, 2025",
           "subtitle": "m³ · 35,038 m³ total",
           "series": [
@@ -1492,7 +1492,7 @@ export const defaultSustainability: SustainabilityContent = {
         {
           "id": 2,
           "type": "columns",
-          "icon": "/assets/1-3076/97acf.svg",
+          "icon": "/assets/sustainability/water-icon.svg",
           "title": "Water use by purpose, 2025",
           "subtitle": "m³ · 35,038 m³ total",
           "series": [
@@ -1539,26 +1539,26 @@ export const defaultSustainability: SustainabilityContent = {
     },
     {
       "id": 4,
-      "background": "/assets/1-3076/fb746.jpg",
-      "icon": "/assets/1-3076/f1fb2.svg",
+      "background": "/assets/sustainability/offcuts-become-new-yarn-background.jpg",
+      "icon": "/assets/sustainability/offcuts-icon.svg",
       "title": "Offcuts become new yarn",
       "text": "Every cutting table produces offcuts, called jhut. We weigh, sort and hand over every kilogram to licensed partners who turn it back into fibre and yarn. Paper, cartons, plastic and metal follow the same route. In 2025, 99% of our waste by weight was reused or recycled. Hazardous waste, under 100 kg a year, goes only to licensed handlers. Burning or dumping waste on site is banned by policy.",
       "stats": [
         {
           "id": 1,
-          "icon": "/assets/1-3076/29fb8.svg",
+          "icon": "/assets/sustainability/fabric-offcuts-icon.svg",
           "value": "405 t",
           "label": "Of fabric offcuts sent for recycling in 2025"
         },
         {
           "id": 2,
-          "icon": "/assets/1-3076/aacaf.svg",
+          "icon": "/assets/sustainability/waste-recycled-icon.svg",
           "value": "99.2%",
           "label": "Of 593 t total waste reused or recycled"
         },
         {
           "id": 3,
-          "icon": "/assets/sustainability/77ee2.svg",
+          "icon": "/assets/sustainability/hazardous-waste-icon.svg",
           "value": "<0.1 t",
           "label": "Hazardous waste (batteries, ink cartridges, chemical drums, medical)"
         }
@@ -1567,7 +1567,7 @@ export const defaultSustainability: SustainabilityContent = {
         {
           "id": 1,
           "type": "bars",
-          "icon": "/assets/1-3076/f1fb2.svg",
+          "icon": "/assets/sustainability/offcuts-icon.svg",
           "title": "Where our waste went, 2025",
           "subtitle": "Tonnes by stream · all routed to reuse or recycling partners",
           "series": [
@@ -1637,84 +1637,84 @@ export const defaultSustainability: SustainabilityContent = {
   "certifications": [
     {
       "id": 1,
-      "image": "/assets/1-3076/5886f.png",
+      "image": "/assets/certifications/leed.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 2,
-      "image": "/assets/1-3076/2d220.jpg",
+      "image": "/assets/certifications/organic-content-standard.jpg",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 3,
-      "image": "/assets/1-3076/ffe1a.png",
+      "image": "/assets/certifications/scan.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 4,
-      "image": "/assets/1-3076/cd5b4.png",
+      "image": "/assets/certifications/gots.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 5,
-      "image": "/assets/1-3076/f1d41.png",
+      "image": "/assets/certifications/global-recycled-standard.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 6,
-      "image": "/assets/1-3076/aed48.png",
+      "image": "/assets/certifications/worldly.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 7,
-      "image": "/assets/1-3076/1d6dc.png",
+      "image": "/assets/certifications/rsc-rmg-sustainability-council.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 8,
-      "image": "/assets/1-3076/cd5b4.png",
+      "image": "/assets/certifications/gots.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 9,
-      "image": "/assets/1-3076/2d220.jpg",
+      "image": "/assets/certifications/organic-content-standard.jpg",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 10,
-      "image": "/assets/1-3076/642b2.png",
+      "image": "/assets/certifications/recycled-claim-standard.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 11,
-      "image": "/assets/1-3076/87a64.png",
+      "image": "/assets/certifications/usgbc-leed-gold.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 12,
-      "image": "/assets/1-3076/7dacd.png",
+      "image": "/assets/certifications/sustainable.png",
       "name": "",
       "fit": "contain",
       "box": {
@@ -1726,21 +1726,21 @@ export const defaultSustainability: SustainabilityContent = {
     },
     {
       "id": 13,
-      "image": "/assets/1-3076/f1d41.png",
+      "image": "/assets/certifications/global-recycled-standard.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 14,
-      "image": "/assets/1-3076/347b7.jpg",
+      "image": "/assets/certifications/european-flax.jpg",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 15,
-      "image": "/assets/1-3076/92cc5.png",
+      "image": "/assets/certifications/higg-index.png",
       "name": "",
       "fit": "contain",
       "box": {
@@ -1752,91 +1752,91 @@ export const defaultSustainability: SustainabilityContent = {
     },
     {
       "id": 16,
-      "image": "/assets/1-3076/5494a.png",
+      "image": "/assets/certifications/wrap.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 17,
-      "image": "/assets/1-3076/74b73.png",
+      "image": "/assets/certifications/sedex.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 18,
-      "image": "/assets/1-3076/7524c.png",
+      "image": "/assets/certifications/oeko-tex-inspiring-confidence.png",
       "name": "",
       "fit": "cover",
       "box": null
     },
     {
       "id": 19,
-      "image": "/assets/1-3076/facd3.png",
+      "image": "/assets/certifications/bci-better-cotton-initiative.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 20,
-      "image": "/assets/1-3076/b1d3b.png",
+      "image": "/assets/certifications/amfori.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 21,
-      "image": "/assets/1-3076/dba50.png",
+      "image": "/assets/certifications/amfori-bsci.png",
       "name": "",
       "fit": "cover",
       "box": null
     },
     {
       "id": 22,
-      "image": "/assets/1-3076/bc7ff.png",
+      "image": "/assets/certifications/accord.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 23,
-      "image": "/assets/1-3076/35c52.png",
+      "image": "/assets/certifications/social-labor-convergence-program.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 24,
-      "image": "/assets/1-3076/f6658.png",
+      "image": "/assets/certifications/gscs.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 25,
-      "image": "/assets/1-3076/14f3d.png",
+      "image": "/assets/certifications/better-work-bangladesh.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 26,
-      "image": "/assets/1-3076/b2871.png",
+      "image": "/assets/certifications/supplier-qualification-program.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 27,
-      "image": "/assets/1-3076/ddfaf.png",
+      "image": "/assets/certifications/ascb.png",
       "name": "",
       "fit": "contain",
       "box": null
     },
     {
       "id": 28,
-      "image": "/assets/1-3076/a764b.png",
+      "image": "/assets/certifications/oeko-tex.png",
       "name": "",
       "fit": "contain",
       "box": null
@@ -1845,9 +1845,9 @@ export const defaultSustainability: SustainabilityContent = {
   "environment": [
     {
       "id": 1,
-      "icon": "/assets/1-3076/80022.svg",
+      "icon": "/assets/sustainability/solar-energy-icon.svg",
       "title": "Solar & Energy",
-      "image": "/assets/1-3076/0cd2a.png",
+      "image": "/assets/sustainability/solar-and-energy.png",
       "highlight": {
         "value": "650 KW",
         "label": "Installed solar capacity"
@@ -1861,7 +1861,7 @@ export const defaultSustainability: SustainabilityContent = {
       "id": 2,
       "icon": "/assets/sustainability/water-efficiency.svg",
       "title": "Water Efficiency",
-      "image": "/assets/1-3076/daf30.png",
+      "image": "/assets/sustainability/water-efficiency-2.png",
       "highlight": {
         "value": "40%",
         "label": "Water reduction"
@@ -1873,9 +1873,9 @@ export const defaultSustainability: SustainabilityContent = {
     },
     {
       "id": 3,
-      "icon": "/assets/1-3076/19f17.svg",
+      "icon": "/assets/sustainability/waste-and-circularity-icon.svg",
       "title": "Waste & Circularity",
-      "image": "/assets/1-3076/581fc.jpg",
+      "image": "/assets/sustainability/waste-and-circularity.jpg",
       "highlight": {
         "value": "Re-NuWASTE",
         "label": "Textile waste recycling"
@@ -1889,7 +1889,7 @@ export const defaultSustainability: SustainabilityContent = {
       "id": 4,
       "icon": "/assets/sustainability/traceability.svg",
       "title": "Traceability & Materials",
-      "image": "/assets/1-3076/aac34.jpg",
+      "image": "/assets/sustainability/traceability-and-materials.jpg",
       "highlight": {
         "value": "GreenScan",
         "label": "Traceability system (GoodEarth Apparels)"
@@ -1903,31 +1903,31 @@ export const defaultSustainability: SustainabilityContent = {
   "milestones": [
     {
       "id": 1,
-      "icon": "/assets/1-3076/9f8a8.svg",
+      "icon": "/assets/sustainability/solar-energy-icon.svg",
       "title": "Renewable Energy",
       "target": "Target: 90 %"
     },
     {
       "id": 2,
-      "icon": "/assets/1-3076/9f8a8.svg",
+      "icon": "/assets/sustainability/solar-energy-icon.svg",
       "title": "Water Reduction",
       "target": "Target: 90 %"
     },
     {
       "id": 3,
-      "icon": "/assets/1-3076/a4d0a.svg",
+      "icon": "/assets/sustainability/waste-diversion-icon.svg",
       "title": "Waste Diversion",
       "target": "Target: 90 %"
     },
     {
       "id": 4,
-      "icon": "/assets/1-3076/a4d0a.svg",
+      "icon": "/assets/sustainability/waste-diversion-icon.svg",
       "title": "Women in Leadership",
       "target": "Target: 90 %"
     },
     {
       "id": 5,
-      "icon": "/assets/1-3076/9f8a8.svg",
+      "icon": "/assets/sustainability/solar-energy-icon.svg",
       "title": "Community Reach",
       "target": "Target: 90 %"
     }

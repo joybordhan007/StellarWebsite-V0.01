@@ -3,12 +3,11 @@ import AchievementsBar from "../components/AchievementsBar";
 import Footer from "../components/Footer";
 import { useContent } from "../content/ContentProvider";
 
-const assetPathPrefix = "/assets/1-1333";
-const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
-const imgImage = `${assetPathPrefix}/b9c5b.jpg`;
-const imgRectangle9121 = `${assetPathPrefix}/2504f.png`;
-const imgArrowForwardLong = `${assetPathPrefix}/887e7.svg`;
-const imgStellarLogo3 = `${assetPathPrefix}/3b80a.svg`;
+const imgArrowSubdirectoryForward = "/assets/common/arrow-subdirectory-forward.svg";
+const imgImage = "/assets/capabilities/hero.jpg";
+const imgRectangle9121 = "/assets/common/brighter-tomorrow-illustration.png";
+const imgArrowForwardLong = "/assets/common/arrow-forward-white.svg";
+const imgStellarLogo3 = "/assets/common/stellar-logo-white.svg";
 
 type Component1Props = {
   className?: string;

@@ -13,13 +13,12 @@ export const SOCIAL_LABELS: Record<SocialPlatform, string> = {
   website: "Website",
 };
 
-const assetPathPrefix = "/assets/1-641";
-const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = `${assetPathPrefix}/4d4a6.svg`;
-const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.jpg`;
-const imgFrame = `${assetPathPrefix}/adc25.svg`;
-const imgFrame1 = `${assetPathPrefix}/06754.svg`;
-const imgFrame2 = `${assetPathPrefix}/a2092.svg`;
-const imgStellarLogo2 = `${assetPathPrefix}/cf89e.svg`;
+const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1 = "/assets/common/stellar-wordmark.svg";
+const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = "/assets/common/footer-fabric-texture.jpg";
+const imgFrame = "/assets/common/phone-icon.svg";
+const imgFrame1 = "/assets/common/email-icon.svg";
+const imgFrame2 = "/assets/common/location-icon.svg";
+const imgStellarLogo2 = "/assets/common/stellar-logo.svg";
 
 export default function Footer({ className }: { className?: string }) {
   const site = useContent("site");

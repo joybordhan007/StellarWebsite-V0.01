@@ -1221,9 +1221,15 @@ textarea {
   width: 100% !important;
   height: auto !important;
   min-height: 0 !important;
-  translate: none !important;
   transform: none !important;
   margin: 0 !important;
+}
+
+/* In a rule of its own: the production minifier folds "translate: none" into a neighbouring
+   "transform: none", which left Tailwind's translate-* utilities (-translate-x-1/2) active on phones. */
+.m-flow [data-mflow],
+.m-flow [data-mbg] {
+  translate: none !important;
 }
 
 .m-flow > [data-mspace] {
@@ -1236,7 +1242,6 @@ textarea {
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  translate: none !important;
   transform: none !important;
 }
 

@@ -50,4 +50,6 @@ export const config = {
   },
   uploadDir: resolveFromServerRoot(process.env.UPLOAD_DIR ?? "./uploads"),
   clientDist: resolveFromServerRoot(process.env.CLIENT_DIST ?? "../dist"),
+  /** Old → new asset paths from the 2026-10 asset rename (see assetRenames.ts). */
+  assetRenamesFile: resolveFromServerRoot("./asset-renames.json"),
 };

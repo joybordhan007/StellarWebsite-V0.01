@@ -5,20 +5,19 @@ import LogoMarquee from "../components/LogoMarquee";
 import { useContent } from "../content/ContentProvider";
 import type { Capability, Product } from "../content/types";
 
-const assetPathPrefix = "/assets/1-641";
-const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
-const imgImage = `${assetPathPrefix}/afbbf.jpg`;
-const imgRectangle9136 = `${assetPathPrefix}/69cf3.jpg`;
-const imgRectangle9137 = `${assetPathPrefix}/2504f.png`;
-const imgArrowForwardLong = `${assetPathPrefix}/887e7.svg`;
-const imgStellarLogo3 = `${assetPathPrefix}/3b80a.svg`;
-const imgArrowForwardLong1 = `${assetPathPrefix}/bdbfe.svg`;
-const imgArrowForwardLong2 = `${assetPathPrefix}/77a61.svg`;
-const imgVector = `${assetPathPrefix}/ee01d.svg`;
-const imgGroup18 = `${assetPathPrefix}/86960.svg`;
-const imgLayer1 = `${assetPathPrefix}/0c357.svg`;
-const imgFrame3 = `${assetPathPrefix}/6576e.svg`;
-const imgGroup19 = `${assetPathPrefix}/0df6b.svg`;
+const imgArrowSubdirectoryForward = "/assets/common/arrow-subdirectory-forward.svg";
+const imgImage = "/assets/home/hero.jpg";
+const imgRectangle9136 = "/assets/home/sustainability-leaf.jpg";
+const imgRectangle9137 = "/assets/common/brighter-tomorrow-illustration.png";
+const imgArrowForwardLong = "/assets/common/arrow-forward-white.svg";
+const imgStellarLogo3 = "/assets/common/stellar-logo-white.svg";
+const imgArrowForwardLong1 = "/assets/common/arrow-forward-dark.svg";
+const imgArrowForwardLong2 = "/assets/common/arrow-forward-dark.svg";
+const imgVector = "/assets/common/link-underline.svg";
+const imgGroup18 = "/assets/home/value-people-icon.svg";
+const imgLayer1 = "/assets/home/value-products-icon.svg";
+const imgFrame3 = "/assets/home/value-planet-icon.svg";
+const imgGroup19 = "/assets/home/value-partnerships-icon.svg";
 
 type Component1Props = {
   className?: string;

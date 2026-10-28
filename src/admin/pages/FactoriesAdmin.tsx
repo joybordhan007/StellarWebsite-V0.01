@@ -17,7 +17,7 @@ import {
 } from "../ui";
 
 // The same map image as the About page "Strategic factory locations" section (636 × 440).
-const WORLD_MAP = "/assets/1-967/bea37.png";
+const WORLD_MAP = "/assets/about/world-map.png";
 const MAP_WIDTH = 636;
 const MAP_HEIGHT = 440;
 const MARKER_SIZE = 16;

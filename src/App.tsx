@@ -175,7 +175,7 @@ function DesktopHeader({
         style={{ left: `${left}px`, transform: `scale(${scale})` }}
       >
         <a className="desktop-header-logo" href="/" aria-label="Stellar home">
-          <img src="/assets/1-641/3b80a.svg" alt="Stellar Manufacturing" />
+          <img src="/assets/common/stellar-logo-white.svg" alt="Stellar Manufacturing" />
         </a>
         <nav aria-label="Primary navigation">
           {navigation.map(({ href, label }) => {
@@ -202,8 +202,8 @@ function DesktopHeader({
           </span>
           <span className="contact-roll-viewport contact-roll-icon" aria-hidden="true">
             <span className="contact-roll-track">
-              <img src="/assets/1-641/f356f.svg" alt="" />
-              <img src="/assets/1-641/f356f.svg" alt="" />
+              <img src="/assets/common/arrow-subdirectory-forward.svg" alt="" />
+              <img src="/assets/common/arrow-subdirectory-forward.svg" alt="" />
             </span>
           </span>
         </a>

@@ -1,5 +1,6 @@
 import cookieParser from "cookie-parser";
 import express from "express";
+import { redirectRenamedAssets, rewriteStoredAssetPaths } from "./assetRenames.js";
 import { ensureInitialAdmin, requireAdmin } from "./auth.js";
 import { config } from "./config.js";
 import { connectDatabase, db } from "./db/index.js";
@@ -62,10 +63,12 @@ app.use(
   }),
 );
 
+app.use(redirectRenamedAssets);
 app.use(siteRouter());
 app.use(errorHandler);
 
 await connectDatabase();
+await rewriteStoredAssetPaths();
 await ensureInitialAdmin();
 
 app.listen(config.port, () => {

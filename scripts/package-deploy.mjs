@@ -78,7 +78,7 @@ function writeZip(target, files) {
 run("pnpm build");
 run("pnpm build", path.join(root, "server"));
 
-const serverFiles = ["app.cjs", "package.json", ".env.example", "README.md"].map((name) => [
+const serverFiles = ["app.cjs", "package.json", ".env.example", "README.md", "asset-renames.json"].map((name) => [
   `stellar/server/${name}`,
   path.join(root, "server", name),
 ]);

@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { useContent } from "../content/ContentProvider";
 import Footer from "../components/Footer";
 
-const assetPathPrefix = "/assets/1-4402";
-const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
-const imgImage = `${assetPathPrefix}/730ef.jpg`;
-const imgArrowForwardLong = `${assetPathPrefix}/887e7.svg`;
-const imgStellarLogo3 = `${assetPathPrefix}/aa512.svg`;
+const imgArrowSubdirectoryForward = "/assets/common/arrow-subdirectory-forward.svg";
+const imgImage = "/assets/products/hero.jpg";
+const imgArrowForwardLong = "/assets/common/arrow-forward-white.svg";
+const imgStellarLogo3 = "/assets/common/stellar-logo-white-2.svg";
 
 type Component1Props = {
   className?: string;

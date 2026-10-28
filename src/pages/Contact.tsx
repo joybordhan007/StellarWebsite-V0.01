@@ -2,17 +2,16 @@ import { FormEvent, useState } from "react";
 import Footer from "../components/Footer";
 import { useContent } from "../content/ContentProvider";
 
-const assetPathPrefix = "/assets/1-4581";
-const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
-const imgImage = `${assetPathPrefix}/aa442.jpg`;
-const imgStellarLogo3 = `${assetPathPrefix}/aa512.svg`;
-const imgLayer1 = `${assetPathPrefix}/52c2c.svg`;
-const imgLayer3 = `${assetPathPrefix}/872b1.svg`;
-const imgLayer2 = `${assetPathPrefix}/1ab2f.svg`;
-const imgGroup = `${assetPathPrefix}/1f97e.svg`;
-const imgGroup1 = `${assetPathPrefix}/f8d87.svg`;
-const imgPlus = `${assetPathPrefix}/5c49c.svg`;
-const imgMinus = `${assetPathPrefix}/f523a.svg`;
+const imgArrowSubdirectoryForward = "/assets/common/arrow-subdirectory-forward.svg";
+const imgImage = "/assets/contact/hero.jpg";
+const imgStellarLogo3 = "/assets/common/stellar-logo-white-2.svg";
+const imgLayer1 = "/assets/contact/email-icon.svg";
+const imgLayer3 = "/assets/contact/phone-icon.svg";
+const imgLayer2 = "/assets/contact/website-icon.svg";
+const imgGroup = "/assets/contact/location-icon.svg";
+const imgGroup1 = "/assets/contact/clock-icon.svg";
+const imgPlus = "/assets/contact/plus-icon.svg";
+const imgMinus = "/assets/contact/minus-icon.svg";
 
 type Component1Props = {
   className?: string;

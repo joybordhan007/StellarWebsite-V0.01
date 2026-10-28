@@ -4,16 +4,15 @@ import LogoMarquee from "../components/LogoMarquee";
 import { useContent } from "../content/ContentProvider";
 import type { Factory, FactoryMixShare } from "../content/types";
 
-const assetPathPrefix = "/assets/1-2277";
-const imgArrowSubdirectoryForward = `${assetPathPrefix}/f356f.svg`;
-const imgImage = `${assetPathPrefix}/c1f82.jpg`;
-const imgArrowForwardLong = `${assetPathPrefix}/887e7.svg`;
-const imgStellarLogo3 = `${assetPathPrefix}/3b80a.svg`;
-const imgArrowForwardLong1 = `${assetPathPrefix}/77a61.svg`;
-const imgArrowForwardLong2 = `${assetPathPrefix}/7a5e8.svg`;
-const imgArrowBack = `${assetPathPrefix}/d25a0.svg`;
-const imgArrowForwardLong3 = `${assetPathPrefix}/bdbfe.svg`;
-const imgLocationPin = `${assetPathPrefix}/40da2.svg`;
+const imgArrowSubdirectoryForward = "/assets/common/arrow-subdirectory-forward.svg";
+const imgImage = "/assets/factories/hero.jpg";
+const imgArrowForwardLong = "/assets/common/arrow-forward-white.svg";
+const imgStellarLogo3 = "/assets/common/stellar-logo-white.svg";
+const imgArrowForwardLong1 = "/assets/common/arrow-forward-dark.svg";
+const imgArrowForwardLong2 = "/assets/factories/arrow-forward-orange.svg";
+const imgArrowBack = "/assets/factories/arrow-back.svg";
+const imgArrowForwardLong3 = "/assets/common/arrow-forward-dark.svg";
+const imgLocationPin = "/assets/factories/location-pin.svg";
 
 /** Product-mix colours, in order (the design's orange, black and grey, then extras). */
 const MIX_COLORS = ["#DEA36A", "#1D1D1D", "#979797", "#C9B8A6", "#5F6B5A"];

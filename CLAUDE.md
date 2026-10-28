@@ -59,7 +59,8 @@ No router library, no state library.
   content), `seoDefaults.json` (built-in page titles/descriptions, also emitted into the build), `collectionDefaults.ts` (catalog, capabilities, achievements), `pageDefaults.ts`
   (factories, brands, about, versatility, sustainability — generated once from the Figma pages),
   `ContentProvider.tsx` (`useContent(key)`, `mergeContent`, `useBackendAvailable()`)
-- `src/data/productCategories.json` — source of the default product catalogue
+- `src/data/productCategories.json` — source of the default product catalogue (`icon` and `files`
+  are full `/assets/...` paths)
 - `public/assets/achievements/*.svg` — achievement icons, each composed into one file from the
   Figma layer pieces (so the dashboard can swap them with a single upload)
 - `public/assets/factories/icons/*.png` — factory stat / product-mix / distance icons, rasterised
@@ -76,7 +77,12 @@ No router library, no state library.
   `routes/` (auth, content, messages, media, analytics), `site.ts` (serves `dist/` + injects content/SEO)
 - `server/app.cjs` — cPanel/Passenger startup file; `server/README.md` — dev + deployment guide (Bangla)
 - `scripts/package-deploy.mjs` — `pnpm deploy:package`: builds site + server into `deploy/stellar.zip`
-- `public/assets/<figma-node-id>/` — exported images/SVGs, grouped by Figma frame (e.g. `1-641` = Home)
+- `public/assets/` — images with meaningful names, one folder per page or kind: `home/`, `about/`,
+  `capabilities/` (+ `versatility/`), `design-path/`, `factories/` (shared page images, `icons/`,
+  `goodearth/`, `progress/`, `knit-gallery/`), `sustainability/`, `products/` (`categories/` icons and
+  one folder per category of WebP photos), `contact/`, `brands/`, `certifications/`, `achievements/`,
+  `social/`, and `common/` (logo, arrows, footer images and every file used by several pages)
+- `server/asset-renames.json` — old Figma export path → new path, for the server (see Decisions)
 - `config/` — was `.figma/make/` (renamed at the owner's request): `site.json` (page title,
   description, robots — currently `index: false`, read by `vite.config.ts`), `dev.json` and the
   Figma Make platform hook scripts (`dev`, `deploy`, `install` …). Figma Make looks for these in
@@ -172,7 +178,9 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
   backgrounds; rows of wide blocks stack, rows of small ones wrap 2-up (icon + text rows are left
   alone, hairline dividers hidden); paddings ≥48px → 16px (32px ≥640px), big gaps and headings
   shrink, long nowrap text wraps. It reruns on DOM changes (MutationObserver) and removing `.m-flow`
-  restores desktop exactly. It rebuilds only on structural DOM changes (not text changes such as
+  restores desktop exactly. `translate: none` sits in a rule of its own: the production CSS
+  minifier folds it into a neighbouring `transform: none`, which left `-translate-x-1/2` sections half
+  a screen off to the left in production only. It rebuilds only on structural DOM changes (not text changes such as
   the counters). Hand overrides: `data-mobile="hide | stack | wrap | full | keep"`
   (used by the footer, Versatility columns/empty rows, charts). Wide one-cell `grid-cols-[max-content]`
   wrappers are fitted to the column; centred one-line text keeps its wrapped lines centred. The hamburger `MobileHeader`
@@ -200,8 +208,18 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
   vertically centred in every section (owner’s choice); a single chart card is 613px tall;
   only the two-chart card (water) puts its charts on white boxes. Bars grow in when a chart first
   scrolls into view (`.sustainability-data-chart` / `-bar`, IntersectionObserver in the component).
-- **Assets referenced by path constants** at the top of each page (`assetPathPrefix`), served
-  from `public/assets`, not imported. Images inside `src/pages` get `loading="lazy"` +
+- **Assets referenced by literal paths** (`const imgX = "/assets/home/hero.jpg"` at the top of each
+  page, full paths in content defaults and the catalogue), served from `public/assets`, not imported.
+  No path is assembled from a folder prefix any more, so a rename is a plain search and replace.
+- **Asset names are meaningful.** The Figma export names (`1-641/3b80a.svg`) were replaced
+  (2026-10-28) by names taken from the content (product, capability, factory, logo names), the
+  page section, or a look at the image; byte-identical copies across folders were merged into one
+  file (`common/`, `certifications/`). `server/asset-renames.json` keeps the old → new map: on every
+  start the server rewrites old paths in saved content (`rewriteStoredAssetPaths`) and answers old
+  image URLs with a 301 to the new one (`redirectRenamedAssets`), so content saved before the rename
+  and old links keep working. The map ships in the deploy zip.
+- **Product photos are WebP**, at most 1500px wide (2× their widest display, 741px on phones),
+  quality 82 — 7 MB PNGs became ~100–200 KB with no visible difference. Images inside `src/pages` get `loading="lazy"` +
   `decoding="async"` automatically (Vite plugin `lazyLoadPageImages`).
 - **Scroll reveal is generic, not per-page markup.** `PageReveal` (wraps every page in `App`)
   finds the content blocks of each top-level section at runtime and fades/slides them in as
@@ -388,3 +406,8 @@ via nodemailer would remove the activation step).
   phone layout no longer rebuilt on counter ticks, password form username hint, server engine
   Node ≥22.13, unused `formatBytes`/`isMobileViewport` removed.
 - 2026-10-28 — My profile: show/hide eye on the three change-password fields.
+- 2026-10-28 — Assets renamed to meaningful names in page/kind folders (450 files → 396 after
+  merging 91 identical copies and removing 12 unused footer copies); all product photos converted to
+  WebP; public/assets 146 MB → 56 MB. Every reference made a literal path first; the server rewrites
+  old paths in saved content and 301-redirects old URLs. Fixed phone layout in production builds
+  (minifier dropped `translate: none`).
