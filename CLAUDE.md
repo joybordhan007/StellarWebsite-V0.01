@@ -1,5 +1,3 @@
-@AGENTS.md
-
 # Stellar Manufacturing Website
 
 > **Maintenance rule:** After finishing every feature or meaningful change, update this file —
@@ -24,7 +22,7 @@ without touching code. Layout is never editable from the dashboard — only cont
 | Area | Choice |
 | --- | --- |
 | UI | React 19 + TypeScript 5.7 |
-| Build / dev | Vite 8 (dev server on `$PORT`, default 8443 — already running) |
+| Build / dev | Vite 8 (dev server on `$PORT`, default 8443) |
 | Styling | Tailwind CSS v4 (`@tailwindcss/vite`), plus hand-written global CSS in `src/index.css` |
 | Formatting | oxfmt (`pnpm format`) |
 | Toolchain | Node 22, pnpm 10 (`.mise.toml`) |
@@ -353,12 +351,17 @@ via nodemailer would remove the activation step).
 ## Development
 
 - Site + backend together: `pnpm dev:all` (website/dashboard on 8443, API on 3001).
-- Site only: `pnpm dev` (already running in Figma Make).
+- Site only: `pnpm dev`.
 - With backend: see `server/README.md` — `pnpm server` from the root (SQLite, port 3001) and
   `API_PROXY=http://localhost:3001` in `.env.local` (Vite restarts itself when it changes), then
   open `/admin` on port 8443. Without both, `/admin` shows "Admin dashboard unavailable". In
   development, non-API requests to port 3001 redirect to the Vite site (`DEV_SITE_URL`).
 - Checks: `npx tsc --noEmit -p .` (site) and `cd server && pnpm typecheck`.
+- Code rules (from the original Figma Make scaffold): use double quotes for strings containing an
+  apostrophe (`"We're here"`) — an unescaped apostrophe in a single-quoted string breaks the build;
+  components are default exports. In `src/index.css` keep `@import` statements first, then
+  `@font-face` rules and font defaults; there is no Tailwind or PostCSS config file (Tailwind v4
+  is configured through `@tailwindcss/vite`).
 - Deploy: `pnpm deploy:package` → upload `deploy/stellar.zip` (steps in `server/README.md`).
 
 ## Changelog
@@ -411,3 +414,5 @@ via nodemailer would remove the activation step).
   WebP; public/assets 146 MB → 56 MB. Every reference made a literal path first; the server rewrites
   old paths in saved content and 301-redirects old URLs. Fixed phone layout in production builds
   (minifier dropped `translate: none`).
+- 2026-10-28 — Removed AGENTS.md (Figma Make agent guide, mostly duplicated here and outdated); its
+  code rules moved to Development.
