@@ -27,13 +27,13 @@ export default function Footer({ className }: { className?: string }) {
 
   return (
     <div className={className || "bg-white h-[593px] overflow-clip relative shadow-[0px_0px_4px_0px_rgba(0,0,0,0.06)] w-[1920px]"} data-node-id="1:7" data-name="Footer">
-      <div className="absolute contents left-[180px] top-[427px]" data-node-id="1:8" data-name="Mask group">
+      <div className="absolute contents left-[180px] top-[427px]" data-mobile="hide" data-node-id="1:8" data-name="Mask group">
         <div className="absolute h-[397.046px] left-[-153px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[333px_117.511px] mask-size-[1560px_162.213px] top-[309.49px] w-[2226px]" data-node-id="1:17" style={{ maskImage: `url("${imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds1}")` }} data-name="black-fabric-draped-elegant-folds-abstract-texture-design-backgrounds 1">
           <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2} />
         </div>
       </div>
-      <div className="-translate-x-1/2 absolute content-stretch flex items-start justify-between left-1/2 top-[71px] w-[1560px]" data-node-id="1:18" data-name="Frame">
-        <div className="content-stretch flex flex-col gap-[32px] items-start relative shrink-0 w-[454px]" data-node-id="1:19" data-name="Frame">
+      <div className="-translate-x-1/2 absolute content-stretch flex items-start justify-between left-1/2 top-[71px] w-[1560px]" data-mobile="wrap" data-node-id="1:18" data-name="Frame">
+        <div className="content-stretch flex flex-col gap-[32px] items-start relative shrink-0 w-[454px]" data-mobile="full" data-node-id="1:19" data-name="Frame">
           <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-full" data-node-id="1:20" data-name="Frame">
             <div className="h-[80px] relative shrink-0 w-[175px]" data-node-id="1:21" data-name="Stellar_Logo 2">
               <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgStellarLogo2} />
@@ -85,7 +85,7 @@ export default function Footer({ className }: { className?: string }) {
             ))}
           </div>
         </div>
-        <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[350px]" data-node-id="1:78" data-name="Frame">
+        <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-[350px]" data-mobile="full" data-node-id="1:78" data-name="Frame">
           <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[#191919] text-[20px] whitespace-nowrap" data-node-id="1:79">
             <p className="leading-[1.2]">{footer.contactTitle}</p>
           </div>

@@ -50,7 +50,11 @@ No router library, no state library.
 - `src/components/LogoMarquee.tsx` — scrolling 240×120 logo row (brands, certifications) + `LogoImage`
 - `src/pages/FactoryPage.tsx` — one data-driven page for every factory (`/factories/<slug>`); replaced
   GoodEarth/Progress/KnitGallery.tsx
-- `src/components/PageReveal.tsx` — page fade-in + scroll reveal wrapper (styles at end of `index.css`)
+- `src/components/PageReveal.tsx` — page fade-in + scroll reveal wrapper (styles at end of `index.css`);
+  also applies the phone/tablet layout
+- `src/components/mobileFlow.ts` — phone/tablet reflow (≤1023px) of the 1920px pages (see Decisions)
+- `src/components/SustainabilityStories.tsx` — the four Sustainability report sections (text,
+  highlights, column/bar charts) with the sticky stacking scroll effect; exports `chartAxis`
 - `src/content/` — editable content: `types.ts` (document shapes), `defaults.ts` (built-in
   content), `collectionDefaults.ts` (catalog, capabilities, achievements), `pageDefaults.ts`
   (factories, brands, about, versatility, sustainability — generated once from the Figma pages),
@@ -60,11 +64,14 @@ No router library, no state library.
   Figma layer pieces (so the dashboard can swap them with a single upload)
 - `public/assets/factories/icons/*.png` — factory stat / product-mix / distance icons, rasterised
   (4x, transparent) from the Figma layer stacks
+- `public/assets/sustainability/*.svg` — Environmental performance icons that had an inset in Figma,
+  composed into plain 32×32 files
 - `public/assets/social/*.svg` — footer social icons, one per platform (Phosphor-style 1.5px stroke)
 - `src/admin/` — dashboard: `AdminApp.tsx` (login, layout, sections), `api.ts`, `AdminContext.tsx`
   (session, toasts), `ui.tsx` (form controls, image picker, `useContentDoc`, save bar),
-  `components.tsx` (Modal, `useConfirm`, DataTable, Toggle, ActionMenu, LinkTabs, `useLiveContent`,
-  Avatar), `LogoListEditor.tsx`, `charts.tsx` (LineChart, ColumnChart, BarList for Overview), `pages/*`
+  `components.tsx` (Modal, FormModal, `useConfirm`, DataTable, Toggle, ActionMenu, LinkTabs, `useLiveContent`,
+  Avatar; `DataTable dense` = 40px rows), `ImageTable.tsx` (compact image/logo list with photo and
+  logo adapters), `charts.tsx` (LineChart, ColumnChart, BarList for Overview), `pages/*`
 - `server/src/` — `index.ts` (app), `config.ts` (env), `db/` (driver + migrations), `auth.ts`,
   `routes/` (auth, content, messages, media, analytics), `site.ts` (serves `dist/` + injects content/SEO)
 - `server/app.cjs` — cPanel/Passenger startup file; `server/README.md` — dev + deployment guide (Bangla)
@@ -85,7 +92,7 @@ No router library, no state library.
 | `/products` | Products | dynamic height via `onHeightChange` |
 | `/contact` | Contact | form + office tabs + map |
 | `/privacy-policy`, `/terms-of-service` | LegalPages | |
-| `/admin`, `/admin/*` | AdminApp | overview, messages, products (+ `/categories`), capabilities (+ `/versatility`), achievements, factories (+ `/<id>` editor), brands, about, sustainability, offices, footer, site, seo, legal, profile |
+| `/admin`, `/admin/*` | AdminApp | overview, messages, products (+ `/categories`), capabilities (+ `/versatility`, `/versatility/<n>` category editor), achievements, factories (+ `/<id>` editor), brands, about, sustainability (+ `/reports`, `/reports/<id>`), offices, footer, site, seo, legal, profile |
 
 Unknown paths fall back to Home.
 
@@ -129,9 +136,57 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
   device and a daily visitor hash (IP + UA + day + secret); bots and `/admin` are skipped. The site
   only reports when the backend answered (`useBackendAvailable`), so the Figma preview stays quiet.
 - **Admin users and Media library pages were removed** at the owner's request. One admin (seeded
-  from env) manages the site; uploads still go through `/api/media` (Upload / Library buttons).
-- **Separate mobile header.** Below 767px a simple hamburger header (`MobileHeader`) replaces the
-  scaled desktop header.
+  from env) manages the site; uploads still go through `/api/media`, but there is no library picker —
+  every image field is Upload / Replace only.
+- **Sidebar is grouped** (General · Catalog · Company · Site). Site settings and SEO are not in the
+  menu (owner's choice) but their routes still work: `/admin/site`, `/admin/seo`. My profile opens
+  from the account card (photo, name, email) at the bottom of the sidebar.
+- **Image lists are compact tables.** Factory gallery, factory certifications, brand logos and
+  sustainability certifications all use `ImageTable`: image, inline-editable name (saves on blur /
+  Enter), upload date (`uploadedAt`; built-in images show “Original”), ⋮ Move up / Move down /
+  Reupload / Delete, and the Add button on the heading. Reuploading a logo drops its design crop
+  box and uses `fit: "padded"`; there is no per-logo layout picker any more.
+- **Versatility admin = categories table → category page.** `/admin/capabilities/versatility` lists the
+  5 category columns (name, subtitle, image, ⋮ Edit / Move); `/versatility/<n>` (1-based) edits the
+  category image, name and subtitle on top and its subcategories (≤ 5: image, title, optional
+  subtitle; add/edit popup, move, delete) below. Section text is in an “Edit section text” popup.
+  Saves immediately (`useLiveContent`). On the website every column always draws 5 rows, so all
+  category cards are the same height.
+- **Tailwind classes must not touch a `${…}`.** `size-[44px]${x}` is not detected by Tailwind's
+  scanner (the Versatility thumbnails rendered 0×0 because of it); always leave a space.
+- **Sustainability card rows stretch.** Three factories, Environmental performance and Milestones
+  rows use `items-stretch`, so every card takes the tallest card's height. Environmental cards are
+  capped at 4 and milestones at 5 (what fits the fixed-width rows of the absolute page layout).
+- **Footer admin edits only** the description, social links and the contact column. The Quick
+  links / Support columns and the copyright + credit line still render from `site.footer` and
+  `site.copyright` defaults but have no editor (owner's choice).
+- **Phones and tablets reflow instead of shrinking.** At ≤1023px (`MOBILE_MAX_WIDTH`) the canvas is
+  not scaled; `applyMobileFlow` measures the page once in its 1920px layout and sets `data-m*`
+  markers that CSS under `.m-flow` (index.css) turns into one column: top-level sections stack in
+  desktop order; wide/text absolute blocks join the flow, full-size photo layers stay behind as
+  backgrounds; rows of wide blocks stack, rows of small ones wrap 2-up (icon + text rows are left
+  alone, hairline dividers hidden); paddings ≥48px → 16px (32px ≥640px), big gaps and headings
+  shrink, long nowrap text wraps. It reruns on DOM changes (MutationObserver) and removing `.m-flow`
+  restores desktop exactly. Hand overrides: `data-mobile="hide | stack | wrap | full | keep"`
+  (used by the footer, Versatility columns/empty rows, charts). Wide one-cell `grid-cols-[max-content]`
+  wrappers are fitted to the column; centred one-line text keeps its wrapped lines centred. The hamburger `MobileHeader`
+  replaces the desktop header at the same breakpoint; its menu closes on navigation and Escape.
+  Phone hero (`markHero`): 50svh (360–540px), text block at the bottom over the photo, lines joined
+  into one paragraph, slogan box as a one-line strip. Photo-only rows wrap two per row; heading rows
+  spread with `justify-between` stack (`data-mhead`); stacked columns drop their own vertical padding;
+  `sticky` is off; words never break mid-word.
+- **Sustainability report sections stack while scrolling.** Each 864px section pins under the
+  header and the next slides over it; the covered one shrinks 8% and darkens, the arriving one has
+  rounded top corners and its cards rise in (JS on scroll, transforms only — the content is centred by
+  its `translate` class, so the script only adds the arrival offset; off on phones and with
+  reduced motion; the container opts out of PageReveal with `data-reveal="off"`).
+- **Report charts are data, not Figma drawings.** `sustainability.stories[].charts`: type
+  `columns` (stacked by series) or `bars` (horizontal, values shown); rows keep values per series
+  id; axis end/step 0 = automatic. Default chart values were read off the Figma bar heights and do
+  not all match the figures in the text — the owner should enter the real numbers. Content is
+  vertically centred in every section (owner’s choice); a single chart card is 613px tall;
+  only the two-chart card (water) puts its charts on white boxes. Bars grow in when a chart first
+  scrolls into view (`.sustainability-data-chart` / `-bar`, IntersectionObserver in the component).
 - **Assets referenced by path constants** at the top of each page (`assetPathPrefix`), served
   from `public/assets`, not imported. Images inside `src/pages` get `loading="lazy"` +
   `decoding="async"` automatically (Vite plugin `lazyLoadPageImages`).
@@ -166,7 +221,8 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
   text; making them editable means replacing literals with `useContent(...)` fields. Done so far:
   footer, navigation labels, SEO, products + categories, Home carousel, capabilities (+ Home
   "Ideas to impact", Versatility), achievements bars, factories (+ Home/Sustainability cards and
-  About map), brand logos, About journey, sustainability certifications, offices, legal pages. DOM-patching tricks were
+  About map), brand logos, About journey, sustainability certifications, environmental performance,
+  milestones and the four report sections, offices, legal pages. DOM-patching tricks were
   rejected as fragile.
 - **Records live inside content documents.** Products, categories, capabilities and achievements
   are arrays with numeric `id`, `createdAt` and (where relevant) `active`, inside one document per
@@ -212,7 +268,7 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
 - All 12 public routes above, matched to the Figma design
 - Desktop header: logo, primary nav with active state (factories group highlighted), scroll
   state style, animated "Let's talk" roll button
-- Mobile header with toggleable nav
+- Mobile header with toggleable nav; phone/tablet one-column layout for every page
 - Client-side navigation with prefetch, back/forward support, hash-scroll, per-route document title
 - Animated stat counters (`CountUpValue`) on Home, Capabilities, Sustainability — start when visible
 - Logo / certification / fashion-card marquees
@@ -226,7 +282,8 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
 - Shared achievements bar on Home, Capabilities and Sustainability (fixed the broken CO₂ label)
 - Home “A global footprint”, Sustainability “Three factories”, About world map and legend driven
   by the factories; Home brand logos, About journey, Capabilities Versatility and Sustainability
-  certifications driven by content
+  certifications, Environmental performance cards, Next milestones and the four report sections
+  (Powered by the sun … Offcuts become new yarn, with charts and sticky stacking scroll) driven by content
 - Footer fully editable: description, social links (any of 9 platforms), link columns, contact
   info, copyright and credit
 - Cookie-less page-view tracking for the dashboard reports
@@ -244,9 +301,11 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
   capabilities (table, status + home toggles (max 6), ⋮ view/edit/move/delete, popups, arrange
   home) + Versatility tab; achievements (table, popup with live preview, per-page bars); factories
   (table with status toggle and ⋮ view/edit; editor for every section incl. click-to-place map pin
-  and certification logos); brand logos and sustainability certifications (upload, layout, order);
-  About journey; offices; footer; site settings (company, contact-form recipient, menu labels);
-  SEO per page; legal pages; my profile (photo, name, admin ID, password). Overview: traffic and
+  and certification logos); brand logos; sustainability (Environmental performance cards and Next milestones tables with
+  add/edit popups and image/icon upload, certification logos; Reports tab: each report section's
+  background, icon, title, text, highlights table and chart cards with series + data tables); Versatility categories table + category page;
+  About journey; offices; footer (description, social links, contact column); legal pages; my
+  profile (photo, name, admin ID, password); site settings and SEO via direct URL only. Overview: traffic and
   enquiry reports (7/30/90 days, deltas, daily charts, top pages, sources, devices) plus content
   counts and latest messages. Unsaved-changes bar, last-saved info.
 
@@ -290,3 +349,20 @@ via nodemailer would remove the activation step).
   profile (avatar, name, ID, password); Admin users and Media library pages removed. Overview
   reporting with cookie-less page-view tracking (migration 002). Count-ups show final values under
   reduced motion. Removed 159 unused assets.
+- 2026-10-28 — Dashboard tidy-up: grouped sidebar (Site settings, SEO, My profile out of the menu;
+  profile via the account card), no Library picker, compact 40px image tables (ImageTable) for the
+  factory gallery, factory certifications, brand logos and sustainability certifications, footer
+  editor reduced to description, social links and contact column.
+- 2026-10-28 — Versatility admin rebuilt as a categories table + per-category page with a subcategory
+  table (fixed the 0×0 subcategory thumbnails on the website, columns equal height again).
+  Sustainability: Environmental performance and Our next milestones moved into the
+  `sustainability` document with dashboard tables; all three card rows stretch to equal height.
+- 2026-10-28 — Sustainability report sections (sun, carbon, water, waste) data-driven with charts and
+  a Reports admin tab; sticky stacking scroll animation. Phone/tablet layout (≤1023px) for the whole
+  site via mobileFlow reflow instead of scaling the 1920px canvas.
+- 2026-10-28 — Report sections matched to the Figma frames again (positions, card heights, bar
+  styling), chart bar grow-in animation restored, phone fixes (no clipped text, fitted photo/map grids).
+- 2026-10-28 — Report sections: content centred in all four; fixed the scroll effect shifting it up
+  by half its height (double -50% translate), which cut it off under the header.
+- 2026-10-28 — Mobile: menu closes after navigation; compact half-screen heroes; factory tabs, photo
+  rows, heading rows, stacked-column spacing and word wrapping tidied for phones and tablets.

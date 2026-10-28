@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import PageReveal from "./components/PageReveal";
+import { MOBILE_MAX_WIDTH } from "./components/mobileFlow";
 import { useBackendAvailable, useContent } from "./content/ContentProvider";
 import type { NavigationItem } from "./content/types";
 
@@ -216,6 +217,16 @@ function MobileHeader({
 }) {
   const [open, setOpen] = useState(false);
 
+  // The menu closes whenever the page changes (links are handled by the client-side router).
+  useEffect(() => setOpen(false), [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => event.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
     <header className="mobile-header">
       <a className="mobile-brand" href="/" aria-label="Stellar home">
@@ -232,10 +243,10 @@ function MobileHeader({
         <span />
       </button>
       {open && (
-        <nav aria-label="Mobile navigation">
+        <nav aria-label="Mobile navigation" onClick={(event) => (event.target as Element).closest("a") && setOpen(false)}>
           {navigation.map(({ href, label }) => (
             <a
-              className={pathname === href ? "active" : ""}
+              className={pathname === href || (href !== "/" && pathname.startsWith(`${href}/`)) ? "active" : ""}
               href={href}
               key={href}
               {...prefetchLinkProps(href)}
@@ -265,7 +276,8 @@ export default function App() {
   const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
   const PageComponent = page.component;
   const pageHeight = dynamicPageHeight ?? page.height;
-  const scale = Math.min(1, viewportWidth / 1920);
+  const isMobile = viewportWidth <= MOBILE_MAX_WIDTH;
+  const scale = isMobile ? 1 : Math.min(1, viewportWidth / 1920);
 
   useEffect(() => {
     const navigate = () => {
@@ -378,11 +390,8 @@ export default function App() {
   }, [backendAvailable, isAdmin, pathname]);
 
   const canvasStyle = useMemo(
-    () => ({
-      height: `${pageHeight * scale}px`,
-      width: `${1920 * scale}px`,
-    }),
-    [pageHeight, scale],
+    () => (isMobile ? undefined : { height: `${pageHeight * scale}px`, width: `${1920 * scale}px` }),
+    [isMobile, pageHeight, scale],
   );
 
   if (isAdmin) {
@@ -404,9 +413,9 @@ export default function App() {
       />
       <MobileHeader navigation={site.navigation} pathname={pathname} />
       <main className="site-canvas" style={canvasStyle}>
-        <div className="design-scale" style={{ transform: `scale(${scale})` }}>
+        <div className={isMobile ? "design-scale is-mobile" : "design-scale"} style={isMobile ? undefined : { transform: `scale(${scale})` }}>
           <Suspense fallback={null}>
-            <PageReveal key={pathname}>
+            <PageReveal key={pathname} mobile={isMobile}>
               <PageComponent
                 onHeightChange={setDynamicPageHeight}
                 pathname={pathname}

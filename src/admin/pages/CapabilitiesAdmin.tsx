@@ -310,5 +310,5 @@ const TABS = [
 export default function CapabilitiesAdmin({ pathname }: { pathname: string }) {
   const onVersatility = pathname.startsWith("/admin/capabilities/versatility");
   const tabs = <LinkTabs active={onVersatility ? TABS[1].href : TABS[0].href} tabs={TABS} />;
-  return onVersatility ? <VersatilityEditor tabs={tabs} /> : <CapabilitiesList tabs={tabs} />;
+  return onVersatility ? <VersatilityEditor pathname={pathname} tabs={tabs} /> : <CapabilitiesList tabs={tabs} />;
 }

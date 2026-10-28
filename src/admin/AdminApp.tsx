@@ -20,24 +20,33 @@ const SustainabilityAdmin = lazy(() => import("./pages/SustainabilityAdmin"));
 const FooterAdmin = lazy(() => import("./pages/FooterAdmin"));
 const Profile = lazy(() => import("./pages/Profile"));
 
-type Section = { href: string; label: string; icon: string; component: ComponentType<{ pathname: string }> };
+type Section = {
+  href: string;
+  label: string;
+  icon: string;
+  component: ComponentType<{ pathname: string }>;
+  /** Sidebar group; sections without one are reached from elsewhere (profile via the account card). */
+  group?: (typeof GROUPS)[number];
+};
+
+const GROUPS = ["General", "Catalog", "Company", "Site"] as const;
 
 // Icon paths: 24x24 outline glyphs.
 const sections: Section[] = [
-  { href: "/admin", label: "Overview", icon: "M3 12l9-9 9 9M5 10v10h5v-6h4v6h5V10", component: Overview },
-  { href: "/admin/messages", label: "Messages", icon: "M4 6h16v12H4zM4 6l8 7 8-7", component: Messages },
-  { href: "/admin/products", label: "Products", icon: "M4 7l8-4 8 4v10l-8 4-8-4zM4 7l8 4 8-4M12 11v10", component: ProductsAdmin },
-  { href: "/admin/capabilities", label: "Capabilities", icon: "M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z", component: CapabilitiesAdmin },
-  { href: "/admin/achievements", label: "Achievements", icon: "M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0zM17 5h3v2a3 3 0 01-3 3M7 5H4v2a3 3 0 003 3", component: AchievementsAdmin },
-  { href: "/admin/factories", label: "Factories", icon: "M3 21h18M5 21V9l5 3V9l5 3V5h4v16", component: FactoriesAdmin },
-  { href: "/admin/brands", label: "Brand logos", icon: "M12 3l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.4l6-.9z", component: BrandsAdmin },
-  { href: "/admin/about", label: "About us", icon: "M12 21a9 9 0 100-18 9 9 0 000 18zM12 8h.01M11 12h1v5h1", component: AboutAdmin },
-  { href: "/admin/sustainability", label: "Sustainability", icon: "M5 21c0-9 5-14 14-16-1 9-6 14-14 16zM5 21l7-7", component: SustainabilityAdmin },
-  { href: "/admin/offices", label: "Offices", icon: "M12 21s-7-6.5-7-12a7 7 0 0114 0c0 5.5-7 12-7 12zM12 11a2 2 0 100-4 2 2 0 000 4z", component: OfficesEditor },
-  { href: "/admin/footer", label: "Footer", icon: "M4 4h16v16H4zM4 15h16M8 18h3", component: FooterAdmin },
+  { href: "/admin", label: "Overview", icon: "M3 12l9-9 9 9M5 10v10h5v-6h4v6h5V10", component: Overview, group: "General" },
+  { href: "/admin/messages", label: "Messages", icon: "M4 6h16v12H4zM4 6l8 7 8-7", component: Messages, group: "General" },
+  { href: "/admin/products", label: "Products", icon: "M4 7l8-4 8 4v10l-8 4-8-4zM4 7l8 4 8-4M12 11v10", component: ProductsAdmin, group: "Catalog" },
+  { href: "/admin/capabilities", label: "Capabilities", icon: "M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z", component: CapabilitiesAdmin, group: "Catalog" },
+  { href: "/admin/achievements", label: "Achievements", icon: "M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0zM17 5h3v2a3 3 0 01-3 3M7 5H4v2a3 3 0 003 3", component: AchievementsAdmin, group: "Catalog" },
+  { href: "/admin/factories", label: "Factories", icon: "M3 21h18M5 21V9l5 3V9l5 3V5h4v16", component: FactoriesAdmin, group: "Company" },
+  { href: "/admin/brands", label: "Brand logos", icon: "M12 3l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.4l6-.9z", component: BrandsAdmin, group: "Company" },
+  { href: "/admin/about", label: "About us", icon: "M12 21a9 9 0 100-18 9 9 0 000 18zM12 8h.01M11 12h1v5h1", component: AboutAdmin, group: "Company" },
+  { href: "/admin/sustainability", label: "Sustainability", icon: "M5 21c0-9 5-14 14-16-1 9-6 14-14 16zM5 21l7-7", component: SustainabilityAdmin, group: "Company" },
+  { href: "/admin/offices", label: "Offices", icon: "M12 21s-7-6.5-7-12a7 7 0 0114 0c0 5.5-7 12-7 12zM12 11a2 2 0 100-4 2 2 0 000 4z", component: OfficesEditor, group: "Company" },
+  { href: "/admin/footer", label: "Footer", icon: "M4 4h16v16H4zM4 15h16M8 18h3", component: FooterAdmin, group: "Site" },
   { href: "/admin/site", label: "Site settings", icon: "M12 15a3 3 0 100-6 3 3 0 000 6zM19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z", component: SiteSettings },
   { href: "/admin/seo", label: "SEO", icon: "M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.3-4.3", component: SeoEditor },
-  { href: "/admin/legal", label: "Legal pages", icon: "M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6", component: LegalEditor },
+  { href: "/admin/legal", label: "Legal pages", icon: "M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6", component: LegalEditor, group: "Site" },
   { href: "/admin/profile", label: "My profile", icon: "M20 21a8 8 0 00-16 0M12 13a5 5 0 100-10 5 5 0 000 10z", component: Profile },
 ];
 
@@ -136,24 +145,37 @@ function Layout({ pathname }: { pathname: string }) {
           <p className="text-sm font-semibold tracking-[0.35em] text-white">STELLAR</p>
           <p className="mt-0.5 text-[10px] tracking-[0.3em] text-[#dea36a]">ADMIN DASHBOARD</p>
         </div>
-        <nav aria-label="Dashboard" className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 [scrollbar-color:rgba(255,255,255,0.18)_transparent] [scrollbar-width:thin]">
-          {sections.map((section) => (
-            <a
-              aria-current={section === active ? "page" : undefined}
-              className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors ${section === active ? "bg-white/10 text-white" : "hover:bg-white/5 hover:text-white"}`}
-              href={section.href}
-              key={section.href}
-            >
-              <Icon path={section.icon} />
-              {section.label}
-            </a>
+        <nav aria-label="Dashboard" className="flex flex-1 flex-col overflow-y-auto px-3 [scrollbar-color:rgba(255,255,255,0.18)_transparent] [scrollbar-width:thin]">
+          {GROUPS.map((group) => (
+            <div className="mb-3" key={group}>
+              <p className="px-3 pb-1.5 pt-2 text-[11px] font-medium uppercase tracking-[0.12em] text-neutral-500">{group}</p>
+              {sections
+                .filter((section) => section.group === group)
+                .map((section) => (
+                  <a
+                    aria-current={section === active ? "page" : undefined}
+                    className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors ${section === active ? "bg-white/10 text-white" : "hover:bg-white/5 hover:text-white"}`}
+                    href={section.href}
+                    key={section.href}
+                  >
+                    <Icon path={section.icon} />
+                    {section.label}
+                  </a>
+                ))}
+            </div>
           ))}
         </nav>
         <div className="border-t border-white/10 p-4">
           <a className="mb-3 block text-sm text-[#dea36a] hover:underline" href="/" rel="noreferrer" target="_blank">
             View website ↗
           </a>
-          <a className="flex items-center gap-3 rounded-md p-1 hover:bg-white/5" href="/admin/profile">
+          <a
+            aria-current={active.href === "/admin/profile" ? "page" : undefined}
+            aria-label="My profile"
+            className={`flex items-center gap-3 rounded-md p-1.5 transition-colors ${active.href === "/admin/profile" ? "bg-white/10" : "hover:bg-white/5"}`}
+            href="/admin/profile"
+            title="My profile"
+          >
             <Avatar admin={admin} size={36} />
             <span className="min-w-0">
               <span className="block truncate text-sm text-white">{admin.name}</span>

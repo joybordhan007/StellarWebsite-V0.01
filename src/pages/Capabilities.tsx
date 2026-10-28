@@ -220,7 +220,7 @@ export default function OurCapabilities({ onHeightChange }: { onHeightChange?: (
             ))}
           </div>
         </div>
-        <div className="content-stretch flex gap-[24px] items-start relative shrink-0 w-full">
+        <div className="content-stretch flex gap-[24px] items-start relative shrink-0 w-full" data-mobile="stack">
           {versatility.columns.map((column, columnIndex) => (
             <div className="bg-white content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex flex-[1_0_0] flex-col gap-[16px] items-center min-w-px p-[12px] relative rounded-[8px]" key={columnIndex}>
               <div className="content-stretch flex flex-col items-start relative shrink-0 w-full">
@@ -243,9 +243,9 @@ export default function OurCapabilities({ onHeightChange }: { onHeightChange?: (
                 {Array.from({ length: VERSATILITY_ROWS }, (_, rowIndex) => {
                   const item = column.items[rowIndex];
                   return (
-                    <div className="bg-[#f5f5f5] content-stretch flex gap-[8px] items-center p-[4px] relative rounded-[4px] shrink-0 w-full" key={rowIndex}>
+                    <div className="bg-[#f5f5f5] content-stretch flex gap-[8px] items-center p-[4px] relative rounded-[4px] shrink-0 w-full" data-mobile={item ? undefined : "hide"} key={rowIndex}>
                       {/* Empty rows keep every column the same height, as in the design. */}
-                      <div className={`relative rounded-[4px] shrink-0 size-[44px]${item ? "" : " opacity-0"}`}>
+                      <div className={`relative rounded-[4px] shrink-0 size-[44px] ${item ? "" : "opacity-0"}`}>
                         {item?.thumb && (
                           <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[4px]">
                             {item.thumbBackground && <div className="absolute inset-0 rounded-[4px]" style={{ background: item.thumbBackground }} />}
@@ -253,7 +253,7 @@ export default function OurCapabilities({ onHeightChange }: { onHeightChange?: (
                           </div>
                         )}
                       </div>
-                      <div className={`[word-break:break-word] content-stretch flex flex-col gap-[2px] items-start leading-[0] not-italic relative shrink-0 text-[#1d1d1d]${item ? "" : " opacity-0"}`}>
+                      <div className={`[word-break:break-word] content-stretch flex flex-col gap-[2px] items-start leading-[0] not-italic relative shrink-0 text-[#1d1d1d] ${item ? "" : "opacity-0"}`}>
                         <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[14px] uppercase w-full">
                           <p className="leading-[1.2]">{item?.name ?? "\u00a0"}</p>
                         </div>

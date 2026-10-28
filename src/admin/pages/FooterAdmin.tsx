@@ -1,33 +1,7 @@
 import { SOCIAL_LABELS } from "../../components/Footer";
-import { type FooterLink, SOCIAL_PLATFORMS, type SiteContent, type SocialLink, type SocialPlatform } from "../../content/types";
+import { SOCIAL_PLATFORMS, type SiteContent, type SocialLink, type SocialPlatform } from "../../content/types";
 import { nextId, SelectField } from "../components";
 import { Button, Card, ContentEditorFrame, ListControls, moveItem, replaceItem, TextField, useContentDoc } from "../ui";
-
-function LinkList({ links, onChange, addLabel }: { links: FooterLink[]; onChange: (links: FooterLink[]) => void; addLabel: string }) {
-  return (
-    <div className="flex flex-col gap-2">
-      {links.map((link, index) => (
-        <div className="flex items-end gap-2" key={index}>
-          <div className="grid flex-1 gap-2 sm:grid-cols-2">
-            <TextField label={`Link ${index + 1} text`} onChange={(label) => onChange(replaceItem(links, index, { ...link, label }))} value={link.label} />
-            <TextField
-              hint="A page like /about, or a full https:// address."
-              label="Goes to"
-              onChange={(href) => onChange(replaceItem(links, index, { ...link, href }))}
-              value={link.href}
-            />
-          </div>
-          <div className="pb-6">
-            <ListControls count={links.length} index={index} onMove={(from, to) => onChange(moveItem(links, from, to))} onRemove={() => onChange(links.filter((_, i) => i !== index))} />
-          </div>
-        </div>
-      ))}
-      <Button className="self-start" onClick={() => onChange([...links, { label: "", href: "/" }])} variant="ghost">
-        + {addLabel}
-      </Button>
-    </div>
-  );
-}
 
 export default function FooterAdmin() {
   const doc = useContentDoc("site");
@@ -84,16 +58,6 @@ export default function FooterAdmin() {
             </Button>
           </Card>
 
-          <Card title="Quick links column">
-            <TextField label="Column title" onChange={(quickLinksTitle) => updateFooter({ quickLinksTitle })} value={site.footer.quickLinksTitle} />
-            <LinkList addLabel="Add link" links={site.footer.quickLinks} onChange={(quickLinks) => updateFooter({ quickLinks })} />
-          </Card>
-
-          <Card title="Support column">
-            <TextField label="Column title" onChange={(supportTitle) => updateFooter({ supportTitle })} value={site.footer.supportTitle} />
-            <LinkList addLabel="Add link" links={site.footer.supportLinks} onChange={(supportLinks) => updateFooter({ supportLinks })} />
-          </Card>
-
           <Card title="Contact column">
             <TextField label="Column title" onChange={(contactTitle) => updateFooter({ contactTitle })} value={site.footer.contactTitle} />
             <div className="grid gap-4 sm:grid-cols-2">
@@ -130,15 +94,6 @@ export default function FooterAdmin() {
               + Add address
             </Button>
             <p className="text-xs text-neutral-500">The footer has room for up to 3 addresses.</p>
-          </Card>
-
-          <Card title="Bottom line">
-            <TextField label="Copyright" onChange={(copyright) => update({ copyright })} value={site.copyright} />
-            <div className="grid gap-4 sm:grid-cols-3">
-              <TextField label="Credit text" onChange={(creditText) => updateFooter({ creditText })} value={site.footer.creditText} />
-              <TextField label="Credit link text" onChange={(creditLinkLabel) => updateFooter({ creditLinkLabel })} value={site.footer.creditLinkLabel} />
-              <TextField label="Credit link" onChange={(creditUrl) => updateFooter({ creditUrl })} placeholder="https://" value={site.footer.creditUrl} />
-            </div>
           </Card>
         </>
       )}

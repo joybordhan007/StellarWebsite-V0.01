@@ -11,7 +11,7 @@ import {
 import { mergeContent } from "../content/ContentProvider";
 import type { ContentKey, ContentMap } from "../content/types";
 import { useAdmin } from "./AdminContext";
-import { api, ApiError, type ContentMeta, formatDate, type Media, uploadImage } from "./api";
+import { api, ApiError, type ContentMeta, formatDate, uploadImage } from "./api";
 
 type ButtonVariant = "primary" | "secondary" | "danger" | "ghost";
 
@@ -227,67 +227,6 @@ export function replaceItem<T>(items: T[], index: number, item: T) {
   return items.map((current, i) => (i === index ? item : current));
 }
 
-export function MediaPicker({ onSelect, onClose }: { onSelect: (url: string) => void; onClose: () => void }) {
-  const { handleError } = useAdmin();
-  const [media, setMedia] = useState<Media[] | null>(null);
-
-  useEffect(() => {
-    api<{ media: Media[] }>("/media")
-      .then((result) => setMedia(result.media))
-      .catch((error) => {
-        handleError(error);
-        onClose();
-      });
-  }, [handleError, onClose]);
-
-  useEffect(() => {
-    const onKey = (event: KeyboardEvent) => event.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
-
-  return (
-    <div
-      aria-label="Choose an image"
-      aria-modal="true"
-      className="fixed inset-0 z-40 flex items-center justify-center bg-black/40 p-4"
-      onClick={onClose}
-      role="dialog"
-    >
-      <div
-        className="flex max-h-[80vh] w-full max-w-3xl flex-col rounded-[6px] bg-white shadow-xl"
-        onClick={(event) => event.stopPropagation()}
-      >
-        <div className="flex items-center justify-between border-b border-neutral-200 px-5 py-3">
-          <h2 className="font-semibold">Media library</h2>
-          <Button onClick={onClose} variant="ghost">
-            Close
-          </Button>
-        </div>
-        <div className="overflow-y-auto p-5">
-          {!media && <Spinner />}
-          {media?.length === 0 && (
-            <p className="text-sm text-neutral-500">No uploads yet. Use “Upload” to add an image.</p>
-          )}
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {media?.map((item) => (
-              <button
-                className="group overflow-hidden rounded-[6px] border border-neutral-200 text-left hover:border-[#dea36a]"
-                key={item.id}
-                onClick={() => onSelect(item.url)}
-                type="button"
-              >
-                <img alt="" className="aspect-square w-full bg-neutral-100 object-cover" src={item.url} />
-                <span className="block truncate px-2 py-1.5 text-xs text-neutral-600">{item.original_name}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function ImageField({
   label,
   value,
@@ -304,8 +243,6 @@ export function ImageField({
   const { handleError } = useAdmin();
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
-  const [picking, setPicking] = useState(false);
-  const closePicker = useCallback(() => setPicking(false), []);
 
   async function handleFile(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
@@ -333,9 +270,8 @@ export function ImageField({
         <div className="flex min-w-0 flex-1 flex-col gap-2">
           <div className="flex flex-wrap gap-2">
             <Button disabled={uploading} onClick={() => inputRef.current?.click()}>
-              {uploading ? "Uploading…" : "Upload"}
+              {uploading ? "Uploading…" : value ? "Replace" : "Upload"}
             </Button>
-            <Button onClick={() => setPicking(true)}>Library</Button>
           </div>
           {!compact && (
             <input
@@ -350,15 +286,6 @@ export function ImageField({
         </div>
       </div>
       <input accept="image/*" className="hidden" onChange={handleFile} ref={inputRef} type="file" />
-      {picking && (
-        <MediaPicker
-          onClose={closePicker}
-          onSelect={(url) => {
-            onChange(url);
-            setPicking(false);
-          }}
-        />
-      )}
     </div>
   );
 }

@@ -135,14 +135,14 @@ function FactoryTabs({ factories, current }: { factories: Factory[]; current: Fa
         const selected = factory.id === current.id;
         const inner = (
           <>
-            <div className="content-stretch flex gap-[16px] items-center relative shrink-0">
-              <div className="h-[96px] relative shrink-0 w-[171px]">
+            <div className="factory-tab-body content-stretch flex gap-[16px] items-center relative shrink-0" data-mobile="keep">
+              <div className="factory-tab-thumb h-[96px] relative shrink-0 w-[171px]">
                 <div className="absolute inset-0 rounded-[6px]">
                   <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[6px] size-full" src={factory.image} />
                 </div>
               </div>
               <div className="flex flex-row items-center self-stretch">
-                <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] h-full items-start leading-[0] not-italic relative shrink-0 text-left w-[234px]">
+                <div className="factory-tab-text [word-break:break-word] content-stretch flex flex-col gap-[4px] h-full items-start leading-[0] not-italic relative shrink-0 text-left w-[234px]">
                   <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full">
                     <p className="leading-[1.2]">{factory.name}</p>
                   </div>
@@ -160,14 +160,14 @@ function FactoryTabs({ factories, current }: { factories: Factory[]; current: Fa
         return selected ? (
           <div
             aria-current="page"
-            className="bg-[rgba(222,163,106,0.5)] border-3 border-[rgba(222,163,106,0.4)] border-solid content-stretch flex items-center justify-between p-[8px] relative rounded-[8px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] shrink-0 w-[504px]"
+            className="bg-[rgba(222,163,106,0.5)] border-3 border-[rgba(222,163,106,0.4)] border-solid content-stretch flex items-center justify-between p-[8px] factory-tab relative rounded-[8px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] shrink-0 w-[504px]"
             key={factory.id}
           >
             {inner}
           </div>
         ) : (
           <a
-            className="bg-white content-stretch cursor-pointer drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex h-[118px] items-center justify-between p-[8px] relative rounded-[8px] shrink-0 w-[504px]"
+            className="bg-white content-stretch cursor-pointer drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] factory-tab flex h-[118px] items-center justify-between p-[8px] relative rounded-[8px] shrink-0 w-[504px]"
             href={`/factories/${factory.slug}`}
             key={factory.id}
           >

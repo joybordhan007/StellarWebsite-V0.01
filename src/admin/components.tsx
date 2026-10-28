@@ -1,4 +1,4 @@
-import { ReactNode, SelectHTMLAttributes, useCallback, useEffect, useId, useRef, useState } from "react";
+import { FormEvent, ReactNode, SelectHTMLAttributes, useCallback, useEffect, useId, useRef, useState } from "react";
 import { mergeContent } from "../content/ContentProvider";
 import type { ContentKey, ContentMap } from "../content/types";
 import { useAdmin } from "./AdminContext";
@@ -54,6 +54,51 @@ export function Modal({
         {footer && <div className="modal-footer flex justify-end gap-2 border-t border-neutral-200 px-5 py-3">{footer}</div>}
       </div>
     </div>
+  );
+}
+
+/** Popup with a form: Cancel + submit buttons and an error line. */
+export function FormModal({
+  id,
+  title,
+  submitLabel,
+  saving,
+  error,
+  onClose,
+  onSubmit,
+  children,
+}: {
+  id: string;
+  title: string;
+  submitLabel: string;
+  saving: boolean;
+  error: string;
+  onClose: () => void;
+  onSubmit: (event: FormEvent) => void;
+  children: ReactNode;
+}) {
+  return (
+    <Modal
+      footer={
+        <>
+          <Button onClick={onClose}>Cancel</Button>
+          <Button disabled={saving} form={id} type="submit" variant="primary">
+            {saving ? "Saving…" : submitLabel}
+          </Button>
+        </>
+      }
+      onClose={onClose}
+      title={title}
+    >
+      <form className="flex flex-col gap-4" id={id} onSubmit={onSubmit}>
+        {children}
+        {error && (
+          <p className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-700" role="alert">
+            {error}
+          </p>
+        )}
+      </form>
+    </Modal>
   );
 }
 
@@ -209,12 +254,15 @@ export function DataTable<T>({
   rowKey,
   empty,
   pageSize = 20,
+  dense = false,
 }: {
   columns: Column<T>[];
   rows: T[];
   rowKey: (row: T) => string | number;
   empty: ReactNode;
   pageSize?: number;
+  /** Rows of at most 40px (image lists). */
+  dense?: boolean;
 }) {
   const [page, setPage] = useState(0);
   const pageCount = Math.max(1, Math.ceil(rows.length / pageSize));
@@ -228,7 +276,7 @@ export function DataTable<T>({
           <thead className="border-b border-neutral-200 bg-neutral-50 text-xs uppercase tracking-wide text-neutral-500">
             <tr>
               {columns.map((column) => (
-                <th className={`px-4 py-3 font-medium whitespace-nowrap ${column.className ?? ""}`} key={column.header} scope="col">
+                <th className={`px-4 ${dense ? "py-2" : "py-3"} font-medium whitespace-nowrap ${column.className ?? ""}`} key={column.header} scope="col">
                   {column.header}
                 </th>
               ))}
@@ -245,7 +293,7 @@ export function DataTable<T>({
               visible.map((row) => (
                 <tr className="hover:bg-neutral-50/70" key={rowKey(row)}>
                   {columns.map((column) => (
-                    <td className={`px-4 py-2.5 align-middle ${column.className ?? ""}`} key={column.header}>
+                    <td className={`px-4 ${dense ? "h-[39px] py-0" : "py-2.5"} align-middle ${column.className ?? ""}`} key={column.header}>
                       {column.cell(row)}
                     </td>
                   ))}

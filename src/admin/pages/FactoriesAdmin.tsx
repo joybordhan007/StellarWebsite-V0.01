@@ -1,6 +1,6 @@
 import { MouseEvent } from "react";
 import type { Factory, FactoryDistance, FactoryGalleryItem, FactoryMixShare } from "../../content/types";
-import LogoListEditor from "../LogoListEditor";
+import ImageTable, { logoAdapter, photoAdapter } from "../ImageTable";
 import { ActionMenu, DataTable, Thumb, Toggle, useLiveContent } from "../components";
 import {
   Button,
@@ -293,20 +293,16 @@ function FactoryEditor({ id }: { id: number }) {
             <TextList addLabel="Add strength" hint="Up to 6 fit the panel." items={factory.keyStrengths} label="Strength" onChange={(keyStrengths) => update({ keyStrengths })} />
           </Card>
 
-          <Card description="“Inside our factory”: seven show at a time; with more, the arrows scroll." title="Photo gallery">
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {factory.gallery.map((item, i) => (
-                <div className="flex flex-col gap-3 rounded-[6px] border border-neutral-200 p-3" key={i}>
-                  <ImageField compact label={`Photo ${i + 1}`} onChange={(image) => setGallery(replaceItem(factory.gallery, i, { ...item, image }))} value={item.image} />
-                  <TextField label="Caption" onChange={(caption) => setGallery(replaceItem(factory.gallery, i, { ...item, caption }))} value={item.caption} />
-                  <ListControls count={factory.gallery.length} index={i} onMove={(from, to) => setGallery(moveItem(factory.gallery, from, to))} onRemove={() => setGallery(factory.gallery.filter((_, j) => j !== i))} />
-                </div>
-              ))}
-            </div>
-            <Button className="self-start" onClick={() => setGallery([...factory.gallery, { image: "", caption: "" }])} variant="ghost">
-              + Add photo
-            </Button>
-          </Card>
+          <ImageTable
+            adapter={photoAdapter}
+            addLabel="Add Photo"
+            description="“Inside our factory”: seven show at a time; with more, the arrows scroll. The name is the caption under the photo."
+            imageHeader="Image"
+            items={factory.gallery}
+            nameHeader="Image name"
+            onChange={(gallery) => setGallery(gallery)}
+            title="Photo gallery"
+          />
 
           <Card description="The “Product mix” icon grid next to the factory address: six items in two rows." title="Product mix (capabilities)">
             <div className="grid gap-4 lg:grid-cols-2">
@@ -358,9 +354,16 @@ function FactoryEditor({ id }: { id: number }) {
             <TextList addLabel="Add highlight" items={factory.sustainabilityHighlights} label="Highlight" onChange={(sustainabilityHighlights) => update({ sustainabilityHighlights })} />
           </Card>
 
-          <Card description="Saved with the rest of the page when you press Save changes." title="Certifications & standards">
-            <LogoListEditor logos={factory.certifications} onChange={(certifications) => update({ certifications })} />
-          </Card>
+          <ImageTable
+            adapter={logoAdapter}
+            addLabel="Add Logo"
+            description="Saved with the rest of the page when you press Save changes."
+            imageHeader="Logo"
+            items={factory.certifications}
+            nameHeader="Logo name"
+            onChange={(certifications) => update({ certifications })}
+            title="Certifications & standards"
+          />
         </>
       )}
     </ContentEditorFrame>

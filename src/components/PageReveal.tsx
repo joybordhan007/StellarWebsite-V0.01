@@ -1,4 +1,5 @@
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useLayoutEffect, useRef } from "react";
+import { applyMobileFlow, removeMobileFlow } from "./mobileFlow";
 
 const MAX_STAGGER_STEPS = 4;
 const STAGGER_MS = 90;
@@ -32,7 +33,7 @@ function collectTargets(page: Element) {
   const groups: HTMLElement[][] = [];
 
   for (const section of Array.from(page.children)) {
-    if (!isRenderable(section)) continue;
+    if (!isRenderable(section) || (section as HTMLElement).dataset.reveal === "off") continue;
     const blocks = Array.from(section.children).filter(isRenderable);
     groups.push(blocks.length > 1 ? blocks : [section]);
   }
@@ -64,8 +65,28 @@ function fadeInImagesOnLoad(root: HTMLElement) {
   return () => cleanups.forEach((cleanup) => cleanup());
 }
 
-export default function PageReveal({ children }: { children: ReactNode }) {
+export default function PageReveal({ children, mobile = false }: { children: ReactNode; mobile?: boolean }) {
   const rootRef = useRef<HTMLDivElement>(null);
+
+  // Phones get the reflowed one-column layout; it is redone when the page content changes.
+  useLayoutEffect(() => {
+    const root = rootRef.current;
+    const page = root?.firstElementChild as HTMLElement | null;
+    const canvas = root?.closest<HTMLElement>(".design-scale");
+    if (!mobile || !root || !page || !canvas) return;
+    applyMobileFlow(page, canvas);
+    let timer = 0;
+    const observer = new MutationObserver(() => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => applyMobileFlow(page, canvas), 80);
+    });
+    observer.observe(page, { childList: true, subtree: true, characterData: true });
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(timer);
+      removeMobileFlow(page);
+    };
+  }, [mobile]);
 
   useEffect(() => {
     const root = rootRef.current;

@@ -1006,7 +1006,7 @@ textarea {
 }
 
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .mobile-header {
     position: sticky;
     z-index: 100;
@@ -1115,6 +1115,16 @@ textarea {
   transform: scaleY(1);
 }
 
+/* Horizontal bars grow from the axis on the left. */
+.sustainability-data-chart-bar--x {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.sustainability-data-chart.is-visible .sustainability-data-chart-bar--x {
+  transform: scaleX(1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .factory-world-map-marker,
   .sustainability-data-chart-bar {
@@ -1188,4 +1198,313 @@ textarea {
 .admin-root {
   font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-synthesis: weight;
+}
+
+/* Phone layout (components/mobileFlow.ts): the Figma page reflows into one column. */
+.design-scale.is-mobile {
+  width: 100%;
+  transform: none !important;
+}
+
+.m-flow {
+  display: flex !important;
+  width: 100% !important;
+  height: auto !important;
+  flex-direction: column;
+  overflow-x: clip;
+}
+
+.m-flow [data-mflow] {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  translate: none !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+
+.m-flow > [data-mspace] {
+  padding-top: 24px !important;
+  padding-bottom: 24px !important;
+}
+
+.m-flow [data-mbg] {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  translate: none !important;
+  transform: none !important;
+}
+
+.m-flow [data-minset] {
+  padding-right: 16px !important;
+  padding-left: 16px !important;
+}
+
+.m-flow [data-mimg] {
+  aspect-ratio: var(--mar);
+  height: auto !important;
+  max-height: 360px;
+}
+
+.m-flow [data-mhide] {
+  display: none !important;
+}
+
+.m-flow *:not([data-mkeep]) {
+  max-width: 100%;
+}
+
+.m-flow [data-mautoh] {
+  height: auto !important;
+  min-height: var(--mminh, 0) !important;
+}
+
+.m-flow [data-mpad] {
+  padding-right: 16px !important;
+  padding-left: 16px !important;
+}
+
+.m-flow [data-mpadv] {
+  padding-top: var(--mpadv) !important;
+  padding-bottom: var(--mpadv) !important;
+}
+
+.m-flow [data-mgap] {
+  gap: var(--mgap) !important;
+}
+
+.m-flow [data-mfs] {
+  font-size: var(--mfs) !important;
+}
+
+.m-flow [data-mws] {
+  white-space: normal !important;
+}
+
+.m-flow [data-mcenter] {
+  text-align: center;
+}
+
+.m-flow [data-mstack] {
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start !important;
+  align-self: stretch !important;
+  width: 100% !important;
+}
+
+/* Items sized by their (now unfixed) container would collapse to 1px. */
+.m-flow .min-h-px {
+  min-height: min-content !important;
+}
+
+.m-flow [data-mstack] > * {
+  flex-grow: 0 !important;
+  flex-basis: auto !important;
+}
+
+.m-flow [data-mstack] > [data-mfull] {
+  width: 100% !important;
+  flex: 0 0 auto !important;
+  align-self: stretch !important;
+}
+
+.m-flow [data-mwrap] {
+  flex-wrap: wrap !important;
+  row-gap: 16px !important;
+}
+
+.m-flow [data-mwrap] > [data-mhalf] {
+  flex: 1 1 140px !important;
+  width: auto !important;
+  min-width: 0 !important;
+}
+
+.m-flow [data-mgrid] {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+/* Hand-set overrides for the phone layout. */
+.m-flow [data-mobile~="hide"] {
+  display: none !important;
+}
+
+.m-flow [data-mobile~="stack"] {
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+
+.m-flow [data-mobile~="stack"] > * {
+  flex: 0 0 auto !important;
+  width: 100% !important;
+}
+
+.m-flow [data-mobile~="wrap"] {
+  flex-wrap: wrap !important;
+  gap: 32px 16px !important;
+}
+
+.m-flow [data-mobile~="wrap"] > * {
+  flex: 1 1 140px !important;
+  width: auto !important;
+  min-width: 0 !important;
+}
+
+.m-flow [data-mobile~="wrap"] > [data-mobile~="full"],
+.m-flow [data-mobile~="full"] {
+  flex-basis: 100% !important;
+  width: 100% !important;
+}
+
+.m-flow .chart-tick {
+  font-size: 11px;
+}
+
+@media (min-width: 640px) {
+  .m-flow [data-mpad],
+  .m-flow [data-minset] {
+    padding-right: 32px !important;
+    padding-left: 32px !important;
+  }
+}
+
+/* The fixed desktop chart-card height is not needed in the one-column layout. */
+.m-flow .min-h-\[613px\] {
+  min-height: 0 !important;
+}
+
+/* Figma's one-cell grids size to their content; let them follow the column width. */
+.m-flow [data-mgridfit] {
+  display: grid !important;
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+/* Phone hero: about half the screen, text at the bottom over the photo, slogan as a slim strip. */
+.m-flow [data-mhero] {
+  display: flex !important;
+  height: 50svh !important;
+  min-height: 360px !important;
+  max-height: 540px;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 14px;
+  padding: 0 0 16px !important;
+  overflow: hidden;
+}
+
+.m-flow [data-mhero-text] {
+  gap: 14px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.m-flow [data-mhero-text] > * {
+  gap: 8px !important;
+}
+
+/* Desktop line breaks become one flowing paragraph. */
+.m-flow [data-mhero-text] p {
+  display: inline;
+  line-height: 1.3 !important;
+}
+
+.m-flow [data-mhero-text] p + p::before {
+  content: " ";
+}
+
+/* (Their wrapper is a flex column, which would keep each line a block.) */
+.m-flow [data-mhero-text] :has(> p) {
+  display: block !important;
+}
+
+.m-flow [data-mhero-btn] {
+  height: auto !important;
+  padding: 10px 16px !important;
+  gap: 6px !important;
+}
+
+.m-flow [data-mhero-btn] [class*="size-[24px]"] {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.m-flow [data-mhero-tag] {
+  width: auto !important;
+  margin: 0 16px !important;
+  padding: 10px 14px !important;
+  border-radius: 4px;
+}
+
+.m-flow [data-mhero-tag] > * {
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  gap: 4px 14px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.m-flow [data-mhero-tag] * {
+  height: auto !important;
+  line-height: 1.3 !important;
+}
+
+/* Factory switcher on phones: compact rows (thumbnail, name, arrow). */
+.m-flow .factory-tab {
+  width: 100% !important;
+  height: auto !important;
+  gap: 12px;
+}
+
+.m-flow .factory-tab-body {
+  min-width: 0;
+  flex: 1 1 auto;
+  gap: 12px !important;
+}
+
+.m-flow .factory-tab-thumb {
+  width: 88px !important;
+  height: 56px !important;
+}
+
+.m-flow .factory-tab-text {
+  width: auto !important;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.m-flow .factory-tab-text > :first-child {
+  font-size: 17px;
+}
+
+
+/* Stacked columns: the row gap does the spacing, so their own vertical padding goes. */
+.m-flow [data-mstack] > [data-mfull][data-mpadv] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Sticky side columns only make sense next to something. */
+.m-flow .sticky {
+  position: relative !important;
+}
+
+.m-flow [data-mhead] {
+  gap: 14px !important;
+}
+
+/* Long words move to the next line instead of breaking in the middle. */
+.m-flow [class*="word-break"] {
+  word-break: normal !important;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 640px) {
+  .m-flow [data-mhero-text] [data-mfs] {
+    font-size: calc(var(--mfs) * 1.3) !important;
+  }
 }

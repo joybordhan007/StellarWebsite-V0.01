@@ -1218,6 +1218,422 @@ export const defaultVersatility: Versatility = {
 };
 
 export const defaultSustainability: SustainabilityContent = {
+  "stories": [
+    {
+      "id": 1,
+      "background": "/assets/1-3076/bac63.jpg",
+      "icon": "/assets/1-3076/82273.svg",
+      "title": "Powered by the sun",
+      "text": "Since July 2023, the roof of our Gazipur factory has worked as a power plant. In 2025 our solar panels generated 1.07 GWh of clean electricity. That covered 40% of everything the factory used, and we sent the surplus back to the national grid. Since 2022 we have cut the power we buy from the grid by 31% and our generator diesel use by 64%.",
+      "stats": [
+        {
+          "id": 1,
+          "icon": "/assets/1-3076/b4e7f.svg",
+          "value": "2.76 GWh",
+          "label": "Clean electricity generated from Jul 2023 to Mar 2026"
+        },
+        {
+          "id": 2,
+          "icon": "/assets/1-3076/6f036.svg",
+          "value": "−31%",
+          "label": "Grid electricity bought: 1,649 MWh (2022) → 1,132 MWh (2025)"
+        },
+        {
+          "id": 3,
+          "icon": "/assets/sustainability/427e2.svg",
+          "value": "−64%",
+          "label": "Generator diesel: 71,247 L → 25,461 L"
+        },
+        {
+          "id": 4,
+          "icon": "/assets/1-3076/5cde5.svg",
+          "value": "257 MWh",
+          "label": "Surplus solar sold to the grid (REB) in 2025"
+        }
+      ],
+      "charts": [
+        {
+          "id": 1,
+          "type": "columns",
+          "icon": "/assets/1-3076/82273.svg",
+          "title": "Where our electricity comes from",
+          "subtitle": "MWh per year · GEAL",
+          "series": [
+            {
+              "id": 1,
+              "name": "Grid (REB)",
+              "color": "#706ee7"
+            },
+            {
+              "id": 2,
+              "name": "Rooftop solar",
+              "color": "#55c4ae"
+            },
+            {
+              "id": 3,
+              "name": "Diesel generator",
+              "color": "#ff928a"
+            }
+          ],
+          "rows": [
+            {
+              "id": 1,
+              "label": "2022",
+              "values": {
+                "1": 2150,
+                "2": 0,
+                "3": 190
+              }
+            },
+            {
+              "id": 2,
+              "label": "2023",
+              "values": {
+                "1": 1540,
+                "2": 440,
+                "3": 110
+              }
+            },
+            {
+              "id": 3,
+              "label": "2024",
+              "values": {
+                "1": 1310,
+                "2": 1020,
+                "3": 100
+              }
+            },
+            {
+              "id": 4,
+              "label": "2025",
+              "values": {
+                "1": 1410,
+                "2": 990,
+                "3": 35
+              }
+            }
+          ],
+          "axisMax": 3000,
+          "axisStep": 500
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "background": "/assets/1-3076/1eacf.jpg",
+      "icon": "/assets/sustainability/f0c26.svg",
+      "title": "Less carbon in every garment",
+      "text": "We measure our carbon footprint every year with an independent inspection body, following the GHG Protocol. Between 2022 and 2025 our factory's emissions fell by 31%. The carbon behind each garment we ship fell by a quarter. Our solar roof now avoids around 714 tonnes of CO₂ a year, about what 155 cars emit.",
+      "stats": [
+        {
+          "id": 1,
+          "icon": "/assets/1-3076/b4e7f.svg",
+          "value": "1,333 t",
+          "label": "CO₂e in 2025 (Scope 1: 574 t from diesel; Scope 2: 758 t from grid power)"
+        },
+        {
+          "id": 2,
+          "icon": "/assets/sustainability/4d23c.svg",
+          "value": "173 g",
+          "label": "CO₂e per garment shipped in 2025, down from 230 g in 2022 (−25%)"
+        },
+        {
+          "id": 3,
+          "icon": "/assets/sustainability/a8877.svg",
+          "value": "714 t",
+          "label": "CO₂ avoided by solar in 2025, using the same 0.67 t/MWh grid factor as the GHG report"
+        }
+      ],
+      "charts": [
+        {
+          "id": 1,
+          "type": "columns",
+          "icon": "/assets/sustainability/f0c26.svg",
+          "title": "Factory emissions, Scope 1 + 2",
+          "subtitle": "Tonnes CO₂e per year",
+          "series": [
+            {
+              "id": 1,
+              "name": "Scope 1 · diesel (boiler + generators)",
+              "color": "#706ee7"
+            },
+            {
+              "id": 2,
+              "name": "Scope 2 · grid electricity",
+              "color": "#55c4ae"
+            }
+          ],
+          "rows": [
+            {
+              "id": 1,
+              "label": "2022",
+              "values": {
+                "1": 790,
+                "2": 1240
+              }
+            },
+            {
+              "id": 2,
+              "label": "2023",
+              "values": {
+                "1": 630,
+                "2": 870
+              }
+            },
+            {
+              "id": 3,
+              "label": "2024",
+              "values": {
+                "1": 710,
+                "2": 770
+              }
+            },
+            {
+              "id": 4,
+              "label": "2025",
+              "values": {
+                "1": 630,
+                "2": 830
+              }
+            }
+          ],
+          "axisMax": 3000,
+          "axisStep": 500
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "background": "/assets/1-3076/70d97.jpg",
+      "icon": "/assets/1-3076/97acf.svg",
+      "title": "Every litre accounted for",
+      "text": "We are a dry-process garment factory, so most of our water goes to the people who work here: drinking, washing and canteen use. We meter every use, from the boiler to the garden. Total use is 8% lower than in 2022. All domestic wastewater passes through our own sewage treatment plant before discharge, and it is tested by an independent lab.",
+      "stats": [
+        {
+          "id": 1,
+          "icon": "/assets/sustainability/8d286.svg",
+          "value": "−8%",
+          "label": "Total water: 38,158 m³ (2022) → 35,038 m³ (2025)"
+        },
+        {
+          "id": 2,
+          "icon": "/assets/sustainability/d19a7.svg",
+          "value": "79%",
+          "label": "Of water is for workers' domestic use, about 25 L per worker per day"
+        },
+        {
+          "id": 3,
+          "icon": "/assets/sustainability/0fb0c.svg",
+          "value": "4.6 L",
+          "label": "Of water per garment shipped (2025)"
+        }
+      ],
+      "charts": [
+        {
+          "id": 1,
+          "type": "bars",
+          "icon": "/assets/1-3076/97acf.svg",
+          "title": "Water use by purpose, 2025",
+          "subtitle": "m³ · 35,038 m³ total",
+          "series": [
+            {
+              "id": 1,
+              "name": "",
+              "color": "#706ee7"
+            }
+          ],
+          "rows": [
+            {
+              "id": 1,
+              "label": "Domestic\n(people)",
+              "values": {
+                "1": 27806
+              }
+            },
+            {
+              "id": 2,
+              "label": "Boiler",
+              "values": {
+                "1": 2671
+              }
+            },
+            {
+              "id": 3,
+              "label": "Gardening",
+              "values": {
+                "1": 1782
+              }
+            },
+            {
+              "id": 4,
+              "label": "Solar panel\ncleaning",
+              "values": {
+                "1": 1502
+              }
+            },
+            {
+              "id": 5,
+              "label": "Construction",
+              "values": {
+                "1": 838
+              }
+            },
+            {
+              "id": 6,
+              "label": "Chiller",
+              "values": {
+                "1": 439
+              }
+            }
+          ],
+          "axisMax": 30000,
+          "axisStep": 3000
+        },
+        {
+          "id": 2,
+          "type": "columns",
+          "icon": "/assets/1-3076/97acf.svg",
+          "title": "Water use by purpose, 2025",
+          "subtitle": "m³ · 35,038 m³ total",
+          "series": [
+            {
+              "id": 1,
+              "name": "",
+              "color": "#706ee7"
+            }
+          ],
+          "rows": [
+            {
+              "id": 1,
+              "label": "2022",
+              "values": {
+                "1": 38158
+              }
+            },
+            {
+              "id": 2,
+              "label": "2023",
+              "values": {
+                "1": 31600
+              }
+            },
+            {
+              "id": 3,
+              "label": "2024",
+              "values": {
+                "1": 35500
+              }
+            },
+            {
+              "id": 4,
+              "label": "2025",
+              "values": {
+                "1": 35038
+              }
+            }
+          ],
+          "axisMax": 40000,
+          "axisStep": 10000
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "background": "/assets/1-3076/fb746.jpg",
+      "icon": "/assets/1-3076/f1fb2.svg",
+      "title": "Offcuts become new yarn",
+      "text": "Every cutting table produces offcuts, called jhut. We weigh, sort and hand over every kilogram to licensed partners who turn it back into fibre and yarn. Paper, cartons, plastic and metal follow the same route. In 2025, 99% of our waste by weight was reused or recycled. Hazardous waste, under 100 kg a year, goes only to licensed handlers. Burning or dumping waste on site is banned by policy.",
+      "stats": [
+        {
+          "id": 1,
+          "icon": "/assets/1-3076/29fb8.svg",
+          "value": "405 t",
+          "label": "Of fabric offcuts sent for recycling in 2025"
+        },
+        {
+          "id": 2,
+          "icon": "/assets/1-3076/aacaf.svg",
+          "value": "99.2%",
+          "label": "Of 593 t total waste reused or recycled"
+        },
+        {
+          "id": 3,
+          "icon": "/assets/sustainability/77ee2.svg",
+          "value": "<0.1 t",
+          "label": "Hazardous waste (batteries, ink cartridges, chemical drums, medical)"
+        }
+      ],
+      "charts": [
+        {
+          "id": 1,
+          "type": "bars",
+          "icon": "/assets/1-3076/f1fb2.svg",
+          "title": "Where our waste went, 2025",
+          "subtitle": "Tonnes by stream · all routed to reuse or recycling partners",
+          "series": [
+            {
+              "id": 1,
+              "name": "",
+              "color": "#706ee7"
+            }
+          ],
+          "rows": [
+            {
+              "id": 1,
+              "label": "Fabric\noffcuts (jhut)",
+              "values": {
+                "1": 404.7
+              }
+            },
+            {
+              "id": 2,
+              "label": "Paper",
+              "values": {
+                "1": 105.3
+              }
+            },
+            {
+              "id": 3,
+              "label": "Cartons",
+              "values": {
+                "1": 48.9
+              }
+            },
+            {
+              "id": 4,
+              "label": "Iron & tin",
+              "values": {
+                "1": 23.6
+              }
+            },
+            {
+              "id": 5,
+              "label": "Plastic",
+              "values": {
+                "1": 5.6
+              }
+            },
+            {
+              "id": 6,
+              "label": "Food",
+              "values": {
+                "1": 4.6
+              }
+            },
+            {
+              "id": 7,
+              "label": "Hazardous",
+              "values": {
+                "1": 0.1
+              }
+            }
+          ],
+          "axisMax": 500,
+          "axisStep": 50
+        }
+      ]
+    }
+  ],
   "certifications": [
     {
       "id": 1,
@@ -1424,6 +1840,96 @@ export const defaultSustainability: SustainabilityContent = {
       "name": "",
       "fit": "contain",
       "box": null
+    }
+  ],
+  "environment": [
+    {
+      "id": 1,
+      "icon": "/assets/1-3076/80022.svg",
+      "title": "Solar & Energy",
+      "image": "/assets/1-3076/0cd2a.png",
+      "highlight": {
+        "value": "650 KW",
+        "label": "Installed solar capacity"
+      },
+      "detail": {
+        "value": "75%",
+        "label": "Renewable energy usage (GoodEarth Apparels)"
+      }
+    },
+    {
+      "id": 2,
+      "icon": "/assets/sustainability/water-efficiency.svg",
+      "title": "Water Efficiency",
+      "image": "/assets/1-3076/daf30.png",
+      "highlight": {
+        "value": "40%",
+        "label": "Water reduction"
+      },
+      "detail": {
+        "value": "2.7 million gallons",
+        "label": "of wastewater recycled"
+      }
+    },
+    {
+      "id": 3,
+      "icon": "/assets/1-3076/19f17.svg",
+      "title": "Waste & Circularity",
+      "image": "/assets/1-3076/581fc.jpg",
+      "highlight": {
+        "value": "Re-NuWASTE",
+        "label": "Textile waste recycling"
+      },
+      "detail": {
+        "value": "Ongoing",
+        "label": "Waste reduction initiatives"
+      }
+    },
+    {
+      "id": 4,
+      "icon": "/assets/sustainability/traceability.svg",
+      "title": "Traceability & Materials",
+      "image": "/assets/1-3076/aac34.jpg",
+      "highlight": {
+        "value": "GreenScan",
+        "label": "Traceability system (GoodEarth Apparels)"
+      },
+      "detail": {
+        "value": "",
+        "label": "Certified and lower-impact materials across our supply chain"
+      }
+    }
+  ],
+  "milestones": [
+    {
+      "id": 1,
+      "icon": "/assets/1-3076/9f8a8.svg",
+      "title": "Renewable Energy",
+      "target": "Target: 90 %"
+    },
+    {
+      "id": 2,
+      "icon": "/assets/1-3076/9f8a8.svg",
+      "title": "Water Reduction",
+      "target": "Target: 90 %"
+    },
+    {
+      "id": 3,
+      "icon": "/assets/1-3076/a4d0a.svg",
+      "title": "Waste Diversion",
+      "target": "Target: 90 %"
+    },
+    {
+      "id": 4,
+      "icon": "/assets/1-3076/a4d0a.svg",
+      "title": "Women in Leadership",
+      "target": "Target: 90 %"
+    },
+    {
+      "id": 5,
+      "icon": "/assets/1-3076/9f8a8.svg",
+      "title": "Community Reach",
+      "target": "Target: 90 %"
     }
   ]
 };
