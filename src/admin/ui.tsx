@@ -123,6 +123,9 @@ export function TextField({
   autoComplete?: string;
 }) {
   const id = useId();
+  // Password fields get their own show/hide toggle (independent per field).
+  const [revealed, setRevealed] = useState(false);
+  const isPassword = type === "password";
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     onChange?.(event.target.value);
 
@@ -149,6 +152,32 @@ export function TextField({
           rows={rows}
           value={value}
         />
+      ) : isPassword ? (
+        <div className="relative">
+          <input
+            autoComplete={autoComplete}
+            className={`${inputClass} h-10 pr-10`}
+            disabled={disabled}
+            id={id}
+            onChange={handleChange}
+            placeholder={placeholder}
+            required={required}
+            type={revealed ? "text" : "password"}
+            value={value}
+          />
+          <button
+            aria-controls={id}
+            aria-label={revealed ? `Hide ${label.toLowerCase()}` : `Show ${label.toLowerCase()}`}
+            aria-pressed={revealed}
+            className="absolute inset-y-0 right-0 flex w-10 items-center justify-center rounded-r-md text-neutral-500 outline-none hover:text-neutral-900 focus-visible:text-neutral-900 focus-visible:ring-2 focus-visible:ring-[#dea36a]/40 disabled:pointer-events-none"
+            disabled={disabled}
+            onClick={() => setRevealed((shown) => !shown)}
+            title={revealed ? "Hide password" : "Show password"}
+            type="button"
+          >
+            <EyeIcon crossed={revealed} />
+          </button>
+        </div>
       ) : (
         <input
           autoComplete={autoComplete}
@@ -164,6 +193,26 @@ export function TextField({
       )}
       {hint && <p className="text-xs text-neutral-500">{hint}</p>}
     </div>
+  );
+}
+
+/** Eye (password hidden — click to show) or crossed-out eye (password shown — click to hide). */
+function EyeIcon({ crossed }: { crossed: boolean }) {
+  return (
+    <svg aria-hidden="true" className="size-[18px]" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} viewBox="0 0 24 24">
+      {crossed ? (
+        <>
+          <path d="M10.6 5.1A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a17.6 17.6 0 0 1-2.9 3.9M6.6 6.6C3.7 8.4 2 12 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.4-1.6" />
+          <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+          <path d="M3 3l18 18" />
+        </>
+      ) : (
+        <>
+          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" />
+          <circle cx="12" cy="12" r="3" />
+        </>
+      )}
+    </svg>
   );
 }
 

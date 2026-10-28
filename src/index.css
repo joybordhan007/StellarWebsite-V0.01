@@ -1137,14 +1137,15 @@ textarea {
 }
 
 /* Page enter + scroll reveal (see src/components/PageReveal.tsx) */
+/* A light fade: the new page starts mostly visible, so the screen never flashes blank. */
 @keyframes page-enter {
   from {
-    opacity: 0;
+    opacity: 0.55;
   }
 }
 
 .page-reveal {
-  animation: page-enter 0.45s ease-out both;
+  animation: page-enter 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .reveal {
@@ -1507,4 +1508,10 @@ textarea {
   .m-flow [data-mhero-text] [data-mfs] {
     font-size: calc(var(--mfs) * 1.3) !important;
   }
+}
+
+/* The dashboard draws its own show/hide button; hide Edge's built-in one so there is only one. */
+.admin-root input[type="password"]::-ms-reveal,
+.admin-root input[type="password"]::-ms-clear {
+  display: none;
 }

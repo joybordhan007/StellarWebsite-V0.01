@@ -1,16 +1,12 @@
 import { defaultAchievements, defaultCapabilities, defaultCatalog } from "./collectionDefaults";
 import { defaultAbout, defaultBrands, defaultFactories, defaultSustainability } from "./pageDefaults";
+import seoDefaults from "./seoDefaults.json";
 import type { ContentMap, LegalContent } from "./types";
 
 // Built-in content: what the website shows until an admin edits it.
 
-const siteDescription =
-  "We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people, and a healthier planet.";
-
 const placeholderNote =
   "This page contains placeholder text for review and can be replaced with approved legal content.";
-
-const page = (title: string) => ({ title, description: siteDescription });
 
 const privacyPolicy: LegalContent = {
   title: "Privacy Policy",
@@ -122,23 +118,8 @@ export const defaultContent: ContentMap = {
       { href: "/products", label: "Products" },
     ],
   },
-  seo: {
-    pages: {
-      "/": page("Stellar Manufacturing"),
-      "/about": page("About Us | Stellar"),
-      "/capabilities": page("Our Capabilities | Stellar"),
-      "/design-path": page("Design Path | Stellar"),
-      "/factories": page("GoodEarth Apparels | Stellar"),
-      "/factories/goodearth": page("GoodEarth Apparels | Stellar"),
-      "/factories/progress": page("Progress Apparels | Stellar"),
-      "/factories/knit-gallery": page("Knit Gallery | Stellar"),
-      "/sustainability": page("Sustainability | Stellar"),
-      "/products": page("Products | Stellar"),
-      "/contact": page("Let's Talk | Stellar"),
-      "/privacy-policy": page("Privacy Policy | Stellar"),
-      "/terms-of-service": page("Terms of Service | Stellar"),
-    },
-  },
+  // Also copied into the build as seo-defaults.json, so the server sets the right title before any edit.
+  seo: seoDefaults,
   catalog: defaultCatalog,
   capabilities: defaultCapabilities,
   achievements: defaultAchievements,

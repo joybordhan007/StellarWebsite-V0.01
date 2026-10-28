@@ -68,7 +68,7 @@ function fadeInImagesOnLoad(root: HTMLElement) {
 export default function PageReveal({ children, mobile = false }: { children: ReactNode; mobile?: boolean }) {
   const rootRef = useRef<HTMLDivElement>(null);
 
-  // Phones get the reflowed one-column layout; it is redone when the page content changes.
+  // Phones get the reflowed one-column layout; it is redone when the page structure changes.
   useLayoutEffect(() => {
     const root = rootRef.current;
     const page = root?.firstElementChild as HTMLElement | null;
@@ -80,7 +80,9 @@ export default function PageReveal({ children, mobile = false }: { children: Rea
       window.clearTimeout(timer);
       timer = window.setTimeout(() => applyMobileFlow(page, canvas), 80);
     });
-    observer.observe(page, { childList: true, subtree: true, characterData: true });
+    // Only structural changes (content arriving, lists changing). Text changes, such as the
+    // animated counters, cannot change the layout and would otherwise rebuild it on every tick.
+    observer.observe(page, { childList: true, subtree: true });
     return () => {
       observer.disconnect();
       window.clearTimeout(timer);

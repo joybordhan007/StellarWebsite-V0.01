@@ -54,9 +54,9 @@ No router library, no state library.
   also applies the phone/tablet layout
 - `src/components/mobileFlow.ts` — phone/tablet reflow (≤1023px) of the 1920px pages (see Decisions)
 - `src/components/SustainabilityStories.tsx` — the four Sustainability report sections (text,
-  highlights, column/bar charts) with the sticky stacking scroll effect; exports `chartAxis`
+  highlights, column/bar charts with a grow-in animation); exports `chartAxis`
 - `src/content/` — editable content: `types.ts` (document shapes), `defaults.ts` (built-in
-  content), `collectionDefaults.ts` (catalog, capabilities, achievements), `pageDefaults.ts`
+  content), `seoDefaults.json` (built-in page titles/descriptions, also emitted into the build), `collectionDefaults.ts` (catalog, capabilities, achievements), `pageDefaults.ts`
   (factories, brands, about, versatility, sustainability — generated once from the Figma pages),
   `ContentProvider.tsx` (`useContent(key)`, `mergeContent`, `useBackendAvailable()`)
 - `src/data/productCategories.json` — source of the default product catalogue
@@ -77,7 +77,10 @@ No router library, no state library.
 - `server/app.cjs` — cPanel/Passenger startup file; `server/README.md` — dev + deployment guide (Bangla)
 - `scripts/package-deploy.mjs` — `pnpm deploy:package`: builds site + server into `deploy/stellar.zip`
 - `public/assets/<figma-node-id>/` — exported images/SVGs, grouped by Figma frame (e.g. `1-641` = Home)
-- `.figma/make/site.json` — page title, description, robots (currently `index: false`)
+- `config/` — was `.figma/make/` (renamed at the owner's request): `site.json` (page title,
+  description, robots — currently `index: false`, read by `vite.config.ts`), `dev.json` and the
+  Figma Make platform hook scripts (`dev`, `deploy`, `install` …). Figma Make looks for these in
+  `.figma/make/`, so its preview/deploy no longer finds them; production (cPanel) is unaffected.
 
 ## Routes
 
@@ -109,7 +112,9 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
 - **Fixed 1920px design canvas, scaled down.** Pages are laid out at 1920px wide with absolute
   positions from Figma. `App` scales the whole `.design-scale` wrapper by
   `min(1, viewportWidth / 1920)` and sets the outer canvas height from each route's `height`
-  value. When a page's layout height changes, update its `height` in `routes` (`App.tsx`).
+  value. `viewportWidth` is `documentElement.clientWidth` (no scrollbar, kept current with a
+  ResizeObserver), so the canvas never overflows sideways; phone vs desktop uses
+  `matchMedia(MOBILE_QUERY)`, the same query as the CSS, so header and layout always agree. When a page's layout height changes, update its `height` in `routes` (`App.tsx`).
 - **Hand-rolled router instead of react-router.** A document-level click handler intercepts
   same-origin `<a>` clicks, uses `history.pushState`, and swaps the page in a `startTransition`.
   Modifier-clicks and `target` links pass through. Hash links scroll to the target once it renders.
@@ -167,7 +172,8 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
   backgrounds; rows of wide blocks stack, rows of small ones wrap 2-up (icon + text rows are left
   alone, hairline dividers hidden); paddings ≥48px → 16px (32px ≥640px), big gaps and headings
   shrink, long nowrap text wraps. It reruns on DOM changes (MutationObserver) and removing `.m-flow`
-  restores desktop exactly. Hand overrides: `data-mobile="hide | stack | wrap | full | keep"`
+  restores desktop exactly. It rebuilds only on structural DOM changes (not text changes such as
+  the counters). Hand overrides: `data-mobile="hide | stack | wrap | full | keep"`
   (used by the footer, Versatility columns/empty rows, charts). Wide one-cell `grid-cols-[max-content]`
   wrappers are fitted to the column; centred one-line text keeps its wrapped lines centred. The hamburger `MobileHeader`
   replaces the desktop header at the same breakpoint; its menu closes on navigation and Escape.
@@ -175,11 +181,18 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
   into one paragraph, slogan box as a one-line strip. Photo-only rows wrap two per row; heading rows
   spread with `justify-between` stack (`data-mhead`); stacked columns drop their own vertical padding;
   `sticky` is off; words never break mid-word.
-- **Sustainability report sections stack while scrolling.** Each 864px section pins under the
-  header and the next slides over it; the covered one shrinks 8% and darkens, the arriving one has
-  rounded top corners and its cards rise in (JS on scroll, transforms only — the content is centred by
-  its `translate` class, so the script only adds the arrival offset; off on phones and with
-  reduced motion; the container opts out of PageReveal with `data-reveal="off"`).
+- **No sticky scroll effect on the report sections** (owner's choice, removed after trying it):
+  they are four plain 864px frames and reveal like any other section.
+- **Page changes are a light fade, in one frame.** The scroll to the top happens in a layout effect
+  after the new page commits (never while the old one is still shown), the dynamic height resets
+  inside the same transition, and `.page-reveal` fades from 0.55 opacity over 0.3s.
+- **Default SEO reaches the server.** The build emits `dist/seo-defaults.json` (Vite plugin
+  `emitSeoDefaults`); `server/src/site.ts` uses a saved `seo` entry if there is one, else the
+  default, so every page's HTML has its own title/description for search engines and link previews.
+- **Images are sized to their use.** Raster assets were shrunk in place (same name and format) to
+  2.5× their largest on-screen size measured at 1920/820/390px, e.g. 2000px Versatility thumbnails
+  shown at 44px. The product photos (`product-mix/*`, 4–7 MB PNG) are shown up to ~740px on phones
+  and were left as they are; converting them to WebP/JPEG would need new file names.
 - **Report charts are data, not Figma drawings.** `sustainability.stories[].charts`: type
   `columns` (stacked by series) or `bars` (horizontal, values shown); rows keep values per series
   id; axis end/step 0 = automatic. Default chart values were read off the Figma bar heights and do
@@ -255,13 +268,16 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
   footer, site settings and Versatility edit part of a bigger document, so resetting would wipe more.
 - **Overview charts follow the dataviz rules:** validated categorical slots (views #2a78d6,
   visitors #eb6834, enquiries #6250d6), one axis, hover tooltips, a table view.
+- **Password fields show/hide themselves.** `TextField` with `type="password"` renders its own eye
+  button (independent state per field, `aria-pressed`); Edge's built-in reveal icon is hidden in
+  `.admin-root` so there is only one.
 - **Admin UI uses system fonts** (`.admin-root`): the site's Figma fonts are one weight per
   family with `font-synthesis: none`, so Tailwind weights wouldn't render.
 - **Dev proxy is opt-in.** Vite proxies `/api` and `/uploads` only when `API_PROXY` is set
   (e.g. in `.env.local`), so the Figma Make preview never logs proxy errors.
 - **pnpm only.** `package-lock.json` was removed; Figma Make scripts use pnpm.
 - **Search indexing is off** (`robots.index: false`) while the site is in development; flip it in
-  `.figma/make/site.json` before the production build.
+  `config/site.json` before the production build.
 
 ## What's built
 
@@ -283,7 +299,7 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
 - Home “A global footprint”, Sustainability “Three factories”, About world map and legend driven
   by the factories; Home brand logos, About journey, Capabilities Versatility and Sustainability
   certifications, Environmental performance cards, Next milestones and the four report sections
-  (Powered by the sun … Offcuts become new yarn, with charts and sticky stacking scroll) driven by content
+  (Powered by the sun … Offcuts become new yarn, with charts) driven by content
 - Footer fully editable: description, social links (any of 9 platforms), link columns, contact
   info, copyright and credit
 - Cookie-less page-view tracking for the dashboard reports
@@ -305,7 +321,7 @@ Public: `GET /api/content`, `GET /api/content/:key`, `POST /api/messages`, `POST
   add/edit popups and image/icon upload, certification logos; Reports tab: each report section's
   background, icon, title, text, highlights table and chart cards with series + data tables); Versatility categories table + category page;
   About journey; offices; footer (description, social links, contact column); legal pages; my
-  profile (photo, name, admin ID, password); site settings and SEO via direct URL only. Overview: traffic and
+  profile (photo, name, admin ID, password with a show/hide eye on each field); site settings and SEO via direct URL only. Overview: traffic and
   enquiry reports (7/30/90 days, deltas, daily charts, top pages, sources, devices) plus content
   counts and latest messages. Unsaved-changes bar, last-saved info.
 
@@ -366,3 +382,9 @@ via nodemailer would remove the activation step).
   by half its height (double -50% translate), which cut it off under the header.
 - 2026-10-28 — Mobile: menu closes after navigation; compact half-screen heroes; factory tabs, photo
   rows, heading rows, stacked-column spacing and word wrapping tidied for phones and tablets.
+- 2026-10-28 — Removed the sticky scroll effect from the report sections; smoother page changes.
+  Renamed `.figma/make` → `config/`. Audit: 101 unused assets removed, 61 oversized images shrunk
+  (74 MB → 5 MB), default SEO titles now in the server HTML, no sideways overflow from the scrollbar,
+  phone layout no longer rebuilt on counter ticks, password form username hint, server engine
+  Node ≥22.13, unused `formatBytes`/`isMobileViewport` removed.
+- 2026-10-28 — My profile: show/hide eye on the three change-password fields.

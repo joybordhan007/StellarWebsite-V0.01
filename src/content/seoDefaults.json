@@ -1,0 +1,56 @@
+{
+  "pages": {
+    "/": {
+      "title": "Stellar Manufacturing",
+      "description": "We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people, and a healthier planet."
+    },
+    "/about": {
+      "title": "About Us | Stellar",
+      "description": "We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people, and a healthier planet."
+    },
+    "/capabilities": {
+      "title": "Our Capabilities | Stellar",
+      "description": "We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people, and a healthier planet."
+    },
+    "/design-path": {
+      "title": "Design Path | Stellar",
+      "description": "We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people, and a healthier planet."
+    },
+    "/factories": {
+      "title": "GoodEarth Apparels | Stellar",
+      "description": "We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people, and a healthier planet."
+    },
+    "/factories/goodearth": {
+      "title": "GoodEarth Apparels | Stellar",
+      "description": "We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people, and a healthier planet."
+    },
+    "/factories/progress": {
+      "title": "Progress Apparels | Stellar",
+      "description": "We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people, and a healthier planet."
+    },
+    "/factories/knit-gallery": {
+      "title": "Knit Gallery | Stellar",
+      "description": "We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people, and a healthier planet."
+    },
+    "/sustainability": {
+      "title": "Sustainability | Stellar",
+      "description": "We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people, and a healthier planet."
+    },
+    "/products": {
+      "title": "Products | Stellar",
+      "description": "We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people, and a healthier planet."
+    },
+    "/contact": {
+      "title": "Let's Talk | Stellar",
+      "description": "We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people, and a healthier planet."
+    },
+    "/privacy-policy": {
+      "title": "Privacy Policy | Stellar",
+      "description": "We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people, and a healthier planet."
+    },
+    "/terms-of-service": {
+      "title": "Terms of Service | Stellar",
+      "description": "We are a sustainable clothing and garment manufacturer, driven by responsible practices, empowered people, and a healthier planet."
+    }
+  }
+}

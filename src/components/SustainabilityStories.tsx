@@ -1,34 +1,24 @@
 import { useEffect, useRef } from "react";
-import { isMobileViewport } from "./mobileFlow";
 import type { ChartRow, StoryChart, SustainabilityStory } from "../content/types";
 
 // Each report section fills one 1920×864 frame of the design.
 const SECTION_HEIGHT = 864;
-// How far a covered section shrinks and darkens while the next one slides over it.
-const COVER_SCALE = 0.08;
-const COVER_SHADE = 0.45;
-const ARRIVE_RADIUS = 40;
-const ARRIVE_OFFSET = 80;
-// Sections pin just below the fixed site header (90px in the design).
-const HEADER_HEIGHT = 90;
 // A chart card on its own is 613px tall in the design.
 const SINGLE_COLUMNS_HEIGHT = 423;
 const SINGLE_BARS_HEIGHT = 506;
 
-const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
-
-function rowValue(chart: StoryChart, row: ChartRow, seriesId: number) {
+function rowValue(row: ChartRow, seriesId: number) {
   return Number(row.values[String(seriesId)]) || 0;
 }
 
 function rowTotal(chart: StoryChart, row: ChartRow) {
-  return chart.series.reduce((sum, series) => sum + rowValue(chart, row, series.id), 0);
+  return chart.series.reduce((sum, series) => sum + rowValue(row, series.id), 0);
 }
 
 /** Axis end and step: the saved ones, or a round step that fits the largest value. */
 export function chartAxis(chart: StoryChart) {
   if (chart.axisMax > 0 && chart.axisStep > 0) return { max: chart.axisMax, step: chart.axisStep };
-  const largest = Math.max(1, ...chart.rows.map((row) => (chart.type === "columns" ? rowTotal(chart, row) : rowValue(chart, row, chart.series[0]?.id ?? 0))));
+  const largest = Math.max(1, ...chart.rows.map((row) => (chart.type === "columns" ? rowTotal(chart, row) : rowValue(row, chart.series[0]?.id ?? 0))));
   const rough = largest / (chart.type === "columns" ? 6 : 10);
   const magnitude = 10 ** Math.floor(Math.log10(rough));
   const step = [1, 2, 2.5, 5, 10].map((n) => n * magnitude).find((n) => n >= rough) ?? rough;
@@ -112,7 +102,7 @@ function ColumnChart({ chart, height, boxed }: { chart: StoryChart; height: numb
                     key={series.id}
                     style={{
                       background: series.color,
-                      height: `${(rowValue(chart, row, series.id) / max) * 100}%`,
+                      height: `${(rowValue(row, series.id) / max) * 100}%`,
                     }}
                   />
                 ))}
@@ -171,7 +161,7 @@ function BarChart({ chart, height, boxed }: { chart: StoryChart; height: number;
               />
             ))}
             {chart.rows.map((row) => {
-              const value = series ? rowValue(chart, row, series.id) : 0;
+              const value = series ? rowValue(row, series.id) : 0;
               return (
                 <div className="flex flex-[1_0_0] gap-[16px] items-center min-h-px relative border-b border-dashed border-[rgba(0,0,0,0.06)]" key={row.id}>
                   <div
@@ -241,7 +231,6 @@ function Story({ story }: { story: SustainabilityStory }) {
       </div>
       <div
         className="story-content -translate-y-1/2 absolute content-stretch flex gap-[24px] items-center left-[180px] top-1/2 w-[1560px]"
-        data-story-content=""
       >
         <div className="content-stretch flex flex-[1_0_0] flex-col gap-[16px] items-start justify-center min-w-px relative self-start">
           <div className="bg-[#f6f6f6] content-stretch drop-shadow-[0px_0px_3px_rgba(0,0,0,0.06)] flex flex-col gap-[8px] items-start p-[16px] relative rounded-[8px] shrink-0 w-full">
@@ -293,77 +282,14 @@ function Story({ story }: { story: SustainabilityStory }) {
   );
 }
 
-/**
- * The full-screen report sections. While scrolling, each section pins in place and the next
- * one slides over it; the covered section shrinks and darkens slightly (a stacked-cards effect).
- */
+/** The full-screen report sections of the Sustainability page, one 1920×864 frame each. */
 export default function SustainabilityStories({ stories, className }: { stories: SustainabilityStory[]; className: string }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    // Phones get the plain one-column layout (no pinning).
-    if (!container || isMobileViewport() || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const sections = Array.from(container.children) as HTMLElement[];
-    let frame = 0;
-
-    const update = () => {
-      frame = 0;
-      const rect = container.getBoundingClientRect();
-      const count = sections.length;
-      if (!count || !rect.height) return;
-      // The design canvas may be scaled down: work in design pixels.
-      const scale = rect.height / (count * SECTION_HEIGHT);
-      const viewTop = -rect.top / scale;
-      const viewHeight = window.innerHeight / scale;
-      // Pin under the header. On a short screen the section is centred in the space below the
-      // header instead, so its (centred) content is never hidden behind the header.
-      const pinTop = Math.min(HEADER_HEIGHT, HEADER_HEIGHT + (viewHeight - HEADER_HEIGHT - SECTION_HEIGHT) / 2);
-
-      sections.forEach((section, index) => {
-        const passed = viewTop + pinTop - index * SECTION_HEIGHT;
-        const shift = clamp(passed, 0, (count - 1 - index) * SECTION_HEIGHT);
-        const covered = index < count - 1 ? clamp(passed / SECTION_HEIGHT, 0, 1) : 0;
-        const arrived = index === 0 ? 1 : clamp(passed / SECTION_HEIGHT + 1, 0, 1);
-        const frameEl = section.firstElementChild as HTMLElement;
-        const shade = frameEl.lastElementChild as HTMLElement;
-        const content = frameEl.querySelector<HTMLElement>("[data-story-content]");
-
-        section.style.transform = shift ? `translate3d(0, ${shift}px, 0)` : "";
-        frameEl.style.transform = covered ? `scale(${1 - COVER_SCALE * covered})` : "";
-        frameEl.style.borderRadius = `${ARRIVE_RADIUS * Math.max(covered, 1 - arrived)}px`;
-        shade.style.opacity = String(COVER_SHADE * covered);
-        // Only the arrival offset: the content is already centred by its own `translate` class.
-        if (content) content.style.transform = arrived < 1 ? `translateY(${ARRIVE_OFFSET * (1 - arrived)}px)` : "";
-      });
-    };
-
-    const schedule = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-      sections.forEach((section) => {
-        section.style.transform = "";
-        const frameEl = section.firstElementChild as HTMLElement;
-        frameEl.style.transform = "";
-        frameEl.style.borderRadius = "";
-      });
-    };
-  }, [stories.length]);
-
   return (
-    <div className={`sustainability-stories ${className}`} data-reveal="off" ref={containerRef} style={{ height: stories.length * SECTION_HEIGHT }}>
+    <div className={`sustainability-stories ${className}`} style={{ height: stories.length * SECTION_HEIGHT }}>
       {stories.map((story) => (
-        <section className="h-[864px] relative w-full will-change-transform" key={story.id}>
-          <div className="absolute inset-0 origin-top overflow-hidden shadow-[0_-12px_40px_rgba(0,0,0,0.18)]">
+        <section className="h-[864px] relative w-full" key={story.id}>
+          <div className="absolute inset-0 overflow-hidden">
             <Story story={story} />
-            <div aria-hidden className="absolute inset-0 bg-black opacity-0 pointer-events-none" />
           </div>
         </section>
       ))}

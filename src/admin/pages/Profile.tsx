@@ -113,6 +113,8 @@ export default function Profile() {
 
         <Card title="Change password">
           <form className="grid gap-3 sm:grid-cols-3 sm:items-end" onSubmit={changePassword}>
+            {/* Tells password managers which account this password belongs to. */}
+            <input autoComplete="username" className="hidden" readOnly type="email" value={admin.email} />
             <TextField autoComplete="current-password" label="Current password" onChange={setCurrentPassword} required type="password" value={currentPassword} />
             <TextField autoComplete="new-password" label="New password (8+ characters)" onChange={setNewPassword} required type="password" value={newPassword} />
             <TextField autoComplete="new-password" label="Repeat new password" onChange={setConfirmPassword} required type="password" value={confirmPassword} />

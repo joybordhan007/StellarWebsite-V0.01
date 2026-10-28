@@ -38,7 +38,7 @@ pnpm dev                     # http://localhost:8443/admin
 ```bash
 pnpm deploy:package          # → deploy/stellar.zip
 ```
-> লাইভে যাওয়ার আগে `.figma/make/site.json` এ `"robots": { "index": true }` করে নিন, না হলে Google সাইট index করবে না।
+> লাইভে যাওয়ার আগে `config/site.json` এ `"robots": { "index": true }` করে নিন, না হলে Google সাইট index করবে না।
 
 ### ২. আপলোড করুন
 cPanel → **File Manager** → home folder এ `stellar.zip` আপলোড করুন → ফাইলে right-click → **Extract**।

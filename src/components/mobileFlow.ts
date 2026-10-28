@@ -40,7 +40,6 @@ const MARKERS = [
 ];
 const VARS = ["--mfs", "--mgap", "--mpadv", "--mminh", "--mar", "order"];
 
-export const isMobileViewport = () => typeof window !== "undefined" && window.innerWidth <= MOBILE_MAX_WIDTH;
 
 function mobileFontSize(size: number) {
   if (size >= 64) return Math.max(34, Math.round(size * 0.45));

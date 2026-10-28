@@ -6,7 +6,8 @@ import { getAllContent } from "./routes/content.js";
 
 const DEV_SITE_URL = process.env.DEV_SITE_URL ?? "http://localhost:8443";
 
-type SeoDocument ={ pages?: Record<string, { title?: string; description?: string }> };
+type SeoPage = { title?: string; description?: string };
+type SeoDocument = { pages?: Record<string, SeoPage> };
 
 function escapeHtml(value: string) {
   return value
@@ -46,6 +47,9 @@ export function siteRouter() {
   }
 
   const template = fs.readFileSync(indexFile, "utf8");
+  // Built-in titles/descriptions (emitted by the website build); saved SEO edits win over them.
+  const seoDefaultsFile = path.join(config.clientDist, "seo-defaults.json");
+  const seoDefaults: SeoDocument = fs.existsSync(seoDefaultsFile) ? JSON.parse(fs.readFileSync(seoDefaultsFile, "utf8")) : {};
 
   router.use(
     express.static(config.clientDist, {
@@ -64,7 +68,7 @@ export function siteRouter() {
     const route = req.path.replace(/\/+$/, "") || "/";
     let html = template;
 
-    const page = (content.seo as SeoDocument | undefined)?.pages?.[route];
+    const page: SeoPage | undefined = (content.seo as SeoDocument | undefined)?.pages?.[route] ?? seoDefaults.pages?.[route];
     if (page?.title) {
       html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(page.title)}</title>`);
       html = setMeta(html, "property", "og:title", page.title);

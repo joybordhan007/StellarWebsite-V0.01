@@ -4,12 +4,16 @@ import {
   startTransition,
   Suspense,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
 import PageReveal from "./components/PageReveal";
 import { MOBILE_MAX_WIDTH } from "./components/mobileFlow";
+
+// Same breakpoint as the `@media (max-width: 1023px)` block in index.css.
+const MOBILE_QUERY = `(max-width: ${MOBILE_MAX_WIDTH}px)`;
 import { useBackendAvailable, useContent } from "./content/ContentProvider";
 import type { NavigationItem } from "./content/types";
 
@@ -265,9 +269,13 @@ export default function App() {
   const [pathname, setPathname] = useState(window.location.pathname);
   const pathnameRef = useRef(window.location.pathname);
   const [navigationVersion, setNavigationVersion] = useState(0);
-  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  // The width without the scrollbar, so the scaled 1920px canvas never overflows sideways.
+  const [viewportWidth, setViewportWidth] = useState(document.documentElement.clientWidth);
+  // The phone layout uses the very media query the CSS uses, so the two never disagree.
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches);
   const [scrolled, setScrolled] = useState(window.scrollY > 24);
   const [dynamicPageHeight, setDynamicPageHeight] = useState<number | null>(null);
+  const scrollToTopOnCommit = useRef(false);
   const site = useContent("site");
   const seo = useContent("seo");
   // Any /factories/<slug> renders the factory page (FactoryPage picks the factory).
@@ -276,7 +284,6 @@ export default function App() {
   const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
   const PageComponent = page.component;
   const pageHeight = dynamicPageHeight ?? page.height;
-  const isMobile = viewportWidth <= MOBILE_MAX_WIDTH;
   const scale = isMobile ? 1 : Math.min(1, viewportWidth / 1920);
 
   useEffect(() => {
@@ -286,14 +293,18 @@ export default function App() {
         pathnameRef.current.startsWith("/factories") &&
         nextPathname.startsWith("/factories");
       pathnameRef.current = nextPathname;
-      setDynamicPageHeight(null);
+      // Scroll once the new page is on screen (see below), not while the old one is still shown.
+      scrollToTopOnCommit.current = !preserveFactoryScroll && !window.location.hash;
       startTransition(() => {
+        setDynamicPageHeight(null);
         setPathname(nextPathname);
         setNavigationVersion((version) => version + 1);
       });
-      if (!preserveFactoryScroll && !window.location.hash) window.scrollTo(0, 0);
     };
-    const resize = () => setViewportWidth(window.innerWidth);
+    const resize = () => {
+      setViewportWidth(document.documentElement.clientWidth);
+      setIsMobile(window.matchMedia(MOBILE_QUERY).matches);
+    };
     const handleScroll = () => setScrolled(window.scrollY > 24);
     const intercept = (event: MouseEvent) => {
       const target = event.target as Element;
@@ -323,15 +334,26 @@ export default function App() {
 
     window.addEventListener("popstate", navigate);
     window.addEventListener("resize", resize);
+    // The scrollbar appearing or disappearing changes the width without a resize event.
+    const widthObserver = new ResizeObserver(resize);
+    widthObserver.observe(document.documentElement);
     window.addEventListener("scroll", handleScroll, { passive: true });
     document.addEventListener("click", intercept);
     return () => {
       window.removeEventListener("popstate", navigate);
       window.removeEventListener("resize", resize);
+      widthObserver.disconnect();
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("click", intercept);
     };
   }, []);
+
+  // Same frame as the page swap, so the old page never visibly jumps to the top first.
+  useLayoutEffect(() => {
+    if (!scrollToTopOnCommit.current) return;
+    scrollToTopOnCommit.current = false;
+    window.scrollTo(0, 0);
+  }, [navigationVersion]);
 
   useEffect(() => {
     const targetId = window.location.hash.slice(1);

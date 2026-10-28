@@ -1,13 +1,15 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import { defineConfig, loadEnv, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-import siteConfiguration from './.figma/make/site.json' with { type: 'json' }
+import siteConfiguration from './config/site.json' with { type: 'json' }
 
 
 // Vite config — https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  // .figma/make/deploy-preview passes `--mode development` for cached-preview builds.
+  // config/deploy-preview passes `--mode development` for cached-preview builds.
   const emitSourcemaps = mode === 'development'
   // Local backend for the admin dashboard: set API_PROXY=http://localhost:3001 in .env.local.
   const apiProxy = loadEnv(mode, process.cwd(), '').API_PROXY
@@ -26,6 +28,7 @@ react(),
       figmaReactRefreshBoundaryFallback(),
       figmaMakeKitPlugin({ storiesGlob: '/src/**/*.stories.{ts,tsx,js,jsx}' }),
       lazyLoadPageImages(),
+      emitSeoDefaults(),
     ],
     resolve: {
       alias: {
@@ -51,6 +54,24 @@ react(),
     },
   }
 })
+
+/**
+ * Copies the built-in page titles/descriptions into the build as seo-defaults.json, so the
+ * production server can put the right <title> in each page's HTML before anyone edits SEO.
+ */
+function emitSeoDefaults(): Plugin {
+  return {
+    name: 'emit-seo-defaults',
+    apply: 'build',
+    generateBundle() {
+      this.emitFile({
+        type: 'asset',
+        fileName: 'seo-defaults.json',
+        source: fs.readFileSync(path.join(import.meta.dirname, 'src/content/seoDefaults.json'), 'utf8'),
+      })
+    },
+  }
+}
 
 function lazyLoadPageImages(): Plugin {
   return {
@@ -95,7 +116,7 @@ type FigmaSiteConfiguration = {
   }
 }
 
-/** Applies /.figma/make/site.json to the generated document shell. */
+/** Applies config/site.json to the generated document shell. */
 function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
   function sanitizeHtmlValue(value: string | undefined): string {
     return value?.replace(/[^a-zA-Z0-9_-]/g, '') || ''
